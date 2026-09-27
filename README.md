@@ -7,7 +7,7 @@
 
 - Name: Agentic Value Stream
 - ID: ES:CONCEPT:agentic-value-stream
-- Tranche: ES-019
+- Tranche: ES-005
 - Semantic Version: 0.4.0
 - Base Concept: ES:CONCEPT:value-stream
 - Status: Accepted

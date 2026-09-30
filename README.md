@@ -2,6 +2,10 @@
 
 > **Topic:** `concept` (Enterprise-Semantics per-concept repository, ES-ADR-049 + CR-ES-049)
 
+# Agentic Value Stream
+
+> **Topic:** `concept` (Enterprise-Semantics per-concept repository, ES-ADR-049 + CR-ES-049)
+
 # concept-agentic-value-stream
 
 > Agentic Value Stream, Authoritative concept repository, self-contained per ES-ADR-049 + CR-ES-049.

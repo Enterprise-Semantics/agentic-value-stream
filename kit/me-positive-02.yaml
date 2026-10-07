@@ -1,0 +1,12 @@
+id: KIT-AGENTIC-VALUE-STREAM-VAS-ME-P02
+test_id: VAS-ME-P02
+category: measurement_positive
+subject: Counterfactual Comparison Supported
+description: Incremental AVS Value construct (AVS Result - Comparable Baseline) is present.
+cr: "CR-VAS-005 \xA714"
+expect: measurement.counterfactual_comparison declares the incremental_value principle.
+asserts:
+- measurement.counterfactual_comparison is defined
+- historical in measurement.baselines.types
+- human_only in measurement.baselines.types
+- counterfactual in measurement.baselines.types

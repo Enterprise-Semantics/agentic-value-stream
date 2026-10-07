@@ -1,0 +1,12 @@
+id: KIT-AGENTIC-VALUE-STREAM-VAS-ME-BT-10
+test_id: VAS-ME-BT-10
+category: measurement_boundary
+subject: Reference Examples Documented
+description: Customer service, procurement, operations, multi-agent reference examples provided.
+cr: "CR-VAS-005 \xA741"
+expect: measurement.reference_examples carries customer_service_avs, procurement_avs, operations_avs, multi_agent_avs.
+asserts:
+- measurement.reference_examples.items contains customer_service_avs
+- measurement.reference_examples.items contains procurement_avs
+- measurement.reference_examples.items contains operations_avs
+- measurement.reference_examples.items contains multi_agent_avs

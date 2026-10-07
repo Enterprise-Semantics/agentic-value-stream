@@ -1,0 +1,10 @@
+id: KIT-AGENTIC-VALUE-STREAM-VAS-ME-BT-01
+test_id: VAS-ME-BT-01
+category: measurement_boundary
+subject: Measurement vs Semantic Qualification
+description: Measurement SHALL NOT replace semantic qualification conditions (CR-VAS-002).
+cr: "CR-VAS-005 \xA739 + AC-30"
+expect: No measurement requirement alters AVS-VAL-01..07 required values.
+asserts:
+- measurement.relationship_to_conformance is defined
+- measurement.separation_principles.principles contains measurement_vs_qualification

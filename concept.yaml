@@ -95,9 +95,49 @@ definition: |
 # Lifecycle state (independent of conformance state per CR-AVS-001 §14).
 lifecycle:
   status: candidate
-  version: 1.2.0
+  version: 1.3.0
   date: 2026-10-08
   promotion_history:
+    - version: 1.3.0
+      date: 2026-10-08
+      status: candidate
+      note: >-
+        Measurement & Operational Value Model per CR-VAS-005.
+        Introduces the measurement block: normative measurement
+        question, 5-level measurement hierarchy (activity /
+        behavior / performance / value / strategic effect), 6
+        primary dimensions (value realization, agentic
+        effectiveness, decision quality, human intervention,
+        authority and risk, operational efficiency), 4
+        conditional metric categories (multi-agent, adaptive
+        progression, AI-specific, autonomy-specific), baseline
+        model (historical / human_only / automated / pre_agentic
+        / controlled / counterfactual / benchmark),
+        counterfactual comparison principle, measurement
+        context schema (12 fields), value attribution
+        confidence (high/medium/low/unknown), measurement
+        provenance chain, measurement lifecycle (defined ->
+        instrumented -> collected -> validated -> analyzed ->
+        acted_upon -> reviewed), 6 measurement quality
+        dimensions (accuracy / completeness / timeliness /
+        consistency / traceability / comparability), 7
+        measurement anti-patterns (agent_count_as_value,
+        autonomy_as_performance, automation_rate_as_agenticity,
+        decision_volume_as_effectiveness, intervention_minimization,
+        ai_model_quality_as_value, cost_reduction_as_sole_value),
+        separation principles (measurement vs qualification,
+        measurement vs conformance, measurement vs maturity),
+        measurement-to-semantics traceability map, core metric
+        set (12 recommended measures), interpretation rules
+        (authority utilization diagnostic, intervention rate
+        not better when lower, decision density not maturity,
+        adaptation not proof of agenticity, action execution
+        distinct from selection, multi-agent optional),
+        machine-readable measurement model template, 4
+        reference examples (customer service, procurement,
+        operations, multi-agent). Promotion to Established
+        reserved for CR-VAS-005 acceptance review (governance
+        frame ES-ADR-055).
     - version: 0.4.0
       date: 2026-09-26
       status: candidate
@@ -1500,3 +1540,528 @@ evidence_conformance:
     qualification: CR-VAS-002
     participation_realization: CR-VAS-003
     evidence_conformance: CR-VAS-004
+
+
+# ============================================================
+# CR-VAS-005 ; Measurement & Operational Value Model
+# Per CR-VAS-005 (2026-10-08) ; ES-ADR-055 + CR-VAS-005
+# Cardinal author rule: Emmanuel A. Otchere (2026-09-23)
+# D-004: 0 en/em/triple-em dash ; 0 TMForum ; 0 vendor specifics
+# ============================================================
+
+measurement:
+
+  specializes: ES:CONCEPT:agentic-value-stream
+
+  principle: |
+    Measurement evaluates an already-qualified and conformant AVS
+    implementation. Measurement does NOT determine whether the
+    underlying concept is semantically an AVS. The single most
+    important design decision in CR-VAS-005 is: do not allow
+    measurement to become a backdoor definition of agenticity.
+    Activity != Effectiveness != Business Value.
+
+  normative_question: |
+    Does agentic participation improve or materially contribute to
+    the realization of Value Stream outcomes within acceptable
+    authority, risk, cost, and intervention boundaries?
+
+  hierarchy:
+    description: |
+      Five-level measurement hierarchy. Prevents dashboards from
+      becoming collections of low-level telemetry.
+    levels:
+      - id: activity
+        question: What happened?
+      - id: behavior
+        question: How did the agent behave?
+      - id: performance
+        question: How well did it perform?
+      - id: value
+        question: What value did it create or protect?
+      - id: strategic_effect
+        question: What changed because of agentic realization?
+
+  dimensions:
+    - id: value_realization
+      primary: true
+      description: |
+        Primary dimension. Measures whether agentic participation
+        improves the intended Value Stream outcome.
+      metrics:
+        - outcome_realization_rate
+        - outcome_quality
+        - value_leakage
+        - value_recovery
+        - exception_resolution_rate
+        - time_to_outcome
+        - outcome_variance
+        - customer_stakeholder_outcome
+    - id: agentic_effectiveness
+      description: |
+        Whether agentic behavior functions as intended.
+      metrics:
+        - delegation_success_rate
+        - context_utilization_rate
+        - action_selection_effectiveness
+        - adaptive_progression_effectiveness
+        - agentic_resolution_rate
+        - agentic_decision_density
+        - agentic_action_selection_rate
+        - authority_utilization
+    - id: decision_quality
+      description: |
+        Distinguish decision quality, action quality, and outcome
+        quality. They are NOT equivalent.
+      metrics:
+        - decision_acceptance_rate
+        - action_success_rate
+        - action_reversal_rate
+        - decision_override_rate
+        - rework_rate
+        - exception_rate
+        - downstream_defect_rate
+        - policy_compliance_rate
+    - id: human_intervention
+      description: |
+        Human intervention is an explicit dimension, NOT
+        automatically treated as failure.
+      metrics:
+        - intervention_rate
+        - intervention_effectiveness
+        - escalation_precision
+        - escalation_miss_rate
+        - intervention_success_rate
+        - intervention_reversal_rate
+        - intervention_induced_delay
+        - unnecessary_intervention_rate
+    - id: authority_and_risk
+      description: |
+        Risk introduced by delegated authority.
+      metrics:
+        - boundary_compliance_rate
+        - boundary_exception_rate
+        - unauthorized_action_rate
+        - constraint_violation_rate
+        - escalation_failure_rate
+        - risk_adjusted_outcome
+        - risk_adjusted_value
+    - id: operational_efficiency
+      description: |
+        Operational efficiency. Distinguished from value realization.
+      metrics:
+        - cost_per_outcome
+        - cost_per_successful_resolution
+        - time_per_outcome
+        - throughput
+        - capacity_utilization
+        - human_effort_avoided
+        - human_effort_redirected
+        - infrastructure_cost
+        - agent_execution_cost
+        - exception_handling_cost
+        - value_stream_cycle_time
+
+  conditional_metrics:
+    description: |
+      Metrics applicable ONLY where relevant. Distinguish from
+      universal measurement dimensions.
+    categories:
+      - id: multi_agent
+        conditional: true
+        description: For multi-agent or distributed AVS implementations.
+        metrics:
+          - coordination_success_rate
+          - coordination_latency
+          - coordination_conflict_rate
+          - duplicate_action_rate
+          - inter_agent_escalation_rate
+          - coordination_failure_rate
+          - shared_state_inconsistency
+          - coordination_induced_rework
+      - id: adaptive_progression
+        conditional: true
+        description: Where adaptive progression is present.
+        metrics:
+          - adaptation_rate
+          - adaptation_effectiveness
+          - adaptation_reversal_rate
+          - adaptation_stability
+      - id: ai_specific
+        conditional: true
+        description: Where AI implementation technology is used.
+        metrics:
+          - model_latency
+          - model_quality
+          - model_evaluation
+      - id: autonomy_specific
+        conditional: true
+        description: Where autonomy is present.
+        metrics:
+          - autonomy_level
+          - autonomy_exercised
+
+  baselines:
+    description: |
+      A baseline is REQUIRED wherever an improvement claim is made.
+      The baseline SHALL be declared explicitly.
+    types:
+      - historical
+      - human_only
+      - automated
+      - pre_agentic
+      - controlled
+      - counterfactual
+      - benchmark
+    principle: |
+      An assertion such as "agentic implementation improved
+      efficiency by 40%" SHALL NOT be considered complete without
+      identifying the comparison baseline.
+
+  counterfactual_comparison:
+    description: |
+      Where feasible, the repository SHOULD support comparison
+      against a baseline. The preferred measurement construct is:
+      Incremental AVS Value = AVS Result - Comparable Baseline
+      Result. This is substantially more meaningful than measuring
+      agentic activity alone.
+    baselines:
+      - human_only
+      - automation_only
+      - existing_operating_model
+      - historical
+      - controlled_experiment
+      - simulation
+
+  measurement_context:
+    description: |
+      Every measurement SHALL identify its Value Stream context.
+      This avoids orphan metrics that cannot be interpreted
+      semantically.
+    required_fields:
+      - id
+      - value_stream
+      - agentic_participation
+      - metric
+      - definition
+      - unit
+      - population
+      - period
+      - baseline
+      - observed_value
+      - target
+      - threshold
+      - provenance
+
+  value_attribution:
+    description: |
+      Attributing Value Stream improvement solely to agentic
+      participation is difficult. Other factors may change
+      simultaneously (process redesign, technology modernization,
+      workforce changes, market conditions, policy changes, product
+      changes, organizational restructuring).
+    schema:
+      attribution:
+        contribution:
+        confidence: high | medium | low | unknown
+        basis:
+    possible_confidences:
+      - high
+      - medium
+      - low
+      - unknown
+
+  provenance:
+    description: |
+      Every reported metric SHOULD be traceable:
+      Value Stream -> Agentic Participation -> Observed Events ->
+      Measurement -> Outcome. This allows measurements to remain
+      semantically anchored.
+    chain:
+      - value_stream
+      - agentic_participation
+      - observed_events
+      - measurement
+      - outcome
+
+  lifecycle:
+    description: |
+      Measurements SHALL support a lifecycle that distinguishes a
+      metric definition from an operationally trusted measurement.
+    stages:
+      - defined
+      - instrumented
+      - collected
+      - validated
+      - analyzed
+      - acted_upon
+      - reviewed
+
+  quality_dimensions:
+    description: |
+      A metric without reliable measurement provenance SHALL NOT be
+      treated as equivalent to a validated metric.
+    dimensions:
+      - accuracy
+      - completeness
+      - timeliness
+      - consistency
+      - traceability
+      - comparability
+
+  anti_patterns:
+    description: |
+      Explicit anti-patterns. Each represents a way that
+      measurement can become a backdoor definition of agenticity.
+    items:
+      - id: agent_count_as_value
+        claim: "More agents = more value."
+        verdict: false
+      - id: autonomy_as_performance
+        claim: "More autonomy = better performance."
+        verdict: false
+      - id: automation_rate_as_agenticity
+        claim: "More automated = more agentic."
+        verdict: false
+      - id: decision_volume_as_effectiveness
+        claim: "More agent decisions = better AVS."
+        verdict: false
+      - id: intervention_minimization
+        claim: "Less human intervention = better AVS."
+        verdict: false
+      - id: ai_model_quality_as_value
+        claim: "Model quality = Value Stream value."
+        verdict: false
+      - id: cost_reduction_as_sole_value
+        claim: "Cost reduction is the only value."
+        verdict: false
+        note: |
+          Agentic Value Streams may create value through quality,
+          speed, resilience, customer experience, risk reduction,
+          innovation, capacity, revenue, decision quality.
+
+  separation_principles:
+    description: |
+      CR-VAS-005 explicitly separates measurement from semantic
+      qualification, conformance, and maturity.
+    principles:
+      - id: measurement_vs_qualification
+        statement: |
+          CR-VAS-002 establishes what makes a Value Stream
+          Agentic. CR-VAS-005 may use qualification evidence as a
+          measurement input but SHALL NOT replace it.
+      - id: measurement_vs_conformance
+        statement: |
+          CR-VAS-004 establishes whether semantic conditions are
+          satisfied. CR-VAS-005 may use conformance evidence as a
+          measurement input but SHALL NOT replace it. A poorly
+          performing AVS can remain semantically conformant. A
+          high-performing automated system can remain
+          non-conformant.
+      - id: measurement_vs_maturity
+        statement: |
+          CR-VAS-005 SHALL NOT introduce maturity levels such as
+          L1 = basic, L2 = managed, L3 = optimized measurement.
+          Maturity belongs to CR-VAS-006.
+
+  measurement_to_semantics_traceability:
+    description: |
+      Every core metric SHALL be traceable back to the semantic
+      model. Prevents the measurement framework from becoming
+      disconnected from semantics.
+    mappings:
+      - semantic: delegated_intent
+        metric: outcome_realization_rate
+      - semantic: bounded_authority
+        metric: authority_compliance_rate
+      - semantic: contextual_interpretation
+        metrics:
+          - context_utilization
+          - adaptation_effectiveness
+      - semantic: action_selection
+        metric: action_selection_effectiveness
+      - semantic: material_value_contribution
+        metrics:
+          - incremental_value
+          - outcome_improvement
+      - semantic: human_intervention
+        metric: intervention_effectiveness
+
+  core_metric_set:
+    description: |
+      Recommended core measures for a minimum AVS operational
+      dashboard. These are recommended, not semantic qualification
+      requirements.
+    items:
+      - outcome_realization_rate
+      - incremental_value_vs_baseline
+      - time_to_outcome
+      - agentic_decision_selection_rate
+      - action_success_rate
+      - authority_compliance_rate
+      - boundary_exception_rate
+      - human_intervention_rate
+      - intervention_effectiveness
+      - cost_per_outcome
+      - rework_reversal_rate
+      - value_stream_throughput
+
+  interpretation_rules:
+    description: |
+      Critical interpretive cautions. Activity != Effectiveness.
+      Lower is not inherently better. Higher is not inherently
+      better.
+    rules:
+      - id: authority_utilization_diagnostic
+        statement: |
+          Authority utilization is diagnostic, not inherently
+          positive. Low utilization may indicate overly broad
+          authority, insufficient delegation, low complexity,
+          conservative behavior, or effective human intervention.
+          High utilization may indicate appropriate delegation,
+          excessive delegation, weak constraints, or unusually
+          high case complexity.
+      - id: intervention_rate_not_better_when_lower
+        statement: |
+          Lower intervention is NOT inherently better. An
+          appropriate intervention rate may be desirable in high-risk
+          Value Streams.
+      - id: decision_density_not_maturity
+        statement: |
+          Higher agentic decision density SHALL NOT be interpreted
+          as higher maturity. In some Value Streams, fewer
+          agentic decisions may be preferable.
+      - id: adaptation_not_proof_of_agenticity
+        statement: |
+          Adaptation is measurable but is NOT itself proof of
+          agenticity.
+      - id: action_execution_distinct_from_selection
+        statement: |
+          Action Selection Rate SHOULD be distinguished from Action
+          Execution Rate, because execution may be automated after
+          an agent makes the selection.
+      - id: multi_agent_optional
+        statement: |
+          A single-agent AVS SHALL NOT be required to implement
+          multi-agent metrics.
+
+  machine_readable_model:
+    description: |
+      Semantic template. NOT a requirement that every AVS implement
+      every metric.
+    dimensions:
+      value_realization:
+        metrics:
+          - outcome_realization_rate
+          - incremental_value
+          - time_to_outcome
+      agentic_effectiveness:
+        metrics:
+          - action_selection_rate
+          - action_success_rate
+          - agentic_resolution_rate
+      decision_quality:
+        metrics:
+          - decision_acceptance_rate
+          - override_rate
+          - reversal_rate
+      human_intervention:
+        metrics:
+          - intervention_rate
+          - intervention_effectiveness
+          - escalation_precision
+      authority_and_risk:
+        metrics:
+          - authority_compliance_rate
+          - boundary_exception_rate
+          - constraint_violation_rate
+      operational_efficiency:
+        metrics:
+          - cost_per_outcome
+          - throughput
+          - cycle_time
+          - rework_rate
+
+  relationship_to_conformance:
+    conformance_status: |
+      Conformance asks "Is this actually AVS?" Measurement asks
+      "How well is the AVS performing?" They are SEPARATE
+      questions. CR-VAS-004 conformance evidence may be a
+      measurement input but SHALL NOT replace measurement.
+    separation_examples:
+      - example: poorly_performing_conformant
+        statement: A poorly performing AVS can remain semantically conformant.
+      - example: high_performing_non_conformant
+        statement: A high-performing automated system can remain non-conformant.
+
+  human_effort_reallocation:
+    description: |
+      Particularly important measure: what happened to human
+      effort as a result of agentic realization?
+    categories:
+      - human_effort_eliminated
+      - human_effort_reduced
+      - human_effort_redirected
+      - human_effort_increased
+    principle: |
+      The objective SHALL NOT be defined as workforce reduction.
+      In many Value Streams, the greater value may come from
+      moving human effort toward complex decisions, relationship
+      management, innovation, exception handling, strategic work.
+
+  cycle_time_decomposition:
+    description: |
+      Where appropriate, AVS Cycle Time SHOULD be compared against
+      Baseline Cycle Time.
+    decomposition:
+      - decision_time
+      - agent_execution_time
+      - human_intervention_time
+      - waiting_time
+      - exception_time
+
+  reference_examples:
+    description: |
+      At least four reference examples SHOULD be provided.
+    items:
+      - id: customer_service_avs
+        measures:
+          - resolution_rate
+          - time_to_resolution
+          - escalation
+          - intervention
+          - customer_outcome
+      - id: procurement_avs
+        measures:
+          - sourcing_cycle_time
+          - negotiated_value
+          - policy_compliance
+          - exception_rate
+          - human_intervention
+      - id: operations_avs
+        measures:
+          - throughput
+          - incident_resolution
+          - boundary_violations
+          - intervention
+          - cost_per_outcome
+      - id: multi_agent_avs
+        measures:
+          - coordination_success
+          - coordination_latency
+          - conflict
+          - outcome_realization
+
+  boundary_assertions:
+    per_cr_vas_005_measurement_value: |
+      Per CR-VAS-005, measurement SHALL be separated from
+      semantic qualification, conformance, and maturity. Activity
+      SHALL NOT be conflated with effectiveness or business
+      value.
+
+  # ============================================================
+  # Promotion history update (v1.2.0 -> v1.3.0)
+  # ============================================================
+
+# version: 1.3.0
+# date: 2026-10-08

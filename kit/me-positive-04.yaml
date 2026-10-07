@@ -1,0 +1,12 @@
+id: KIT-AGENTIC-VALUE-STREAM-VAS-ME-P04
+test_id: VAS-ME-P04
+category: measurement_positive
+subject: Human Intervention Not Treated As Failure
+description: Intervention is measured as a dimension, not as a penalty.
+cr: "CR-VAS-005 \xA715 + \xA716"
+expect: human_intervention dimension with intervention_effectiveness and escalation_precision.
+asserts:
+- measurement.dimensions.human_intervention is defined
+- intervention_rate in measurement.dimensions.human_intervention.metrics
+- intervention_effectiveness in measurement.dimensions.human_intervention.metrics
+- escalation_precision in measurement.dimensions.human_intervention.metrics

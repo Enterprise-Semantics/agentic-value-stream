@@ -1,0 +1,12 @@
+id: KIT-AGENTIC-VALUE-STREAM-VAS-ME-BT-08
+test_id: VAS-ME-BT-08
+category: measurement_boundary
+subject: Value Attribution Confidence Represented
+description: Attribution difficulty (other factors) requires explicit confidence field.
+cr: "CR-VAS-005 \xA731 + AC-12"
+expect: measurement.value_attribution.schema carries confidence in {high, medium, low, unknown}.
+asserts:
+- high in measurement.value_attribution.possible_confidences
+- medium in measurement.value_attribution.possible_confidences
+- low in measurement.value_attribution.possible_confidences
+- unknown in measurement.value_attribution.possible_confidences

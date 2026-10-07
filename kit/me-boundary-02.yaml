@@ -1,0 +1,10 @@
+id: KIT-AGENTIC-VALUE-STREAM-VAS-ME-BT-02
+test_id: VAS-ME-BT-02
+category: measurement_boundary
+subject: Measurement vs Conformance
+description: Measurement SHALL NOT replace conformance evidence (CR-VAS-004).
+cr: "CR-VAS-005 \xA739"
+expect: A poorly performing AVS can remain conformant. A high-performing system can remain non-conformant.
+asserts:
+- measurement.relationship_to_conformance.separation_examples contains poorly_performing_conformant
+- measurement.relationship_to_conformance.separation_examples contains high_performing_non_conformant

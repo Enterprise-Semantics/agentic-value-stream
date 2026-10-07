@@ -1,0 +1,9 @@
+id: KIT-AGENTIC-VALUE-STREAM-VAS-ME-N10
+test_id: VAS-ME-N10
+category: measurement_negative
+subject: Adaptation Is Not Proof Of Agenticity
+description: "Adaptation is measurable but is not itself proof of agenticity. Per CR-VAS-005 \xA725."
+cr: "CR-VAS-005 \xA725"
+expect: measurement.interpretation_rules.adaptation_not_proof_of_agenticity is asserted.
+asserts:
+- measurement.interpretation_rules contains adaptation_not_proof_of_agenticity

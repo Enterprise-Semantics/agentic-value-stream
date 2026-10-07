@@ -1,0 +1,58 @@
+@startuml agentic-value-stream-measurement-dimensions
+' Per CR-VAS-005 §4 (Measurement Architecture) + §35 (Operational Value Assessment).
+' Cardinal author rule: Emmanuel A. Otchere <emmanuel@otchere.com>
+' Last revised: 2026-10-08.
+
+title Agentic Value Stream ; Six Primary Measurement Dimensions
+
+skinparam backgroundColor #FFFFFF
+skinparam defaultFontName "Helvetica"
+skinparam defaultFontSize 11
+skinparam shadowing false
+
+rectangle "Value Realization\n(PRIMARY)" as VR #LightYellow {
+}
+
+rectangle "Agentic\nEffectiveness" as AE #LightBlue {
+}
+
+rectangle "Decision &\nAction Quality" as DQ #LightBlue {
+}
+
+rectangle "Human\nIntervention" as HI #LightGreen {
+}
+
+rectangle "Authority\n& Risk" as AR #LightPink {
+}
+
+rectangle "Operational\nEfficiency" as OE #LightGray {
+}
+
+VR --> AE : informs
+AE --> DQ : informs
+DQ --> HI : informs
+HI --> AR : informs
+AR --> OE : informs
+VR --> OE : informs
+
+note right of VR
+  Primary dimension. Measures
+  whether agentic participation
+  improves the intended Value
+  Stream outcome.
+end note
+
+note right of HI
+  Human intervention is
+  measured as a dimension,
+  NOT automatically as failure.
+end note
+
+note right of AR
+  Authority utilization is
+  diagnostic, NOT inherently
+  positive. Boundary compliance
+  is critical.
+end note
+
+@enduml

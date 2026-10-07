@@ -1,0 +1,12 @@
+id: KIT-AGENTIC-VALUE-STREAM-VAS-ME-N08
+test_id: VAS-ME-N08
+category: measurement_negative
+subject: Measurement Does Not Define Agenticity
+description: "Activity != Effectiveness != Business Value. Per CR-VAS-005 \xA73."
+cr: "CR-VAS-005 \xA73 + \xA744"
+expect: measurement.principle asserts measurement does not redefine agenticity.
+asserts:
+- measurement.principle != null
+- measurement.separation_principles.principles contains measurement_vs_qualification
+- measurement.separation_principles.principles contains measurement_vs_conformance
+- measurement.separation_principles.principles contains measurement_vs_maturity

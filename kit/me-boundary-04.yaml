@@ -1,0 +1,12 @@
+id: KIT-AGENTIC-VALUE-STREAM-VAS-ME-BT-04
+test_id: VAS-ME-BT-04
+category: measurement_boundary
+subject: Conditional vs Universal Distinction
+description: Multi-agent, adaptive progression, AI-specific, autonomy-specific metrics are conditional.
+cr: "CR-VAS-005 \xA728 + \xA724 + \xA725"
+expect: 'measurement.conditional_metrics carries 4 categories with conditional: true.'
+asserts:
+- measurement.conditional_metrics contains multi_agent
+- measurement.conditional_metrics contains adaptive_progression
+- measurement.conditional_metrics contains ai_specific
+- measurement.conditional_metrics contains autonomy_specific

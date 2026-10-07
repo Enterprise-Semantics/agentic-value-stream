@@ -1,0 +1,13 @@
+id: KIT-AGENTIC-VALUE-STREAM-VAS-ME-P08
+test_id: VAS-ME-P08
+category: measurement_positive
+subject: Core Metric Set Recommended
+description: 12 core metric set is documented as recommended (not required).
+cr: "CR-VAS-005 \xA729"
+expect: measurement.core_metric_set.items carries the 12 recommended measures.
+asserts:
+- outcome_realization_rate in measurement.core_metric_set.items
+- incremental_value_vs_baseline in measurement.core_metric_set.items
+- time_to_outcome in measurement.core_metric_set.items
+- authority_compliance_rate in measurement.core_metric_set.items
+- cost_per_outcome in measurement.core_metric_set.items

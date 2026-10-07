@@ -1,0 +1,11 @@
+id: KIT-AGENTIC-VALUE-STREAM-VAS-ME-P03
+test_id: VAS-ME-P03
+category: measurement_positive
+subject: Authority Compliance Rate Tracked
+description: Authority utilization and boundary compliance are measured dimensionally.
+cr: "CR-VAS-005 \xA711 + \xA712"
+expect: authority_compliance_rate and boundary_exception_rate present under authority_and_risk.
+asserts:
+- authority_compliance_rate in measurement.dimensions.authority_and_risk.metrics
+- boundary_exception_rate in measurement.dimensions.authority_and_risk.metrics
+- unauthorized_action_rate in measurement.dimensions.authority_and_risk.metrics

@@ -1,0 +1,15 @@
+id: KIT-AGENTIC-VALUE-STREAM-VAS-ME-BT-07
+test_id: VAS-ME-BT-07
+category: measurement_boundary
+subject: Baseline Required Where Improvement Claimed
+description: An improvement claim SHALL NOT be complete without identifying the baseline.
+cr: "CR-VAS-005 \xA727 + AC-10 + AC-24"
+expect: measurement.baselines declares 7 baseline types; principle asserts baseline required.
+asserts:
+- historical in measurement.baselines.types
+- human_only in measurement.baselines.types
+- automated in measurement.baselines.types
+- pre_agentic in measurement.baselines.types
+- controlled in measurement.baselines.types
+- counterfactual in measurement.baselines.types
+- benchmark in measurement.baselines.types

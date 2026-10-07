@@ -1,0 +1,10 @@
+id: KIT-AGENTIC-VALUE-STREAM-VAS-ME-BT-06
+test_id: VAS-ME-BT-06
+category: measurement_boundary
+subject: Multi-Agent Metrics Optional
+description: Single-agent AVS SHALL NOT be required to implement multi-agent metrics.
+cr: "CR-VAS-005 \xA724 + AC-16"
+expect: measurement.interpretation_rules.multi_agent_optional is asserted.
+asserts:
+- measurement.conditional_metrics.multi_agent.conditional == true
+- measurement.interpretation_rules contains multi_agent_optional

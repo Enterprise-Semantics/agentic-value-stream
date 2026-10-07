@@ -1,0 +1,9 @@
+id: KIT-AGENTIC-VALUE-STREAM-VAS-ME-N09
+test_id: VAS-ME-N09
+category: measurement_negative
+subject: Higher Decision Density Is Not Higher Maturity
+description: "Fewer agentic decisions may be preferable in some Value Streams. Per CR-VAS-005 \xA79."
+cr: "CR-VAS-005 \xA79"
+expect: measurement.interpretation_rules.decision_density_not_maturity is asserted.
+asserts:
+- measurement.interpretation_rules contains decision_density_not_maturity

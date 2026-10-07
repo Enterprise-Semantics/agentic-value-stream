@@ -1,0 +1,10 @@
+id: KIT-AGENTIC-VALUE-STREAM-VAS-ME-N02
+test_id: VAS-ME-N02
+category: measurement_negative
+subject: Autonomy Is Not Performance
+description: "More autonomy != better performance. Per CR-VAS-005 \xA730 Anti-pattern 2."
+cr: "CR-VAS-005 \xA730 Anti-pattern 2"
+expect: autonomy_as_performance listed as anti-pattern.
+asserts:
+- autonomy_as_performance in measurement.anti_patterns.items
+- autonomy_as_performance.verdict == false

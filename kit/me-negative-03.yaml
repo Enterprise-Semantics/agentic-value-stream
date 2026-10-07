@@ -1,0 +1,10 @@
+id: KIT-AGENTIC-VALUE-STREAM-VAS-ME-N03
+test_id: VAS-ME-N03
+category: measurement_negative
+subject: Automation Rate Is Not Agenticity
+description: "More automated != more agentic. Per CR-VAS-005 \xA730 Anti-pattern 3."
+cr: "CR-VAS-005 \xA730 Anti-pattern 3"
+expect: automation_rate_as_agenticity listed as anti-pattern.
+asserts:
+- automation_rate_as_agenticity in measurement.anti_patterns.items
+- automation_rate_as_agenticity.verdict == false

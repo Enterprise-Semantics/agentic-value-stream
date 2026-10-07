@@ -1,0 +1,13 @@
+id: KIT-AGENTIC-VALUE-STREAM-VAS-ME-P06
+test_id: VAS-ME-P06
+category: measurement_positive
+subject: Measurement Provenance Anchored
+description: Every metric traceable to Value Stream -> Agentic Participation chain.
+cr: "CR-VAS-005 \xA732"
+expect: measurement.provenance.chain lists value_stream, agentic_participation, observed_events, measurement, outcome.
+asserts:
+- value_stream in measurement.provenance.chain
+- agentic_participation in measurement.provenance.chain
+- observed_events in measurement.provenance.chain
+- measurement in measurement.provenance.chain
+- outcome in measurement.provenance.chain

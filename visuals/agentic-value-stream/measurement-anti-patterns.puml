@@ -1,0 +1,37 @@
+@startuml agentic-value-stream-measurement-anti-patterns
+' Per CR-VAS-005 §30 (Measurement Anti-Patterns).
+' Cardinal author rule: Emmanuel A. Otchere <emmanuel@otchere.com>
+' Last revised: 2026-10-08.
+
+title Agentic Value Stream ; Measurement Anti-Patterns
+
+skinparam backgroundColor #FFFFFF
+skinparam defaultFontName "Helvetica"
+skinparam defaultFontSize 11
+skinparam shadowing false
+
+card "AP-1\nAgent Count = Value" as AP1 #LightPink
+card "AP-2\nAutonomy = Performance" as AP2 #LightPink
+card "AP-3\nAutomation Rate = Agenticity" as AP3 #LightPink
+card "AP-4\nDecision Volume = Effectiveness" as AP4 #LightPink
+card "AP-5\nLess Intervention = Better AVS" as AP5 #LightPink
+card "AP-6\nAI Model Quality = Value" as AP6 #LightPink
+card "AP-7\nCost Reduction = Sole Value" as AP7 #LightPink
+
+AP1 --> [False]
+AP2 --> [False]
+AP3 --> [False]
+AP4 --> [False]
+AP5 --> [False]
+AP6 --> [False]
+AP7 --> [False]
+
+note bottom of AP1
+  Each anti-pattern represents a way
+  measurement can become a backdoor
+  definition of agenticity.
+
+  Per CR-VAS-005 §30 + AC-26.
+end note
+
+@enduml

@@ -1,0 +1,10 @@
+id: KIT-AGENTIC-VALUE-STREAM-VAS-ME-N07
+test_id: VAS-ME-N07
+category: measurement_negative
+subject: Cost Reduction Is Not The Sole Value
+description: "Cost reduction is not the only value. Per CR-VAS-005 \xA730 Anti-pattern 7."
+cr: "CR-VAS-005 \xA730 Anti-pattern 7"
+expect: cost_reduction_as_sole_value listed as anti-pattern.
+asserts:
+- cost_reduction_as_sole_value in measurement.anti_patterns.items
+- cost_reduction_as_sole_value.verdict == false

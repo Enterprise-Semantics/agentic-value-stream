@@ -515,3 +515,168 @@ Five new documentation files accompany this layer:
   §21 and reconciliation with the CR-VAS-003 boundary tests.
 - `docs/conformance-drift.md`. Drift triggers, drift vs maturity,
   drift handling, drift evidence.
+
+
+## Measurement and Operational Value (CR-VAS-005)
+
+Per CR-VAS-005 (Measurement & Operational Value Model, 2026-10-08),
+the Agentic Value Stream repository establishes the measurement layer
+that operates on top of qualification (CR-VAS-002), participation
+(CR-VAS-003), and evidence & conformance (CR-VAS-004).
+
+### Normative principle
+
+Measurement evaluates an already-qualified and conformant AVS
+implementation. Measurement does NOT determine whether the underlying
+concept is semantically an AVS.
+
+```
+Activity != Effectiveness != Business Value
+```
+
+The most important design decision in CR-VAS-005 is: do not allow
+measurement to become a backdoor definition of agenticity.
+
+### Five-level measurement hierarchy
+
+- Level 1 ; Activity. What happened?
+- Level 2 ; Behavior. How did the agent behave?
+- Level 3 ; Performance. How well did it perform?
+- Level 4 ; Value. What value did it create or protect?
+- Level 5 ; Strategic Effect. What changed because of agentic
+  realization?
+
+This prevents dashboards from becoming collections of low-level
+telemetry.
+
+### Six primary measurement dimensions
+
+1. Value Realization (PRIMARY). Outcome realization rate, outcome
+   improvement, outcome quality, value leakage, value recovery,
+   exception resolution rate, time-to-outcome, outcome variance,
+   customer/stakeholder outcome.
+2. Agentic Effectiveness. Delegation success rate, context
+   utilization rate, action selection effectiveness, adaptive
+   progression effectiveness, agentic resolution rate, agentic
+   decision density, agentic action selection rate, authority
+   utilization.
+3. Decision and Action Quality. Decision acceptance rate, action
+   success rate, action reversal rate, decision override rate,
+   rework rate, exception rate, downstream defect rate,
+   policy-compliance rate.
+4. Human Intervention. Intervention rate, intervention effectiveness,
+   escalation precision, escalation miss rate, intervention success
+   rate, intervention reversal rate, intervention-induced delay,
+   unnecessary-intervention rate.
+5. Authority and Risk. Boundary compliance rate, boundary exception
+   rate, unauthorized action rate, constraint violation rate,
+   escalation failure rate, risk-adjusted outcome, risk-adjusted
+   value.
+6. Operational Efficiency. Cost per outcome, cost per successful
+   resolution, time per outcome, throughput, capacity utilization,
+   human effort avoided/redirected, infrastructure cost, agent
+   execution cost, exception handling cost, value stream cycle time.
+
+### Conditional metrics
+
+Multi-agent, adaptive progression, AI-specific, and autonomy-specific
+metrics are CONDITIONAL. A single-agent AVS SHALL NOT be required to
+implement multi-agent metrics. Adaptation is measurable but is NOT
+itself proof of agenticity.
+
+### Baseline model
+
+A baseline is REQUIRED wherever an improvement claim is made. The
+baseline SHALL be declared explicitly: historical, human-only,
+automated, pre-agentic, controlled, counterfactual, or benchmark.
+
+### Counterfactual comparison
+
+```
+Incremental AVS Value = AVS Result - Comparable Baseline Result
+```
+
+This is substantially more meaningful than measuring agentic activity
+alone. The counterfactual MAY be demonstrated through simulation,
+historical replay, controlled testing, or analytical reasoning.
+
+### Measurement anti-patterns
+
+- Agent Count As Value. False.
+- Autonomy As Performance. False.
+- Automation Rate As Agenticity. False.
+- Decision Volume As Effectiveness. False.
+- Intervention Minimization. False.
+- AI Model Quality As Value. False.
+- Cost Reduction As Sole Value. False.
+
+### Separation principles
+
+CR-VAS-005 explicitly separates measurement from:
+
+- Semantic qualification (CR-VAS-002). Measurement may use
+  qualification evidence as an input but SHALL NOT replace it.
+- Conformance (CR-VAS-004). Measurement may use conformance evidence
+  as an input but SHALL NOT replace it. A poorly performing AVS can
+  remain semantically conformant. A high-performing automated system
+  can remain non-conformant.
+- Maturity (CR-VAS-006 territory). CR-VAS-005 SHALL NOT introduce
+  maturity levels.
+
+### Measurement-to-semantics traceability
+
+Every core metric SHALL be traceable back to the semantic model:
+
+- Delegated Intent -> Outcome Realization Rate.
+- Bounded Authority -> Authority Compliance Rate.
+- Contextual Interpretation -> Context Utilization / Adaptation
+  Effectiveness.
+- Action Selection -> Action Selection Effectiveness.
+- Material Value Contribution -> Incremental Value / Outcome
+  Improvement.
+- Human Intervention -> Intervention Effectiveness.
+
+This prevents the measurement framework from becoming disconnected
+from semantics.
+
+### Conformance kit expansion
+
+The conformance kit now contains 91 tests:
+
+- 5 positive (AVS-VAL-01..07, CR-VAS-002).
+- 5 negative (AVS-EXC-01..07, CR-VAS-002).
+- 5 edge case (AVS-EDGE-01..05, CR-VAS-002).
+- 8 structural (VAS-ST-01..08, CR-VAS-003).
+- 10 boundary (VAS-BT-01..10, CR-VAS-003).
+- 8 conformance positive (VAS-CF-P01..P08, CR-VAS-004).
+- 10 conformance negative (VAS-CF-N01..N10, CR-VAS-004).
+- 10 conformance boundary (VAS-CF-BT-01..10, CR-VAS-004).
+- 10 measurement positive (VAS-ME-P01..P10, CR-VAS-005).
+- 10 measurement negative (VAS-ME-N01..N10, CR-VAS-005).
+- 10 measurement boundary (VAS-ME-BT-01..10, CR-VAS-005).
+
+The measurement positive tests (ME-P) establish scenarios where a
+candidate SHOULD be measurable across the 6 primary dimensions. The
+measurement negative tests (ME-N) cover the 7 anti-patterns and 3
+separation principles. The measurement boundary tests (ME-BT)
+distinguish measurement from qualification, conformance, and maturity.
+
+### Documentation set (Wave 3 additions)
+
+Six new documentation files accompany this layer:
+
+- `docs/measurement.md`. Normative question, 5-level hierarchy, 6
+  primary dimensions, conditional metrics, baseline model,
+  counterfactual comparison, measurement context, value
+  attribution, provenance chain, lifecycle, quality dimensions.
+- `docs/value-realization.md`. Primary dimension detail,
+  risk-adjusted value, counterfactual value.
+- `docs/operational-metrics.md`. Economic and operational efficiency
+  metrics, cycle time decomposition, human effort reallocation.
+- `docs/measurement-baselines.md`. Baseline types, improvement
+  claim rule, counterfactual value construct, conditional
+  applicability.
+- `docs/measurement-provenance.md`. Provenance chain, lifecycle,
+  quality dimensions, measurement context.
+- `docs/measurement-anti-patterns.md`. 7 anti-patterns with verdict
+  (False).

@@ -1,0 +1,9 @@
+id: KIT-AGENTIC-VALUE-STREAM-VAS-ME-BT-05
+test_id: VAS-ME-BT-05
+category: measurement_boundary
+subject: Action Selection Distinct From Action Execution
+description: Action Selection Rate vs Action Execution Rate must be distinguishable.
+cr: "CR-VAS-005 \xA710"
+expect: measurement.interpretation_rules.action_execution_distinct_from_selection is asserted.
+asserts:
+- measurement.interpretation_rules contains action_execution_distinct_from_selection

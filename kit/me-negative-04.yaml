@@ -1,0 +1,10 @@
+id: KIT-AGENTIC-VALUE-STREAM-VAS-ME-N04
+test_id: VAS-ME-N04
+category: measurement_negative
+subject: Decision Volume Is Not Effectiveness
+description: "More agent decisions != better AVS. Per CR-VAS-005 \xA730 Anti-pattern 4."
+cr: "CR-VAS-005 \xA730 Anti-pattern 4"
+expect: decision_volume_as_effectiveness listed as anti-pattern.
+asserts:
+- decision_volume_as_effectiveness in measurement.anti_patterns.items
+- decision_volume_as_effectiveness.verdict == false

@@ -1,0 +1,32 @@
+@startuml agentic-value-stream-measurement-hierarchy
+' Per CR-VAS-005 §5 (Measurement Hierarchy).
+' Cardinal author rule: Emmanuel A. Otchere <emmanuel@otchere.com>
+' Last revised: 2026-10-08.
+
+title Agentic Value Stream ; Measurement Hierarchy
+
+skinparam backgroundColor #FFFFFF
+skinparam defaultFontName "Helvetica"
+skinparam defaultFontSize 11
+skinparam shadowing false
+
+(*) -> "Level 1 ; Activity\nWhat happened?"
+
+"Level 1 ; Activity\nWhat happened?" --> "Level 2 ; Behavior\nHow did the agent behave?"
+
+"Level 2 ; Behavior\nHow did the agent behave?" --> "Level 3 ; Performance\nHow well did it perform?"
+
+"Level 3 ; Performance\nHow well did it perform?" --> "Level 4 ; Value\nWhat value did it create or protect?"
+
+"Level 4 ; Value\nWhat value did it create or protect?" --> "Level 5 ; Strategic Effect\nWhat changed because of agentic realization?"
+
+"Level 5 ; Strategic Effect\nWhat changed because of agentic realization?" --> (*)
+
+note right
+  Prevents dashboards from becoming
+  collections of low-level telemetry.
+
+  Per CR-VAS-005 §5.
+end note
+
+@enduml

@@ -1,0 +1,15 @@
+id: KIT-AGENTIC-VALUE-STREAM-VAS-ME-P07
+test_id: VAS-ME-P07
+category: measurement_positive
+subject: Measurement Lifecycle Stage Set
+description: Measurement lifecycle stages defined to distinguish definition from operational trust.
+cr: "CR-VAS-005 \xA733"
+expect: measurement.lifecycle.stages carries defined, instrumented, collected, validated, analyzed, acted_upon, reviewed.
+asserts:
+- defined in measurement.lifecycle.stages
+- instrumented in measurement.lifecycle.stages
+- collected in measurement.lifecycle.stages
+- validated in measurement.lifecycle.stages
+- analyzed in measurement.lifecycle.stages
+- acted_upon in measurement.lifecycle.stages
+- reviewed in measurement.lifecycle.stages

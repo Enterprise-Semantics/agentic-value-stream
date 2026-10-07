@@ -214,3 +214,73 @@ participation_alignment:
         The semantic boundary matrix (CR-VAS-003 §22) is normative
         guidance for ES canonical concepts. WSF constructs remain
         authoritative within their scope.
+
+
+# ============================================================
+# CR-VAS-005 ; Measurement alignment
+# Cardinal author rule: Emmanuel A. Otchere (2026-09-23)
+# D-004: 0 en/em/triple-em dash ; 0 TMForum ; 0 vendor specifics
+# ============================================================
+
+measurement_alignment:
+  mapping_type_classification:
+    description: |
+      Per CR-VAS-005, the Agentic Value Stream measurement model is
+      a semantic overlay. WSF and OpenDEA each provide external
+      foundations; this repository defines how measurement
+      dimensions align with those foundations without modifying
+      either metamodel.
+    specialisation:
+      wsf_target: external:wsf:Value-Stream-Measurement
+      tier: 2
+      description: |
+        WSF Value Stream measurement concepts (where defined) align
+        with the Agentic Value Stream primary dimension (value
+        realization).
+    semantic_alignment:
+      wsf_target: null
+      description: |
+        CR-VAS-005 measurement layers are semantic overlays, NOT
+        WSF derivations. They do not modify the WSF metamodel.
+    methodological_alignment:
+      wsf_target: null
+      description: |
+        CR-VAS-005 measurement methodology (hierarchy, dimensions,
+        baselines, anti-patterns) is repository-specific; not
+        borrowed from WSF.
+
+  dimensions_alignment:
+    - avs_dimension: value_realization
+      external_kind: wsf_value_stream
+      notes: |
+        Primary measurement dimension aligns with WSF Value Stream
+        outcome concepts where present.
+    - avs_dimension: agentic_effectiveness
+      external_kind: null
+      notes: |
+        Repository-specific. No WSF analog; semantic overlay.
+    - avs_dimension: decision_quality
+      external_kind: null
+      notes: |
+        Repository-specific.
+    - avs_dimension: human_intervention
+      external_kind: null
+      notes: |
+        Repository-specific.
+    - avs_dimension: authority_and_risk
+      external_kind: null
+      notes: |
+        Repository-specific.
+    - avs_dimension: operational_efficiency
+      external_kind: wsf_value_stream
+      notes: |
+        Operational efficiency aligns with WSF Value Stream
+        throughput concepts where present.
+
+  separation_principles:
+    - measurement_vs_qualification: |
+        Measurement does not redefine semantic qualification.
+    - measurement_vs_conformance: |
+        Measurement does not redefine semantic conformance.
+    - measurement_vs_maturity: |
+        Measurement does not introduce maturity levels.

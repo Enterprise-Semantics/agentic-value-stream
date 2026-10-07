@@ -1,0 +1,12 @@
+id: KIT-AGENTIC-VALUE-STREAM-VAS-ME-P05
+test_id: VAS-ME-P05
+category: measurement_positive
+subject: Decision Quality Separated From Outcome Quality
+description: Decision quality, action quality, and outcome quality are distinct.
+cr: "CR-VAS-005 \xA713"
+expect: measurement.dimensions.decision_quality carries decision_acceptance_rate, action_success_rate, action_reversal_rate.
+asserts:
+- measurement.dimensions.decision_quality is defined
+- decision_acceptance_rate in measurement.dimensions.decision_quality.metrics
+- action_success_rate in measurement.dimensions.decision_quality.metrics
+- action_reversal_rate in measurement.dimensions.decision_quality.metrics

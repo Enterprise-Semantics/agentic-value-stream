@@ -1,0 +1,14 @@
+id: KIT-AGENTIC-VALUE-STREAM-VAS-ME-P01
+test_id: VAS-ME-P01
+category: measurement_positive
+subject: Value Realization Primary Dimension
+description: Outcome Realization Rate measure present and tied to Value Stream context.
+cr: "CR-VAS-005 \xA76"
+expect: measurement.dimensions.value_realization is the primary dimension with metrics including outcome_realization_rate,
+  and measurement_context schema carries value_stream, agentic_participation, baseline, observed_value, target, threshold.
+asserts:
+- measurement.dimensions.value_realization.primary == true
+- outcome_realization_rate in measurement.dimensions.value_realization.metrics
+- baseline in measurement.measurement_context.required_fields
+- target in measurement.measurement_context.required_fields
+- threshold in measurement.measurement_context.required_fields

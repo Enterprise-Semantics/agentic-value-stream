@@ -1,71 +1,158 @@
-# Measurement Methodology ; Agentic Value Stream
+# Measurement ; Agentic Value Stream
 
-> Per ES-ADR-049 §2.7. Quantitative metrics + measurement approach.
+Per CR-VAS-005 (Measurement & Operational Value Model, 2026-10-08),
+measurement evaluates an already-qualified and conformant AVS
+implementation. Measurement does NOT determine whether the underlying
+concept is semantically an AVS.
 
-## 1. Measurement Scope
+The most important design decision in CR-VAS-005 is: do not allow
+measurement to become a backdoor definition of agenticity.
 
-Quantitative measurement of agentic value stream instances, supporting CMM level assessment (per assessment.md) and cross-instance comparison.
+```
+Activity != Effectiveness != Business Value
+```
 
-## 2. Core Metrics
+A highly active agent can be ineffective. A highly autonomous agent
+can destroy value. A low-volume agentic intervention can create
+substantial value. Therefore activity alone SHALL NEVER be treated as
+success.
 
-### 2.1 Conformance Metrics
+## Normative measurement question
 
-| Metric | Definition | Target |
-|--------|-----------|--------|
-| Boundary conformance rate | % of instances passing all positive + negative tests | >= 95% at Level 3+ |
-| Test pass rate (positive) | # positive tests passing / # positive tests total | = 100% (baseline) |
-| Test pass rate (negative) | # negative tests correctly rejecting / # negative tests total | = 100% (baseline) |
-| Conformance drift rate | # boundary violations detected post-deployment / quarter | <= 5% at Level 3+ |
+Does agentic participation improve or materially contribute to the
+realization of Value Stream outcomes within acceptable authority,
+risk, cost, and intervention boundaries?
 
-### 2.2 Operational Metrics
+## Five-level measurement hierarchy
 
-| Metric | Definition | Target |
-|--------|-----------|--------|
-| Instantiation count | # of distinct agentic value stream instances | Trending |
-| Coverage breadth | # of contexts where agentic value stream applies | Growing |
-| Maturity level distribution | # instances at each CMM level | Skewed toward higher levels |
-| Time-to-Level-2 | Time from initial awareness to Level 2 conformance | <= 90 days |
+- Level 1 ; Activity. What happened?
+- Level 2 ; Behavior. How did the agent behave?
+- Level 3 ; Performance. How well did it perform?
+- Level 4 ; Value. What value did it create or protect?
+- Level 5 ; Strategic effect. What changed because of agentic
+  realization?
 
-### 2.3 Quality Metrics
+This prevents dashboards from becoming collections of low-level
+telemetry.
 
-| Metric | Definition | Target |
-|--------|-----------|--------|
-| Boundary violation count | # distinct violations per quarter | Decreasing trend |
-| Cross-instance consistency | % of shared boundary assertions that align across instances | >= 90% at Level 3+ |
-| Documentation completeness | % of required docs present | 100% |
+## Six primary dimensions
 
-## 3. Measurement Frequency
+1. Value realization. Primary dimension. Measures whether agentic
+   participation improves the intended Value Stream outcome.
+2. Agentic effectiveness. Whether agentic behavior functions as
+   intended.
+3. Decision and action quality. Decision quality, action quality,
+   and outcome quality are NOT equivalent.
+4. Human intervention. Measured as a dimension, NOT automatically
+   treated as failure.
+5. Authority and risk. Risk introduced by delegated authority.
+6. Operational efficiency. Cost, throughput, cycle time, capacity.
 
-| Metric category | Frequency |
-|-----------------|-----------|
-| Conformance | Per-CI-run + quarterly summary |
-| Operational | Monthly |
-| Quality | Quarterly |
+## Conditional metrics
 
-## 4. Instrumentation Requirements
+Distinct from universal measurement dimensions. Applicable only where
+relevant:
 
-To participate in measurement, an instance MUST expose:
+- Multi-agent coordination.
+- Adaptive progression.
+- AI-specific metrics.
+- Autonomy-specific metrics.
 
-- Conformance test results via standard interface (per ES-ADR-031 §11)
-- Instance metadata (org, version, boundary assertions used)
-- Boundary violation events (per ES-ADR-049 §2.7)
+A single-agent AVS SHALL NOT be required to implement multi-agent
+metrics.
 
-## 5. Reporting Format
+## Baseline model
 
-Standard quarterly measurement report includes:
+A baseline is REQUIRED wherever an improvement claim is made. The
+baseline SHALL be declared explicitly. Baseline types: historical,
+human_only, automated, pre_agentic, controlled, counterfactual,
+benchmark.
 
-1. Per-metric current value + target
-2. Quarter-over-quarter trend
-3. Variance flags (metric deviating >= 20% from target)
-4. Top 3 boundary violations (by frequency)
-5. Top 3 maturity improvements (by level transition)
+An assertion such as "agentic implementation improved efficiency by
+40%" SHALL NOT be considered complete without identifying the
+comparison baseline.
 
-Reports archived in `measurements/<org>/<quarter>.md`.
+## Counterfactual comparison
 
-## 6. Data Retention
+The preferred measurement construct is:
 
-Raw measurement data retained 24 months. Aggregated metrics retained indefinitely for longitudinal analysis.
+```
+Incremental AVS Value = AVS Result - Comparable Baseline Result
+```
 
-## 7. Privacy and Confidentiality
+This is substantially more meaningful than measuring agentic activity
+alone.
 
-Aggregated metrics are public. Per-instance data is confidential and shared only with the instance owner + ES governance.
+## Measurement context
+
+Every measurement SHALL identify its Value Stream context:
+
+```
+measurement:
+  id:
+  value_stream:
+  agentic_participation:
+  metric:
+  definition:
+  unit:
+  population:
+  period:
+  baseline:
+  observed_value:
+  target:
+  threshold:
+  provenance:
+```
+
+This avoids orphan metrics that cannot be interpreted semantically.
+
+## Value attribution
+
+Attributing Value Stream improvement solely to agentic participation
+is difficult. Other factors may change simultaneously (process
+redesign, technology modernization, workforce changes, market
+conditions, policy changes, product changes, organizational
+restructuring). Therefore the measurement model supports an
+attribution confidence field:
+
+```
+attribution:
+  contribution:
+  confidence: high | medium | low | unknown
+  basis:
+```
+
+## Measurement provenance
+
+Every reported metric SHOULD be traceable:
+
+```
+Value Stream -> Agentic Participation -> Observed Events -> Measurement -> Outcome
+```
+
+This allows measurements to remain semantically anchored.
+
+## Measurement lifecycle
+
+Measurements SHALL support a lifecycle:
+
+```
+Defined -> Instrumented -> Collected -> Validated -> Analyzed -> Acted Upon -> Reviewed
+```
+
+This distinguishes a metric definition from an operationally trusted
+measurement.
+
+## Measurement quality
+
+A metric without reliable measurement provenance SHALL NOT be
+treated as equivalent to a validated metric. Quality dimensions:
+accuracy, completeness, timeliness, consistency, traceability,
+comparability.
+
+## Cardinal author rule preserved
+
+Emmanuel A. Otchere (cardinal author rule, 2026-09-23). D-004 dash
+rule: 0 en-dash (U+2013), 0 em-dash (U+2014), 0 triple-em-dash
+(U+2E3B). WSF metamodel not modified. OpenDEA metamodel not
+modified.

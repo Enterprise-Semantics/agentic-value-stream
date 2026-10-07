@@ -1,0 +1,10 @@
+id: KIT-AGENTIC-VALUE-STREAM-VAS-ME-N01
+test_id: VAS-ME-N01
+category: measurement_negative
+subject: Agent Count Is Not A Value Metric
+description: "More agents != more value. Per CR-VAS-005 \xA730 Anti-pattern 1."
+cr: "CR-VAS-005 \xA730 Anti-pattern 1"
+expect: agent_count_as_value listed as anti-pattern. SHOULD NOT be a dimension metric.
+asserts:
+- agent_count_as_value in measurement.anti_patterns.items
+- agent_count_as_value.verdict == false

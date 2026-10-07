@@ -1,0 +1,14 @@
+id: KIT-AGENTIC-VALUE-STREAM-VAS-ME-P09
+test_id: VAS-ME-P09
+category: measurement_positive
+subject: Measurement-to-Semantics Traceability
+description: Every core metric mapped back to a semantic characteristic.
+cr: "CR-VAS-005 \xA738"
+expect: measurement.measurement_to_semantics_traceability maps delegated_intent, bounded_authority, contextual_interpretation,
+  action_selection, material_value_contribution, human_intervention.
+asserts:
+- delegated_intent in measurement.measurement_to_semantics_traceability.mappings
+- bounded_authority in measurement.measurement_to_semantics_traceability.mappings
+- contextual_interpretation in measurement.measurement_to_semantics_traceability.mappings
+- action_selection in measurement.measurement_to_semantics_traceability.mappings
+- material_value_contribution in measurement.measurement_to_semantics_traceability.mappings

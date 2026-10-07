@@ -1,0 +1,9 @@
+id: KIT-AGENTIC-VALUE-STREAM-VAS-ME-BT-03
+test_id: VAS-ME-BT-03
+category: measurement_boundary
+subject: Measurement vs Maturity
+description: CR-VAS-005 SHALL NOT introduce maturity levels (CR-VAS-006 territory).
+cr: "CR-VAS-005 \xA736"
+expect: measurement.separation_principles.principles.measurement_vs_maturity explicitly defers maturity.
+asserts:
+- measurement.separation_principles.principles contains measurement_vs_maturity

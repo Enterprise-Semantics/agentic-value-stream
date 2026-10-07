@@ -1,0 +1,10 @@
+id: KIT-AGENTIC-VALUE-STREAM-VAS-ME-N06
+test_id: VAS-ME-N06
+category: measurement_negative
+subject: AI Model Quality Is Not Value
+description: "Model quality != Value Stream value. Per CR-VAS-005 \xA730 Anti-pattern 6."
+cr: "CR-VAS-005 \xA730 Anti-pattern 6"
+expect: ai_model_quality_as_value listed as anti-pattern.
+asserts:
+- ai_model_quality_as_value in measurement.anti_patterns.items
+- ai_model_quality_as_value.verdict == false

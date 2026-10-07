@@ -1,0 +1,14 @@
+id: KIT-AGENTIC-VALUE-STREAM-VAS-ME-BT-09
+test_id: VAS-ME-BT-09
+category: measurement_boundary
+subject: Measurement Quality Represented
+description: A metric without provenance SHALL NOT be treated as equivalent to a validated metric.
+cr: "CR-VAS-005 \xA734 + AC-25"
+expect: measurement.quality_dimensions carries accuracy, completeness, timeliness, consistency, traceability, comparability.
+asserts:
+- accuracy in measurement.quality_dimensions.dimensions
+- completeness in measurement.quality_dimensions.dimensions
+- timeliness in measurement.quality_dimensions.dimensions
+- consistency in measurement.quality_dimensions.dimensions
+- traceability in measurement.quality_dimensions.dimensions
+- comparability in measurement.quality_dimensions.dimensions

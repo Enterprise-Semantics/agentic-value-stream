@@ -1,0 +1,12 @@
+id: KIT-AGENTIC-VALUE-STREAM-VAS-ME-P10
+test_id: VAS-ME-P10
+category: measurement_positive
+subject: Human Effort Reallocation Not Workforce Reduction
+description: The objective is not workforce reduction; redirected effort is recognized.
+cr: "CR-VAS-005 \xA722"
+expect: measurement.human_effort_reallocation carries 4 categories and the workforce-reduction principle.
+asserts:
+- human_effort_eliminated in measurement.human_effort_reallocation.categories
+- human_effort_reduced in measurement.human_effort_reallocation.categories
+- human_effort_redirected in measurement.human_effort_reallocation.categories
+- human_effort_increased in measurement.human_effort_reallocation.categories

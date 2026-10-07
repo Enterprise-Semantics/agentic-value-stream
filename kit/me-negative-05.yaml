@@ -1,0 +1,10 @@
+id: KIT-AGENTIC-VALUE-STREAM-VAS-ME-N05
+test_id: VAS-ME-N05
+category: measurement_negative
+subject: Less Intervention Is Not Better AVS
+description: "Less human intervention != better AVS. Per CR-VAS-005 \xA730 Anti-pattern 5."
+cr: "CR-VAS-005 \xA730 Anti-pattern 5"
+expect: intervention_minimization listed as anti-pattern.
+asserts:
+- intervention_minimization in measurement.anti_patterns.items
+- intervention_minimization.verdict == false

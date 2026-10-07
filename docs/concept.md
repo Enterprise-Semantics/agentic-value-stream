@@ -199,3 +199,81 @@ are enforced via the agentic-value-stream tests in
 - D-004 dash rule
 - SDO-neutral sourcing (ISO/IEC, ITU-T, ETSI, NIST)
 - No vendor-specific material from embargoed sources
+
+## Formal qualification (CR-VAS-002, 2026-10-07)
+
+CR-VAS-002 establishes a normative qualification test for
+Agentic Value Stream. The test combines required values,
+exclusion conditions, and materiality thresholds. A candidate
+passes iff all seven required values hold, none of the seven
+exclusion conditions hold, and materiality is satisfied.
+
+### Required values (AVS-VAL-01..07)
+
+1. **Value-Stream Foundation** (AVS-VAL-01). The candidate must
+   be a Value Stream. The Value-Stream Foundation is prerequisite.
+2. **Material Agentic Participation** (AVS-VAL-02). One or more
+   stages must be materially realised through agentic behavior.
+3. **Delegated or Entrusted Intent** (AVS-VAL-03). The agentic
+   participants must be entrusted with an intended outcome.
+4. **Bounded Authority** (AVS-VAL-04). The agentic participants
+   must operate within explicit bounded authority.
+5. **Contextual Interpretation** (AVS-VAL-05). The agentic
+   participants must interpret relevant context in service of
+   the entrusted intent.
+6. **Permissible Action or Progression Selection** (AVS-VAL-06).
+   The agentic participants must select from a set of
+   permissible actions or progression paths.
+7. **Value-Realization Effect** (AVS-VAL-07). The agentic
+   participation must contribute to stakeholder value
+   realisation.
+
+### Not-required (AVS-NRQ-01..07)
+
+AI, autonomy, automation, decision-making as isolated quality,
+agency as isolated quality, learning, and human intervention
+legitimacy are explicitly not prerequisites. Their absence
+does not disqualify; their presence alone does not qualify.
+
+### Exclusion conditions (AVS-EXC-01..07)
+
+Deterministic automation only, adaptive automation only,
+decision-support AI only, human discretion only, autonomous
+system participation only, dynamic workflow participation only,
+and insufficient material proportion each fail qualification.
+
+### Materiality (AVS-MAT-01..03)
+
+Stage-count materiality, value-effect materiality, and
+continuity materiality jointly determine whether agentic
+participation is material.
+
+### Invariants (AVS-INV-001..013)
+
+Thirteen architectural invariants are enforced by the
+conformance kit. They include the value-stream anchor invariant,
+the stage composition invariant, the material agentic
+participation invariant, the delegated intent invariant, the
+bounded authority invariant, the contextual interpretation
+invariant, the action selection invariant, the value-realisation
+invariant, the AI-not-required invariant, the autonomy-not-
+required invariant, the automation-not-required invariant,
+the determinism-exclusion invariant, and the boundary-
+assertion invariant.
+
+### Edge cases (AVS-EDGE-01..05)
+
+Single-stage material agentic participation, cross-stage
+material agentic participation, multiple agentic participants
+with separate authorities, agentic participation with co-
+existing automation, and agentic participation with co-existing
+human discretion are recognised as compositional arrangements
+under which the candidate still qualifies.
+
+### Conformance kit
+
+The conformance kit (`kit/`) enforces the qualification test
+with 5 positive tests (one per required-value group), 5
+negative tests (one per primary exclusion condition), and
+5 edge-case tests (compositional arrangements). Total: 15
+tests. Coverage is auto-derived in `kit/kit.yaml`.

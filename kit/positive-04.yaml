@@ -1,32 +1,35 @@
-# Kit test file ; Agentic Value Stream ; positive-NN
-# Per ES-ADR-049 + CR-ES-049 (Test Kit Completion slice, 2026-09-30) + ES-ADR-050 + CR-ES-050 (Gap Closure, Slice A).
-# Generated per ES-ADR-031 §4 (5-category taxonomy) where canonical source had no test files.
+# Kit test file ; Agentic Value Stream ; positive-04
+# Per CR-VAS-002 §22 (Positive conformance tests, AVS-VAL-01..07).
 # Cardinal author rule: Emmanuel A. Otchere <emmanuel@otchere.com>
 
 id: KIT-AGENTIC-VALUE-STREAM-POS-04
 concept_id: ES:CONCEPT:agentic-value-stream
 test_type: positive
-taxonomy_category: "ai_not_required"
-summary: Agentic Value Stream does not require AI
+qualification_condition: AVS-VAL-05 + AVS-VAL-06
+qualification_label: Contextual Interpretation + Action Selection
+summary: Contextual Interpretation + Action Selection
 description: |
-  Agentic Value Stream holds meaning independent of AI technology. The concept is not contingent on AI agents, models, or automation technology.
-  
-  This is POSITIVE test #4 of 5 for Agentic Value Stream, generated to ensure the per-concept test kit satisfies ES-ADR-049 §2.1 (10 conformance tests per concept: 5 positive + 5 negative).
+  The agentic participant interprets relevant context and selects from permissible actions or progression paths, not a predetermined sequence.
+
+  This is positive test #04 of 5 for Agentic Value Stream. Per CR-VAS-002 §22, positive tests assert that the candidate satisfies a specific required value from the qualification block.
 
 expected_outcome: conformant
 boundary_assertion:
-  - The concept MUST satisfy the ai_not_required criterion.
-  - Source authority: ES-ADR-031 §4.
+  - Per CR-VAS-002 §13, the candidate MUST satisfy AVS-VAL-05 + AVS-VAL-06.
+  - Source authority: CR-VAS-002, ES-ADR-052.
   - Cardinal author rule preserved.
 
 references:
-  - source: ES-ADR-049
-    note: Per-Concept Repo Self-Containment (2026-09-30)
-  - source: ES-ADR-050
-    note: Gap Closure, Slice A (Test File Mirror, 2026-09-30)
-  - source: ES-ADR-031
-    note: 5-category taxonomy §4
+  - source: ES-ADR-005
+    note: Agentic Value Stream decision
+  - source: ES-ADR-052
+    note: Formal qualification governance frame
+  - source: CR-VAS-002
+    note: Formal semantic qualification
+  - source: CR-ES-049
+    note: Per-Concept Repo Self-Containment
 
-author: Emmanuel A. Otchere (cardinal author rule, 2026-09-24)
-date: '2026-09-30'
+author: Emmanuel A. Otchere (cardinal author rule, 2026-09-23)
+date: '2026-10-07'
 status: Established
+

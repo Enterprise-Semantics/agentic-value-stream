@@ -1,32 +1,35 @@
-# Kit test file ; Agentic Value Stream ; negative-NN
-# Per ES-ADR-049 + CR-ES-049 (Test Kit Completion slice, 2026-09-30) + ES-ADR-050 + CR-ES-050 (Gap Closure, Slice A).
-# Generated per ES-ADR-031 §4 (5-category taxonomy) where canonical source had no test files.
+# Kit test file ; Agentic Value Stream ; negative-02
+# Per CR-VAS-002 §22 (Negative rejection tests, AVS-EXC-01..07).
 # Cardinal author rule: Emmanuel A. Otchere <emmanuel@otchere.com>
 
 id: KIT-AGENTIC-VALUE-STREAM-NEG-02
 concept_id: ES:CONCEPT:agentic-value-stream
 test_type: negative
-taxonomy_category: "modifier_collapse"
-summary: Modifier collapse rejected
+qualification_condition: AVS-EXC-02
+qualification_label: Adaptive automation only
+summary: Adaptive automation only
 description: |
-  Agentic Value Stream rejected when modifier (agentic/autonomous) collapses the semantic identity into a different concept.
-  
-  This is NEGATIVE test #2 of 5 for Agentic Value Stream, generated to ensure the per-concept test kit satisfies ES-ADR-049 §2.1 (10 conformance tests per concept: 5 positive + 5 negative).
+  The candidate fails qualification because all stages exhibit stimulus-response adaptation without delegated intent.
+
+  This is negative test #02 of 5 for Agentic Value Stream. Per CR-VAS-002 §22, negative tests assert that the candidate fails qualification because a specific exclusion condition holds.
 
 expected_outcome: non_conformant
 boundary_assertion:
-  - The concept MUST NOT satisfy the modifier_collapse criterion.
-  - Source authority: ES-ADR-031 §4.
+  - Per CR-VAS-002 §13, the candidate MUST NOT satisfy AVS-EXC-02.
+  - Source authority: CR-VAS-002, ES-ADR-052.
   - Cardinal author rule preserved.
 
 references:
-  - source: ES-ADR-049
-    note: Per-Concept Repo Self-Containment (2026-09-30)
-  - source: ES-ADR-050
-    note: Gap Closure, Slice A (Test File Mirror, 2026-09-30)
-  - source: ES-ADR-031
-    note: 5-category taxonomy §4
+  - source: ES-ADR-005
+    note: Agentic Value Stream decision
+  - source: ES-ADR-052
+    note: Formal qualification governance frame
+  - source: CR-VAS-002
+    note: Formal semantic qualification
+  - source: CR-ES-049
+    note: Per-Concept Repo Self-Containment
 
-author: Emmanuel A. Otchere (cardinal author rule, 2026-09-24)
-date: '2026-09-30'
+author: Emmanuel A. Otchere (cardinal author rule, 2026-09-23)
+date: '2026-10-07'
 status: Established
+

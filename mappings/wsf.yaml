@@ -111,7 +111,48 @@ provenance:
 
 cardinal_rules:
   - author: Emmanuel A. Otchere
-  - d004_dash_rule: 0 en-dash (U+2013) ;; 0 em-dash (U+2014) ;; 0 horizontal-ellipsis divider (U+2E3B) ;; 0 arrow glyph
-  - vendor_specific_embargo: 0 references ;; no vendor-specific material from embargoed sources
+  - d004_dash_rule: 0 en-dash (U+2013) ; 0 em-dash (U+2014) ; 0 horizontal-ellipsis divider (U+2E3B) ; 0 arrow glyph
+  - vendor_specific_embargo: 0 references ; no vendor-specific material from embargoed sources
   - no_wsF_modification: WSF metamodel not modified
   - no_openDea_modification: OpenDEA metamodel not modified
+
+# Qualification overlay (CR-VAS-002, 2026-10-07)
+# The semantic qualification of Agentic Value Stream is ES-canonical
+# novelty. The seven required values, seven not-required values, and
+# seven exclusion conditions are introduced by CR-VAS-002, not by WSF.
+# This section records how the qualification overlays the WSF Tier 1
+# Value Stream construct without modifying WSF.
+
+qualification_overlay:
+  per: CR-VAS-002 §23
+  status: semantic_overlay
+  no_wsF_modification: |
+    The qualification block is added to the ES canonical concept. WSF
+    Value Stream (Tier 1) is preserved unmodified. The overlay
+    specifies the conditions under which an ES Agentic Value Stream
+    qualifies.
+  required_values_overlay:
+    - id: AVS-VAL-01
+      wsf_anchor: external:wsf:Value-Stream
+      note: Value-Stream Foundation is anchored to WSF Tier 1.
+    - id: AVS-VAL-02..07
+      wsf_anchor: null
+      note: |
+        AVS-VAL-02 through AVS-VAL-07 are ES-canonical novelty. WSF
+        does not define material agentic participation, delegated
+        intent, bounded authority, contextual interpretation,
+        action selection, or value-realization effect at the Tier 1
+        level.
+  exclusion_conditions_overlay:
+    - note: |
+        The seven exclusion conditions (AVS-EXC-01..07) are
+        ES-canonical novelty. They distinguish Agentic Value Stream
+        from deterministic automation, adaptive automation, decision-
+        support AI, human discretion, autonomous systems, dynamic
+        workflows, and immaterial participation.
+  boundary_preservation:
+    - note: |
+        Per CR-VAS-002 §25, the qualification does not introduce
+        Agentic Value Stage, Agentic Workflow, Agentic Operations,
+        or Autonomous Value Stream as WSF constructs. WSF Tier 1
+        and Tier 2 remain unmodified.

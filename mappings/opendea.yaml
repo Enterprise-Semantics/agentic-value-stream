@@ -125,7 +125,39 @@ provenance:
 
 cardinal_rules:
   - author: Emmanuel A. Otchere
-  - d004_dash_rule: 0 en-dash (U+2013) ;; 0 em-dash (U+2014) ;; 0 horizontal-ellipsis divider (U+2E3B) ;; 0 arrow glyph
-  - vendor_specific_embargo: 0 references ;; no vendor-specific material from embargoed sources
+  - d004_dash_rule: 0 en-dash (U+2013) ; 0 em-dash (U+2014) ; 0 horizontal-ellipsis divider (U+2E3B) ; 0 arrow glyph
+  - vendor_specific_embargo: 0 references ; no vendor-specific material from embargoed sources
   - no_opendea_modification: OpenDEA metamodel not modified
   - no_wsF_modification: WSF metamodel not modified
+
+# Qualification overlay (CR-VAS-002, 2026-10-07)
+# Per CR-VAS-002 §24, the qualification block is added to the ES
+# canonical concept. OpenDEA Agentic Value Stream specialisation is
+# preserved unmodified. The overlay specifies the conditions under
+# which an ES Agentic Value Stream qualifies as a specialisation of
+# the OpenDEA Value Stream construct.
+
+qualification_overlay:
+  per: CR-VAS-002 §24
+  status: semantic_overlay
+  no_opendea_modification: |
+    The qualification block is added to the ES canonical concept.
+    OpenDEA metamodel is preserved unmodified. The overlay records
+    how the ES qualification conditions apply to the OpenDEA
+    specialisation representation.
+  required_values_overlay:
+    - note: |
+        AVS-VAL-01 (Value-Stream Foundation) is anchored to OpenDEA
+        Value Stream. AVS-VAL-02 through AVS-VAL-07 are ES-canonical
+        novelty and overlay the OpenDEA specialisation.
+  exclusion_conditions_overlay:
+    - note: |
+        The seven exclusion conditions (AVS-EXC-01..07) are
+        ES-canonical novelty. They distinguish Agentic Value Stream
+        from adjacent constructs in the OpenDEA semantic landscape.
+  boundary_preservation:
+    - note: |
+        Per CR-VAS-002 §25, the qualification does not introduce
+        Agentic Value Stage, Agentic Workflow, Agentic Operations,
+        or Autonomous Value Stream as OpenDEA constructs. OpenDEA
+        metamodel remains unmodified.

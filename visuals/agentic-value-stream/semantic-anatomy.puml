@@ -1,0 +1,65 @@
+' Agentic Value Stream semantic anatomy ; CR-VAS-002
+'
+' Per CR-VAS-002 §17 + ES-ADR-052 + ADR-ES-005 §16.
+' Illustrates the seven required values, seven exclusion conditions,
+' materiality, and the four boundary assertions preserved against
+' Agentic Value Stage, Agentic Workflow, Agentic Operations, and
+' Autonomous Value Stream.
+'
+' Authored by: Emmanuel A. Otchere (cardinal author rule, 2026-09-23)
+' Date: 2026-10-07
+' Governance: enterprise-semantics
+
+@startuml agentic-value-stream-semantic-anatomy
+
+skinparam backgroundColor #FFFFFF
+skinparam defaultFontName Arial
+skinparam defaultFontSize 10
+
+skinparam rectangle {
+    BackgroundColor #F0F8FF
+    BorderColor #4682B4
+    FontStyle bold
+}
+
+skinparam note {
+    BackgroundColor #FFFACD
+    BorderColor #DAA520
+}
+
+rectangle "Agentic Value Stream\n(ES:CONCEPT:agentic-value-stream)" as AVS #E6F3FF
+
+rectangle "Required values\n(AVS-VAL-01..07)" as REQ #90EE90
+rectangle "Not required\n(AVS-NRQ-01..07)" as NRQ #FFE4E1
+rectangle "Exclusion conditions\n(AVS-EXC-01..07)" as EXC #FFB6C1
+rectangle "Materiality\n(AVS-MAT-01..03)" as MAT #FFFACD
+rectangle "Invariants\n(AVS-INV-001..013)" as INV #E0E0FF
+rectangle "Edge cases\n(AVS-EDGE-01..05)" as EDG #F0E0FF
+
+AVS --> REQ : "must satisfy all"
+AVS --> EXC : "none may hold"
+AVS --> MAT : "must hold"
+AVS --> NRQ : "absence does not disqualify"
+
+REQ --> INV : "each AVS-VAL enforces an AVS-INV"
+EXC --> INV : "each AVS-EXC enforces an AVS-INV"
+MAT --> INV : "each AVS-MAT enforces an AVS-INV"
+
+EDG --> AVS : "compositional arrangements\nthat still qualify"
+
+note right of AVS
+  Specialises Value Stream (ES:CONCEPT:value-stream)
+  AI not required ; Automation not required ; Autonomy not required
+  Human intervention legitimate
+  Cardinal author rule preserved
+end note
+
+note bottom of EXC
+  Boundary preserved against:
+  Agentic Value Stage (not introduced)
+  Agentic Workflow (held)
+  Agentic Operations (held)
+  Autonomous Value Stream (separate concept)
+end note
+
+@enduml

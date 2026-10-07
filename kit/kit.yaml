@@ -2,33 +2,67 @@ id: ES:KIT:agentic-value-stream
 concept: ES:CONCEPT:agentic-value-stream
 canonical_name: Agentic Value Stream
 base_concept: ES:CONCEPT:value-stream
-status: structurally_conformant
-version: 0.5.0
-date: 2026-09-30
+status: semantically_conformant
+version: 1.0.0
+date: 2026-10-07
 author: Emmanuel A. Otchere (cardinal author rule, 2026-09-23)
 governance: enterprise-semantics
 
-# Repository reference updated per ES-ADR-051 rename.
+# Repository reference (renamed per ES-ADR-051).
 concept_repo: Enterprise-Semantics/agentic-value-stream
 
-# Coverage auto-derived from kit/ file inventory (per CR-AVS-001 §14).
-# This block MUST NOT be hand-edited. Regenerate via the reconcile script.
+# Coverage auto-derived from kit/ inventory (per CR-AVS-001 §14 + CR-VAS-002 §22).
 coverage:
   positive: 5
   negative: 5
-  edge_case: 0
+  edge_case: 5
   integrity: 0
-  total: 10
+  total: 15
 
-# Boundary assertions covered (derived from test descriptions).
+# Test inventory by semantic role (per CR-VAS-002 §22).
+test_inventory:
+  positive:
+    - id: KIT-AGENTIC-VALUE-STREAM-POS-01
+      condition: AVS-VAL-01 Value-Stream Foundation
+    - id: KIT-AGENTIC-VALUE-STREAM-POS-02
+      condition: AVS-VAL-02 Material Agentic Participation
+    - id: KIT-AGENTIC-VALUE-STREAM-POS-03
+      condition: AVS-VAL-03 + AVS-VAL-04 Delegated Intent + Bounded Authority
+    - id: KIT-AGENTIC-VALUE-STREAM-POS-04
+      condition: AVS-VAL-05 + AVS-VAL-06 Interpretation + Action Selection
+    - id: KIT-AGENTIC-VALUE-STREAM-POS-05
+      condition: AVS-VAL-07 Value-Realization Effect
+  negative:
+    - id: KIT-AGENTIC-VALUE-STREAM-NEG-01
+      condition: AVS-EXC-01 Deterministic automation only
+    - id: KIT-AGENTIC-VALUE-STREAM-NEG-02
+      condition: AVS-EXC-02 Adaptive automation only
+    - id: KIT-AGENTIC-VALUE-STREAM-NEG-03
+      condition: AVS-EXC-03 Decision-support AI only
+    - id: KIT-AGENTIC-VALUE-STREAM-NEG-04
+      condition: AVS-EXC-04 Human discretion only
+    - id: KIT-AGENTIC-VALUE-STREAM-NEG-05
+      condition: AVS-EXC-07 Insufficient material proportion
+  edge_case:
+    - id: KIT-AGENTIC-VALUE-STREAM-EDGE-01
+      condition: AVS-EDGE-01 Single-stage material agentic participation
+    - id: KIT-AGENTIC-VALUE-STREAM-EDGE-02
+      condition: AVS-EDGE-02 Cross-stage material agentic participation
+    - id: KIT-AGENTIC-VALUE-STREAM-EDGE-03
+      condition: AVS-EDGE-03 Multiple agentic participants with separate authorities
+    - id: KIT-AGENTIC-VALUE-STREAM-EDGE-04
+      condition: AVS-EDGE-04 Agentic participation with co-existing automation
+    - id: KIT-AGENTIC-VALUE-STREAM-EDGE-05
+      condition: AVS-EDGE-05 Agentic participation with co-existing human discretion
+
 boundary_assertions_covered:
   - per_es_adr_005
   - per_es_adr_031_5_category_taxonomy
+  - per_cr_vas_002_qualification
 
-# Test source is the per-concept kit/ directory.
 test_source_branch: main
 test_path: kit/
 
 provenance:
-  decision: [ES-ADR-005, ES-ADR-049, ES-ADR-051]
+  decision: [ES-ADR-005, ES-ADR-049, ES-ADR-051, ES-ADR-052]
   implementation: [CR-ES-005, CR-AVS-001, CR-VAS-002]

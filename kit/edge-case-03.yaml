@@ -1,0 +1,33 @@
+# Kit test file ; Agentic Value Stream ; edge-case-03
+# Per CR-VAS-002 §22 (Edge cases, AVS-EDGE-01..05).
+# Cardinal author rule: Emmanuel A. Otchere <emmanuel@otchere.com>
+
+id: KIT-AGENTIC-VALUE-STREAM-EDGE-03
+concept_id: ES:CONCEPT:agentic-value-stream
+test_type: edge_case
+qualification_condition: AVS-EDGE-03
+qualification_label: Multiple agentic participants with separate authorities
+summary: Multiple agentic participants with separate authorities
+description: |
+  The Value Stream contains multiple agentic participants, each with its own bounded authority. The candidate qualifies because each participant has its own entrusted intent and bounded authority.
+
+  This is edge case test #03 of 5 for Agentic Value Stream. Per CR-VAS-002 §22, edge cases assert that the candidate qualifies under specific compositional arrangements of agentic and non-agentic participation.
+
+expected_outcome: conformant
+boundary_assertion:
+  - Per CR-VAS-002 §13, the candidate qualifies under AVS-EDGE-03.
+  - Source authority: CR-VAS-002, ES-ADR-052.
+  - Cardinal author rule preserved.
+
+references:
+  - source: ES-ADR-005
+    note: Agentic Value Stream decision
+  - source: ES-ADR-052
+    note: Formal qualification governance frame
+  - source: CR-VAS-002
+    note: Formal semantic qualification
+
+author: Emmanuel A. Otchere (cardinal author rule, 2026-09-23)
+date: '2026-10-07'
+status: Established
+

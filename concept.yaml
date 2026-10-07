@@ -9,32 +9,39 @@
 # Per CR-AVS-001 (Repository Conformance Reconciliation, 2026-09-30):
 #   - This record reconciles lifecycle state across concept.yaml,
 #     kit/kit.yaml, docs/conformance.md, and README.md.
-#   - Lifecycle status: Candidate (semantic qualification Wave 2 will
-#     promote to Established on landing CR-VAS-046 acceptance).
-#   - Conformance status: structurally_conformant (10 test files present
-#     in kit/, counts auto-derived in kit/kit.yaml and docs/conformance.md).
-#   - Concept repository: Enterprise-Semantics/agentic-value-stream
-#     (renamed from concept-agentic-value-stream per ES-ADR-051, 2026-09-30).
 #
-# Specialisation of Value Stream (not replacement, not parallel
-# construct). Per CR-ES-005 §8, the Agentic Value Stream schema
-# preserves the mandatory Value Stream semantics.
+# Per CR-VAS-002 (Formal Agentic Value Stream Semantic Qualification,
+# 2026-10-07): Adds the `qualification:` block formalising:
+#   (1) necessary conditions,
+#   (2) sufficient conditions,
+#   (3) exclusion conditions,
+#   (4) materiality requirements,
+#   (5) the normative qualification test implementable by the
+#       conformance kit (tests + edge cases),
+#   (6) the relationship between agentic participation and Value
+#       Stream realization, and
+#   (7) the architectural invariants.
 #
+# Cardinal author rule: Emmanuel A. Otchere <emmanuel@otchere.com>
 # Authored by: Emmanuel A. Otchere (cardinal author rule, 2026-09-23)
+# Last revised: 2026-10-07 (CR-VAS-002 qualification block landed)
 
 id: ES:CONCEPT:agentic-value-stream
 canonical_name: Agentic Value Stream
 definition: |
-  A Value Stream in which one or more stages are materially realized
-  through agentic behavior, enabling delegated interpretation, action
-  selection, coordination, adaptation, or execution toward stakeholder
-  value realization. Per CR-ES-005 §4 + ADR-ES-005 §2.
+  A Value Stream in which one or more material portions of value
+  realization are performed through agentic participation, where an
+  authorized actor is entrusted with an intended outcome or
+  progression objective and is able to interpret relevant context
+  and select permissible actions or progression paths within a
+  bounded authority rather than merely executing a completely
+  predetermined sequence.
 
 # Lifecycle state (independent of conformance state per CR-AVS-001 §14).
 lifecycle:
   status: candidate
-  version: 0.5.0
-  date: 2026-09-30
+  version: 1.0.0
+  date: 2026-10-07
   promotion_history:
     - version: 0.4.0
       date: 2026-09-26
@@ -43,43 +50,327 @@ lifecycle:
     - version: 0.5.0
       date: 2026-09-30
       status: candidate
-      note: Reconciliation per CR-AVS-001. Semantic qualification in CR-VAS-002 (Wave 2) will promote to Established.
+      note: Reconciliation per CR-AVS-001. Lifecycle + conformance state aligned.
+    - version: 1.0.0
+      date: 2026-10-07
+      status: candidate
+      note: Formal qualification per CR-VAS-002. Establishes 7 required values + 7 not-required + 7 exclusions + materiality + 13 invariants + 5 edge cases + normative qualification test. Promotion to Established reserved for landing of CR-VAS-002 acceptance review (governance frame ES-ADR-052).
 
 # Conformance state (auto-derived from kit/ inventory; see CR-AVS-001 §14).
 conformance:
-  status: structurally_conformant
+  status: semantically_conformant
   test_kit_complete: true
   tests_present:
     positive: 5
     negative: 5
-    edge_case: 0
-    total: 10
+    edge_case: 5
+    total: 15
 
-# Concept repository reference updated for ES-ADR-051 rename.
+# Concept repository reference (renamed per ES-ADR-051).
 concept_repo: Enterprise-Semantics/agentic-value-stream
 
-# Semantic qualification (existing, formalised in CR-VAS-002 Wave 2).
+# === Semantic qualification (CR-VAS-002) ===
+
 qualification:
+  # Specializes the base concept.
   specializes: [ES:CONCEPT:value-stream]
-  agentic_scope:
-    - stage
-    - decision
-    - execution
-    - coordination
-    - cross_stage
-    - end_to_end
 
-# Boundaries preserved per review §11 (Agentic Value Stage NOT introduced).
-held_non_actions:
-  - Agentic Value Stage
-  - Agentic Workflow
-  - Agentic Operations
-  - Autonomous Value Stream
+  # The seven values that constitute material agentic qualification.
+  # A candidate AVS MUST satisfy all seven to qualify.
+  required_values:
+    - id: AVS-VAL-01
+      label: Value-Stream Foundation
+      assertion: |
+        The candidate MUST be a Value Stream. The Value-Stream
+        Foundation is prerequisite, not optional. A sequence of
+        agentic actions that does not constitute a Value Stream is
+        not an Agentic Value Stream.
+    - id: AVS-VAL-02
+      label: Material Agentic Participation
+      assertion: |
+        One or more stages MUST be materially realized through
+        agentic behavior. Materiality is determined by the
+        materiality criteria below (AVS-MAT-01..03).
+    - id: AVS-VAL-03
+      label: Delegated or Entrusted Intent
+      assertion: |
+        The agentic participants MUST be entrusted with an intended
+        outcome or progression objective. Delegation is from a
+        stakeholder to the agentic actor and carries the intent.
+    - id: AVS-VAL-04
+      label: Bounded Authority
+      assertion: |
+        The agentic participants MUST operate within bounded
+        authority. Bounded authority is explicit and communicated
+        to the participants; it delimits the action space.
+    - id: AVS-VAL-05
+      label: Contextual Interpretation
+      assertion: |
+        The agentic participants MUST interpret relevant context
+        (signals, states, prior history, stakeholder inputs) in
+        service of the entrusted intent. Interpretation is not the
+        same as reaction to a fixed stimulus.
+    - id: AVS-VAL-06
+      label: Permissible Action or Progression Selection
+      assertion: |
+        The agentic participants MUST select permissible actions or
+        progression paths. Selection presupposes an action space
+        and an evaluation criterion; it is incompatible with a
+        completely predetermined sequence.
+    - id: AVS-VAL-07
+      label: Value-Realization Effect
+      assertion: |
+        The agentic participation MUST contribute to stakeholder
+        value realization. Effect is observable in the realized
+        Value Stream outcome.
 
-# Cardinal author rule preserved.
-author: Emmanuel A. Otchere (cardinal author rule, 2026-09-23)
-governance: enterprise-semantics
-provenance:
-  decision: [ES-ADR-005, ES-ADR-051]
-  implementation: [CR-ES-005, CR-AVS-001, CR-VAS-002]
-  reconciliation: CR-AVS-001
+  # The seven things that are explicitly NOT required. Their absence
+  # does not disqualify; their presence alone does not qualify.
+  not_required:
+    - id: AVS-NRQ-01
+      label: AI
+      assertion: |
+        AI is not a prerequisite for Agentic Value Stream.
+        An AVS may be realised with non-AI agentic participants
+        (human teams with delegated authority, rule-based
+        interpreters with bounded scope, etc.).
+    - id: AVS-NRQ-02
+      label: Autonomy
+      assertion: |
+        Autonomy is not a prerequisite. An AVS may include
+        supervised, reviewed, or constrained agentic
+        participation. AVS is distinct from Autonomous Value
+        Stream (ES:CONCEPT:autonomous-value-stream) precisely
+        because autonomy is not required.
+    - id: AVS-NRQ-03
+      label: Automation
+      assertion: |
+        Automation is not a prerequisite. An AVS may include
+        manual or discretionary participation at non-agentic
+        stages. The qualification is satisfied by material agentic
+        participation in some portion, not by full automation.
+    - id: AVS-NRQ-04
+      label: Decision-making as isolated quality
+      assertion: |
+        Decision-making alone is not the qualification. The
+        qualification is delegated intent + bounded authority +
+        contextual interpretation + action selection. Decision-
+        making is necessary but not sufficient.
+    - id: AVS-NRQ-05
+      label: Agency as isolated quality
+      assertion: |
+        Agency (the general capacity to act) is not the
+        qualification. The qualification is the intersection of
+        agency with delegated intent, bounded authority, and value-
+        stream foundation.
+    - id: AVS-NRQ-06
+      label: Learning
+      assertion: |
+        Learning (model adaptation, feedback-driven update) is
+        not a prerequisite. An AVS may be realised by participants
+        whose behavior is fixed across instances.
+    - id: AVS-NRQ-07
+      label: Human intervention is illegitimate
+      assertion: |
+        Human intervention remains legitimate at any stage.
+        Human-in-the-loop, human-on-the-loop, and human-after-
+        the-loop are all compatible with AVS qualification, so
+        long as the agentic participation carries the entrusted
+        intent.
+
+  # The seven exclusion conditions. Each is a positive disqualifier.
+  exclusion_conditions:
+    - id: AVS-EXC-01
+      label: Deterministic automation only
+      assertion: |
+        If all stages execute a completely predetermined sequence
+        with no contextual interpretation, the candidate fails
+        qualification. Deterministic automation is a different
+        construct.
+    - id: AVS-EXC-02
+      label: Adaptive automation only
+      assertion: |
+        If all stages exhibit stimulus-response adaptation without
+        delegated intent, the candidate fails qualification.
+        Adaptive automation is a different construct.
+    - id: AVS-EXC-03
+      label: Decision-support AI only
+      assertion: |
+        If the AI system produces recommendations that are then
+        executed by a separate actor without progression
+        authority, the candidate fails qualification. Decision
+        support is a different construct.
+    - id: AVS-EXC-04
+      label: Human discretion only
+      assertion: |
+        If the entire stream is executed by humans with full
+        discretion at every stage (no delegated intent to a
+        non-human agentic participant), the candidate fails
+        qualification. The qualification requires some material
+        agentic participation.
+    - id: AVS-EXC-05
+      label: Autonomous system participation only
+      assertion: |
+        If the participation qualifies as Autonomous Value Stream
+        (ES:CONCEPT:autonomous-value-stream) by virtue of self-
+        directed progression without external authority binding,
+        the candidate does not qualify as AVS. The two are
+        complementary, not overlapping.
+    - id: AVS-EXC-06
+      label: Dynamic workflow participation only
+      assertion: |
+        If the participation is realised as a dynamic workflow
+        (ES:CONCEPT:agentic-workflow) without value-stream
+        anchoring, the candidate fails qualification. The
+        qualification is value-stream anchored.
+    - id: AVS-EXC-07
+      label: Insufficient material proportion
+      assertion: |
+        If the agentic participation is below the materiality
+        threshold (AVS-MAT-01..03), the candidate fails
+        qualification. Materiality is a quantitative qualifier.
+
+  # Materiality requirements. The threshold for what counts as
+  # "material" agentic participation.
+  materiality:
+    - id: AVS-MAT-01
+      label: Stage-count materiality
+      threshold: |
+        Material proportion is at least one (1) Value Stage whose
+        realisation is materially agentic. A Value Stage is
+        materially agentic when its entrusted intent + bounded
+        authority + interpretation + action selection are present.
+    - id: AVS-MAT-02
+      label: Value-effect materiality
+      threshold: |
+        The agentic participation must produce a stakeholder-
+        observable value effect. Trivial or symbolic agentic
+        participation does not qualify.
+    - id: AVS-MAT-03
+      label: Continuity materiality
+      threshold: |
+        The agentic participation must persist across the stage
+        realisation, not as a single decision in an otherwise
+        fixed sequence.
+
+  # Normative qualification test. A candidate PASSES iff:
+  #   (a) all seven required_values (AVS-VAL-01..07) hold, AND
+  #   (b) none of the seven exclusion_conditions (AVS-EXC-01..07) hold, AND
+  #   (c) materiality (AVS-MAT-01..03) is satisfied.
+  normative_qualification_test:
+    preconditions:
+      - candidate is a Value Stream
+    pass_criteria:
+      - forall(AVS-VAL-01..07) candidate satisfies
+      - forall(AVS-EXC-01..07) candidate does not satisfy
+      - materiality(AVS-MAT-01..03) holds
+    fail_criteria:
+      - any AVS-VAL not satisfied
+      - any AVS-EXC satisfied
+      - materiality not satisfied
+
+  # Architectural invariants enforced by the conformance kit.
+  invariants:
+    - id: AVS-INV-001
+      name: Value-Stream Anchor Invariant
+      assertion: |
+        Every Agentic Value Stream MUST be anchored to a Value
+        Stream (ES:CONCEPT:value-stream). AVS is a
+        specialisation, not a parallel construct.
+    - id: AVS-INV-002
+      name: Stage Composition Invariant
+      assertion: |
+        An Agentic Value Stream MUST contain one or more Value
+        Stages (ES:CONCEPT:value-stage). The stage construct is
+        preserved per CR-VAS-002 §11.
+    - id: AVS-INV-003
+      name: Material Agentic Participation Invariant
+      assertion: |
+        An Agentic Value Stream MUST contain at least one Value
+        Stage whose realisation is materially agentic.
+    - id: AVS-INV-004
+      name: Delegated Intent Invariant
+      assertion: |
+        For each materially agentic Value Stage, there MUST be
+        an entrusted intent declared by a stakeholder.
+    - id: AVS-INV-005
+      name: Bounded Authority Invariant
+      assertion: |
+        For each materially agentic Value Stage, there MUST be
+        an explicit bounded authority declared and communicated.
+    - id: AVS-INV-006
+      name: Contextual Interpretation Invariant
+      assertion: |
+        For each materially agentic Value Stage, the agentic
+        participant MUST interpret relevant context (signals,
+        states, history) in service of the entrusted intent.
+    - id: AVS-INV-007
+      name: Action Selection Invariant
+      assertion: |
+        For each materially agentic Value Stage, the agentic
+        participant MUST select from a set of permissible
+        actions or progression paths.
+    - id: AVS-INV-008
+      name: Value-Realisation Invariant
+      assertion: |
+        The agentic participation MUST contribute to stakeholder
+        value realisation. Effect is observable in the realised
+        Value Stream outcome.
+    - id: AVS-INV-009
+      name: AI-Not-Required Invariant
+      assertion: |
+        The qualification does NOT require AI. A non-AI
+        agentic participant may satisfy all conditions.
+    - id: AVS-INV-010
+      name: Autonomy-Not-Required Invariant
+      assertion: |
+        The qualification does NOT require autonomy. AVS and
+        Autonomous Value Stream are complementary, not
+        overlapping.
+    - id: AVS-INV-011
+      name: Automation-Not-Required Invariant
+      assertion: |
+        The qualification does NOT require automation. Manual
+        or discretionary participation at non-agentic stages is
+        compatible.
+    - id: AVS-INV-012
+      name: Determinism-Exclusion Invariant
+      assertion: |
+        If every stage is a completely predetermined sequence,
+        the candidate is NOT an AVS. Deterministic automation
+        is a different construct.
+    - id: AVS-INV-013
+      name: Boundary-Assertion Invariant
+      assertion: |
+        The candidate MUST NOT collapse into Agentic Value
+        Stage (not introduced), Agentic Workflow, Agentic
+        Operations, or Autonomous Value Stream.
+
+  # Edge cases recognised by the conformance kit.
+  edge_cases:
+    - id: AVS-EDGE-01
+      label: Single-stage material agentic participation
+    - id: AVS-EDGE-02
+      label: Cross-stage material agentic participation
+    - id: AVS-EDGE-03
+      label: Multiple agentic participants with separate authorities
+    - id: AVS-EDGE-04
+      label: Agentic participation with co-existing automation
+    - id: AVS-EDGE-05
+      label: Agentic participation with co-existing human discretion
+
+  # Boundary assertions covered.
+  boundary_assertions:
+    - per_es_adr_005
+    - per_es_adr_031_5_category_taxonomy
+    - per_cr_vas_002_qualification
+
+  # Cardinal author rule preserved.
+  author: Emmanuel A. Otchere (cardinal author rule, 2026-09-23)
+  governance: enterprise-semantics
+
+  provenance:
+    decision: [ES-ADR-005, ES-ADR-031, ES-ADR-049, ES-ADR-051, ES-ADR-052]
+    implementation: [CR-ES-005, CR-AVS-001, CR-VAS-002]
+    reconciliation: CR-AVS-001
+    qualification: CR-VAS-002

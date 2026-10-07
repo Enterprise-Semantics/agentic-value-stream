@@ -1,0 +1,13 @@
+id: KIT-AGENTIC-VALUE-STREAM-VAS-MA-P02
+test_id: VAS-MA-P02
+category: maturity_ma-positive
+subject: L2 Defined Capability
+description: L2 maturity demonstrated via defined AVS semantics, authority model, evidence model, measurement model, and governance
+  ownership.
+cr: CR-VAS-006 §boundary
+expect: L2 maturity level present, mandatory L2 gate covers all six required artefacts.
+asserts:
+- maturity.maturity_levels.items contains item with id == L2
+- maturity.mandatory_gates.L2_gate.requires contains defined_avs_semantics
+- maturity.mandatory_gates.L2_gate.requires contains authority_model
+- maturity.mandatory_gates.L2_gate.requires contains governance_ownership

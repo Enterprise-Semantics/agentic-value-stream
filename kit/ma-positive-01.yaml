@@ -1,0 +1,13 @@
+id: KIT-AGENTIC-VALUE-STREAM-VAS-MA-P01
+test_id: VAS-MA-P01
+category: maturity_ma-positive
+subject: L1 Aware Capability
+description: L1 organizational awareness demonstrated via terminology, candidates, and preliminary assessments.
+cr: CR-VAS-006 §boundary
+expect: maturity.levels includes L1 (aware) with evidence requirements strategy_statements, awareness_material, identified_candidates,
+  terminology, preliminary_assessments.
+asserts:
+- maturity.maturity_levels.items contains item with id == L1
+- maturity.maturity_levels.items[id=L1].name == aware
+- maturity.maturity_evidence.per_level.L1 contains strategy_statements
+- maturity.maturity_evidence.per_level.L1 contains identified_candidates

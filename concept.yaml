@@ -95,9 +95,41 @@ definition: |
 # Lifecycle state (independent of conformance state per CR-AVS-001 §14).
 lifecycle:
   status: candidate
-  version: 1.3.0
+  version: 1.4.0
   date: 2026-10-08
   promotion_history:
+    - version: 1.4.0
+      date: 2026-10-08
+      status: candidate
+      note: >-
+        Maturity & Capability Progression Model per CR-VAS-006.
+        Introduces the maturity block: separation principles
+        (maturity vs qualification, conformance, measurement),
+        six maturity levels (L0 Unaware to L5 Scaled & Adaptive),
+        six capability dimensions (Design & Semantic Modeling,
+        Authority/Governance/Risk, Operational Realization, Value
+        & Performance Management, Learning & Improvement, Portfolio
+        Scaling & Enterprise Integration), capability progression
+        matrix, multidimensional assessment rule (gated minimum,
+        not arithmetic mean), mandatory gates (L2/L3/L4/L5),
+        evidence requirements by level, eight maturity
+        anti-patterns (maturity != autonomy / != AI sophistication /
+        != agent count / != automation percentage / != intervention
+        reduction / != cost reduction / != production deployment /
+        != semantic complexity), human participation guarantee,
+        maturity != full automation, capability lifecycle
+        (Discover to Reassess), maturity transition criteria
+        (demonstrated capability, not elapsed time), maturity
+        regression support, machine-readable maturity schema
+        (AVS-MATURITY v1.0), maturity assessment record template,
+        capability gap model, improvement planning chain,
+        enterprise architecture relationship (informs but is not
+        a generic digital maturity model), governance roles,
+        assessment frequency, 12 normative invariants
+        (AVS-MAT-INV-001..012), and 30 maturity tests (10
+        positive + 10 negative + 10 boundary = 121 total). Promotion
+        to Established reserved for CR-VAS-006 acceptance review
+        (governance frame ES-ADR-056).
     - version: 1.3.0
       date: 2026-10-08
       status: candidate
@@ -172,7 +204,13 @@ conformance:
     cf_positive: 8
     cf_negative: 10
     cf_boundary: 10
-    total: 61
+    me_positive: 10
+    me_negative: 10
+    me_boundary: 10
+    ma_positive: 10
+    ma_negative: 10
+    ma_boundary: 10
+    total: 121
 
 # Concept repository reference (renamed per ES-ADR-051).
 concept_repo: Enterprise-Semantics/agentic-value-stream
@@ -2065,3 +2103,825 @@ measurement:
 
 # version: 1.3.0
 # date: 2026-10-08
+
+# === Maturity & Capability (CR-VAS-006) ===
+#
+# Per CR-VAS-006 (Agentic Value Stream Maturity & Capability Progression):
+# Adds the `maturity:` block formalising:
+#   (1) the maturity principle (one-directional dependency on
+#       qualification, conformance, and measurement),
+#   (2) separation principles (maturity != qualification != conformance
+#       != measurement),
+#   (3) six maturity levels (L0 Unaware -> L5 Scaled & Adaptive),
+#   (4) six capability dimensions (C1 Design & Semantic Modeling,
+#       C2 Authority/Governance/Risk, C3 Operational Realization,
+#       C4 Value & Performance Management, C5 Learning & Improvement,
+#       C6 Portfolio Scaling & Enterprise Integration),
+#   (5) the capability progression matrix (per dimension x level),
+#   (6) the multidimensional assessment rule (gated minimum, not
+#       arithmetic mean),
+#   (7) mandatory level gates (L2 / L3 / L4 / L5),
+#   (8) evidence requirements by level,
+#   (9) maturity anti-patterns (maturity != autonomy, != AI
+#       sophistication, != agent count, != automation percentage, !=
+#       intervention reduction, != cost reduction, != production
+#       deployment, != semantic complexity),
+#   (10) the human participation guarantee (human intervention is not
+#        inherently a maturity defect),
+#   (11) maturity != full automation (optimal delegation, not maximum
+#        delegation),
+#   (12) the capability lifecycle (Discover -> Qualify -> Design ->
+#        Conform -> Deploy -> Measure -> Improve -> Scale -> Reassess),
+#   (13) maturity transition criteria (demonstrated capability, not
+#        elapsed time),
+#   (14) maturity regression support (L4 -> L3 is valid),
+#   (15) the maturity schema (machine-readable model declaration),
+#   (16) the maturity assessment record template,
+#   (17) the capability gap model,
+#   (18) maturity improvement planning (Current -> Gap -> Evidence ->
+#        Initiative -> Implementation -> Measurement -> Reassessment),
+#   (19) the relationship to enterprise architecture (informs but is
+#        not a generic enterprise digital maturity model),
+#   (20) governance roles (Capability Owner, Value Stream Owner,
+#        Agentic Solution Owner, Risk/Governance Owner, Semantic
+#        Steward, Measurement/Value Owner),
+#   (21) assessment frequency (periodic + event-triggered),
+#   (22) 12 normative invariants (AVS-MAT-INV-001..012), and
+#   (23) positive + negative maturity tests (10 + 10 boundary = 30).
+#
+# Cardinal author rule: Emmanuel A. Otchere <emmanuel@otchere.com>
+# Authored by: Emmanuel A. Otchere (cardinal author rule, 2026-10-08)
+# Last revised: 2026-10-08 (CR-VAS-006 maturity block landed)
+
+maturity:
+
+  specializes: ES:CONCEPT:agentic-value-stream
+
+  # ----------------------------------------------------------------
+  # 1. Principle
+  # ----------------------------------------------------------------
+  principle: |
+    Maturity measures the organization's capability to realize,
+    govern, operate, measure, improve, and scale Agentic Value
+    Streams. Maturity does NOT determine whether a Value Stream is
+    Agentic. The dependency is intentionally one-directional:
+
+      Semantic Qualification  (Is it AVS?)
+        -> Conformance & Evidence  (Is the claim valid?)
+          -> Operational Measurement  (How well does it perform?)
+            -> Maturity & Capability  (How systematically can the
+               organization operate, govern, improve and scale it?)
+
+    A high-maturity organization may operate non-agentic Value
+    Streams. A low-maturity organization may operate a semantically
+    conformant AVS. A highly performant AVS does not automatically
+    imply organizational maturity.
+
+  # ----------------------------------------------------------------
+  # 2. Normative question
+  # ----------------------------------------------------------------
+  normative_question: |
+    How systematically and repeatedly can the organization design,
+    govern, operate, measure, improve, and scale Agentic Value
+    Streams at acceptable risk and sustainable cost?
+
+  # ----------------------------------------------------------------
+  # 3. Separation principles (maturity vs other layers)
+  # ----------------------------------------------------------------
+  separation:
+    vs_qualification: |
+      Qualification asks "Is this an Agentic Value Stream?" Maturity
+      asks "How capable is the organization at managing it?"
+      Qualification is a property of the candidate. Maturity is a
+      property of the organization.
+    vs_conformance: |
+      Conformance asks "Does the implementation satisfy AVS semantic
+      rules?" Maturity asks "How systematically can the organization
+      operate, govern, and improve such conformant implementations?"
+      Conformance is a binary-or-graded semantic verdict; maturity is
+      a multi-dimensional organizational profile.
+    vs_measurement: |
+      Measurement asks "How well is this AVS performing?" Maturity
+      asks "How capable is the organization at measurement, value
+      attribution, risk management, and continuous improvement?"
+      Measurement is an evaluation layer; maturity is an organizational
+      capability assessment over that layer plus governance, design,
+      operations, learning, and scaling.
+    one_directional_dependency: |
+      Maturity SHALLOW NOT redefine AVS semantics. Maturity levels
+      SHALLOW NOT be used as evidence of agenticity. AI adoption,
+      agent count, autonomy percentage, model sophistication, and
+      operational scale SHALLOW NOT establish maturity on their own.
+
+  # ----------------------------------------------------------------
+  # 4. Maturity architecture
+  # ----------------------------------------------------------------
+  architecture:
+    levels: maturity_levels
+    dimensions: capability_dimensions
+    evidence: maturity_evidence
+    outputs:
+      - overall_level
+      - dimensional_profile
+      - limiting_dimensions
+      - capability_gaps
+
+  # ----------------------------------------------------------------
+  # 5. Maturity levels (L0-L5)
+  # ----------------------------------------------------------------
+  maturity_levels:
+    description: |
+      Six levels of organizational AVS capability. Levels represent
+      increasing organizational capability, not increasing agenticity.
+    items:
+      - id: L0
+        name: unaware
+        meaning: No deliberate AVS capability.
+        characteristic: |
+          The organization has no systematic understanding or
+          deliberate management of Agentic Value Stream concepts.
+          Agentic behavior may exist incidentally. The organization
+          simply lacks the capability to manage it systematically.
+      - id: L1
+        name: aware
+        meaning: AVS concepts understood and identified.
+        minimum_capability: |
+          The organization can answer: "Where might agentic
+          participation exist in our Value Streams?" It cannot yet
+          demonstrate consistent enterprise-wide governance.
+      - id: L2
+        name: defined
+        meaning: AVS practices, boundaries and governance are defined.
+        minimum_capability: |
+          The organization can consistently answer: "Is this Value
+          Stream genuinely Agentic, how is the participation realized,
+          what authority exists, and what evidence supports the
+          claim?"
+      - id: L3
+        name: implemented
+        meaning: Conformant AVS implementations operate in production.
+        critical_distinction: |
+          A pilot or prototype is NOT automatically L3. The
+          organization must demonstrate operational realization, not
+          merely architectural intent.
+      - id: L4
+        name: managed
+        meaning: AVS performance, risk, value and improvement are
+          systematically managed.
+        minimum_capability: |
+          The organization can answer: "Are our Agentic Value Streams
+          producing superior or appropriate outcomes, at acceptable
+          risk and cost, and what should we change?"
+      - id: L5
+        name: scaled-adaptive
+        meaning: AVS capability is governed and continuously optimized
+          across the enterprise.
+        important_limitation: |
+          L5 does NOT mean "everything is autonomous." It means the
+          organization can deliberately and safely determine where
+          agentic participation creates value, establish appropriate
+          authority, operate it at scale, measure its effects, and
+          continuously adapt the capability.
+
+  # ----------------------------------------------------------------
+  # 6. Capability dimensions (C1-C6)
+  # ----------------------------------------------------------------
+  capability_dimensions:
+    description: |
+      Maturity SHALL be assessed across six capability dimensions.
+      A single arithmetic average SHALL NOT be the default
+      maturity mechanism; instead, the profile SHALL remain visible
+      with per-dimension levels and limiting dimensions called out.
+    items:
+      - id: C1
+        name: design_semantics
+        description: AVS Design & Semantic Modeling.
+        includes:
+          - value_stream_identification
+          - agentic_participation_modeling
+          - agentic_scope_determination
+          - intent_modeling
+          - authority_modeling
+          - contextual_interpretation
+          - action_selection_modeling
+          - boundary_definition
+          - semantic_conformance
+      - id: C2
+        name: governance_authority_risk
+        description: Authority, Governance & Risk.
+        importance: |
+          Particularly important because delegated authority is
+          central to meaningful agentic participation.
+        includes:
+          - authority_scope
+          - permissions
+          - constraints
+          - policies
+          - thresholds
+          - escalation
+          - revocation
+          - auditability
+          - risk_controls
+          - regulatory_controls
+          - segregation_of_duties
+      - id: C3
+        name: operational_realization
+        description: Operational Realization.
+        includes:
+          - runtime_realization
+          - agent_human_coordination
+          - observability
+          - exception_management
+          - intervention
+          - escalation
+          - resilience
+          - operational_ownership
+          - service_management
+          - incident_management
+      - id: C4
+        name: value_performance
+        description: Value & Performance Management.
+        builds_on: CR-VAS-005
+        includes:
+          - outcome_measurement
+          - baseline_comparison
+          - incremental_value
+          - time_to_outcome
+          - quality
+          - throughput
+          - cost
+          - intervention
+          - rework
+          - risk_adjusted_value
+          - attribution_confidence
+      - id: C5
+        name: learning_improvement
+        description: Learning & Continuous Improvement.
+        includes:
+          - performance_analysis
+          - exception_analysis
+          - intervention_analysis
+          - boundary_tuning
+          - policy_refinement
+          - action_selection_improvement
+          - adaptation_analysis
+          - controlled_experimentation
+          - counterfactual_evaluation
+          - conformance_revalidation
+      - id: C6
+        name: portfolio_scaling
+        description: Portfolio Scaling & Enterprise Integration.
+        includes:
+          - reusable_patterns
+          - shared_capabilities
+          - portfolio_governance
+          - cross_value_stream_coordination
+          - enterprise_architecture_integration
+          - capability_reuse
+          - standards
+          - common_measurement
+          - investment_prioritization
+          - lifecycle_management
+
+  # ----------------------------------------------------------------
+  # 7. Capability progression matrix
+  # ----------------------------------------------------------------
+  capability_progression_matrix:
+    description: |
+      Per-dimension level expectations. The matrix is normative
+      guidance; an organization MAY deviate where evidence supports
+      the deviation.
+    rows:
+      - dimension: C1_design_semantics
+        per_level:
+          L1: concepts_recognized
+          L2: standard_defined
+          L3: applied
+          L4: optimized
+          L5: enterprise_reusable
+      - dimension: C2_governance_authority_risk
+        per_level:
+          L1: risks_recognized
+          L2: authority_model_defined
+          L3: operational_controls
+          L4: continuously_monitored
+          L5: enterprise_policy_framework
+      - dimension: C3_operational_realization
+        per_level:
+          L1: potential_identified
+          L2: operating_model_defined
+          L3: production_operation
+          L4: performance_managed
+          L5: scaled_operation
+      - dimension: C4_value_performance
+        per_level:
+          L1: benefits_hypothesized
+          L2: metrics_defined
+          L3: metrics_collected
+          L4: value_managed
+          L5: enterprise_value_portfolio
+      - dimension: C5_learning_improvement
+        per_level:
+          L1: ad_hoc_learning
+          L2: improvement_process_defined
+          L3: improvements_executed
+          L4: evidence_driven
+          L5: continuous_adaptive_improvement
+      - dimension: C6_portfolio_scaling
+        per_level:
+          L1: isolated_awareness
+          L2: reference_patterns
+          L3: multiple_implementations
+          L4: portfolio_management
+          L5: enterprise_capability
+
+  # ----------------------------------------------------------------
+  # 8. Maturity assessment principle
+  # ----------------------------------------------------------------
+  assessment_principle:
+    formula: |
+      Capability + Evidence + Operational Practice + Performance +
+      Governance + Repeatability + Scale.
+    statement: |
+      Maturity SHALL NOT be determined by a simple count of
+      technologies or features. A capability SHALL NOT be
+      considered mature merely because documentation exists.
+
+  # ----------------------------------------------------------------
+  # 9. Evidence requirements by level
+  # ----------------------------------------------------------------
+  maturity_evidence:
+    description: |
+      The level of evidence required to support a maturity claim
+      grows with each level.
+    per_level:
+      L1:
+        - strategy_statements
+        - awareness_material
+        - identified_candidates
+        - terminology
+        - preliminary_assessments
+      L2:
+        - avs_models
+        - qualification_assessments
+        - authority_models
+        - conformance_tests
+        - governance_definitions
+        - measurement_specifications
+      L3:
+        - production_instances
+        - conformance_records
+        - runtime_evidence
+        - operational_metrics
+        - intervention_records
+        - authority_enforcement
+        - outcome_evidence
+      L4:
+        - historical_performance
+        - baselines
+        - trend_analysis
+        - value_attribution
+        - risk_analysis
+        - improvement_records
+        - conformance_drift_analysis
+      L5:
+        - portfolio_level_measurements
+        - reusable_patterns
+        - enterprise_governance
+        - cross_avs_analysis
+        - scaling_evidence
+        - continuous_improvement
+        - capability_evolution_records
+
+  # ----------------------------------------------------------------
+  # 10. Multidimensional assessment rule
+  # ----------------------------------------------------------------
+  multidimensional_assessment:
+    rule: |
+      A single arithmetic average SHALL NOT be the default maturity
+      mechanism. The profile SHALL remain visible with per-dimension
+      levels and limiting dimensions called out.
+    example_profile: |
+      maturity:
+        overall:
+          level: L3
+        dimensions:
+          design: L5
+          governance: L4
+          operations: L3
+          value: L2
+          improvement: L2
+          scaling: L1
+        limiting_dimensions:
+          - value
+          - improvement
+          - scaling
+
+  # ----------------------------------------------------------------
+  # 11. Overall maturity rule (minimum-required-dimension gate)
+  # ----------------------------------------------------------------
+  overall_maturity_rule:
+    rule: |
+      Overall Maturity = minimum of required capability dimensions,
+      subject to level-specific gates. This prevents exceptional
+      strength in one area from masking fundamental weakness
+      elsewhere. For example: excellent AI engineering + weak
+      authority governance + no outcome measurement SHALL NOT
+      qualify as a highly mature AVS capability.
+    aggregation: minimum_required_dimension
+
+  # ----------------------------------------------------------------
+  # 12. Mandatory gates
+  # ----------------------------------------------------------------
+  mandatory_gates:
+    L2_gate:
+      requires:
+        - defined_avs_semantics
+        - defined_qualification_approach
+        - authority_model
+        - evidence_model
+        - measurement_model
+        - governance_ownership
+    L3_gate:
+      requires:
+        - at_least_one_conformant_production_avs
+        - operational_authority_enforcement
+        - operational_intervention_escalation
+        - outcome_measurement
+        - traceable_evidence
+    L4_gate:
+      requires:
+        - repeatable_performance_management
+        - baseline_comparison
+        - value_measurement
+        - risk_monitoring
+        - conformance_drift_management
+        - systematic_improvement
+    L5_gate:
+      requires:
+        - multiple_operational_avs_implementations
+        - portfolio_governance
+        - reusable_capability_patterns
+        - enterprise_measurement
+        - demonstrated_scaling
+        - continuous_capability_evolution
+
+  # ----------------------------------------------------------------
+  # 13. Anti-patterns
+  # ----------------------------------------------------------------
+  anti_patterns:
+    description: |
+      The following SHALL explicitly be rejected. None of these
+      constitute evidence of AVS maturity.
+    items:
+      - id: maturity_equals_autonomy
+        claim: Higher autonomy means higher maturity.
+        rejected_because: |
+          Higher autonomy is not inherently more mature. A mature AVS
+          may deliberately retain human approval, escalation, and
+          conservative authority limits.
+      - id: maturity_equals_ai_sophistication
+        claim: More advanced models mean higher AVS maturity.
+        rejected_because: |
+          AI model sophistication is an implementation technology
+          characteristic, not an organizational capability assessment.
+      - id: maturity_equals_agent_count
+        claim: More agents means greater maturity.
+        rejected_because: |
+          Agent count is a portfolio size measure, not a capability
+          measure. An organization with many poorly governed agents is
+          LESS mature, not more.
+      - id: maturity_equals_automation_percentage
+        claim: More automated stages means higher maturity.
+        rejected_because: |
+          Automation percentage conflates automation with agenticity
+          and conflates volume with quality of governance.
+      - id: maturity_equals_intervention_reduction
+        claim: Fewer human interventions automatically means higher
+          maturity.
+        rejected_because: |
+          Intervention is a deliberate control mechanism, not a
+          defect. Removing interventions solely to increase an
+          automation score degrades risk and governance capability.
+      - id: maturity_equals_cost_reduction
+        claim: Lower operating cost automatically means higher
+          maturity.
+        rejected_because: |
+          Cost reduction is a potential outcome, not a definition of
+          organizational capability. Cost reduction without value or
+          risk management is not maturity.
+      - id: maturity_equals_production_deployment
+        claim: A production deployment automatically constitutes
+          mature AVS capability.
+        rejected_because: |
+          Production deployment without systematic measurement,
+          governance, risk management, and improvement is L3
+          implemented at best, not L4 managed or L5 scaled-adaptive.
+      - id: maturity_equals_semantic_complexity
+        claim: More relationships, agents, policies or semantic
+          constructs imply greater maturity.
+        rejected_because: |
+          Semantic complexity is a vocabulary property, not a
+          capability property. Maturity is about repeatable,
+          evidence-based capability, not model cardinality.
+
+  # ----------------------------------------------------------------
+  # 14. Human participation in mature AVS
+  # ----------------------------------------------------------------
+  human_participation:
+    principle: |
+      Human participation SHALL remain a first-class design option at
+      every maturity level. A mature implementation chooses the
+      appropriate interaction pattern based on: risk, authority,
+      materiality, regulation, reversibility, consequence,
+      confidence, and customer impact.
+    interaction_patterns:
+      - agent_to_human_approval_to_action
+      - agent_to_human_exception_handling_to_continue
+      - human_decision_to_agent_execution
+      - agent_decision_to_human_validation
+      - human_and_agent_shared_progression
+    invariant: |
+      An AVS that uses mandatory human approvals for high-risk
+      decisions while otherwise operating agentically SHALL NOT
+      incur a maturity penalty solely because humans remain in the
+      loop.
+
+  # ----------------------------------------------------------------
+  # 15. Maturity != full automation
+  # ----------------------------------------------------------------
+  full_automation_caveat:
+    target_state: |
+      Optimal delegation of value-realization decisions and actions
+      within appropriate authority boundaries.
+    not_target_state: Maximum delegation.
+    rationale: |
+      This distinction is foundational to the model. Higher autonomy
+      is not inherently more mature. The objective is appropriate
+      delegated value realization, not maximum delegation.
+
+  # ----------------------------------------------------------------
+  # 16. Capability lifecycle
+  # ----------------------------------------------------------------
+  capability_lifecycle:
+    stages:
+      - discover
+      - qualify
+      - design
+      - conform
+      - deploy
+      - measure
+      - improve
+      - scale
+      - reassess
+    description: |
+      The capability lifecycle is iterative. A change to: authority,
+      decision logic, agentic scope, Value Stream structure, operating
+      context, risk boundary, or material behavior MAY trigger
+      revalidation.
+
+  # ----------------------------------------------------------------
+  # 17. Maturity transition criteria
+  # ----------------------------------------------------------------
+  transition_criteria:
+    principle: |
+      Progression between levels SHALL require demonstrated capability
+      rather than elapsed time. There SHALL be no automatic
+      progression based on age, deployment count, or technology
+      adoption.
+    transitions:
+      - from: L2
+        to: L3
+        requires: actual_operational_realization
+      - from: L3
+        to: L4
+        requires: demonstrated_management_of_performance_value_and_risk
+      - from: L4
+        to: L5
+        requires: demonstrated_organizational_scaling_and_adaptive_capability
+
+  # ----------------------------------------------------------------
+  # 18. Maturity schema (machine-readable model declaration)
+  # ----------------------------------------------------------------
+  schema:
+    model:
+      id: AVS-MATURITY
+      version: "1.0"
+    declared_levels:
+      - {id: L0, name: unaware}
+      - {id: L1, name: aware}
+      - {id: L2, name: defined}
+      - {id: L3, name: implemented}
+      - {id: L4, name: managed}
+      - {id: L5, name: scaled-adaptive}
+    declared_dimensions:
+      - design_semantics
+      - governance_authority_risk
+      - operational_realization
+      - value_performance
+      - learning_improvement
+      - portfolio_scaling
+    assessment:
+      method: gated_multidimensional
+      aggregation: minimum_required_dimension
+      evidence_required: true
+      conformance_required_for: L3
+    constraints:
+      maturity_does_not_define_agenticity: true
+      autonomy_not_required: true
+      ai_not_required: true
+      automation_not_required: true
+      human_intervention_not_negative: true
+
+  # ----------------------------------------------------------------
+  # 19. Assessment record template
+  # ----------------------------------------------------------------
+  assessment_record:
+    description: |
+      A maturity assessment SHOULD be represented separately from the
+      AVS semantic definition. The assessment is time-bound evidence,
+      not a permanent organizational label.
+    template: |
+      maturity_assessment:
+        id:
+        subject:
+          organization:
+          portfolio:
+          value_streams:
+        model:
+          version:
+        assessment_period:
+        dimensions:
+          design_semantics:           {level, evidence, gaps}
+          governance_authority_risk: {level, evidence, gaps}
+          operational_realization:    {level, evidence, gaps}
+          value_performance:          {level, evidence, gaps}
+          learning_improvement:       {level, evidence, gaps}
+          portfolio_scaling:          {level, evidence, gaps}
+        overall:
+          level:
+          gating_result:
+          limiting_dimensions:
+        assessor:
+        assessment_date:
+        next_review:
+
+  # ----------------------------------------------------------------
+  # 20. Capability gap model
+  # ----------------------------------------------------------------
+  capability_gaps:
+    principle: |
+      The maturity assessment SHALL produce capability gaps, not
+      merely a maturity score. This makes the model actionable.
+    template: |
+      gap:
+        capability:
+        current_level:
+        target_level:
+        gap_type: [...]
+        priority:
+        recommended_action: [...]
+
+  # ----------------------------------------------------------------
+  # 21. Improvement planning
+  # ----------------------------------------------------------------
+  improvement_planning:
+    chain:
+      - current_state
+      - capability_gap
+      - required_evidence
+      - improvement_initiative
+      - implementation
+      - measurement
+      - reassessment
+    statement: |
+      The chain connects naturally to enterprise architecture and
+      transformation planning.
+
+  # ----------------------------------------------------------------
+  # 22. Enterprise architecture relationship
+  # ----------------------------------------------------------------
+  enterprise_architecture:
+    informs:
+      - business_architecture
+      - operating_model_transformation
+      - enterprise_architecture
+      - ai_strategy
+      - automation_strategy
+      - workforce_transformation
+      - governance
+      - risk_management
+      - technology_investment
+      - data_and_knowledge_strategy
+    scoping_constraint: |
+      AVS maturity SHALL remain semantically scoped to Agentic Value
+      Stream capability. It SHALL NOT become a generic enterprise
+      digital maturity model.
+
+  # ----------------------------------------------------------------
+  # 23. Governance roles (organizational assignments, not ontology)
+  # ----------------------------------------------------------------
+  governance_roles:
+    description: |
+      These are governance roles, not semantic requirements of an
+      Agentic Value Stream itself. They clarify accountability at the
+      organizational level for maturity outcomes.
+    items:
+      - id: avs_capability_owner
+        owns: organizational AVS capability
+      - id: value_stream_owner
+        owns: value stream outcomes
+      - id: agentic_solution_owner
+        owns: implementation of agentic participation
+      - id: risk_governance_owner
+        owns: authority, risk and policy controls
+      - id: semantic_steward
+        owns: semantic consistency and conformance interpretation
+      - id: measurement_value_owner
+        owns: performance and value measurement
+
+  # ----------------------------------------------------------------
+  # 24. Assessment frequency
+  # ----------------------------------------------------------------
+  assessment_frequency:
+    triggers:
+      - periodic
+      - major_architectural_change
+      - material_authority_change
+      - significant_agentic_scope_change
+      - major_incident
+      - significant_regulatory_change
+      - expansion_to_new_value_streams
+      - material_performance_deterioration
+    principle: |
+      Maturity status is time-bound evidence, not a permanent
+      organizational label.
+
+  # ----------------------------------------------------------------
+  # 25. Maturity drift (regression support)
+  # ----------------------------------------------------------------
+  drift:
+    principle: |
+      An organization MAY regress. The model MUST support regression.
+      Maturity SHALL NOT be treated as an irreversible progression.
+    example:
+      from: L4
+      to: L3
+      causes:
+        - major_platform_migration
+        - measurement_gaps
+        - authority_monitoring_degraded
+
+  # ----------------------------------------------------------------
+  # 26. Invariants (12)
+  # ----------------------------------------------------------------
+  invariants:
+    description: |
+      CR-VAS-006 introduces the following normative invariants. Each
+      invariant is binding across maturity assessments, dashboards,
+      and reporting.
+    items:
+      - id: AVS-MAT-INV-001
+        statement: Maturity does not define AVS semantic qualification.
+      - id: AVS-MAT-INV-002
+        statement: Conformance precedes L3 production maturity.
+      - id: AVS-MAT-INV-003
+        statement: AI is not required for maturity.
+      - id: AVS-MAT-INV-004
+        statement: Autonomy is not required for maturity.
+      - id: AVS-MAT-INV-005
+        statement: Human intervention is not inherently a maturity defect.
+      - id: AVS-MAT-INV-006
+        statement: Agent count does not determine maturity.
+      - id: AVS-MAT-INV-007
+        statement: Technology sophistication does not determine maturity.
+      - id: AVS-MAT-INV-008
+        statement: Maturity shall be evidence-based.
+      - id: AVS-MAT-INV-009
+        statement: Maturity shall support regression.
+      - id: AVS-MAT-INV-010
+        statement: |
+          Overall maturity shall not conceal mandatory capability
+          deficiencies.
+      - id: AVS-MAT-INV-011
+        statement: |
+          Maturity measures organizational capability, not merely
+          individual AVS performance.
+      - id: AVS-MAT-INV-012
+        statement: |
+          Operational performance does not automatically establish
+          organizational maturity.
+
+  # ----------------------------------------------------------------
+  # 27. Boundary assertions
+  # ----------------------------------------------------------------
+  boundary_assertions:
+    per_cr_vas_006_maturity_capability: |
+      Per CR-VAS-006, maturity SHALL be separated from semantic
+      qualification (CR-VAS-002), conformance (CR-VAS-004), and
+      measurement (CR-VAS-005). AI adoption, agent count, autonomy
+      percentage, model sophistication, and operational scale SHALL
+      NOT establish maturity on their own. Maturity SHALL support
+      regression. Overall maturity SHALL NOT conceal mandatory
+      capability deficiencies.
+

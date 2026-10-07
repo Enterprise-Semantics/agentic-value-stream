@@ -17,11 +17,11 @@ Per ES-ADR-031 §4, the 5-category boundary taxonomy anchors this concept: found
 
 This repository is a self-contained snapshot of the canonical `Agentic Value Stream` concept, mirrored from the central Enterprise-Semantics repositories. It contains:
 
-- The authoritative concept record (`concept.yaml`) carrying the qualification block (CR-VAS-002), the participation block (CR-VAS-003), the evidence_conformance block (CR-VAS-004), and the measurement block (CR-VAS-005).
-- A conformance test kit of 91 tests: 5 positive (AVS-VAL-01..07), 5 negative (AVS-EXC-01..07), 5 edge case (AVS-EDGE-01..05), 8 structural (VAS-ST-01..08 participation structure), 10 boundary (VAS-BT-01..10 participation boundary distinction), 8 conformance positive (VAS-CF-P01..08), 10 conformance negative (VAS-CF-N01..N10), 10 conformance boundary (VAS-CF-BT-01..10), 10 measurement positive (VAS-ME-P01..P10), 10 measurement negative (VAS-ME-N01..N10), and 10 measurement boundary (VAS-ME-BT-01..10).
-- Sixteen documentation files covering the concept's definition, evidence model, qualification decision, validation chain, boundary testing, conformance drift, conformance status, target architectures, capability maturity model, assessment criteria, value realization, operational metrics, measurement baselines, measurement provenance, and measurement anti-patterns.
+- The authoritative concept record (`concept.yaml`) carrying the qualification block (CR-VAS-002), the participation block (CR-VAS-003), the evidence_conformance block (CR-VAS-004), the measurement block (CR-VAS-005), and the maturity block (CR-VAS-006).
+- A conformance test kit of 121 tests: 5 positive (AVS-VAL-01..07), 5 negative (AVS-EXC-01..07), 5 edge case (AVS-EDGE-01..05), 8 structural (VAS-ST-01..08 participation structure), 10 boundary (VAS-BT-01..10 participation boundary distinction), 8 conformance positive (VAS-CF-P01..08), 10 conformance negative (VAS-CF-N01..N10), 10 conformance boundary (VAS-CF-BT-01..10), 10 measurement positive (VAS-ME-P01..P10), 10 measurement negative (VAS-ME-N01..N10), 10 measurement boundary (VAS-ME-BT-01..10), 10 maturity positive (VAS-MA-P01..P10), 10 maturity negative (VAS-MA-N01..N10), and 10 maturity boundary (VAS-MA-BT-01..10).
+- Twenty-three documentation files covering the concept's definition, evidence model, qualification decision, validation chain, boundary testing, conformance drift, conformance status, target architectures, capability maturity model, assessment criteria, value realization, operational metrics, measurement baselines, measurement provenance, measurement anti-patterns, maturity framework, capability model, maturity levels, maturity assessment, capability gaps, maturity governance, and maturity anti-patterns.
 - Cross-program mappings to the World Semantic Foundation and OpenDEA (semantic-overlay semantics, not implementation mappings).
-- Visual diagrams in PlantUML format showing the concept's boundary, semantic anatomy, participation model, semantic boundary matrix, qualification decision model, evidence lifecycle, conformance status machine, measurement hierarchy, measurement dimensions, and measurement anti-patterns.
+- Visual diagrams in PlantUML format showing the concept's boundary, semantic anatomy, participation model, semantic boundary matrix, qualification decision model, evidence lifecycle, conformance status machine, measurement hierarchy, measurement dimensions, measurement anti-patterns, maturity levels, maturity capability dimensions, and maturity anti-patterns.
 - Reference examples demonstrating the concept's boundary assertions and conformance levels.
 
 ## Repository layout
@@ -43,6 +43,9 @@ agentic-value-stream/
 |   +-- me-positive-01..10.yaml    # Measurement positive (VAS-ME-P01..P10)
 |   +-- me-negative-01..10.yaml    # Measurement negative (VAS-ME-N01..N10)
 |   +-- me-boundary-01..10.yaml    # Measurement boundary (VAS-ME-BT-01..10)
+|   +-- ma-positive-01..10.yaml    # Maturity positive (VAS-MA-P01..P10)
+|   +-- ma-negative-01..10.yaml    # Maturity negative (VAS-MA-N01..N10)
+|   +-- ma-boundary-01..10.yaml    # Maturity boundary (VAS-MA-BT-01..10)
 +-- docs/
 |   +-- concept.md                  # Concept narrative
 |   +-- conformance.md              # CI-derived conformance status
@@ -60,11 +63,18 @@ agentic-value-stream/
 |   +-- target-architectures.md     # Target architectures
 |   +-- capability-maturity-model.yaml  # CMM levels (L0 Ad-hoc to L5 Optimizing)
 |   +-- assessment.md               # Maturity assessment criteria
+|   +-- maturity.md                 # Maturity & Capability (CR-VAS-006)
+|   +-- capability-model.md         # Six capability dimensions (CR-VAS-006)
+|   +-- maturity-levels.md          # L0..L5 levels (CR-VAS-006)
+|   +-- maturity-assessment.md      # Assessment principle + gates (CR-VAS-006)
+|   +-- capability-gaps.md          # Gap model + improvement planning (CR-VAS-006)
+|   +-- maturity-governance.md      # Governance roles + lifecycle (CR-VAS-006)
+|   +-- maturity-anti-patterns.md   # 8 maturity anti-patterns (CR-VAS-006)
 +-- mappings/
 |   +-- wsf.yaml               # World Semantic Foundation semantic overlay
 |   +-- opendea.yaml           # OpenDEA semantic overlay
 +-- visuals/
-    +-- agentic-value-stream/         # 11 PlantUML diagrams
+    +-- agentic-value-stream/         # 14 PlantUML diagrams
 +-- examples/
     +-- agentic-value-stream/         # Reference examples
 ```
@@ -75,8 +85,8 @@ Emmanuel A. Otchere (cardinal author rule, 2026-09-23)
 
 ## Provenance
 
-- Decision: ES-ADR-005, ES-ADR-031, ES-ADR-049, ES-ADR-051, ES-ADR-052, ES-ADR-053, ES-ADR-054, ES-ADR-055
-- Implementation: CR-ES-005, CR-AVS-001, CR-VAS-002, CR-VAS-003, CR-VAS-004, CR-VAS-005
+- Decision: ES-ADR-005, ES-ADR-031, ES-ADR-049, ES-ADR-051, ES-ADR-052, ES-ADR-053, ES-ADR-054, ES-ADR-055, ES-ADR-056
+- Implementation: CR-ES-005, CR-AVS-001, CR-VAS-002, CR-VAS-003, CR-VAS-004, CR-VAS-005, CR-VAS-006
 - Date: 2026-10-08
 - Governance: enterprise-semantics
 - Synchronization: This repository is a CI-derived snapshot of the canonical central repositories. The single source of truth remains the `Enterprise-Semantics/enterprise-semantics-*` repository family. Use the `sync-concept-repos` workflow in `Enterprise-Semantics/.github` to refresh after canonical updates.

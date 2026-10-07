@@ -1,0 +1,14 @@
+id: KIT-AGENTIC-VALUE-STREAM-VAS-MA-P03
+test_id: VAS-MA-P03
+category: maturity_ma-positive
+subject: L3 Implemented Capability
+description: L3 maturity demonstrated via at least one conformant production AVS with operational authority enforcement, intervention/escalation,
+  outcome measurement, and traceable evidence.
+cr: CR-VAS-006 §boundary
+expect: L3 gate requires conformant_production_avs AND operational_authority_enforcement AND outcome_measurement AND traceable_evidence.
+asserts:
+- maturity.maturity_levels.items contains item with id == L3
+- maturity.mandatory_gates.L3_gate.requires contains at_least_one_conformant_production_avs
+- maturity.mandatory_gates.L3_gate.requires contains operational_authority_enforcement
+- maturity.mandatory_gates.L3_gate.requires contains outcome_measurement
+- maturity.mandatory_gates.L3_gate.requires contains traceable_evidence

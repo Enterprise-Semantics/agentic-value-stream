@@ -1,0 +1,10 @@
+id: KIT-AGENTIC-VALUE-STREAM-VAS-MA-N06
+test_id: VAS-MA-N06
+category: maturity_ma-negative
+subject: Maturity != Cost Reduction
+description: Lower operating cost does NOT automatically mean higher maturity. CR-VAS-006 §21 anti-pattern 6.
+cr: CR-VAS-006 §boundary
+expect: maturity_equals_cost_reduction listed in anti_patterns with verdict == false.
+asserts:
+- maturity.anti_patterns.items contains item with id == maturity_equals_cost_reduction
+- maturity.anti_patterns.items[id=maturity_equals_cost_reduction].rejected_because is defined

@@ -1,0 +1,10 @@
+id: KIT-AGENTIC-VALUE-STREAM-VAS-MA-N03
+test_id: VAS-MA-N03
+category: maturity_ma-negative
+subject: Maturity != Agent Count
+description: More agents do NOT mean greater maturity. CR-VAS-006 §21 anti-pattern 3.
+cr: CR-VAS-006 §boundary
+expect: maturity_equals_agent_count listed in anti_patterns with verdict == false.
+asserts:
+- maturity.anti_patterns.items contains item with id == maturity_equals_agent_count
+- maturity.anti_patterns.items[id=maturity_equals_agent_count].rejected_because is defined

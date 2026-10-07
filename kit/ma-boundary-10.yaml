@@ -1,0 +1,11 @@
+id: KIT-AGENTIC-VALUE-STREAM-VAS-MA-BT-10
+test_id: VAS-MA-BT-10
+category: maturity_ma-boundary
+subject: Maturity vs Operational Performance
+description: A highly performant AVS does NOT automatically imply organizational maturity. CR-VAS-006 §20 + AVS-MAT-INV-012.
+cr: CR-VAS-006 §boundary
+expect: separation.vs_measurement AND AVS-MAT-INV-012 both present.
+asserts:
+- maturity.separation.vs_measurement is defined
+- maturity.invariants.items contains item with id == AVS-MAT-INV-012
+- maturity.invariants.items[id=AVS-MAT-INV-012].statement contains does not automatically

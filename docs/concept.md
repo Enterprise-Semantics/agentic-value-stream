@@ -680,3 +680,106 @@ Six new documentation files accompany this layer:
   quality dimensions, measurement context.
 - `docs/measurement-anti-patterns.md`. 7 anti-patterns with verdict
   (False).
+
+## Maturity and Capability (CR-VAS-006, Wave 4)
+
+CR-VAS-006 introduces the **organizational maturity and capability
+progression model** for Agentic Value Streams. Maturity is a property
+of the **organization**, not of the AVS itself. It measures how
+systematically the organization can design, govern, operate, measure,
+improve, and scale AVS.
+
+The dependency is intentionally one-directional:
+
+> Semantic Qualification -> Conformance & Evidence -> Operational
+> Measurement -> Maturity & Capability.
+
+A high-maturity organization may have non-agentic Value Streams. A
+low-maturity organization may operate a semantically conformant AVS.
+A highly performant AVS does not automatically imply organizational
+maturity.
+
+### Six Maturity Levels
+
+| Level | Name | Meaning |
+|---|---|---|
+| L0 | Unaware | No deliberate AVS capability. |
+| L1 | Aware | AVS concepts understood and identified. |
+| L2 | Defined | AVS practices, boundaries and governance are defined. |
+| L3 | Implemented | Conformant AVS implementations operate in production. |
+| L4 | Managed | AVS performance, risk, value and improvement are systematically managed. |
+| L5 | Scaled & Adaptive | AVS capability is governed and continuously optimized across the enterprise. |
+
+Levels represent increasing organizational capability, **not**
+increasing agenticity.
+
+### Six Capability Dimensions
+
+| ID | Dimension | Description |
+|---|---|---|
+| C1 | Design & Semantic Modeling | Identify, model, qualify AVS correctly. |
+| C2 | Authority, Governance & Risk | Establish and govern delegated authority. |
+| C3 | Operational Realization | Deploy and operate AVS reliably. |
+| C4 | Value & Performance Management | Demonstrate agentic participation contribution. |
+| C5 | Learning & Continuous Improvement | Improve AVS performance based on evidence. |
+| C6 | Portfolio Scaling & Enterprise Integration | Scale AVS capability beyond isolated implementations. |
+
+### Separation Principles
+
+Maturity is **separated** from qualification, conformance, and
+measurement:
+
+- Maturity vs qualification: maturity does not determine whether a
+  Value Stream is semantically an AVS.
+- Maturity vs conformance: a non-conformant implementation cannot
+  become conformant by achieving a higher maturity score.
+- Maturity vs measurement: maturity is not a measurement score. It
+  is a multidimensional organizational capability assessment.
+
+### Maturity Anti-Patterns (rejected)
+
+Per CR-VAS-006 §21, the following are explicitly rejected as
+maturity evidence: maturity = autonomy; maturity = AI
+sophistication; maturity = agent count; maturity = automation
+percentage; maturity = intervention reduction; maturity = cost
+reduction; maturity = production deployment; maturity = semantic
+complexity.
+
+### Maturity Tests
+
+Wave 4 adds 30 maturity tests (10 positive + 10 negative + 10
+boundary):
+
+- 10 maturity positive (VAS-MA-P01..P10, CR-VAS-006): L1..L5
+  capability, six capability dimensions, multidimensional
+  assessment profile, machine-readable maturity schema, human
+  participation guarantee, capability lifecycle + regression.
+- 10 maturity negative (VAS-MA-N01..N10, CR-VAS-006): the eight
+  anti-patterns and two anti-pattern category tests
+  (maturity-as-qualification and arithmetic-average-concealment).
+- 10 maturity boundary (VAS-MA-BT-01..10, CR-VAS-006):
+  maturity vs qualification, conformance, measurement, AI,
+  autonomy, automation, human intervention, drift/regression,
+  technology maturity model, operational performance.
+
+### Documentation set (Wave 4 additions)
+
+Seven new documentation files accompany this layer:
+
+- `docs/maturity.md`. Purpose, core principle, separation
+  principles, scope.
+- `docs/capability-model.md`. Six capability dimensions with
+  detailed scope, capability progression matrix.
+- `docs/maturity-levels.md`. L0..L5 with definitions, minimum
+  capabilities, critical distinctions, gates.
+- `docs/maturity-assessment.md`. Assessment principle, multi-
+  dimensional assessment rule, overall maturity rule, mandatory
+  gates, evidence requirements by level, assessment record
+  template, assessment frequency.
+- `docs/capability-gaps.md`. Gap model, gap types, improvement
+  planning chain.
+- `docs/maturity-governance.md`. Governance roles, capability
+  lifecycle, transition criteria, drift, regression, enterprise
+  architecture relationship.
+- `docs/maturity-anti-patterns.md`. Eight anti-patterns with
+  rejection rationale and detection heuristics.

@@ -280,3 +280,73 @@ measurement_alignment:
         Measurement does not redefine semantic conformance.
     - measurement_vs_maturity: |
         Measurement does not introduce maturity levels.
+
+  # CR-VAS-006 maturity alignment block.
+  # Maturity is a CR-VAS-006 framework construct; it does not modify
+  # the OpenDEA metamodel. OpenDEA alignment covers the
+  # capability-to-assessment-map where an analog exists.
+  cr: CR-VAS-006
+  adr: ES-ADR-056
+  alignment_kind: repository_framework_overlay
+  semantic_alignment:
+    opendea_target: null
+    description: |
+      CR-VAS-006 maturity model is an organizational capability
+      framework. It is repository-specific and does not modify
+      the OpenDEA metamodel.
+  methodological_alignment:
+    opendea_target: null
+    description: |
+      CR-VAS-006 methodology (six-level model, six capability
+      dimensions, gated assessment) is repository-specific; not
+      borrowed from OpenDEA.
+  capability_dimension_alignment:
+    - avs_capability: design_semantics
+      opendea_target: null
+      notes: Repository-specific.
+    - avs_capability: governance_authority_risk
+      opendea_target: null
+      notes: Repository-specific.
+    - avs_capability: operational_realization
+      opendea_target: opendea_assessment
+      notes: Operational realization aligns with OpenDEA assessment
+        realization concepts where present.
+    - avs_capability: value_performance
+      opendea_target: opendea_measurement
+      notes: Value performance aligns with OpenDEA measurement
+        concepts where present.
+    - avs_capability: learning_improvement
+      opendea_target: null
+      notes: Repository-specific.
+    - avs_capability: portfolio_scaling
+      opendea_target: null
+      notes: Repository-specific.
+  maturity_level_alignment:
+    - avs_level: L0
+      opendea_target: null
+      notes: Awareness pre-state; no OpenDEA analog.
+    - avs_level: L1
+      opendea_target: null
+      notes: Conceptual awareness; no OpenDEA analog.
+    - avs_level: L2
+      opendea_target: null
+      notes: Definitions stage; no OpenDEA analog.
+    - avs_level: L3
+      opendea_target: opendea_assessment
+      notes: Production AVS alignment with OpenDEA assessment
+        realization where present.
+    - avs_level: L4
+      opendea_target: null
+      notes: Managed capability; repository-specific.
+    - avs_level: L5
+      opendea_target: null
+      notes: Scaled and adaptive; repository-specific.
+  separation_principles:
+    - maturity_vs_qualification: |
+        Maturity does not redefine semantic qualification.
+    - maturity_vs_conformance: |
+        Maturity does not redefine conformance.
+    - maturity_vs_measurement: |
+        Maturity is not a measurement score.
+    - maturity_vs_technology_progression: |
+        AVS maturity is not a technology maturity ladder.

@@ -1,7 +1,7 @@
 # Conformance ; Agentic Value Stream
 
 > CI-generated per ES-ADR-030 + ES-CR-030 + CR-AVS-001 + CR-VAS-002
-> + CR-VAS-003 + CR-VAS-004 + CR-VAS-005.
+> + CR-VAS-003 + CR-VAS-004 + CR-VAS-005 + CR-VAS-006.
 > Do not hand-edit.
 
 - Concept: `ES:CONCEPT:agentic-value-stream`
@@ -9,11 +9,12 @@
 - Lifecycle status: candidate (semantic qualification Wave 2 lands
   CR-VAS-002 acceptance; participation Wave 3 lands CR-VAS-003
   acceptance; evidence Wave 4 lands CR-VAS-004 acceptance;
-  measurement Wave 5 lands CR-VAS-005 acceptance; promotion to
-  Established reserved for the acceptance reviews per ES-ADR-052 +
-  ES-ADR-053 + ES-ADR-054 + ES-ADR-055)
+  measurement Wave 5 lands CR-VAS-005 acceptance; maturity Wave 6
+  lands CR-VAS-006 acceptance; promotion to Established reserved for
+  the acceptance reviews per ES-ADR-052 + ES-ADR-053 + ES-ADR-054 +
+  ES-ADR-055 + ES-ADR-056)
 - Conformance status: semantically_conformant
-- Version: 1.3.0
+- Version: 1.4.0
 - Concept repository: Enterprise-Semantics/agentic-value-stream
 - Test path: kit/
 - Test source branch: main
@@ -32,8 +33,11 @@
 - Measurement Positive: 10
 - Measurement Negative: 10
 - Measurement Boundary: 10
+- Maturity Positive: 10
+- Maturity Negative: 10
+- Maturity Boundary: 10
 - Integrity: 0
-- Total: 91
+- Total: 121
 
 ## Test inventory by semantic role
 
@@ -127,6 +131,45 @@
 - KIT-AGENTIC-VALUE-STREAM-VAS-ME-BT-09 ; VAS-ME-BT-09 Measurement Quality Represented
 - KIT-AGENTIC-VALUE-STREAM-VAS-ME-BT-10 ; VAS-ME-BT-10 Reference Examples Documented
 
+### Maturity positive (VAS-MA-P01..P10 per CR-VAS-006 §33 + §38 + AC-21)
+
+- KIT-AGENTIC-VALUE-STREAM-VAS-MA-P01 ; VAS-MA-P01 L1 Aware Capability
+- KIT-AGENTIC-VALUE-STREAM-VAS-MA-P02 ; VAS-MA-P02 L2 Defined Capability
+- KIT-AGENTIC-VALUE-STREAM-VAS-MA-P03 ; VAS-MA-P03 L3 Implemented Capability
+- KIT-AGENTIC-VALUE-STREAM-VAS-MA-P04 ; VAS-MA-P04 L4 Managed Capability
+- KIT-AGENTIC-VALUE-STREAM-VAS-MA-P05 ; VAS-MA-P05 L5 Scaled & Adaptive Capability
+- KIT-AGENTIC-VALUE-STREAM-VAS-MA-P06 ; VAS-MA-P06 Six Capability Dimensions
+- KIT-AGENTIC-VALUE-STREAM-VAS-MA-P07 ; VAS-MA-P07 Multidimensional Assessment Profile
+- KIT-AGENTIC-VALUE-STREAM-VAS-MA-P08 ; VAS-MA-P08 Machine-Readable Maturity Schema
+- KIT-AGENTIC-VALUE-STREAM-VAS-MA-P09 ; VAS-MA-P09 Human Participation Guarantee
+- KIT-AGENTIC-VALUE-STREAM-VAS-MA-P10 ; VAS-MA-P10 Capability Lifecycle + Regression
+
+### Maturity negative (VAS-MA-N01..N10 per CR-VAS-006 §34 + §38)
+
+- KIT-AGENTIC-VALUE-STREAM-VAS-MA-N01 ; VAS-MA-N01 Maturity != Autonomy
+- KIT-AGENTIC-VALUE-STREAM-VAS-MA-N02 ; VAS-MA-N02 Maturity != AI Sophistication
+- KIT-AGENTIC-VALUE-STREAM-VAS-MA-N03 ; VAS-MA-N03 Maturity != Agent Count
+- KIT-AGENTIC-VALUE-STREAM-VAS-MA-N04 ; VAS-MA-N04 Maturity != Automation Percentage
+- KIT-AGENTIC-VALUE-STREAM-VAS-MA-N05 ; VAS-MA-N05 Maturity != Intervention Reduction
+- KIT-AGENTIC-VALUE-STREAM-VAS-MA-N06 ; VAS-MA-N06 Maturity != Cost Reduction
+- KIT-AGENTIC-VALUE-STREAM-VAS-MA-N07 ; VAS-MA-N07 Maturity != Production Deployment
+- KIT-AGENTIC-VALUE-STREAM-VAS-MA-N08 ; VAS-MA-N08 Maturity != Semantic Complexity
+- KIT-AGENTIC-VALUE-STREAM-VAS-MA-N09 ; VAS-MA-N09 Maturity Shall Not Be Used As Semantic Qualification Evidence
+- KIT-AGENTIC-VALUE-STREAM-VAS-MA-N10 ; VAS-MA-N10 Overall Maturity Shall Not Conceal Mandatory Capability Deficiencies
+
+### Maturity boundary (VAS-MA-BT-01..10 per CR-VAS-006 §33 + §34 + §38)
+
+- KIT-AGENTIC-VALUE-STREAM-VAS-MA-BT-01 ; VAS-MA-BT-01 Maturity vs Semantic Qualification
+- KIT-AGENTIC-VALUE-STREAM-VAS-MA-BT-02 ; VAS-MA-BT-02 Maturity vs Conformance
+- KIT-AGENTIC-VALUE-STREAM-VAS-MA-BT-03 ; VAS-MA-BT-03 Maturity vs Measurement
+- KIT-AGENTIC-VALUE-STREAM-VAS-MA-BT-04 ; VAS-MA-BT-04 AI Is Not Required For Maturity
+- KIT-AGENTIC-VALUE-STREAM-VAS-MA-BT-05 ; VAS-MA-BT-05 Autonomy Is Not Required For Maturity
+- KIT-AGENTIC-VALUE-STREAM-VAS-MA-BT-06 ; VAS-MA-BT-06 Automation Is Not Required For Maturity
+- KIT-AGENTIC-VALUE-STREAM-VAS-MA-BT-07 ; VAS-MA-BT-07 Human Intervention Is Not A Maturity Defect
+- KIT-AGENTIC-VALUE-STREAM-VAS-MA-BT-08 ; VAS-MA-BT-08 Maturity vs Maturity Drift (Regression)
+- KIT-AGENTIC-VALUE-STREAM-VAS-MA-BT-09 ; VAS-MA-BT-09 Maturity vs Technology Maturity Model
+- KIT-AGENTIC-VALUE-STREAM-VAS-MA-BT-10 ; VAS-MA-BT-10 Maturity vs Operational Performance
+
 ## Boundary Assertions Covered
 
 - per_es_adr_005
@@ -135,9 +178,10 @@
 - per_cr_vas_003_participation_realization
 - per_cr_vas_004_evidence_conformance
 - per_cr_vas_005_measurement_value
+- per_cr_vas_006_maturity_capability
 
 ## Provenance
 
-- decision: ES-ADR-005, ES-ADR-031, ES-ADR-049, ES-ADR-051, ES-ADR-052, ES-ADR-053, ES-ADR-054, ES-ADR-055
-- implementation: CR-ES-005, CR-AVS-001, CR-VAS-002, CR-VAS-003, CR-VAS-004, CR-VAS-005
+- decision: ES-ADR-005, ES-ADR-031, ES-ADR-049, ES-ADR-051, ES-ADR-052, ES-ADR-053, ES-ADR-054, ES-ADR-055, ES-ADR-056
+- implementation: CR-ES-005, CR-AVS-001, CR-VAS-002, CR-VAS-003, CR-VAS-004, CR-VAS-005, CR-VAS-006
 - date: 2026-10-08

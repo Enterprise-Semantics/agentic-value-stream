@@ -1,0 +1,10 @@
+id: KIT-AGENTIC-VALUE-STREAM-VAS-MA-N02
+test_id: VAS-MA-N02
+category: maturity_ma-negative
+subject: Maturity != AI Sophistication
+description: More advanced models do NOT mean higher AVS maturity. CR-VAS-006 §21 anti-pattern 2.
+cr: CR-VAS-006 §boundary
+expect: maturity_equals_ai_sophistication listed in anti_patterns with verdict == false.
+asserts:
+- maturity.anti_patterns.items contains item with id == maturity_equals_ai_sophistication
+- maturity.anti_patterns.items[id=maturity_equals_ai_sophistication].rejected_because is defined

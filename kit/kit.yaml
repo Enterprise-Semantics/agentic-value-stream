@@ -3,7 +3,7 @@ concept: ES:CONCEPT:agentic-value-stream
 canonical_name: Agentic Value Stream
 base_concept: ES:CONCEPT:value-stream
 status: semantically_conformant
-version: 1.3.0
+version: 1.4.0
 date: 2026-10-08
 author: Emmanuel A. Otchere (cardinal author rule, 2026-09-23)
 governance: enterprise-semantics
@@ -11,7 +11,7 @@ governance: enterprise-semantics
 # Repository reference (renamed per ES-ADR-051).
 concept_repo: Enterprise-Semantics/agentic-value-stream
 
-# Coverage auto-derived from kit/ inventory (per CR-AVS-001 §14 + CR-VAS-002 §22 + CR-VAS-003 §24 + CR-VAS-004 §19 + §20 + §21).
+# Coverage auto-derived from kit/ inventory (per CR-AVS-001 §14 + CR-VAS-002 §22 + CR-VAS-003 §24 + CR-VAS-004 §19 + §20 + §21 + CR-VAS-005 §19 + §20 + §21 + CR-VAS-006 §33 + §34).
 coverage:
   positive: 5
   negative: 5
@@ -24,8 +24,11 @@ coverage:
   me_positive: 10
   me_negative: 10
   me_boundary: 10
+  ma_positive: 10
+  ma_negative: 10
+  ma_boundary: 10
   integrity: 0
-  total: 91
+  total: 121
 
 # Test inventory by semantic role (per CR-VAS-002 §22 + CR-VAS-003 §24 + CR-VAS-004 §19 + §20 + §21).
 test_inventory:
@@ -171,77 +174,137 @@ boundary_assertions_covered:
 test_source_branch: main
 test_path: kit/
 
-provenance:
-  decision: [ES-ADR-005, ES-ADR-049, ES-ADR-051, ES-ADR-052, ES-ADR-053, ES-ADR-054]
-  implementation: [CR-ES-005, CR-AVS-001, CR-VAS-002, CR-VAS-003, CR-VAS-004]
+# Measurement test inventory (per CR-VAS-005 §19 + §20 + §21 + §30 + AC-26).
+me_positive:
+  - id: KIT-AGENTIC-VALUE-STREAM-VAS-ME-P01
+    condition: VAS-ME-P01 Value Realization Primary Dimension
+  - id: KIT-AGENTIC-VALUE-STREAM-VAS-ME-P02
+    condition: VAS-ME-P02 Counterfactual Comparison Supported
+  - id: KIT-AGENTIC-VALUE-STREAM-VAS-ME-P03
+    condition: VAS-ME-P03 Authority Compliance Rate Tracked
+  - id: KIT-AGENTIC-VALUE-STREAM-VAS-ME-P04
+    condition: VAS-ME-P04 Human Intervention Not Treated As Failure
+  - id: KIT-AGENTIC-VALUE-STREAM-VAS-ME-P05
+    condition: VAS-ME-P05 Decision Quality Separated From Outcome Quality
+  - id: KIT-AGENTIC-VALUE-STREAM-VAS-ME-P06
+    condition: VAS-ME-P06 Measurement Provenance Anchored
+  - id: KIT-AGENTIC-VALUE-STREAM-VAS-ME-P07
+    condition: VAS-ME-P07 Measurement Lifecycle Stage Set
+  - id: KIT-AGENTIC-VALUE-STREAM-VAS-ME-P08
+    condition: VAS-ME-P08 Core Metric Set Recommended
+  - id: KIT-AGENTIC-VALUE-STREAM-VAS-ME-P09
+    condition: VAS-ME-P09 Measurement-to-Semantics Traceability
+  - id: KIT-AGENTIC-VALUE-STREAM-VAS-ME-P10
+    condition: VAS-ME-P10 Human Effort Reallocation Not Workforce Reduction
+me_negative:
+  - id: KIT-AGENTIC-VALUE-STREAM-VAS-ME-N01
+    condition: VAS-ME-N01 Agent Count Is Not A Value Metric
+  - id: KIT-AGENTIC-VALUE-STREAM-VAS-ME-N02
+    condition: VAS-ME-N02 Autonomy Is Not Performance
+  - id: KIT-AGENTIC-VALUE-STREAM-VAS-ME-N03
+    condition: VAS-ME-N03 Automation Rate Is Not Agenticity
+  - id: KIT-AGENTIC-VALUE-STREAM-VAS-ME-N04
+    condition: VAS-ME-N04 Decision Volume Is Not Effectiveness
+  - id: KIT-AGENTIC-VALUE-STREAM-VAS-ME-N05
+    condition: VAS-ME-N05 Less Intervention Is Not Better AVS
+  - id: KIT-AGENTIC-VALUE-STREAM-VAS-ME-N06
+    condition: VAS-ME-N06 AI Model Quality Is Not Value
+  - id: KIT-AGENTIC-VALUE-STREAM-VAS-ME-N07
+    condition: VAS-ME-N07 Cost Reduction Is Not The Sole Value
+  - id: KIT-AGENTIC-VALUE-STREAM-VAS-ME-N08
+    condition: VAS-ME-N08 Measurement Does Not Define Agenticity
+  - id: KIT-AGENTIC-VALUE-STREAM-VAS-ME-N09
+    condition: VAS-ME-N09 Higher Decision Density Is Not Higher Maturity
+  - id: KIT-AGENTIC-VALUE-STREAM-VAS-ME-N10
+    condition: VAS-ME-N10 Adaptation Is Not Proof Of Agenticity
+me_boundary:
+  - id: KIT-AGENTIC-VALUE-STREAM-VAS-ME-BT-01
+    condition: VAS-ME-BT-01 Measurement vs Semantic Qualification
+  - id: KIT-AGENTIC-VALUE-STREAM-VAS-ME-BT-02
+    condition: VAS-ME-BT-02 Measurement vs Conformance
+  - id: KIT-AGENTIC-VALUE-STREAM-VAS-ME-BT-03
+    condition: VAS-ME-BT-03 Measurement vs Maturity
+  - id: KIT-AGENTIC-VALUE-STREAM-VAS-ME-BT-04
+    condition: VAS-ME-BT-04 Conditional vs Universal Distinction
+  - id: KIT-AGENTIC-VALUE-STREAM-VAS-ME-BT-05
+    condition: VAS-ME-BT-05 Action Selection Distinct From Action Execution
+  - id: KIT-AGENTIC-VALUE-STREAM-VAS-ME-BT-06
+    condition: VAS-ME-BT-06 Multi-Agent Metrics Optional
+  - id: KIT-AGENTIC-VALUE-STREAM-VAS-ME-BT-07
+    condition: VAS-ME-BT-07 Baseline Required Where Improvement Claimed
+  - id: KIT-AGENTIC-VALUE-STREAM-VAS-ME-BT-08
+    condition: VAS-ME-BT-08 Value Attribution Confidence Represented
+  - id: KIT-AGENTIC-VALUE-STREAM-VAS-ME-BT-09
+    condition: VAS-ME-BT-09 Measurement Quality Represented
+  - id: KIT-AGENTIC-VALUE-STREAM-VAS-ME-BT-10
+    condition: VAS-ME-BT-10 Reference Examples Documented
 
+# Maturity test inventory (per CR-VAS-006 §33 + §34 + §38 + §39 + AC-21).
+ma_positive:
+  - id: KIT-AGENTIC-VALUE-STREAM-VAS-MA-P01
+    condition: VAS-MA-P01 L1 Aware Capability
+  - id: KIT-AGENTIC-VALUE-STREAM-VAS-MA-P02
+    condition: VAS-MA-P02 L2 Defined Capability
+  - id: KIT-AGENTIC-VALUE-STREAM-VAS-MA-P03
+    condition: VAS-MA-P03 L3 Implemented Capability
+  - id: KIT-AGENTIC-VALUE-STREAM-VAS-MA-P04
+    condition: VAS-MA-P04 L4 Managed Capability
+  - id: KIT-AGENTIC-VALUE-STREAM-VAS-MA-P05
+    condition: VAS-MA-P05 L5 Scaled & Adaptive Capability
+  - id: KIT-AGENTIC-VALUE-STREAM-VAS-MA-P06
+    condition: VAS-MA-P06 Six Capability Dimensions
+  - id: KIT-AGENTIC-VALUE-STREAM-VAS-MA-P07
+    condition: VAS-MA-P07 Multidimensional Assessment Profile
+  - id: KIT-AGENTIC-VALUE-STREAM-VAS-MA-P08
+    condition: VAS-MA-P08 Machine-Readable Maturity Schema
+  - id: KIT-AGENTIC-VALUE-STREAM-VAS-MA-P09
+    condition: VAS-MA-P09 Human Participation Guarantee
+  - id: KIT-AGENTIC-VALUE-STREAM-VAS-MA-P10
+    condition: VAS-MA-P10 Capability Lifecycle + Regression
+ma_negative:
+  - id: KIT-AGENTIC-VALUE-STREAM-VAS-MA-N01
+    condition: VAS-MA-N01 Maturity != Autonomy
+  - id: KIT-AGENTIC-VALUE-STREAM-VAS-MA-N02
+    condition: VAS-MA-N02 Maturity != AI Sophistication
+  - id: KIT-AGENTIC-VALUE-STREAM-VAS-MA-N03
+    condition: VAS-MA-N03 Maturity != Agent Count
+  - id: KIT-AGENTIC-VALUE-STREAM-VAS-MA-N04
+    condition: VAS-MA-N04 Maturity != Automation Percentage
+  - id: KIT-AGENTIC-VALUE-STREAM-VAS-MA-N05
+    condition: VAS-MA-N05 Maturity != Intervention Reduction
+  - id: KIT-AGENTIC-VALUE-STREAM-VAS-MA-N06
+    condition: VAS-MA-N06 Maturity != Cost Reduction
+  - id: KIT-AGENTIC-VALUE-STREAM-VAS-MA-N07
+    condition: VAS-MA-N07 Maturity != Production Deployment
+  - id: KIT-AGENTIC-VALUE-STREAM-VAS-MA-N08
+    condition: VAS-MA-N08 Maturity != Semantic Complexity
+  - id: KIT-AGENTIC-VALUE-STREAM-VAS-MA-N09
+    condition: VAS-MA-N09 Maturity Shall Not Be Used As Semantic Qualification Evidence
+  - id: KIT-AGENTIC-VALUE-STREAM-VAS-MA-N10
+    condition: VAS-MA-N10 Overall Maturity Shall Not Conceal Mandatory Capability Deficiencies
+ma_boundary:
+  - id: KIT-AGENTIC-VALUE-STREAM-VAS-MA-BT-01
+    condition: VAS-MA-BT-01 Maturity vs Semantic Qualification
+  - id: KIT-AGENTIC-VALUE-STREAM-VAS-MA-BT-02
+    condition: VAS-MA-BT-02 Maturity vs Conformance
+  - id: KIT-AGENTIC-VALUE-STREAM-VAS-MA-BT-03
+    condition: VAS-MA-BT-03 Maturity vs Measurement
+  - id: KIT-AGENTIC-VALUE-STREAM-VAS-MA-BT-04
+    condition: VAS-MA-BT-04 AI Is Not Required For Maturity
+  - id: KIT-AGENTIC-VALUE-STREAM-VAS-MA-BT-05
+    condition: VAS-MA-BT-05 Autonomy Is Not Required For Maturity
+  - id: KIT-AGENTIC-VALUE-STREAM-VAS-MA-BT-06
+    condition: VAS-MA-BT-06 Automation Is Not Required For Maturity
+  - id: KIT-AGENTIC-VALUE-STREAM-VAS-MA-BT-07
+    condition: VAS-MA-BT-07 Human Intervention Is Not A Maturity Defect
+  - id: KIT-AGENTIC-VALUE-STREAM-VAS-MA-BT-08
+    condition: VAS-MA-BT-08 Maturity vs Maturity Drift (Regression)
+  - id: KIT-AGENTIC-VALUE-STREAM-VAS-MA-BT-09
+    condition: VAS-MA-BT-09 Maturity vs Technology Maturity Model
+  - id: KIT-AGENTIC-VALUE-STREAM-VAS-MA-BT-10
+    condition: VAS-MA-BT-10 Maturity vs Operational Performance
 
-  # Measurement test inventory (per CR-VAS-005 §19 + §20 + §21 + §30 + AC-26).
-  me_positive:
-    - id: KIT-AGENTIC-VALUE-STREAM-VAS-ME-P01
-      condition: VAS-ME-P01 Value Realization Primary Dimension
-    - id: KIT-AGENTIC-VALUE-STREAM-VAS-ME-P02
-      condition: VAS-ME-P02 Counterfactual Comparison Supported
-    - id: KIT-AGENTIC-VALUE-STREAM-VAS-ME-P03
-      condition: VAS-ME-P03 Authority Compliance Rate Tracked
-    - id: KIT-AGENTIC-VALUE-STREAM-VAS-ME-P04
-      condition: VAS-ME-P04 Human Intervention Not Treated As Failure
-    - id: KIT-AGENTIC-VALUE-STREAM-VAS-ME-P05
-      condition: VAS-ME-P05 Decision Quality Separated From Outcome Quality
-    - id: KIT-AGENTIC-VALUE-STREAM-VAS-ME-P06
-      condition: VAS-ME-P06 Measurement Provenance Anchored
-    - id: KIT-AGENTIC-VALUE-STREAM-VAS-ME-P07
-      condition: VAS-ME-P07 Measurement Lifecycle Stage Set
-    - id: KIT-AGENTIC-VALUE-STREAM-VAS-ME-P08
-      condition: VAS-ME-P08 Core Metric Set Recommended
-    - id: KIT-AGENTIC-VALUE-STREAM-VAS-ME-P09
-      condition: VAS-ME-P09 Measurement-to-Semantics Traceability
-    - id: KIT-AGENTIC-VALUE-STREAM-VAS-ME-P10
-      condition: VAS-ME-P10 Human Effort Reallocation Not Workforce Reduction
-  me_negative:
-    - id: KIT-AGENTIC-VALUE-STREAM-VAS-ME-N01
-      condition: VAS-ME-N01 Agent Count Is Not A Value Metric
-    - id: KIT-AGENTIC-VALUE-STREAM-VAS-ME-N02
-      condition: VAS-ME-N02 Autonomy Is Not Performance
-    - id: KIT-AGENTIC-VALUE-STREAM-VAS-ME-N03
-      condition: VAS-ME-N03 Automation Rate Is Not Agenticity
-    - id: KIT-AGENTIC-VALUE-STREAM-VAS-ME-N04
-      condition: VAS-ME-N04 Decision Volume Is Not Effectiveness
-    - id: KIT-AGENTIC-VALUE-STREAM-VAS-ME-N05
-      condition: VAS-ME-N05 Less Intervention Is Not Better AVS
-    - id: KIT-AGENTIC-VALUE-STREAM-VAS-ME-N06
-      condition: VAS-ME-N06 AI Model Quality Is Not Value
-    - id: KIT-AGENTIC-VALUE-STREAM-VAS-ME-N07
-      condition: VAS-ME-N07 Cost Reduction Is Not The Sole Value
-    - id: KIT-AGENTIC-VALUE-STREAM-VAS-ME-N08
-      condition: VAS-ME-N08 Measurement Does Not Define Agenticity
-    - id: KIT-AGENTIC-VALUE-STREAM-VAS-ME-N09
-      condition: VAS-ME-N09 Higher Decision Density Is Not Higher Maturity
-    - id: KIT-AGENTIC-VALUE-STREAM-VAS-ME-N10
-      condition: VAS-ME-N10 Adaptation Is Not Proof Of Agenticity
-  me_boundary:
-    - id: KIT-AGENTIC-VALUE-STREAM-VAS-ME-BT-01
-      condition: VAS-ME-BT-01 Measurement vs Semantic Qualification
-    - id: KIT-AGENTIC-VALUE-STREAM-VAS-ME-BT-02
-      condition: VAS-ME-BT-02 Measurement vs Conformance
-    - id: KIT-AGENTIC-VALUE-STREAM-VAS-ME-BT-03
-      condition: VAS-ME-BT-03 Measurement vs Maturity
-    - id: KIT-AGENTIC-VALUE-STREAM-VAS-ME-BT-04
-      condition: VAS-ME-BT-04 Conditional vs Universal Distinction
-    - id: KIT-AGENTIC-VALUE-STREAM-VAS-ME-BT-05
-      condition: VAS-ME-BT-05 Action Selection Distinct From Action Execution
-    - id: KIT-AGENTIC-VALUE-STREAM-VAS-ME-BT-06
-      condition: VAS-ME-BT-06 Multi-Agent Metrics Optional
-    - id: KIT-AGENTIC-VALUE-STREAM-VAS-ME-BT-07
-      condition: VAS-ME-BT-07 Baseline Required Where Improvement Claimed
-    - id: KIT-AGENTIC-VALUE-STREAM-VAS-ME-BT-08
-      condition: VAS-ME-BT-08 Value Attribution Confidence Represented
-    - id: KIT-AGENTIC-VALUE-STREAM-VAS-ME-BT-09
-      condition: VAS-ME-BT-09 Measurement Quality Represented
-    - id: KIT-AGENTIC-VALUE-STREAM-VAS-ME-BT-10
-      condition: VAS-ME-BT-10 Reference Examples Documented
-
-# Boundary assertions covered (per CR-AVS-001 §22 + CR-VAS-002 §29 + CR-VAS-003 §24 + CR-VAS-004 §34 + CR-VAS-005 §44).
+# Boundary assertions covered (per CR-AVS-001 §22 + CR-VAS-002 §29 + CR-VAS-003 §24 + CR-VAS-004 §34 + CR-VAS-005 §44 + CR-VAS-006 §39 + §40).
 boundary_assertions:
   - per_es_adr_005
   - per_es_adr_031_5_category_taxonomy
@@ -249,6 +312,7 @@ boundary_assertions:
   - per_cr_vas_003_participation_realization
   - per_cr_vas_004_evidence_conformance
   - per_cr_vas_005_measurement_value
+  - per_cr_vas_006_maturity_capability
 
 # Provenance
 provenance:
@@ -261,6 +325,7 @@ provenance:
     - ES-ADR-053
     - ES-ADR-054
     - ES-ADR-055
+    - ES-ADR-056
   implementation:
     - CR-ES-005
     - CR-AVS-001
@@ -268,4 +333,5 @@ provenance:
     - CR-VAS-003
     - CR-VAS-004
     - CR-VAS-005
+    - CR-VAS-006
   date: 2026-10-08

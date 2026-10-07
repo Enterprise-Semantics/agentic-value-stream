@@ -1,0 +1,11 @@
+id: KIT-AGENTIC-VALUE-STREAM-VAS-MA-BT-02
+test_id: VAS-MA-BT-02
+category: maturity_ma-boundary
+subject: Maturity vs Conformance
+description: Maturity SHALL remain independent of conformance (CR-VAS-004). A non-conformant implementation cannot become
+  conformant by achieving a higher maturity score.
+cr: CR-VAS-006 §boundary
+expect: separation.vs_conformance present; AVS-MAT-INV-002 binds (Conformance precedes L3 production maturity).
+asserts:
+- maturity.separation.vs_conformance is defined
+- maturity.invariants.items contains item with id == AVS-MAT-INV-002

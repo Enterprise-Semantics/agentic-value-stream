@@ -1,0 +1,16 @@
+id: KIT-AGENTIC-VALUE-STREAM-VAS-MA-P10
+test_id: VAS-MA-P10
+category: maturity_ma-positive
+subject: Capability Lifecycle + Regression
+description: Capability lifecycle (Discover to Reassess) defined and maturity SHALL support regression (not irreversible progression).
+cr: CR-VAS-006 §boundary
+expect: capability_lifecycle.stages includes discover..reassess; drift.principle declares regression supported.
+asserts:
+- maturity.capability_lifecycle.stages contains discover
+- maturity.capability_lifecycle.stages contains qualify
+- maturity.capability_lifecycle.stages contains conform
+- maturity.capability_lifecycle.stages contains measure
+- maturity.capability_lifecycle.stages contains improve
+- maturity.capability_lifecycle.stages contains scale
+- maturity.capability_lifecycle.stages contains reassess
+- maturity.drift.principle contains regression

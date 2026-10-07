@@ -1,0 +1,10 @@
+id: KIT-AGENTIC-VALUE-STREAM-VAS-MA-BT-01
+test_id: VAS-MA-BT-01
+category: maturity_ma-boundary
+subject: Maturity vs Semantic Qualification
+description: Maturity SHALL NOT redefine semantic qualification (CR-VAS-002).
+cr: CR-VAS-006 §boundary
+expect: separation.vs_qualification present; AVS-MAT-INV-001 binds.
+asserts:
+- maturity.separation.vs_qualification is defined
+- maturity.schema.constraints.maturity_does_not_define_agenticity == true

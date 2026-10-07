@@ -1,0 +1,10 @@
+id: KIT-AGENTIC-VALUE-STREAM-VAS-MA-BT-08
+test_id: VAS-MA-BT-08
+category: maturity_ma-boundary
+subject: Maturity vs Maturity Drift (Regression)
+description: Maturity SHALL support regression (L4 -> L3 is valid); not irreversible progression. CR-VAS-006 §37 + AVS-MAT-INV-009.
+cr: CR-VAS-006 §boundary
+expect: drift.principle declares regression; AVS-MAT-INV-009 present.
+asserts:
+- maturity.drift.principle contains regression
+- maturity.invariants.items contains item with id == AVS-MAT-INV-009

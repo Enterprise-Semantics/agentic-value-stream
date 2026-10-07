@@ -1,0 +1,40 @@
+@startuml maturity-levels
+title AVS Maturity Levels (CR-VAS-006)
+skinparam backgroundColor #FFFFFF
+skinparam roundCorner 10
+skinparam shadowing false
+
+skinparam state {
+  BackgroundColor #F5F8FA
+  BorderColor #2C3E50
+  FontColor #2C3E50
+}
+
+state "L0\nUnaware" as L0
+state "L1\nAware" as L1
+state "L2\nDefined" as L2
+state "L3\nImplemented" as L3
+state "L4\nManaged" as L4
+state "L5\nScaled &\nAdaptive" as L5
+
+L0 -> L1 : recognised
+L1 -> L2 : defined
+L2 -> L3 : implemented
+L3 -> L4 : managed
+L4 -> L5 : scaled
+
+L4 -> L3 : drift / regression
+L3 -> L2 : drift / regression
+L2 -> L1 : drift / regression
+
+note right of L0
+  No deliberate AVS capability.
+  Agentic behavior may exist incidentally.
+end note
+
+note right of L5
+  Enterprise-scale capability.
+  NOT "everything is autonomous".
+end note
+
+@enduml

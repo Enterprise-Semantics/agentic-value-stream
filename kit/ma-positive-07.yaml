@@ -1,0 +1,12 @@
+id: KIT-AGENTIC-VALUE-STREAM-VAS-MA-P07
+test_id: VAS-MA-P07
+category: maturity_ma-positive
+subject: Multidimensional Assessment Profile
+description: Maturity SHALL be reported as a multidimensional profile with per-dimension levels and limiting_dimensions; SHALL
+  NOT be a single arithmetic average.
+cr: CR-VAS-006 §boundary
+expect: multidimensional_assessment rule present; overall_maturity_rule.aggregation == minimum_required_dimension.
+asserts:
+- maturity.multidimensional_assessment.rule is defined
+- maturity.overall_maturity_rule.aggregation == minimum_required_dimension
+- maturity.multidimensional_assessment.example_profile contains limiting_dimensions

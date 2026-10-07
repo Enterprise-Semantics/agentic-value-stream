@@ -1,0 +1,15 @@
+id: KIT-AGENTIC-VALUE-STREAM-VAS-MA-P05
+test_id: VAS-MA-P05
+category: maturity_ma-positive
+subject: L5 Scaled & Adaptive Capability
+description: L5 maturity demonstrated via multiple operational AVS implementations, portfolio governance, reusable patterns,
+  enterprise measurement, demonstrated scaling, and continuous capability evolution.
+cr: CR-VAS-006 §boundary
+expect: L5 gate requires multiple_operational_avs_implementations, portfolio_governance, reusable_capability_patterns, enterprise_measurement,
+  demonstrated_scaling, continuous_capability_evolution.
+asserts:
+- maturity.maturity_levels.items contains item with id == L5
+- maturity.mandatory_gates.L5_gate.requires contains multiple_operational_avs_implementations
+- maturity.mandatory_gates.L5_gate.requires contains portfolio_governance
+- maturity.mandatory_gates.L5_gate.requires contains enterprise_measurement
+- maturity.mandatory_gates.L5_gate.requires contains demonstrated_scaling

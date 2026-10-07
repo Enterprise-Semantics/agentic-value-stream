@@ -1,0 +1,10 @@
+id: KIT-AGENTIC-VALUE-STREAM-VAS-MA-BT-07
+test_id: VAS-MA-BT-07
+category: maturity_ma-boundary
+subject: Human Intervention Is Not A Maturity Defect
+description: 'CR-VAS-006 §22 + AVS-MAT-INV-005: Human intervention is not inherently a maturity defect.'
+cr: CR-VAS-006 §boundary
+expect: schema.constraints.human_intervention_not_negative == true; AVS-MAT-INV-005 present.
+asserts:
+- maturity.schema.constraints.human_intervention_not_negative == true
+- maturity.invariants.items contains item with id == AVS-MAT-INV-005

@@ -1,0 +1,15 @@
+id: KIT-AGENTIC-VALUE-STREAM-VAS-MA-P06
+test_id: VAS-MA-P06
+category: maturity_ma-positive
+subject: Six Capability Dimensions
+description: Maturity assessed across C1 Design & Semantic Modeling, C2 Authority/Governance/Risk, C3 Operational Realization,
+  C4 Value & Performance Management, C5 Learning & Improvement, C6 Portfolio Scaling.
+cr: CR-VAS-006 §boundary
+expect: maturity.capability_dimensions.items includes all six C1..C6 dimensions.
+asserts:
+- maturity.capability_dimensions.items contains item with id == C1
+- maturity.capability_dimensions.items contains item with id == C2
+- maturity.capability_dimensions.items contains item with id == C3
+- maturity.capability_dimensions.items contains item with id == C4
+- maturity.capability_dimensions.items contains item with id == C5
+- maturity.capability_dimensions.items contains item with id == C6

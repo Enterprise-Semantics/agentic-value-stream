@@ -1,0 +1,10 @@
+id: KIT-AGENTIC-VALUE-STREAM-VAS-MA-N05
+test_id: VAS-MA-N05
+category: maturity_ma-negative
+subject: Maturity != Intervention Reduction
+description: Fewer human interventions do NOT automatically mean higher maturity. CR-VAS-006 §21 anti-pattern 5.
+cr: CR-VAS-006 §boundary
+expect: maturity_equals_intervention_reduction listed in anti_patterns with verdict == false.
+asserts:
+- maturity.anti_patterns.items contains item with id == maturity_equals_intervention_reduction
+- maturity.anti_patterns.items[id=maturity_equals_intervention_reduction].rejected_because is defined

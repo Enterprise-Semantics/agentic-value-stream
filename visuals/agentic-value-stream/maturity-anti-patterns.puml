@@ -1,0 +1,33 @@
+@startuml maturity-anti-patterns
+title AVS Maturity Anti-Patterns (CR-VAS-006 §21)
+skinparam backgroundColor #FFFFFF
+skinparam roundCorner 10
+skinparam shadowing false
+
+rectangle "Maturity is NOT..." as Misconceptions {
+}
+
+rectangle "Autonomy" as AP1
+rectangle "AI\nSophistication" as AP2
+rectangle "Agent\nCount" as AP3
+rectangle "Automation\nPercentage" as AP4
+rectangle "Intervention\nReduction" as AP5
+rectangle "Cost\nReduction" as AP6
+rectangle "Production\nDeployment" as AP7
+rectangle "Semantic\nComplexity" as AP8
+
+Misconceptions --> AP1
+Misconceptions --> AP2
+Misconceptions --> AP3
+Misconceptions --> AP4
+Misconceptions --> AP5
+Misconceptions --> AP6
+Misconceptions --> AP7
+Misconceptions --> AP8
+
+note bottom of Misconceptions
+  Maturity is a property of organizational capability,
+  not a single metric. Reject all eight patterns.
+end note
+
+@enduml

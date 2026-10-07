@@ -1,0 +1,15 @@
+id: KIT-AGENTIC-VALUE-STREAM-VAS-MA-P08
+test_id: VAS-MA-P08
+category: maturity_ma-positive
+subject: Machine-Readable Maturity Schema
+description: 'Maturity model SHALL be machine-readable: AVS-MATURITY v1.0 with declared levels, dimensions, assessment method,
+  and constraints.'
+cr: CR-VAS-006 §boundary
+expect: maturity.schema.model.id == AVS-MATURITY; method == gated_multidimensional; maturity_does_not_define_agenticity ==
+  true.
+asserts:
+- maturity.schema.model.id == AVS-MATURITY
+- maturity.schema.assessment.method == gated_multidimensional
+- maturity.schema.constraints.maturity_does_not_define_agenticity == true
+- maturity.schema.constraints.autonomy_not_required == true
+- maturity.schema.constraints.human_intervention_not_negative == true

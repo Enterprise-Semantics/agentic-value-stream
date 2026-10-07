@@ -1,0 +1,30 @@
+@startuml maturity-capability-dimensions
+title AVS Maturity Capability Dimensions (CR-VAS-006)
+skinparam backgroundColor #FFFFFF
+skinparam roundCorner 10
+skinparam shadowing false
+
+rectangle "Maturity Profile\n(per dimension level)" as Profile {
+}
+
+rectangle "C1\nDesign &\nSemantic\nModeling" as C1
+rectangle "C2\nAuthority,\nGovernance\n& Risk" as C2
+rectangle "C3\nOperational\nRealization" as C3
+rectangle "C4\nValue &\nPerformance\nManagement" as C4
+rectangle "C5\nLearning &\nContinuous\nImprovement" as C5
+rectangle "C6\nPortfolio\nScaling &\nEnterprise\nIntegration" as C6
+
+Profile --> C1
+Profile --> C2
+Profile --> C3
+Profile --> C4
+Profile --> C5
+Profile --> C6
+
+note bottom of Profile
+  Aggregation: minimum-required-dimension
+  Method: gated_multidimensional
+  No arithmetic average.
+end note
+
+@enduml

@@ -1,0 +1,10 @@
+id: KIT-AGENTIC-VALUE-STREAM-VAS-MA-BT-04
+test_id: VAS-MA-BT-04
+category: maturity_ma-boundary
+subject: AI Is Not Required For Maturity
+description: 'CR-VAS-006 §6 L0/L1 + AVS-MAT-INV-003: AI adoption is not required for maturity.'
+cr: CR-VAS-006 §boundary
+expect: schema.constraints.ai_not_required == true; AVS-MAT-INV-003 present.
+asserts:
+- maturity.schema.constraints.ai_not_required == true
+- maturity.invariants.items contains item with id == AVS-MAT-INV-003

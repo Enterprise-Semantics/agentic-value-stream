@@ -284,3 +284,76 @@ measurement_alignment:
         Measurement does not redefine semantic conformance.
     - measurement_vs_maturity: |
         Measurement does not introduce maturity levels.
+
+  # CR-VAS-006 maturity alignment block.
+  # Maturity is a CR-VAS-006 framework construct; it does not modify
+  # the WSF. WSF alignment covers the capability-to-kernel map where
+  # an analog exists.
+  cr: CR-VAS-006
+  adr: ES-ADR-056
+  alignment_kind: repository_framework_overlay
+  semantic_alignment:
+    wsf_target: null
+    description: |
+      CR-VAS-006 maturity model is an organizational capability
+      framework. It is repository-specific and does not modify the
+      WSF metamodel.
+  methodological_alignment:
+    wsf_target: null
+    description: |
+      CR-VAS-006 methodology (six-level model, six capability
+      dimensions, gated assessment) is repository-specific; not
+      borrowed from WSF.
+  capability_dimension_alignment:
+    - avs_capability: design_semantics
+      wsf_target: null
+      notes: Repository-specific.
+    - avs_capability: governance_authority_risk
+      wsf_target: null
+      notes: Repository-specific.
+    - avs_capability: operational_realization
+      wsf_target: wsf_value_stream
+      notes: Operational realization aligns with WSF Value Stream
+        realization concepts where present.
+    - avs_capability: value_performance
+      wsf_target: wsf_value_stream
+      notes: Value performance aligns with WSF Value Stream outcome
+        concepts where present.
+    - avs_capability: learning_improvement
+      wsf_target: null
+      notes: Repository-specific.
+    - avs_capability: portfolio_scaling
+      wsf_target: null
+      notes: Repository-specific.
+  maturity_level_alignment:
+    - avs_level: L0
+      wsf_target: null
+      notes: Awareness pre-state; no WSF analog.
+    - avs_level: L1
+      wsf_target: null
+      notes: Conceptual awareness; no WSF analog.
+    - avs_level: L2
+      wsf_target: null
+      notes: Definitions stage; no WSF analog.
+    - avs_level: L3
+      wsf_target: wsf_value_stream
+      notes: Production AVS alignment.
+    - avs_level: L4
+      wsf_target: null
+      notes: Managed capability; repository-specific.
+    - avs_level: L5
+      wsf_target: null
+      notes: Scaled and adaptive; repository-specific.
+  separation_principles:
+    - maturity_vs_qualification: |
+        Maturity does not redefine semantic qualification.
+    - maturity_vs_conformance: |
+        Maturity does not redefine conformance (a non-conformant
+        implementation cannot become conformant by achieving a
+        higher maturity score).
+    - maturity_vs_measurement: |
+        Maturity is not a measurement score. It is a
+        multidimensional organizational capability assessment.
+    - maturity_vs_technology_progression: |
+        AVS maturity is not Rules -> ML -> GenAI -> Agents ->
+        Multi-Agent -> Autonomous AI.

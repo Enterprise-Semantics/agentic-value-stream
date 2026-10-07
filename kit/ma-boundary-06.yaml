@@ -1,0 +1,10 @@
+id: KIT-AGENTIC-VALUE-STREAM-VAS-MA-BT-06
+test_id: VAS-MA-BT-06
+category: maturity_ma-boundary
+subject: Automation Is Not Required For Maturity
+description: 'CR-VAS-006 §6 L0: An organization at L0 may still operate something semantically an AVS.'
+cr: CR-VAS-006 §boundary
+expect: schema.constraints.automation_not_required == true.
+asserts:
+- maturity.schema.constraints.automation_not_required == true
+- maturity.maturity_levels.items contains item with id == L0

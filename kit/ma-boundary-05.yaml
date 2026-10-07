@@ -1,0 +1,10 @@
+id: KIT-AGENTIC-VALUE-STREAM-VAS-MA-BT-05
+test_id: VAS-MA-BT-05
+category: maturity_ma-boundary
+subject: Autonomy Is Not Required For Maturity
+description: 'CR-VAS-006 §3.3 + AVS-MAT-INV-004: Higher autonomy is not inherently more mature.'
+cr: CR-VAS-006 §boundary
+expect: schema.constraints.autonomy_not_required == true; AVS-MAT-INV-004 present.
+asserts:
+- maturity.schema.constraints.autonomy_not_required == true
+- maturity.invariants.items contains item with id == AVS-MAT-INV-004

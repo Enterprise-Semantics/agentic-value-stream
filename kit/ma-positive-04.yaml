@@ -1,0 +1,15 @@
+id: KIT-AGENTIC-VALUE-STREAM-VAS-MA-P04
+test_id: VAS-MA-P04
+category: maturity_ma-positive
+subject: L4 Managed Capability
+description: L4 maturity demonstrated via repeatable performance management, baseline comparison, value measurement, risk
+  monitoring, conformance drift management, and systematic improvement.
+cr: CR-VAS-006 §boundary
+expect: L4 gate requires repeatable_performance_management, baseline_comparison, value_measurement, risk_monitoring, conformance_drift_management,
+  systematic_improvement.
+asserts:
+- maturity.maturity_levels.items contains item with id == L4
+- maturity.mandatory_gates.L4_gate.requires contains repeatable_performance_management
+- maturity.mandatory_gates.L4_gate.requires contains baseline_comparison
+- maturity.mandatory_gates.L4_gate.requires contains risk_monitoring
+- maturity.mandatory_gates.L4_gate.requires contains conformance_drift_management

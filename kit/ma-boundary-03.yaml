@@ -1,0 +1,10 @@
+id: KIT-AGENTIC-VALUE-STREAM-VAS-MA-BT-03
+test_id: VAS-MA-BT-03
+category: maturity_ma-boundary
+subject: Maturity vs Measurement
+description: Maturity SHALL NOT be a measurement score. CR-VAS-005 separation.
+cr: CR-VAS-006 §boundary
+expect: separation.vs_measurement present; one_directional_dependency explicit.
+asserts:
+- maturity.separation.vs_measurement is defined
+- maturity.separation.one_directional_dependency is defined

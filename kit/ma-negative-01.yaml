@@ -1,0 +1,10 @@
+id: KIT-AGENTIC-VALUE-STREAM-VAS-MA-N01
+test_id: VAS-MA-N01
+category: maturity_ma-negative
+subject: Maturity != Autonomy
+description: Higher autonomy does NOT mean higher maturity. CR-VAS-006 §21 anti-pattern 1.
+cr: CR-VAS-006 §boundary
+expect: maturity_equals_autonomy listed in anti_patterns with verdict == false.
+asserts:
+- maturity.anti_patterns.items contains item with id == maturity_equals_autonomy
+- maturity.anti_patterns.items[id=maturity_equals_autonomy].rejected_because is defined

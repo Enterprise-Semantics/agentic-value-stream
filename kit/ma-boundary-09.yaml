@@ -1,0 +1,13 @@
+id: KIT-AGENTIC-VALUE-STREAM-VAS-MA-BT-09
+test_id: VAS-MA-BT-09
+category: maturity_ma-boundary
+subject: Maturity vs Technology Maturity Model
+description: 'CR-VAS-006 §3.2: AVS maturity is NOT Rules -> ML -> GenAI -> Agents -> Multi-Agent -> Autonomous AI. Technology
+  progression SHALL NOT define agentic maturity.'
+cr: CR-VAS-006 §boundary
+expect: architecture separation between technology progression and maturity; capability_dimensions cover C2 governance + C4
+  value + C5 improvement (not just C1 design/technology).
+asserts:
+- maturity.capability_dimensions.items contains item with id == C2
+- maturity.capability_dimensions.items contains item with id == C4
+- maturity.capability_dimensions.items contains item with id == C5

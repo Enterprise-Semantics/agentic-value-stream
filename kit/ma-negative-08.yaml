@@ -1,0 +1,11 @@
+id: KIT-AGENTIC-VALUE-STREAM-VAS-MA-N08
+test_id: VAS-MA-N08
+category: maturity_ma-negative
+subject: Maturity != Semantic Complexity
+description: More relationships, agents, policies or semantic constructs do NOT imply greater maturity. CR-VAS-006 §21 anti-pattern
+  8.
+cr: CR-VAS-006 §boundary
+expect: maturity_equals_semantic_complexity listed in anti_patterns with verdict == false.
+asserts:
+- maturity.anti_patterns.items contains item with id == maturity_equals_semantic_complexity
+- maturity.anti_patterns.items[id=maturity_equals_semantic_complexity].rejected_because is defined

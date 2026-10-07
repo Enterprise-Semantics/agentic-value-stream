@@ -1,0 +1,11 @@
+id: KIT-AGENTIC-VALUE-STREAM-VAS-MA-N07
+test_id: VAS-MA-N07
+category: maturity_ma-negative
+subject: Maturity != Production Deployment
+description: A production deployment does NOT automatically constitute mature AVS capability. CR-VAS-006 §21 anti-pattern
+  7.
+cr: CR-VAS-006 §boundary
+expect: maturity_equals_production_deployment listed in anti_patterns with verdict == false.
+asserts:
+- maturity.anti_patterns.items contains item with id == maturity_equals_production_deployment
+- maturity.anti_patterns.items[id=maturity_equals_production_deployment].rejected_because is defined

@@ -1,0 +1,12 @@
+id: KIT-AGENTIC-VALUE-STREAM-VAS-MA-N10
+test_id: VAS-MA-N10
+category: maturity_ma-negative
+subject: Overall Maturity Shall Not Conceal Mandatory Capability Deficiencies
+description: An arithmetic average that produces a higher overall level SHALL NOT mask fundamental weakness elsewhere. CR-VAS-006
+  §17 + AVS-MAT-INV-010.
+cr: CR-VAS-006 §boundary
+expect: overall_maturity_rule.aggregation == minimum_required_dimension; invariant AVS-MAT-INV-010 present.
+asserts:
+- maturity.overall_maturity_rule.aggregation == minimum_required_dimension
+- maturity.invariants.items contains item with id == AVS-MAT-INV-010
+- maturity.invariants.items[id=AVS-MAT-INV-010].statement contains conceal

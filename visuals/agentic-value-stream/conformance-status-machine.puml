@@ -1,0 +1,62 @@
+@startuml agentic-value-stream-conformance-status-machine
+' Per CR-VAS-004 §13 (Conformance Status) + §30 (Decision Rules).
+' Cardinal author rule: Emmanuel A. Otchere <emmanuel@otchere.com>
+' Last revised: 2026-10-08.
+
+title Agentic Value Stream ; Conformance Status Machine
+
+skinparam backgroundColor #FFFFFF
+skinparam defaultFontName "Helvetica"
+skinparam defaultFontSize 11
+skinparam shadowing false
+
+state "Claimed" as CL
+state "Under Review" as UR
+state "Conditionally Conformant" as CC
+state "Conformant" as CF
+state "Non-Conformant" as NC
+state "Expired" as EX
+
+[*] -> CL : Instance Owner submits claim
+
+CL -> UR : Semantic Validator begins assessment
+UR -> CF : all mandatory AVS conditions PASS, materiality PASS, no exclusion
+UR -> CC : mandatory evidence incomplete but no failure
+UR -> NC : any mandatory condition fails OR exclusion triggered
+UR -> NC : triggered exclusion overrides superficial positive evidence
+
+CC -> CF : remaining evidence supplied and validated
+CC -> NC : remaining gaps become failures
+CC -> UR : re-validation requested
+
+CF -> EX : evidence superseded by drift trigger
+CF -> UR : re-validation requested
+CF -> NC : drift detected, mandatory condition fails
+CF -> NC : triggered exclusion
+
+EX -> UR : re-submission begins re-validation
+
+NC -> UR : re-submission begins re-validation
+
+UR -> [*] : cancelled
+
+note right of CF
+  Conformant is a SEMANTIC state.
+  It is independent of maturity
+  (per CR-VAS-004 §14).
+
+  A poorly performing AVS can
+  remain semantically conformant.
+end note
+
+note right of NC
+  Non-Conformant is determined
+  by qualification evidence,
+  not by telemetry volume or
+  performance metrics.
+
+  Telemetry is evidence, not
+  semantics (per CR-VAS-004 §32).
+end note
+
+@enduml

@@ -1,0 +1,54 @@
+@startuml agentic-value-stream-evidence-lifecycle
+' Per CR-VAS-004 §24 (Evidence Lifecycle).
+' Cardinal author rule: Emmanuel A. Otchere <emmanuel@otchere.com>
+' Last revised: 2026-10-08.
+
+title Agentic Value Stream ; Evidence Lifecycle
+
+skinparam backgroundColor #FFFFFF
+skinparam defaultFontName "Helvetica"
+skinparam defaultFontSize 11
+skinparam shadowing false
+
+state "Created" as CR
+state "Submitted" as SB
+state "Validated" as VL
+state "Accepted" as AC
+state "Monitored" as MN
+state "Revalidated" as RV
+state "Expired / Superseded" as EX
+
+[*] -> CR
+CR -> SB : evidence supplied by Instance Owner
+SB -> VL : Semantic Validator assesses
+VL -> AC : evidence accepted
+AC -> MN : continuous monitoring
+MN -> RV : scheduled revalidation
+MN -> VL : drift detected
+RV -> VL : new evidence received
+VL -> AC : re-acceptance
+VL -> EX : evidence invalidated
+AC -> EX : superseded by new evidence
+EX -> [*]
+
+note right of MN
+  Drift triggers per CR-VAS-004 §25:
+  - authority_changed
+  - agent_behavior_changed
+  - workflow_changed
+  - value_stream_changed
+  - agentic_participation_removed
+  - action_space_changed
+  - policy_changed
+  - human_escalation_removed
+  - materiality_changed
+end note
+
+note right of EX
+  When evidence expires or is
+  superseded, the conformance
+  status transitions to Expired.
+  Re-validation begins at Submitted.
+end note
+
+@enduml

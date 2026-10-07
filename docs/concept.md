@@ -403,3 +403,115 @@ represented. The boundary tests distinguish Agentic
 Participation from adjacent concepts (automation, AI,
 workflow, autonomy, deterministic behavior, human
 discretion, hybrid, multi-agent, non-AI).
+
+
+## Evidence and Conformance (CR-VAS-004)
+
+Per CR-VAS-004 (Evidence, Conformance & Qualification Validation
+Model, 2026-10-08), the Agentic Value Stream repository establishes
+the evidence layer that connects qualification (CR-VAS-002) and
+participation (CR-VAS-003) to a machine-testable conformance
+decision.
+
+### Three levels of evidence
+
+- Structural evidence. The required semantic relationships exist.
+- Behavioural evidence. The represented participation actually
+  behaves according to the semantics.
+- Outcome evidence. The agentic participation materially contributes
+  to Value Stream realisation.
+
+### Claim != Evidence != Validation
+
+An AVS instance SHALL NOT be considered semantically conformant
+solely because it is named "agentic", contains an Agent, uses AI,
+uses an LLM, is autonomous, uses orchestration, adapts, or
+performs automated actions. The validation chain is:
+
+```
+Claim -> Evidence -> Validation -> Qualification Decision -> Conformance Status
+```
+
+### Conformance status vocabulary
+
+- Claimed. The owner asserts that the instance is an AVS.
+- Under Review. Evidence is being assessed.
+- Conditionally Conformant. Most conditions are satisfied but
+  defined exceptions or evidence gaps remain.
+- Conformant. All mandatory semantic requirements are satisfied.
+- Non-Conformant. One or more mandatory requirements fail.
+- Expired. Previously conformant evidence is no longer current or
+  valid.
+
+### Conformance vs Maturity
+
+Conformance != Maturity. An organisation can have a highly mature
+implementation that is not semantically Agentic, or a semantically
+conformant AVS that is operationally immature. Maturity is
+addressed in CR-VAS-006.
+
+### Validation chain
+
+```
+Machine validation + Evidence inspection + Semantic review
+```
+
+Automated validation SHALL NOT be the sole mechanism for semantic
+qualification. Certain questions (whether authority is genuinely
+delegated, whether action alternatives are meaningful, whether
+participation is material, whether the claimed outcome is
+genuinely a Value Stream outcome) require semantic judgement.
+
+### Conformance kit expansion
+
+The conformance kit now contains 61 tests:
+
+- 5 positive (AVS-VAL-01..07 required-value coverage, CR-VAS-002).
+- 5 negative (AVS-EXC-01..07 exclusion coverage, CR-VAS-002).
+- 5 edge case (AVS-EDGE-01..05 compositional arrangements,
+  CR-VAS-002).
+- 8 structural (VAS-ST-01..08 participation structure,
+  CR-VAS-003).
+- 10 boundary (VAS-BT-01..10 participation boundary distinction,
+  CR-VAS-003).
+- 8 conformance positive (VAS-CF-P01..P08, CR-VAS-004).
+- 10 conformance negative (VAS-CF-N01..N10, CR-VAS-004).
+- 10 conformance boundary (VAS-CF-BT-01..10, CR-VAS-004).
+
+The conformance positive tests (CF-P) establish scenarios where a
+candidate SHOULD be conformant (delegated outcome, contextual
+selection, bounded authority, material progression, human-agent
+hybrid, non-AI agentic, localised agenticity, multi-agent
+coordination). The conformance negative tests (CF-N) establish
+scenarios where a candidate SHOULD be non-conformant (AI only,
+agent label only, workflow only, recommendation only, fixed
+automation, autonomous system without materiality, human routine
+execution, missing authority, missing selection, non-material
+agentic behavior). The conformance boundary tests (CF-BT) cover
+the boundary matrix per CR-VAS-004 §21.
+
+### Evidence freshness and drift
+
+Conformance claims are time-bound. The repository supports
+detection of conformance drift when authority, agent behavior,
+workflow, Value Stream, agentic participation, action space,
+policy, human escalation, or materiality changes. A previously
+conformant instance MAY become non-conformant when its semantic
+structure changes. This is different from maturity deterioration.
+
+### Documentation set
+
+Five new documentation files accompany this layer:
+
+- `docs/evidence.md`. Evidence model, three levels, qualification
+  evidence chain, sufficiency vocabulary, mandatory vs supporting
+  evidence, provenance, confidence.
+- `docs/qualification.md`. Qualification decision model, decision
+  rules, materiality evidence, counterfactual validation.
+- `docs/validation.md`. Validation chain (machine + evidence +
+  review), roles, evidence lifecycle, freshness, conformance
+  result template.
+- `docs/boundary-testing.md`. Boundary test matrix per CR-VAS-004
+  §21 and reconciliation with the CR-VAS-003 boundary tests.
+- `docs/conformance-drift.md`. Drift triggers, drift vs maturity,
+  drift handling, drift evidence.

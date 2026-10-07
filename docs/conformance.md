@@ -1,17 +1,18 @@
 # Conformance ; Agentic Value Stream
 
 > CI-generated per ES-ADR-030 + ES-CR-030 + CR-AVS-001 + CR-VAS-002
-> + CR-VAS-003.
+> + CR-VAS-003 + CR-VAS-004.
 > Do not hand-edit.
 
 - Concept: `ES:CONCEPT:agentic-value-stream`
 - Base concept: ES:CONCEPT:value-stream
 - Lifecycle status: candidate (semantic qualification Wave 2 lands
   CR-VAS-002 acceptance; participation Wave 3 lands CR-VAS-003
-  acceptance; promotion to Established reserved for the
-  acceptance reviews per ES-ADR-052 + ES-ADR-053)
+  acceptance; evidence Wave 4 lands CR-VAS-004 acceptance; promotion
+  to Established reserved for the acceptance reviews per ES-ADR-052
+  + ES-ADR-053 + ES-ADR-054)
 - Conformance status: semantically_conformant
-- Version: 1.1.0
+- Version: 1.2.0
 - Concept repository: Enterprise-Semantics/agentic-value-stream
 - Test path: kit/
 - Test source branch: main
@@ -24,8 +25,11 @@
 - Edge Case: 5
 - Structural: 8
 - Boundary: 10
+- Conformance Positive: 8
+- Conformance Negative: 10
+- Conformance Boundary: 10
 - Integrity: 0
-- Total: 33
+- Total: 61
 
 ## Test inventory by semantic role
 
@@ -77,15 +81,53 @@
 - KIT-AGENTIC-VALUE-STREAM-VAS-BT-09 ; VAS-BT-09 Multi-agent coordination
 - KIT-AGENTIC-VALUE-STREAM-VAS-BT-10 ; VAS-BT-10 Agentic participation without AI
 
+### Conformance positive (VAS-CF-P01..P08 per CR-VAS-004 §19)
+
+- KIT-AGENTIC-VALUE-STREAM-VAS-CF-P01 ; VAS-CF-P01 Delegated Outcome
+- KIT-AGENTIC-VALUE-STREAM-VAS-CF-P02 ; VAS-CF-P02 Contextual Selection
+- KIT-AGENTIC-VALUE-STREAM-VAS-CF-P03 ; VAS-CF-P03 Bounded Authority
+- KIT-AGENTIC-VALUE-STREAM-VAS-CF-P04 ; VAS-CF-P04 Material Progression
+- KIT-AGENTIC-VALUE-STREAM-VAS-CF-P05 ; VAS-CF-P05 Human-Agent Hybrid
+- KIT-AGENTIC-VALUE-STREAM-VAS-CF-P06 ; VAS-CF-P06 Non-AI Agentic
+- KIT-AGENTIC-VALUE-STREAM-VAS-CF-P07 ; VAS-CF-P07 Localised Agenticity
+- KIT-AGENTIC-VALUE-STREAM-VAS-CF-P08 ; VAS-CF-P08 Multi-Agent Coordination
+
+### Conformance negative (VAS-CF-N01..N10 per CR-VAS-004 §20)
+
+- KIT-AGENTIC-VALUE-STREAM-VAS-CF-N01 ; VAS-CF-N01 AI Only
+- KIT-AGENTIC-VALUE-STREAM-VAS-CF-N02 ; VAS-CF-N02 Agent Label Only
+- KIT-AGENTIC-VALUE-STREAM-VAS-CF-N03 ; VAS-CF-N03 Workflow Only
+- KIT-AGENTIC-VALUE-STREAM-VAS-CF-N04 ; VAS-CF-N04 Recommendation Only
+- KIT-AGENTIC-VALUE-STREAM-VAS-CF-N05 ; VAS-CF-N05 Fixed Automation
+- KIT-AGENTIC-VALUE-STREAM-VAS-CF-N06 ; VAS-CF-N06 Autonomous System Without Value Materiality
+- KIT-AGENTIC-VALUE-STREAM-VAS-CF-N07 ; VAS-CF-N07 Human Routine Execution
+- KIT-AGENTIC-VALUE-STREAM-VAS-CF-N08 ; VAS-CF-N08 Missing Authority
+- KIT-AGENTIC-VALUE-STREAM-VAS-CF-N09 ; VAS-CF-N09 Missing Selection
+- KIT-AGENTIC-VALUE-STREAM-VAS-CF-N10 ; VAS-CF-N10 Non-Material Agentic Behavior
+
+### Conformance boundary (VAS-CF-BT-01..BT-10 per CR-VAS-004 §21)
+
+- KIT-AGENTIC-VALUE-STREAM-VAS-CF-BT-01 ; VAS-CF-BT-01 LLM Response Without Authority
+- KIT-AGENTIC-VALUE-STREAM-VAS-CF-BT-02 ; VAS-CF-BT-02 AI Recommendation Without Selection
+- KIT-AGENTIC-VALUE-STREAM-VAS-CF-BT-03 ; VAS-CF-BT-03 Agent Within Policy Material
+- KIT-AGENTIC-VALUE-STREAM-VAS-CF-BT-04 ; VAS-CF-BT-04 RPA Fixed Workflow
+- KIT-AGENTIC-VALUE-STREAM-VAS-CF-BT-05 ; VAS-CF-BT-05 Autonomous Vehicle Transport
+- KIT-AGENTIC-VALUE-STREAM-VAS-CF-BT-06 ; VAS-CF-BT-06 Human Exceptional Resolution
+- KIT-AGENTIC-VALUE-STREAM-VAS-CF-BT-07 ; VAS-CF-BT-07 Agent Fixed-Rule Routing
+- KIT-AGENTIC-VALUE-STREAM-VAS-CF-BT-08 ; VAS-CF-BT-08 Agent Customer Remediation
+- KIT-AGENTIC-VALUE-STREAM-VAS-CF-BT-09 ; VAS-CF-BT-09 Multi-Agent Negotiation
+- KIT-AGENTIC-VALUE-STREAM-VAS-CF-BT-10 ; VAS-CF-BT-10 AI Demand Forecast
+
 ## Boundary Assertions Covered
 
 - per_es_adr_005
 - per_es_adr_031_5_category_taxonomy
 - per_cr_vas_002_qualification
 - per_cr_vas_003_participation_realization
+- per_cr_vas_004_evidence_conformance
 
 ## Provenance
 
-- decision: ES-ADR-005, ES-ADR-031, ES-ADR-049, ES-ADR-051, ES-ADR-052, ES-ADR-053
-- implementation: CR-ES-005, CR-AVS-001, CR-VAS-002, CR-VAS-003
+- decision: ES-ADR-005, ES-ADR-031, ES-ADR-049, ES-ADR-051, ES-ADR-052, ES-ADR-053, ES-ADR-054
+- implementation: CR-ES-005, CR-AVS-001, CR-VAS-002, CR-VAS-003, CR-VAS-004
 - date: 2026-10-08

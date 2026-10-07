@@ -22,6 +22,31 @@
 #       Stream realization, and
 #   (7) the architectural invariants.
 #
+# Per CR-VAS-004 (Evidence, Conformance & Qualification Validation Model,
+# 2026-10-08): Adds the `evidence_conformance:` block formalising:
+#   (1) three evidence levels (structural, behavioral, outcome),
+#   (2) the qualification evidence chain,
+#   (3) evidence sufficiency vocabulary,
+#   (4) mandatory vs supporting evidence distinction,
+#   (5) evidence provenance template,
+#   (6) the qualification decision model,
+#   (7) the conformance status vocabulary,
+#   (8) semantic conformance vs maturity separation,
+#   (9) the qualification evidence record template,
+#   (10) materiality evidence + counterfactual validation,
+#   (11) the behavioral test model,
+#   (12) 8 positive + 10 negative + 10 boundary conformance tests,
+#   (13) validation roles (separated from semantics),
+#   (14) the evidence lifecycle,
+#   (15) conformance drift detection,
+#   (16) evidence freshness,
+#   (17) conformance levels,
+#   (18) the conformance kit architecture,
+#   (19) the conformance result template,
+#   (20) qualification decision rules,
+#   (21) telemetry vs evidence separation, and
+#   (22) conformance vs governance separation.
+#
 # Per CR-VAS-003 (Agentic Participation & Value Stream Realization Model,
 # 2026-10-08): Adds the `participation:` block formalising:
 #   (1) Agentic Participation as a subordinate relationship to Value Stream,
@@ -54,7 +79,7 @@
 #
 # Cardinal author rule: Emmanuel A. Otchere <emmanuel@otchere.com>
 # Authored by: Emmanuel A. Otchere (cardinal author rule, 2026-09-23)
-# Last revised: 2026-10-08 (CR-VAS-003 participation block landed)
+# Last revised: 2026-10-08 (CR-VAS-004 evidence_conformance block landed)
 
 id: ES:CONCEPT:agentic-value-stream
 canonical_name: Agentic Value Stream
@@ -70,7 +95,7 @@ definition: |
 # Lifecycle state (independent of conformance state per CR-AVS-001 §14).
 lifecycle:
   status: candidate
-  version: 1.1.0
+  version: 1.2.0
   date: 2026-10-08
   promotion_history:
     - version: 0.4.0
@@ -81,6 +106,10 @@ lifecycle:
       date: 2026-09-30
       status: candidate
       note: Reconciliation per CR-AVS-001. Lifecycle + conformance state aligned.
+    - version: 1.2.0
+      date: 2026-10-08
+      status: candidate
+      note: "Evidence, Conformance & Qualification Validation Model per CR-VAS-004. Introduces the evidence_conformance block: 3 evidence levels (structural, behavioral, outcome), qualification evidence chain, evidence sufficiency vocabulary (sufficient/partial/insufficient/contradictory/unverifiable), mandatory vs supporting evidence, evidence provenance template, qualification decision model, conformance status vocabulary (claimed/under_review/conditionally_conformant/conformant/non_conformant/expired), semantic conformance vs maturity separation, qualification evidence record template, materiality evidence + counterfactual validation, behavioral test model, 8 positive + 10 negative + 10 boundary conformance tests, validation roles, evidence lifecycle, conformance drift detection, evidence freshness, conformance levels, conformance kit architecture, conformance result template, qualification decision rules, telemetry vs evidence separation, conformance vs governance separation. Promotion to Established reserved for CR-VAS-004 acceptance review (governance frame ES-ADR-054)."
     - version: 1.1.0
       date: 2026-10-08
       status: candidate
@@ -100,7 +129,10 @@ conformance:
     edge_case: 5
     structural: 8
     boundary: 10
-    total: 33
+    cf_positive: 8
+    cf_negative: 10
+    cf_boundary: 10
+    total: 61
 
 # Concept repository reference (renamed per ES-ADR-051).
 concept_repo: Enterprise-Semantics/agentic-value-stream
@@ -895,3 +927,576 @@ participation:
     reconciliation: CR-AVS-001
     qualification: CR-VAS-002
     participation_realization: CR-VAS-003
+
+
+# === Evidence, Conformance & Qualification Validation Model (CR-VAS-004) ===
+
+evidence_conformance:
+  # Specialises the qualification + participation blocks established by
+  # CR-VAS-002 + CR-VAS-003. CR-VAS-004 introduces the evidence model
+  # that connects claim to evidence to validation to qualification
+  # decision to conformance status.
+  specializes: ES:CONCEPT:agentic-value-stream
+
+  # CR-VAS-004 §3 - Normative Principle (Claim != Evidence != Validation).
+  principle: |
+    An AVS instance SHALL NOT be considered semantically conformant
+    solely because it is named "agentic", contains an Agent, uses AI,
+    uses an LLM, is autonomous, uses orchestration, adapts, or
+    performs automated actions. The validation chain is:
+
+    Claim -> Evidence -> Validation -> Qualification Decision -> Conformance Status.
+
+  # CR-VAS-004 §4 - Three Levels of Evidence.
+  evidence_levels:
+    - id: AVS-EVL-01
+      level: structural
+      label: Structural Evidence
+      definition: |
+        Evidence that the required semantic relationships exist
+        (Value Stream, Agentic Participation, Intent, Authority,
+        Context, Action selection, Outcome contribution).
+      question_answered: Is the required semantic structure represented?
+    - id: AVS-EVL-02
+      level: behavioral
+      label: Behavioral Evidence
+      definition: |
+        Evidence that the represented participation actually behaves
+        according to the semantics (interprets context, alternatives
+        exist, selects among alternatives, authority boundaries
+        enforced, escalation occurs, progression changes).
+      question_answered: Does the realisation actually behave agentically?
+    - id: AVS-EVL-03
+      level: outcome
+      label: Outcome Evidence
+      definition: |
+        Evidence that agentic participation materially contributes
+        to Value Stream realisation (altered progression, consequential
+        decision, materially different action, improved/changed value
+        realisation, successful resolution of contextual variation).
+      question_answered: Does the agentic behavior materially matter to the Value Stream?
+
+  # CR-VAS-004 §5 - Qualification Evidence Chain (mandatory sequence).
+  evidence_chain:
+    - step: 1
+      element: Value Stream
+    - step: 2
+      element: Agentic Participation
+    - step: 3
+      element: Entrusted Intent
+    - step: 4
+      element: Bounded Authority
+    - step: 5
+      element: Contextual Interpretation
+    - step: 6
+      element: Permissible Alternatives
+    - step: 7
+      element: Action / Progression Selection
+    - step: 8
+      element: Material Value Contribution
+  principle_chain: |
+    A missing mandatory link SHALL prevent full semantic qualification.
+
+  # CR-VAS-004 §6 - Evidence Requirements by Qualification Condition.
+  evidence_requirements:
+    value_stream_foundation:
+      minimum: Canonical Value Stream reference
+    material_agentic_participation:
+      minimum: Explicit participation point and materiality rationale
+    delegated_intent:
+      minimum: Declared objective / outcome
+    bounded_authority:
+      minimum: Authority boundary and constraints
+    contextual_interpretation:
+      minimum: Context inputs / signals
+    permissible_action_selection:
+      minimum: Two or more valid alternatives or progression paths
+    value_realization_effect:
+      minimum: Observable material contribution
+
+  # CR-VAS-004 §7 - Evidence Sufficiency vocabulary.
+  evidence_status:
+    - id: sufficient
+      label: Sufficient
+      definition: Evidence supports the relevant qualification condition.
+    - id: partial
+      label: Partial
+      definition: Some evidence exists but does not fully establish the condition.
+    - id: insufficient
+      label: Insufficient
+      definition: The condition is asserted but not demonstrated.
+    - id: contradictory
+      label: Contradictory
+      definition: Available evidence conflicts with the qualification claim.
+    - id: unverifiable
+      label: Unverifiable
+      definition: Evidence is referenced but cannot be independently inspected or validated.
+
+  # CR-VAS-004 §8 - Mandatory vs Supporting Evidence.
+  mandatory_evidence:
+    - value_stream_identity
+    - agentic_participation
+    - intent
+    - authority
+    - context
+    - alternative_selection
+    - material_value_contribution
+  supporting_evidence:
+    - ai_model_information
+    - agent_architecture
+    - automation_architecture
+    - autonomy_level
+    - performance_metrics
+    - intervention_statistics
+    - implementation_technology
+    - training_data
+    - model_evaluation
+  principle_supporting: |
+    Supporting evidence is useful but NOT mandatory. This prevents
+    implementation details from replacing semantic evidence.
+
+  # CR-VAS-004 §9 - Evidence Independence (no circular evidence).
+  evidence_independence:
+    principle: |
+      The same evidence SHALL NOT automatically satisfy multiple
+      independent semantic conditions. The validation framework SHALL
+      avoid circular evidence.
+    example: |
+      "The agent has access to customer data" may support contextual
+      access but does NOT establish delegated intent, authority,
+      action selection, or outcome contribution.
+
+  # CR-VAS-004 §10 - Evidence Provenance (machine-readable).
+  evidence_provenance_template:
+    id:
+    type:
+    description:
+    source:
+    source_type:
+      allowed:
+        - design_document
+        - architecture_model
+        - policy
+        - configuration
+        - execution_trace
+        - decision_log
+        - audit_record
+        - test_result
+        - simulation
+        - human_review
+        - system_observation
+        - measurement
+    observed_at:
+    provided_by:
+    validated_by:
+    validation_method:
+    confidence:
+      allowed: [high, medium, low, unknown]
+
+  # CR-VAS-004 §11 - Evidence Confidence (cannot override missing mandatory).
+  evidence_confidence:
+    levels: [high, medium, low, unknown]
+    principle: |
+      Confidence SHALL NOT override a missing mandatory semantic
+      condition. High-confidence evidence of AI usage cannot
+      compensate for absent evidence of delegated intent or bounded
+      authority.
+
+  # CR-VAS-004 §12 - Qualification Decision Model.
+  qualification_decision_model:
+    steps:
+      - question: Value Stream?
+        outcome: must be YES
+      - question: Agentic Participation?
+        outcome: must be YES
+      - question: Intent + Authority + Context + Selection?
+        outcome: must be YES
+      - question: Material Value Contribution?
+        outcome: must be YES
+      - result: AVS QUALIFIED
+    principle: |
+      Any mandatory condition failing SHALL prevent a qualified status.
+
+  # CR-VAS-004 §13 - Conformance Status vocabulary.
+  conformance_status:
+    - id: claimed
+      label: Claimed
+      definition: The owner asserts that the instance is an AVS.
+    - id: under_review
+      label: Under Review
+      definition: Evidence is being assessed.
+    - id: conditionally_conformant
+      label: Conditionally Conformant
+      definition: Most conditions are satisfied but defined exceptions or evidence gaps remain.
+    - id: conformant
+      label: Conformant
+      definition: All mandatory semantic requirements are satisfied.
+    - id: non_conformant
+      label: Non-Conformant
+      definition: One or more mandatory requirements fail.
+    - id: expired
+      label: Expired
+      definition: Previously conformant evidence is no longer current or valid.
+
+  # CR-VAS-004 §14 - Semantic Conformance vs Maturity (prohibition).
+  conformance_vs_maturity:
+    rule: |
+      Conformance != Maturity. An organisation can have a highly
+      mature implementation that is not semantically Agentic, or a
+      semantically conformant AVS that is operationally immature.
+    chain:
+      - Semantic Qualification
+      - Conformance
+      - Operational Capability
+      - Maturity
+    principle: |
+      Maturity SHALL be addressed in a subsequent CR
+      (CR-VAS-006), NOT here.
+
+  # CR-VAS-004 §15 - Qualification Evidence Record (machine-readable).
+  qualification_evidence_record_template:
+    qualification:
+      status: conformant
+      value_stream:
+        id:
+        reference:
+      agentic_participation:
+        id:
+        scope:
+        location:
+      evidence:
+        value_stream_semantics:
+          status: sufficient
+          references: []
+        delegated_intent:
+          status: sufficient
+          references: []
+        bounded_authority:
+          status: sufficient
+          references: []
+        contextual_interpretation:
+          status: sufficient
+          references: []
+        permissible_action_selection:
+          status: sufficient
+          references: []
+        value_realization_effect:
+          status: sufficient
+          references: []
+      validation:
+        method:
+        validator:
+        validated_at:
+    note: |
+      This is illustrative. The exact schema is reconciled with the
+      repository's existing schema conventions.
+
+  # CR-VAS-004 §16 - Materiality Evidence (counterfactual rationale).
+  materiality_evidence:
+    question: |
+      If the agentic participation were removed and replaced by a
+      non-agentic realisation, would the Value Stream's progression,
+      consequential decisions, or realisation of stakeholder value
+      materially change?
+    structure:
+      materiality:
+        test:
+        result: true
+        rationale:
+        evidence:
+    principle: |
+      A simple assertion of true without rationale SHALL be insufficient.
+
+  # CR-VAS-004 §17 - Counterfactual Validation (baseline vs candidate).
+  counterfactual_validation:
+    principle: |
+      Materiality SHOULD preferably be tested through a counterfactual.
+    baseline: Actual agentic realisation.
+    counterfactual: Equivalent non-agentic realisation.
+    comparison_dimensions:
+      - progression
+      - decisions
+      - action_selection
+      - outcome
+      - intervention
+      - value_realization
+    conclusion_form: |
+      A materially differs from B -> Materiality supported.
+    principle_execution: |
+      The counterfactual need not always be executed in production.
+      It MAY be demonstrated through simulation, historical replay,
+      controlled testing, or analytical reasoning.
+
+  # CR-VAS-004 §18 - Behavioral Test Model.
+  behavioral_test_template:
+    test:
+      id:
+      purpose:
+      preconditions:
+      context:
+      available_actions:
+      authority:
+      expected_selection:
+      expected_progression:
+      expected_outcome:
+      evidence:
+      result:
+    principle: |
+      This allows the repository to test not merely whether fields
+      exist, but whether the represented AVS actually behaves
+      according to its semantic claims.
+
+  # CR-VAS-004 §19 + §20 - Positive + Negative Conformance Tests.
+  # (Implemented in kit/ as cf-positive-01..08 + cf-negative-01..10.)
+  positive_test_set:
+    - id: VAS-CF-P01
+      label: Delegated Outcome
+    - id: VAS-CF-P02
+      label: Contextual Selection
+    - id: VAS-CF-P03
+      label: Bounded Authority
+    - id: VAS-CF-P04
+      label: Material Progression
+    - id: VAS-CF-P05
+      label: Human-Agent Hybrid
+    - id: VAS-CF-P06
+      label: Non-AI Agentic
+    - id: VAS-CF-P07
+      label: Localised Agenticity
+    - id: VAS-CF-P08
+      label: Multi-Agent Coordination
+  negative_test_set:
+    - id: VAS-CF-N01
+      label: AI Only
+    - id: VAS-CF-N02
+      label: Agent Label Only
+    - id: VAS-CF-N03
+      label: Workflow Only
+    - id: VAS-CF-N04
+      label: Recommendation Only
+    - id: VAS-CF-N05
+      label: Fixed Automation
+    - id: VAS-CF-N06
+      label: Autonomous System Without Value Materiality
+    - id: VAS-CF-N07
+      label: Human Routine Execution
+    - id: VAS-CF-N08
+      label: Missing Authority
+    - id: VAS-CF-N09
+      label: Missing Selection
+    - id: VAS-CF-N10
+      label: Non-Material Agentic Behavior
+
+  # CR-VAS-004 §21 - Boundary Test Matrix.
+  boundary_test_matrix:
+    - scenario: LLM generates a response
+      agentic: not_necessarily
+      reason: No delegated action authority.
+    - scenario: AI recommends an action
+      agentic: not_necessarily
+      reason: Recommendation != selection.
+    - scenario: Agent selects within policy
+      agentic: yes_if_material
+      reason: Delegated bounded selection.
+    - scenario: RPA executes fixed workflow
+      agentic: no
+      reason: Deterministic execution.
+    - scenario: Autonomous vehicle performs transport
+      agentic: not_automatically
+      reason: Autonomous != AVS.
+    - scenario: Human resolves exceptional case
+      agentic: potentially
+      reason: Conditions must be satisfied.
+    - scenario: Agent routes tickets using fixed rules
+      agentic: no
+      reason: Routing alone insufficient.
+    - scenario: Agent selects customer remediation
+      agentic: potentially_yes
+      reason: Depends on authority/materiality.
+    - scenario: Multi-agent negotiation affects fulfillment
+      agentic: potentially_yes
+      reason: Requires qualification evidence.
+    - scenario: AI forecasts demand
+      agentic: no
+      reason: Prediction != agentic realisation.
+
+  # CR-VAS-004 §22 - Human Validation (machine + evidence + review).
+  human_validation:
+    principle: |
+      Automated validation SHALL NOT be the sole mechanism for
+      semantic qualification. Certain questions require semantic
+      judgement: whether authority is genuinely delegated, whether
+      action alternatives are meaningful, whether participation is
+      material, whether the claimed outcome is genuinely a Value
+      Stream outcome.
+    chain:
+      - Machine validation
+      - Evidence inspection
+      - Semantic review
+
+  # CR-VAS-004 §23 - Validation Roles (separated from semantics).
+  validation_roles:
+    - id: instance_owner
+      label: Instance Owner
+      responsibility: Responsible for making the AVS claim and supplying evidence.
+    - id: semantic_validator
+      label: Semantic Validator
+      responsibility: Evaluates conformance against the Agentic Value Stream specification.
+    - id: domain_reviewer
+      label: Domain Reviewer
+      responsibility: Validates domain-specific interpretation where required.
+    - id: governance_authority
+      label: Governance Authority
+      responsibility: May approve formal certification where organisational governance requires it.
+  principle: |
+    These roles SHALL NOT be embedded as semantic requirements for
+    being an AVS.
+
+  # CR-VAS-004 §24 - Evidence Lifecycle.
+  evidence_lifecycle:
+    stages:
+      - Created
+      - Submitted
+      - Validated
+      - Accepted
+      - Monitored
+      - Revalidated
+      - Expired / Superseded
+    principle: |
+      A conformance claim is therefore potentially time-bound.
+
+  # CR-VAS-004 §25 - Conformance Drift (semantic drift detection).
+  conformance_drift:
+    principle: |
+      The repository SHOULD support detection of semantic drift.
+    triggers:
+      - authority_changed
+      - agent_behavior_changed
+      - workflow_changed
+      - value_stream_changed
+      - agentic_participation_removed
+      - action_space_changed
+      - policy_changed
+      - human_escalation_removed
+      - materiality_changed
+    principle_consequence: |
+      A previously conformant instance MAY therefore become
+      non-conformant. This is different from maturity deterioration.
+
+  # CR-VAS-004 §26 - Evidence Freshness.
+  evidence_freshness_template:
+    freshness:
+      valid_from:
+      valid_until:
+      review_interval:
+    principle: |
+      Evidence freshness SHOULD be determined according to the
+      volatility of the underlying semantic claim. Static Value Stream
+      definition is relatively stable. Agent authority configuration
+      is potentially volatile. Runtime decision behavior is highly
+      dynamic.
+
+  # CR-VAS-004 §27 - Conformance Levels (binary at semantic boundary).
+  conformance_levels:
+    principle: |
+      The repository SHALL NOT create multiple levels of "agenticity".
+      That would risk confusing semantic qualification with maturity.
+    allowed_states:
+      - Not Qualified
+      - Qualified
+      - Conditionally Conformant
+      - Conformant
+    principle_separated: |
+      Maturity is evaluated separately in a future specification
+      (CR-VAS-006). The concept itself remains binary at the semantic
+      boundary: Does the instance satisfy the Agentic Value Stream
+      definition or not?
+
+  # CR-VAS-004 §28 - Conformance Kit Architecture (evolved).
+  conformance_kit_architecture:
+    principle: |
+      The existing conformance kit SHOULD evolve toward:
+        kit/
+        +-- kit.yaml
+        +-- schema/
+        +-- positive/
+        +-- negative/
+        +-- boundary/
+        +-- structural/
+        +-- behavioral/
+        +-- evidence/
+        +-- expected-results/
+      The exact directory names follow the repository's established
+      convention where possible.
+    machine_readable_metadata:
+      - test_id
+      - test_type
+      - qualification_condition
+      - expected_result
+      - evidence_requirement
+      - rationale
+
+  # CR-VAS-004 §29 - Conformance Result (machine-readable).
+  conformance_result_template:
+    result:
+      test_id:
+      status:
+        allowed: [pass, fail, inconclusive, not_applicable]
+      qualification_condition:
+      evidence:
+      observations:
+      rationale:
+    principle: |
+      Inconclusive SHALL be distinguished from fail. Absence of
+      evidence is NOT necessarily evidence of semantic failure; it
+      MAY indicate insufficient evidence. However, an instance
+      cannot become fully conformant while mandatory evidence
+      remains inconclusive.
+
+  # CR-VAS-004 §30 - Qualification Decision Rules.
+  qualification_decision_rules:
+    if:
+      - value_stream_semantics = PASS
+      - all_mandatory_AVS_conditions = PASS
+      - materiality = PASS
+      - no_exclusion = triggered
+    then: CONFORMANT
+    else_if:
+      - mandatory_evidence_incomplete
+    then: UNDER_REVIEW / CONDITIONALLY_CONFORMANT
+    else: NON_CONFORMANT
+    principle: |
+      A triggered exclusion SHALL override superficial positive evidence.
+
+  # CR-VAS-004 §32 - Conformance Evidence vs Operational Telemetry.
+  telemetry_vs_evidence:
+    principle: |
+      Runtime telemetry can provide evidence but SHALL NOT become the
+      semantic definition. Telemetry is evidence, not semantics.
+    example: |
+      "Agent made 10,000 decisions" does NOT establish that those
+      decisions were delegated, bounded, contextual, or materially
+      consequential.
+
+  # CR-VAS-004 §33 - Conformance and Governance Separation.
+  conformance_governance_separation:
+    semantic_specification: |
+      What MUST be true.
+    governance_framework: |
+      Who is authorised to certify that it is true.
+    principle: |
+      These SHALL remain separate. This prevents organisational
+      governance requirements from contaminating the universal
+      semantic definition.
+
+  # Cardinal author rule preserved.
+  author: Emmanuel A. Otchere (cardinal author rule, 2026-09-23)
+  governance: enterprise-semantics
+
+  provenance:
+    decision: [ES-ADR-005, ES-ADR-031, ES-ADR-049, ES-ADR-051, ES-ADR-052, ES-ADR-053, ES-ADR-054]
+    implementation: [CR-ES-005, CR-AVS-001, CR-VAS-002, CR-VAS-003, CR-VAS-004]
+    reconciliation: CR-AVS-001
+    qualification: CR-VAS-002
+    participation_realization: CR-VAS-003
+    evidence_conformance: CR-VAS-004

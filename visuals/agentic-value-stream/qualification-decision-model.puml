@@ -1,0 +1,52 @@
+@startuml agentic-value-stream-qualification-decision-model
+' Per CR-VAS-004 §12 + §30 (Qualification Decision Model + Decision Rules).
+' Cardinal author rule: Emmanuel A. Otchere <emmanuel@otchere.com>
+' Last revised: 2026-10-08.
+
+title Agentic Value Stream ; Qualification Decision Model
+
+skinparam backgroundColor #FFFFFF
+skinparam defaultFontName "Helvetica"
+skinparam defaultFontSize 11
+skinparam shadowing false
+
+(*) --> "Value Stream?"
+
+if "Value Stream?" then
+  -->[YES] "Agentic\nParticipation?"
+  if "Agentic\nParticipation?" then
+    -->[YES] "Intent + Authority +\nContext + Selection?"
+    if "Intent + Authority +\nContext + Selection?" then
+      -->[YES] "Material Value\nContribution?"
+      if "Material Value\nContribution?" then
+        -->[YES] "AVS QUALIFIED"
+        --> (*)
+      else
+        -->[NO] "NON_CONFORMANT\n(materiality fails)"
+        --> (*)
+      endif
+    else
+      -->[NO] "NON_CONFORMANT\n(mandatory condition fails)"
+      --> (*)
+    endif
+  else
+    -->[NO] "NON_CONFORMANT\n(no Agentic Participation)"
+    --> (*)
+  endif
+else
+  -->[NO] "NON_CONFORMANT\n(not a Value Stream)"
+  --> (*)
+endif
+
+note right
+  Any mandatory condition failing
+  SHALL prevent a qualified status.
+
+  A triggered exclusion SHALL
+  override superficial positive
+  evidence.
+
+  Per CR-VAS-004 §12, §30.
+end note
+
+@enduml

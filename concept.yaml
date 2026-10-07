@@ -22,9 +22,39 @@
 #       Stream realization, and
 #   (7) the architectural invariants.
 #
+# Per CR-VAS-003 (Agentic Participation & Value Stream Realization Model,
+# 2026-10-08): Adds the `participation:` block formalising:
+#   (1) Agentic Participation as a subordinate relationship to Value Stream,
+#   (2) the participation hierarchy (Value Stream -> Stage -> Participation
+#       -> Actor/Agent + Entrusted Intent + Bounded Authority + Context +
+#       Decision/Selection + Action/Progression + Outcome Contribution),
+#   (3) the participation scope vocabulary (decision, execution,
+#       coordination, stage, cross_stage, end_to_end) with end_to_end
+#       explicitly NOT the default,
+#   (4) the distinction between Instruction and Intent,
+#   (5) the bounded authority model with explicit scope, permissions,
+#       constraints, policies, thresholds, escalation, revocation,
+#   (6) context interpretation (technology-agnostic),
+#   (7) the decision-action chain (instruction, evaluation, recommendation,
+#       selection, commitment, execution),
+#   (8) permissible action space representation,
+#   (9) outcome contribution with value-stream progression anchor,
+#   (10) five human participation patterns (A-E),
+#   (11) Agent != Agentic Participation != Agentic Value Stream distinction,
+#   (12) AI orthogonality, automation distinctness, autonomy orthogonality,
+#   (13) realization composition (composition + scope + autonomy + human
+#        involvement as separate dimensions),
+#   (14) the canonical relationship set,
+#   (15) cardinality principles,
+#   (16) distributed and hybrid agentic realization,
+#   (17) the semantic boundary matrix (normative guidance),
+#   (18) the evidence model template (realised fully under CR-VAS-004),
+#   (19) the machine-readable model template, and
+#   (20) eight governance rules (AP-GOV-01..08).
+#
 # Cardinal author rule: Emmanuel A. Otchere <emmanuel@otchere.com>
 # Authored by: Emmanuel A. Otchere (cardinal author rule, 2026-09-23)
-# Last revised: 2026-10-07 (CR-VAS-002 qualification block landed)
+# Last revised: 2026-10-08 (CR-VAS-003 participation block landed)
 
 id: ES:CONCEPT:agentic-value-stream
 canonical_name: Agentic Value Stream
@@ -40,8 +70,8 @@ definition: |
 # Lifecycle state (independent of conformance state per CR-AVS-001 §14).
 lifecycle:
   status: candidate
-  version: 1.0.0
-  date: 2026-10-07
+  version: 1.1.0
+  date: 2026-10-08
   promotion_history:
     - version: 0.4.0
       date: 2026-09-26
@@ -51,6 +81,10 @@ lifecycle:
       date: 2026-09-30
       status: candidate
       note: Reconciliation per CR-AVS-001. Lifecycle + conformance state aligned.
+    - version: 1.1.0
+      date: 2026-10-08
+      status: candidate
+      note: "Agentic Participation & Value Stream Realization Model per CR-VAS-003. Introduces the participation block: hierarchy, scope vocabulary, intent/authority/context/action space/outcome, human participation patterns, agent/AI/automation/autonomy semantics, cardinality, distributed realization, boundary matrix, evidence model template, governance rules, and 18 conformance tests (8 structural + 10 boundary). Promotion to Established reserved for CR-VAS-003 acceptance review (governance frame ES-ADR-053)."
     - version: 1.0.0
       date: 2026-10-07
       status: candidate
@@ -64,7 +98,9 @@ conformance:
     positive: 5
     negative: 5
     edge_case: 5
-    total: 15
+    structural: 8
+    boundary: 10
+    total: 33
 
 # Concept repository reference (renamed per ES-ADR-051).
 concept_repo: Enterprise-Semantics/agentic-value-stream
@@ -374,3 +410,488 @@ qualification:
     implementation: [CR-ES-005, CR-AVS-001, CR-VAS-002]
     reconciliation: CR-AVS-001
     qualification: CR-VAS-002
+
+
+# === Agentic Participation & Value Stream Realization Model (CR-VAS-003) ===
+
+participation:
+  # Specialises the qualification semantics established by CR-VAS-002.
+  # CR-VAS-003 introduces the Agentic Participation relationship as a
+  # subordinate structural layer within the canonical Value Stream.
+  specializes: ES:CONCEPT:agentic-value-stream
+
+  # CR-VAS-003 §3 - Normative Design Principle.
+  # Agentic Participation is SUBORDINATE to the Value Stream. The
+  # hierarchy is Value Stream -> Value Stage -> Agentic Participation ->
+  # Actor/Agent + Entrusted Intent + Bounded Authority + Context +
+  # Decision/Selection + Action/Progression + Outcome Contribution.
+  hierarchy:
+    - id: VS-LAYER
+      label: Value Stream
+      note: Canonical primary construct.
+    - id: STAGE-LAYER
+      label: Value Stage / Value-Realization Area
+      note: Canonical stage construct; preserved per CR-VAS-002 AVS-INV-002.
+    - id: AP-LAYER
+      label: Agentic Participation
+      subordinate_to: STAGE-LAYER
+      note: Subordinate relationship, not parallel stage.
+    - id: AP-COMPONENT
+      label: Agentic Participation Components
+      contains:
+        - Actor / Agent
+        - Entrusted Intent
+        - Bounded Authority
+        - Context
+        - Decision / Selection
+        - Action / Progression
+        - Outcome Contribution
+
+  # CR-VAS-003 §4.2 - Agentic Participation as the semantic bridge.
+  # The Agent is NOT the definition of agenticity. Agentic Participation is.
+  principle: |
+    Agentic Participation represents the fact that an actor participates
+    in the realization of a material portion of a Value Stream through
+    agentic behavior. It is the semantic bridge between the Value
+    Stream and the actor performing agentic realization.
+
+  # CR-VAS-003 §5 - Participation as a relationship, not a new Value-Stage
+  # type. Agentic Value Stage, Agentic Process, Agentic Workflow, Agentic
+  # Operation, Agentic Activity are FORBIDDEN as parallel semantic
+  # constructs solely to represent agenticity.
+  prohibited_constructs:
+    - Agentic Value Stage
+    - Agentic Process
+    - Agentic Workflow
+    - Agentic Operation
+    - Agentic Activity
+  permitted_stage_constructs:
+    - human realization
+    - automated realization
+    - agentic realization
+    - hybrid realization
+    - multiple forms of realization
+
+  # CR-VAS-003 §6 - Participation Scope controlled vocabulary.
+  # end_to_end is explicitly NOT the default representation. A Value
+  # Stream can qualify as Agentic because of a single material agentic
+  # participation point.
+  scope:
+    allowed:
+      - id: decision
+        meaning: Agentic behavior materially affects a consequential decision.
+      - id: execution
+        meaning: Agentic behavior selects or performs a material action.
+      - id: coordination
+        meaning: Agentic behavior materially coordinates progression among participants or value-realization elements.
+      - id: stage
+        meaning: Agentic participation materially affects a Value Stage.
+      - id: cross_stage
+        meaning: Agentic participation materially affects progression across multiple Value Stages.
+      - id: end_to_end
+        meaning: Agentic participation materially governs or contributes across substantially the entire Value Stream.
+    default: stage
+    end_to_end_is_default: false
+    rationale: |
+      A Value Stream can qualify as Agentic because of a single material
+      agentic participation point. End-to-end agenticity is not the
+      default representation.
+
+  # CR-VAS-003 §7 - Entrusted Intent (Instruction != Intent).
+  intent:
+    required: true
+    distinction:
+      instruction: A predetermined directive (e.g. "Execute step 4 after step 3").
+      intent: A desired outcome or progression objective (e.g. "Resolve the customer's issue within policy and service-level constraints.").
+    principle: |
+      Agentic Participation requires an entrusted or delegated purpose,
+      not merely an executable instruction.
+
+  # CR-VAS-003 §8 - Authority Model.
+  authority:
+    required: true
+    structure:
+      scope: The action space.
+      permissions: Granted permissions.
+      constraints: Binding constraints.
+      policies: Policy rules.
+      thresholds: Operational/financial/risk thresholds.
+      escalation_conditions: When human review is required.
+      revocation_conditions: When authority is revoked.
+    bounded_by:
+      - role
+      - policy
+      - financial_threshold
+      - operational_threshold
+      - risk_threshold
+      - regulatory_constraint
+      - security_constraint
+      - data_access_constraint
+      - escalation_rule
+      - human_approval_requirement
+      - temporal_constraint
+      - geographic_constraint
+    principle: |
+      Intent establishes what is being pursued; authority establishes
+      what may legitimately be done in pursuit of it. Neither is
+      sufficient independently.
+
+  # CR-VAS-003 §9 - Context Interpretation.
+  context:
+    required: true
+    allowed_kinds:
+      - current_state
+      - customer_state
+      - transaction_state
+      - environmental_conditions
+      - policy_state
+      - resource_availability
+      - historical_information
+      - signals_and_events
+      - external_conditions
+      - other_value_stream_state
+    technology_agnostic: true
+
+  # CR-VAS-003 §10 - Decision and Action Semantics.
+  # These shall NOT be treated as interchangeable. The critical
+  # transition is Selection among permissible alternatives in pursuit
+  # of an entrusted outcome.
+  decision_action_chain:
+    - instruction
+    - evaluation
+    - recommendation
+    - selection
+    - commitment
+    - execution
+  principle: |
+    A system that only evaluates a fixed rule set without meaningful
+    selection does not become agentic merely because the evaluation
+    is sophisticated.
+
+  # CR-VAS-003 §11 - Permissible Action Space.
+  action_space:
+    required: true
+    structure:
+      intent: Intent of the participant.
+      context: Interpreted context.
+      authority: Bounded authority.
+    result: Permissible Action Space.
+    principle: |
+      The model must establish that more than one permissible
+      response/path exists AND that the realized response is selected
+      contextually rather than completely predetermined.
+
+  # CR-VAS-003 §12 - Outcome Contribution.
+  outcome:
+    required: true
+    chain:
+      - action_selected
+      - value_stream_progression
+      - stakeholder_value_outcome
+    principle: |
+      The existence of an agentic decision without material value-stream
+      consequence shall NOT automatically qualify the Value Stream as
+      Agentic. This reinforces the materiality requirement from
+      CR-VAS-002 (AVS-MAT-01..03).
+
+  # CR-VAS-003 §13 - Human Participation as a valid realization pattern.
+  human_participation_patterns:
+    - id: AP-HUMAN-01
+      label: Pattern A - Human delegates to Agent
+      shape:
+        - Human
+        - "delegates intent"
+        - Agent
+        - "value stream progression"
+    - id: AP-HUMAN-02
+      label: Pattern B - Agent escalates to Human
+      shape:
+        - Agent
+        - exception
+        - Human
+        - decision
+        - Agent
+    - id: AP-HUMAN-03
+      label: Pattern C - Human decides, Agent executes
+      shape:
+        - Human
+        - decision
+        - Agent
+        - execution
+    - id: AP-HUMAN-04
+      label: Pattern D - Agent decides, Human validates
+      shape:
+        - Agent
+        - decision
+        - Human
+        - validation
+        - execution
+    - id: AP-HUMAN-05
+      label: Pattern E - Shared progression
+      shape:
+        - "Human, Agent, Human, Agent (alternating)"
+  principle: |
+    Human participation is a valid realization pattern rather than an
+    exception. All five patterns are valid provided the underlying AVS
+    qualification conditions (CR-VAS-002) are satisfied.
+
+  # CR-VAS-003 §14 - Agent semantics distinction.
+  agent_semantics:
+    agent: |
+      A participating actor or implementation construct capable of
+      performing delegated behavior.
+    agentic_participation: |
+      A semantic realization relationship in which agentic behavior
+      contributes materially to Value Stream realization.
+    agentic_value_stream: |
+      A Value Stream that contains one or more qualifying instances of
+      Agentic Participation.
+    rule: |
+      Agent != Agentic Participation != Agentic Value Stream.
+
+  # CR-VAS-003 §15 - AI remains orthogonal.
+  ai_orthogonality:
+    valid_configurations:
+      - AI + non-agentic
+      - AI + agentic
+      - non-AI + agentic
+      - human + agentic
+      - automation + agentic
+      - AI + automation + agentic
+    principle: |
+      The presence of AI shall never itself satisfy AVS qualification.
+
+  # CR-VAS-003 §16 - Automation remains distinct.
+  automation_semantics:
+    rule: Automation != Agentic Participation.
+    principle: |
+      Automation can participate in an AVS. For example, an Agent
+      selects payment method, then an automated payment service
+      executes the transaction. The automated component does not
+      become agentic simply because it is downstream of an agent.
+
+  # CR-VAS-003 §17 - Autonomy remains orthogonal.
+  autonomy_semantics:
+    principle: |
+      Autonomy describes the degree of independent operation.
+      Agenticity describes the presence of delegated, bounded,
+      contextual, outcome-oriented action selection. A Value Stream
+      may be: agentic + highly human-supervised; agentic + partially
+      autonomous; or agentic + highly autonomous.
+
+  # CR-VAS-003 §18 - Realization Composition replaces ambiguous single-axis
+  # realization_mode semantics with explicit dimensions.
+  realization_composition:
+    composition_allowed:
+      - human
+      - automated
+      - agentic
+      - hybrid
+    scope_uses_participation_scope: true
+    autonomy_dimension_present: true
+    human_involvement_dimension_present: true
+    principle: |
+      This avoids conflating composition with scope, authority,
+      autonomy, and human involvement.
+
+  # CR-VAS-003 §19 - Canonical Relationship Set.
+  relationships:
+    - from: Agentic Value Stream
+      rel: specialises
+      to: Value Stream
+    - from: Agentic Value Stream
+      rel: contains
+      to: Agentic Participation
+    - from: Agentic Participation
+      rel: performed_by
+      to: Actor/Agent
+    - from: Agentic Participation
+      rel: advances
+      to: Entrusted Intent
+    - from: Agentic Participation
+      rel: governed_by
+      to: Bounded Authority
+    - from: Agentic Participation
+      rel: interprets
+      to: Context
+    - from: Agentic Participation
+      rel: selects
+      to: Permissible Action
+    - from: Agentic Participation
+      rel: affects
+      to: Value Stream Progression
+    - from: Agentic Participation
+      rel: contributes_to
+      to: Value Outcome
+    - from: Agentic Participation
+      rel: may_escalate_to
+      to: Human
+    - from: Agentic Participation
+      rel: occurs_within
+      to: Value Stage
+      note: where applicable
+    - from: Agentic Participation
+      rel: coordinates
+      to: Participant
+      note: where applicable
+
+  # CR-VAS-003 §20 - Cardinality Principles.
+  cardinality:
+    value_stream_to_participation: 1..*
+    participation_to_actor: 1
+    participation_to_intent: 1
+    participation_to_authority: 1
+    participation_to_context: 1..*
+    participation_to_actions: 1..*
+    participation_to_value_contribution: 1
+    participation_to_human_escalation: 0..*
+    actor_to_participations: 0..*
+    stage_to_participations: 0..*
+    principle: |
+      Not every Value Stage must be agentic. This is essential.
+
+  # CR-VAS-003 §21 - Distributed and Hybrid Agentic Realization.
+  distributed_realization:
+    principle: |
+      Distributed/hybrid agentic realization remains a single Value
+      Stream. No parallel "Agentic Value Stream" needs to be
+      constructed merely to represent the agentic portions.
+    example:
+      - stage: Stage A
+        realization: Human
+      - stage: Stage B
+        realization: Agentic Participation
+        actor: Agent
+      - stage: Stage C
+        realization: Automated Execution
+      - stage: Stage D
+        realization: Human + Agent
+
+  # CR-VAS-003 §22 - Semantic Boundary Matrix (normative guidance).
+  boundary_matrix:
+    headers:
+      - Has objective
+      - Uses context
+      - Selects action
+      - Bounded authority
+      - Material Value Stream effect
+    rows:
+      - concept: Deterministic automation
+        cells: ["+/-", "No", "No", "No/implicit", "Yes"]
+      - concept: AI recommendation
+        cells: ["No", "Yes", "No", "No", "Potential"]
+      - concept: Human discretion
+        cells: ["Yes", "Yes", "Yes", "Yes", "Yes"]
+      - concept: Agentic participation
+        cells: ["Yes", "Yes", "Yes", "Yes", "Yes"]
+      - concept: Autonomous system
+        cells: ["Potential", "Yes", "Yes", "Variable", "Not necessarily"]
+      - concept: Workflow
+        cells: ["No", "Limited", "No", "No", "Potential"]
+      - concept: AI system
+        cells: ["Variable", "Variable", "Variable", "Variable", "Variable"]
+
+  # CR-VAS-003 §23 - Evidence Model (preliminary, fully realised in CR-VAS-004).
+  evidence_model:
+    components:
+      - intent
+      - authority
+      - context
+      - alternatives
+      - selection
+      - action
+      - outcome_effect
+      - intervention
+    principle: |
+      Evidence answers: How do we know that this participation is
+      actually agentic? This is particularly important for
+      conformance, governance, assessment, and certification. Full
+      evidence semantics are landed under CR-VAS-004.
+
+  # CR-VAS-003 §28 - Machine-readable model (illustrative template).
+  machine_readable_template:
+    agentic_participation:
+      required:
+        - participant
+        - intent
+        - authority
+        - context
+        - action_selection
+        - value_contribution
+      scope:
+        allowed:
+          - decision
+          - execution
+          - coordination
+          - stage
+          - cross_stage
+          - end_to_end
+      relationships:
+        performed_by: Actor
+        may_be_realized_by: Agent
+        occurs_within: ValueStage
+        advances: Intent
+        governed_by: Authority
+        interprets: Context
+        selects: Action
+        contributes_to: ValueOutcome
+        may_escalate_to: Human
+      exclusions:
+        - agent_presence_only
+        - ai_presence_only
+        - automation_only
+        - recommendation_only
+        - workflow_orchestration_only
+    note: |
+      This is illustrative; the exact schema is reconciled with the
+      existing repository structure (concept.yaml participation block).
+
+  # CR-VAS-003 §29 - Governance Rules.
+  governance_rules:
+    - id: AP-GOV-01
+      label: Value Stream remains primary
+      rule: Agentic semantics cannot redefine the underlying Value Stream.
+    - id: AP-GOV-02
+      label: Participation is explicit
+      rule: |
+        Agentic behavior should be represented explicitly rather than
+        inferred solely from the presence of an Agent.
+    - id: AP-GOV-03
+      label: Authority is explicit
+      rule: |
+        An agent cannot be considered agentic solely because it can
+        execute actions.
+    - id: AP-GOV-04
+      label: Materiality is mandatory
+      rule: |
+        Agentic behavior must materially contribute to Value Stream
+        realization.
+    - id: AP-GOV-05
+      label: AI is implementation-independent
+      rule: |
+        No AI dependency shall be introduced into the semantic
+        definition.
+    - id: AP-GOV-06
+      label: Autonomy is orthogonal
+      rule: |
+        Autonomy shall not be used as a proxy for agenticity.
+    - id: AP-GOV-07
+      label: Human participation is first-class
+      rule: |
+        Human involvement shall never invalidate AVS qualification.
+    - id: AP-GOV-08
+      label: No parallel value-stage ontology
+      rule: |
+        Agentic participation shall overlay canonical Value Stream
+        semantics.
+
+  # Cardinal author rule preserved.
+  author: Emmanuel A. Otchere (cardinal author rule, 2026-09-23)
+  governance: enterprise-semantics
+
+  provenance:
+    decision: [ES-ADR-005, ES-ADR-031, ES-ADR-049, ES-ADR-051, ES-ADR-052, ES-ADR-053]
+    implementation: [CR-ES-005, CR-AVS-001, CR-VAS-002, CR-VAS-003]
+    reconciliation: CR-AVS-001
+    qualification: CR-VAS-002
+    participation_realization: CR-VAS-003

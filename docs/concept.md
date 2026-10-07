@@ -277,3 +277,129 @@ with 5 positive tests (one per required-value group), 5
 negative tests (one per primary exclusion condition), and
 5 edge-case tests (compositional arrangements). Total: 15
 tests. Coverage is auto-derived in `kit/kit.yaml`.
+
+## Participation and Realization (CR-VAS-003)
+
+Per CR-VAS-003 (Agentic Participation & Value Stream
+Realization Model, 2026-10-08), the Agentic Value Stream
+formalises a subordinate participation relationship inside
+the canonical Value Stream rather than introducing a
+parallel value-stage ontology.
+
+### Hierarchical subordination
+
+The semantic dependency is:
+
+```
+Value Stream
+   |
+   +-- Value Stage / Value-Realization Area
+   |
+   +-- Agentic Participation
+            |
+            +-- Actor / Agent
+            +-- Entrusted Intent
+            +-- Bounded Authority
+            +-- Context
+            +-- Decision / Selection
+            +-- Action / Progression
+            +-- Outcome Contribution
+```
+
+Agentic Participation does NOT replace the Value Stream,
+does NOT create a parallel value-stage hierarchy, and
+does NOT make the Agent the semantic center of the model.
+
+### Participation scope vocabulary
+
+```
+agentic_scope:
+  - decision
+  - execution
+  - coordination
+  - stage
+  - cross_stage
+  - end_to_end
+```
+
+End-to-end is explicitly NOT the default representation.
+A Value Stream can qualify as Agentic because of a single
+material agentic participation point.
+
+### Agent, AI, Automation, Autonomy distinctions
+
+- `Agent != Agentic Participation != Agentic Value Stream`.
+- AI remains orthogonal. AI + non-agentic, AI + agentic,
+  and non-AI + agentic are all valid configurations.
+- `Automation != Agentic Participation`. Automation may
+  participate in an AVS without itself becoming agentic.
+- Autonomy remains an independent dimension. Agenticity
+  describes the presence of delegated, bounded, contextual,
+  outcome-oriented action selection. Autonomy describes
+  the degree of independent operation.
+
+### Prohibited parallel constructs
+
+The repository does NOT introduce any of the following as
+parallel semantic constructs solely to represent
+agenticity:
+
+- Agentic Value Stage
+- Agentic Process
+- Agentic Workflow
+- Agentic Operation
+- Agentic Activity
+
+A canonical Value Stage may contain any combination of
+human, automated, agentic, hybrid, or multiple forms of
+realization.
+
+### Human participation patterns
+
+Per CR-VAS-003 §13, human participation is a valid
+realization pattern rather than an exception. Five
+patterns are supported:
+
+- Pattern A ; Human delegates an intended outcome to an
+  agent.
+- Pattern B ; Agent escalates an exception or threshold
+  breach to a human, who decides, and the agent proceeds.
+- Pattern C ; Human decides, agent executes.
+- Pattern D ; Agent decides, human validates, then
+  execution proceeds.
+- Pattern E ; Shared progression (Human and Agent
+  alternate).
+
+### Governance rules
+
+CR-VAS-003 §29 establishes eight governance rules that
+constrain the participation model:
+
+1. Value Stream remains primary.
+2. Participation is explicit.
+3. Authority is explicit.
+4. Materiality is mandatory.
+5. AI is implementation-independent.
+6. Autonomy is orthogonal.
+7. Human participation is first-class.
+8. No parallel value-stage ontology.
+
+### Conformance kit expansion
+
+The conformance kit now contains 33 tests:
+
+- 5 positive (AVS-VAL-01..07 required-value coverage),
+- 5 negative (AVS-EXC-01..07 exclusion coverage),
+- 5 edge case (compositional arrangements, AVS-EDGE-01..05),
+- 8 structural (VAS-ST-01..08 participation structure, per
+  CR-VAS-003 §24), and
+- 10 boundary (VAS-BT-01..10 participation boundary
+  distinction, per CR-VAS-003 §24).
+
+The structural tests assert that the participation
+hierarchy, intent, authority, context, action selection,
+and material value contribution are explicitly
+represented. The boundary tests distinguish Agentic
+Participation from adjacent concepts (automation, AI,
+workflow, autonomy, deterministic behavior, human
+discretion, hybrid, multi-agent, non-AI).

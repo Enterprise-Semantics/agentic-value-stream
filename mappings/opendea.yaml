@@ -161,3 +161,51 @@ qualification_overlay:
         Agentic Value Stage, Agentic Workflow, Agentic Operations,
         or Autonomous Value Stream as OpenDEA constructs. OpenDEA
         metamodel remains unmodified.
+
+# Participation alignment (CR-VAS-003, 2026-10-08)
+# Per CR-VAS-003 §26, OpenDEA alignment preserves the principle that
+# AVS extends the semantics of Value Stream and does NOT create an
+# alternative process/value architecture. Agentic Participation must
+# not be used as a substitute for Process, Capability, Organization,
+# Application, Technology, or Workflow in the OpenDEA semantic
+# landscape.
+
+participation_alignment:
+  per: CR-VAS-003 §26
+  status: semantic_alignment
+  no_opendea_modification: |
+    The Agentic Participation layer is ES-canonical novelty. OpenDEA
+    metamodel is preserved unmodified. The participation overlay
+    describes the agentic nature of realisation across existing
+    OpenDEA elements (Business Process, Capability, Actor, Agent,
+    Technology) without creating any new OpenDEA construct.
+  alignment_chain:
+    - source: OpenDEA Value Stream
+      to: Agentic Value Stream
+      relation: specialisation
+    - from: Agentic Value Stream
+      to: Agentic Participation
+      relation: realization
+    - from: Agentic Participation
+      to: Business Process / Capability / Actor / Agent / Technology
+      relation: may_involve
+  prohibited_substitutions:
+    - Agentic Participation is NOT a substitute for Process.
+    - Agentic Participation is NOT a substitute for Capability.
+    - Agentic Participation is NOT a substitute for Organization.
+    - Agentic Participation is NOT a substitute for Application.
+    - Agentic Participation is NOT a substitute for Technology.
+    - Agentic Participation is NOT a substitute for Workflow.
+  boundary_preservation:
+    - note: |
+        Per CR-VAS-003 §5 + §29, the participation alignment does not
+        introduce Agentic Value Stage, Agentic Workflow, Agentic
+        Process, Agentic Operation, or Agentic Activity as OpenDEA
+        constructs. OpenDEA metamodel remains unmodified.
+    - note: |
+        The five human participation patterns (A-E) overlay existing
+        OpenDEA actor and capability constructs where applicable.
+    - note: |
+        The semantic boundary matrix (CR-VAS-003 §22) is normative
+        guidance for distinguishing Agentic Participation from
+        adjacent constructs in the OpenDEA semantic landscape.

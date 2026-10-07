@@ -3,23 +3,25 @@ concept: ES:CONCEPT:agentic-value-stream
 canonical_name: Agentic Value Stream
 base_concept: ES:CONCEPT:value-stream
 status: semantically_conformant
-version: 1.0.0
-date: 2026-10-07
+version: 1.1.0
+date: 2026-10-08
 author: Emmanuel A. Otchere (cardinal author rule, 2026-09-23)
 governance: enterprise-semantics
 
 # Repository reference (renamed per ES-ADR-051).
 concept_repo: Enterprise-Semantics/agentic-value-stream
 
-# Coverage auto-derived from kit/ inventory (per CR-AVS-001 §14 + CR-VAS-002 §22).
+# Coverage auto-derived from kit/ inventory (per CR-AVS-001 §14 + CR-VAS-002 §22 + CR-VAS-003 §24).
 coverage:
   positive: 5
   negative: 5
   edge_case: 5
+  structural: 8
+  boundary: 10
   integrity: 0
-  total: 15
+  total: 33
 
-# Test inventory by semantic role (per CR-VAS-002 §22).
+# Test inventory by semantic role (per CR-VAS-002 §22 + CR-VAS-003 §24).
 test_inventory:
   positive:
     - id: KIT-AGENTIC-VALUE-STREAM-POS-01
@@ -54,15 +56,54 @@ test_inventory:
       condition: AVS-EDGE-04 Agentic participation with co-existing automation
     - id: KIT-AGENTIC-VALUE-STREAM-EDGE-05
       condition: AVS-EDGE-05 Agentic participation with co-existing human discretion
+  structural:
+    - id: KIT-AGENTIC-VALUE-STREAM-VAS-ST-01
+      condition: VAS-ST-01 AVS specializes Value Stream
+    - id: KIT-AGENTIC-VALUE-STREAM-VAS-ST-02
+      condition: VAS-ST-02 Agentic Participation is represented explicitly
+    - id: KIT-AGENTIC-VALUE-STREAM-VAS-ST-03
+      condition: VAS-ST-03 Agent presence does not imply AVS
+    - id: KIT-AGENTIC-VALUE-STREAM-VAS-ST-04
+      condition: VAS-ST-04 Agentic Participation references an intent
+    - id: KIT-AGENTIC-VALUE-STREAM-VAS-ST-05
+      condition: VAS-ST-05 Agentic Participation references bounded authority
+    - id: KIT-AGENTIC-VALUE-STREAM-VAS-ST-06
+      condition: VAS-ST-06 Context is represented
+    - id: KIT-AGENTIC-VALUE-STREAM-VAS-ST-07
+      condition: VAS-ST-07 Action/progression selection is represented
+    - id: KIT-AGENTIC-VALUE-STREAM-VAS-ST-08
+      condition: VAS-ST-08 Material value contribution is represented
+  boundary:
+    - id: KIT-AGENTIC-VALUE-STREAM-VAS-BT-01
+      condition: VAS-BT-01 AI without agentic participation
+    - id: KIT-AGENTIC-VALUE-STREAM-VAS-BT-02
+      condition: VAS-BT-02 Automation without agentic participation
+    - id: KIT-AGENTIC-VALUE-STREAM-VAS-BT-03
+      condition: VAS-BT-03 Workflow orchestration without agentic participation
+    - id: KIT-AGENTIC-VALUE-STREAM-VAS-BT-04
+      condition: VAS-BT-04 Agent present but deterministic behavior
+    - id: KIT-AGENTIC-VALUE-STREAM-VAS-BT-05
+      condition: VAS-BT-05 Autonomous system without Value Stream materiality
+    - id: KIT-AGENTIC-VALUE-STREAM-VAS-BT-06
+      condition: VAS-BT-06 Human discretion satisfying the conditions
+    - id: KIT-AGENTIC-VALUE-STREAM-VAS-BT-07
+      condition: VAS-BT-07 Agentic participation localized to one Value Stage
+    - id: KIT-AGENTIC-VALUE-STREAM-VAS-BT-08
+      condition: VAS-BT-08 Hybrid human-agent realization
+    - id: KIT-AGENTIC-VALUE-STREAM-VAS-BT-09
+      condition: VAS-BT-09 Multi-agent coordination
+    - id: KIT-AGENTIC-VALUE-STREAM-VAS-BT-10
+      condition: VAS-BT-10 Agentic participation without AI
 
 boundary_assertions_covered:
   - per_es_adr_005
   - per_es_adr_031_5_category_taxonomy
   - per_cr_vas_002_qualification
+  - per_cr_vas_003_participation_realization
 
 test_source_branch: main
 test_path: kit/
 
 provenance:
-  decision: [ES-ADR-005, ES-ADR-049, ES-ADR-051, ES-ADR-052]
-  implementation: [CR-ES-005, CR-AVS-001, CR-VAS-002]
+  decision: [ES-ADR-005, ES-ADR-049, ES-ADR-051, ES-ADR-052, ES-ADR-053]
+  implementation: [CR-ES-005, CR-AVS-001, CR-VAS-002, CR-VAS-003]

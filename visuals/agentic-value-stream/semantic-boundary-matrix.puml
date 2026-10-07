@@ -1,0 +1,76 @@
+@startuml agentic-value-stream-semantic-boundary-matrix
+' Per CR-VAS-003 §22 (Semantic Boundary Matrix).
+' Cardinal author rule: Emmanuel A. Otchere <emmanuel@otchere.com>
+' Last revised: 2026-10-08.
+
+title Agentic Value Stream ; Semantic Boundary Matrix
+
+skinparam backgroundColor #FFFFFF
+skinparam defaultFontName "Helvetica"
+skinparam defaultFontSize 11
+skinparam shadowing false
+
+note as N1
+  Normative guidance matrix per CR-VAS-003 §22.
+
+  A "+/-" denotes a borderline case where the
+  criterion MAY be present but is not sufficient
+  on its own to constitute the construct.
+
+  Agentic participation is the only construct in
+  this matrix that satisfies ALL five criteria
+  simultaneously, which is why it alone qualifies
+  as the realization relationship for AVS.
+end note
+
+object "Deterministic\nautomation" as DA
+object "AI recommendation" as AIR
+object "Human discretion" as HD
+object "Agentic\nparticipation" as AP
+object "Autonomous\nsystem" as AS
+object "Workflow" as WF
+object "AI system\n(generic)" as AIS
+
+DA : Has objective = +/-
+DA : Uses context = No
+DA : Selects action = No
+DA : Bounded authority = No/implicit
+DA : Material VS effect = Yes
+
+AIR : Has objective = No
+AIR : Uses context = Yes
+AIR : Selects action = No
+AIR : Bounded authority = No
+AIR : Material VS effect = Potential
+
+HD : Has objective = Yes
+HD : Uses context = Yes
+HD : Selects action = Yes
+HD : Bounded authority = Yes
+HD : Material VS effect = Yes
+
+AP : Has objective = Yes
+AP : Uses context = Yes
+AP : Selects action = Yes
+AP : Bounded authority = Yes
+AP : Material VS effect = Yes
+
+AS : Has objective = Potential
+AS : Uses context = Yes
+AS : Selects action = Yes
+AS : Bounded authority = Variable
+AS : Material VS effect = Not necessarily
+
+WF : Has objective = No
+WF : Uses context = Limited
+WF : Selects action = No
+WF : Bounded authority = No
+WF : Material VS effect = Potential
+
+AIS : Has objective = Variable
+AIS : Uses context = Variable
+AIS : Selects action = Variable
+AIS : Bounded authority = Variable
+AIS : Material VS effect = Variable
+
+@enduml

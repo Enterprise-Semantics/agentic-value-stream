@@ -156,3 +156,61 @@ qualification_overlay:
         Agentic Value Stage, Agentic Workflow, Agentic Operations,
         or Autonomous Value Stream as WSF constructs. WSF Tier 1
         and Tier 2 remain unmodified.
+
+# Participation alignment (CR-VAS-003, 2026-10-08)
+# Per CR-VAS-003 §27, WSF alignment shall remain a semantic mapping
+# rather than an assertion that Agentic Value Stream is necessarily a
+# native WSF primitive. This section distinguishes mapping types
+# explicitly so that no metamodel mutation occurs through mapping
+# documentation.
+
+participation_alignment:
+  per: CR-VAS-003 §27
+  status: semantic_alignment
+  no_wsF_modification: |
+    The Agentic Participation layer is ES-canonical novelty. WSF
+    Tier 1 Value Stream remains unmodified. The participation
+    overlay distinguishes realisation relationships rather than
+    introducing a parallel value-stage ontology.
+  mapping_type_classification:
+    - id: specialisation
+      wsf_target: external:wsf:Value-Stream
+      note: Agentic Value Stream specialises WSF Value Stream (Tier 2).
+    - id: semantic_alignment
+      wsf_target: null
+      note: |
+        Agentic Participation aligns with WSF Tier 1 Value Stream
+        progression semantics where applicable (e.g. stakeholder,
+        initiating_condition, realization_boundary, stages,
+        outcomes). No new WSF element is introduced.
+    - id: realization_mapping
+      wsf_target: null
+      note: |
+        Agentic Participation maps to existing WSF realisation
+        patterns (human, automated, hybrid). No new WSF element is
+        introduced.
+    - id: implementation_mapping
+      wsf_target: null
+      note: |
+        Implementation-level mapping to WSF agent/actor constructs
+        where available. ES canonical concept provides the
+        realisation overlay.
+    - id: conceptual_correspondence
+      wsf_target: null
+      note: |
+        Concept-level correspondence between Agentic Participation
+        and WSF actor/role constructs where applicable.
+  boundary_preservation:
+    - note: |
+        Per CR-VAS-003 §5 + §29, the participation alignment does not
+        introduce Agentic Value Stage, Agentic Workflow, Agentic
+        Process, Agentic Operation, or Agentic Activity as WSF
+        constructs. WSF Tier 1 and Tier 2 remain unmodified.
+    - note: |
+        The five human participation patterns (A-E) are ES-canonical
+        semantics. They overlay WSF actor/role constructs where
+        applicable but do not require WSF modification.
+    - note: |
+        The semantic boundary matrix (CR-VAS-003 §22) is normative
+        guidance for ES canonical concepts. WSF constructs remain
+        authoritative within their scope.

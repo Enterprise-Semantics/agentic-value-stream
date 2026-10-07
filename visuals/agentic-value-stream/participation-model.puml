@@ -1,0 +1,96 @@
+@startuml agentic-value-stream-participation-model
+' Per CR-VAS-003 §3 (Normative Design Principle) + §19 (Canonical Relationship Set).
+' Cardinal author rule: Emmanuel A. Otchere <emmanuel@otchere.com>
+' Last revised: 2026-10-08.
+
+title Agentic Value Stream ; Agentic Participation & Value Stream Realization Model
+
+skinparam backgroundColor #FFFFFF
+skinparam defaultFontName "Helvetica"
+skinparam defaultFontSize 11
+skinparam shadowing false
+skinparam rectangle {
+  RoundCorner 8
+  BorderColor #555555
+}
+skinparam package {
+  BorderColor #2A5C8A
+  BackgroundColor #F0F6FB
+  FontStyle bold
+}
+
+package "Value Stream (canonical, primary construct)" {
+  rectangle "Value Stream\n(ES:CONCEPT:value-stream)" as VS
+}
+
+package "Value Stage layer (canonical, preserved)" {
+  rectangle "Value Stage /\nValue-Realization Area\n(ES:CONCEPT:value-stage)" as STAGE
+}
+
+package "Agentic Participation (subordinate relationship)" {
+  rectangle "Agentic Participation\n(per CR-VAS-003)" as AP
+
+  rectangle "Actor / Agent" as ACTOR
+  rectangle "Entrusted Intent\n(Instruction != Intent)" as INTENT
+  rectangle "Bounded Authority\n(scope, permissions,\nconstraints, policies,\nthresholds, escalation,\nrevocation)" as AUTH
+  rectangle "Context\n(current state,\ncustomer state,\npolicy state,\nsignals, etc.)" as CTX
+  rectangle "Decision / Selection\n(among permissible\nalternatives)" as SEL
+  rectangle "Action /\nProgression" as ACT
+  rectangle "Outcome\nContribution" as OUT
+}
+
+package "Value Realization" {
+  rectangle "Value Stream\nProgression" as PROG
+  rectangle "Stakeholder\nValue Outcome" as VAL
+}
+
+package "Human Participation Patterns (first-class)" {
+  rectangle "Pattern A :\nHuman -> Agent" as PA
+  rectangle "Pattern B :\nAgent -> Human escalation" as PB
+  rectangle "Pattern C :\nHuman decision -> Agent execution" as PC
+  rectangle "Pattern D :\nAgent decision -> Human validation" as PD
+  rectangle "Pattern E :\nShared progression\n(Human <-> Agent)" as PE
+}
+
+VS ..> STAGE : contains
+STAGE ..> AP : contains (subordinate)
+AP --> ACTOR : performed_by
+AP --> INTENT : advances
+AP --> AUTH : governed_by
+AP --> CTX : interprets
+AP --> SEL : selects
+AP --> ACT : results_in
+AP --> OUT : contributes_to
+AP ..> PROG : affects
+PROG ..> VAL : realizes
+
+AP ..> PA : may_use
+AP ..> PB : may_use
+AP ..> PC : may_use
+AP ..> PD : may_use
+AP ..> PE : may_use
+
+note right of AP
+  Agentic Participation is
+  SUBORDINATE to Value Stream.
+
+  Agent != Agentic Participation
+  != Agentic Value Stream.
+
+  AI optional, autonomy orthogonal,
+  automation distinct.
+
+  Per CR-VAS-003 §3, §14-§17.
+end note
+
+note bottom of VS
+  Canonical Value Stream is the
+  PRIMARY semantic construct.
+
+  Agentic Value Stream specialises
+  Value Stream (not parallel).
+
+  Per CR-VAS-003 §4.1, §5.
+end note
+
+@enduml

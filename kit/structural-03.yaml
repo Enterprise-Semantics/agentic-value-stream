@@ -1,0 +1,40 @@
+# Kit test file ; Agentic Value Stream ; structural-03
+# Per CR-VAS-003 §24 (Structural tests VAS-ST-01..08).
+# Cardinal author rule: Emmanuel A. Otchere <emmanuel@otchere.com>
+
+id: KIT-AGENTIC-VALUE-STREAM-VAS-ST-03
+concept_id: ES:CONCEPT:agentic-value-stream
+test_type: structural
+qualification_condition: VAS-ST-03
+qualification_label: Agent presence does not imply AVS
+summary: Agent presence does not imply AVS
+description: |
+  The presence of an Agent without an Agentic Participation relationship and the qualification conditions of CR-VAS-002 is insufficient.
+
+  This is structural test VAS-ST-03 of 8 for Agentic Value Stream.
+  Per CR-VAS-003 §24, structural tests assert that the required
+  semantic relationships of the Agentic Participation & Value Stream
+  Realization Model are explicitly represented.
+
+expected_outcome: conformant
+boundary_assertion:
+  - Per CR-VAS-003 §24, the candidate MUST satisfy the structural
+    condition for VAS-ST-03.
+  - Source authority: CR-VAS-003, ES-ADR-053.
+  - Cardinal author rule preserved.
+
+references:
+  - source: ES-ADR-005
+    note: Agentic Value Stream decision
+  - source: ES-ADR-053
+    note: Agentic Participation & Value Stream Realization Model governance frame
+  - source: CR-VAS-003
+    note: Agentic Participation & Value Stream Realization Model
+  - source: CR-VAS-002
+    note: Formal semantic qualification (referenced where applicable)
+  - source: CR-ES-049
+    note: Per-Concept Repo Self-Containment
+
+author: Emmanuel A. Otchere (cardinal author rule, 2026-09-23)
+date: '2026-10-08'
+status: Established

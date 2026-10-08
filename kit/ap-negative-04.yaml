@@ -1,0 +1,10 @@
+id: KIT-AGENTIC-VALUE-STREAM-VAS-AP-N04
+test_id: VAS-AP-N04
+category: architecture_ap-negative
+subject: Autonomy Maximization
+description: Treating maximum autonomy as the target architecture. CR-VAS-008 §22 anti-pattern AP-A04.
+cr: CR-VAS-008 §boundary
+expect: anti_patterns.items contains AP-A04 autonomy_maximization; selection.do_not_select_according_to includes autonomy_preference.
+asserts:
+- architecture.anti_patterns.items contains item with id == AP-A04
+- architecture.selection.do_not_select_according_to contains autonomy_preference

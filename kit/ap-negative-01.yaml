@@ -1,0 +1,12 @@
+id: KIT-AGENTIC-VALUE-STREAM-VAS-AP-N01
+test_id: VAS-AP-N01
+category: architecture_ap-negative
+subject: Agent-Centric Architecture
+description: Starting with agents and attempting to discover the Value Stream afterward. CR-VAS-008 §22 anti-pattern AP-A01.
+cr: CR-VAS-008 §boundary
+expect: anti_patterns.items contains AP-A01 agent_centric_architecture; AVS-ARCH-INV-001 binds (architecture realizes semantics,
+  not defines).
+asserts:
+- architecture.anti_patterns.items contains item with id == AP-A01
+- architecture.anti_patterns.items[id=AP-A01].rejected_because is defined
+- architecture.invariants.items contains item with id == AVS-ARCH-INV-001

@@ -1,0 +1,21 @@
+id: KIT-AGENTIC-VALUE-STREAM-VAS-AP-P02
+test_id: VAS-AP-P02
+category: architecture_ap-positive
+subject: Twelve Architecture Patterns
+description: Twelve reusable architecture patterns (AP-01..AP-12) covering stage participation, decision, execution, hybrid,
+  escalation, delegation, distributed, multi-agent, orchestration, exception, overlay, and progressive delegation.
+cr: CR-VAS-008 §boundary
+expect: patterns.items contains all 12 patterns AP-01..AP-12.
+asserts:
+- architecture.patterns.items contains item with id == AP-01
+- architecture.patterns.items contains item with id == AP-02
+- architecture.patterns.items contains item with id == AP-03
+- architecture.patterns.items contains item with id == AP-04
+- architecture.patterns.items contains item with id == AP-05
+- architecture.patterns.items contains item with id == AP-06
+- architecture.patterns.items contains item with id == AP-07
+- architecture.patterns.items contains item with id == AP-08
+- architecture.patterns.items contains item with id == AP-09
+- architecture.patterns.items contains item with id == AP-10
+- architecture.patterns.items contains item with id == AP-11
+- architecture.patterns.items contains item with id == AP-12

@@ -1,0 +1,12 @@
+id: KIT-AGENTIC-VALUE-STREAM-VAS-AP-P03
+test_id: VAS-AP-P03
+category: architecture_ap-positive
+subject: Four Architecture Boundaries
+description: 'Every AVS architecture identifies four boundaries: Value, Agentic, Authority, Technology.'
+cr: CR-VAS-008 §boundary
+expect: boundary_model.items contains value_boundary, agentic_boundary, authority_boundary, technology_boundary.
+asserts:
+- architecture.boundary_model.items contains item with id == value_boundary
+- architecture.boundary_model.items contains item with id == agentic_boundary
+- architecture.boundary_model.items contains item with id == authority_boundary
+- architecture.boundary_model.items contains item with id == technology_boundary

@@ -1,7 +1,8 @@
 # Conformance ; Agentic Value Stream
 
 > CI-generated per ES-ADR-030 + ES-CR-030 + CR-AVS-001 + CR-VAS-002
-> + CR-VAS-003 + CR-VAS-004 + CR-VAS-005 + CR-VAS-006 + CR-VAS-007.
+> + CR-VAS-003 + CR-VAS-004 + CR-VAS-005 + CR-VAS-006 + CR-VAS-007
+> + CR-VAS-008.
 > Do not hand-edit.
 
 - Concept: `ES:CONCEPT:agentic-value-stream`
@@ -11,11 +12,12 @@
   acceptance; evidence Wave 4 lands CR-VAS-004 acceptance;
   measurement Wave 5 lands CR-VAS-005 acceptance; maturity Wave 6
   lands CR-VAS-006 acceptance; governance Wave 7 lands CR-VAS-007
-  acceptance; promotion to Established reserved for the acceptance
-  reviews per ES-ADR-052 + ES-ADR-053 + ES-ADR-054 + ES-ADR-055 +
-  ES-ADR-056 + ES-ADR-057)
+  acceptance; architecture Wave 8 lands CR-VAS-008 acceptance;
+  promotion to Established reserved for the acceptance reviews per
+  ES-ADR-052 + ES-ADR-053 + ES-ADR-054 + ES-ADR-055 + ES-ADR-056 +
+  ES-ADR-057 + ES-ADR-058)
 - Conformance status: semantically_conformant
-- Version: 1.5.0
+- Version: 1.6.0
 - Concept repository: Enterprise-Semantics/agentic-value-stream
 - Test path: kit/
 - Test source branch: main
@@ -40,8 +42,11 @@
 - Governance Positive: 10
 - Governance Negative: 10
 - Governance Boundary: 10
+- Architecture Positive: 6
+- Architecture Negative: 6
+- Architecture Boundary: 6
 - Integrity: 0
-- Total: 151
+- Total: 169
 
 ## Test inventory by semantic role
 
@@ -213,6 +218,33 @@
 - KIT-AGENTIC-VALUE-STREAM-VAS-GV-BT-09 ; VAS-GV-BT-09 Intervention As Control vs Intervention As Failure
 - KIT-AGENTIC-VALUE-STREAM-VAS-GV-BT-10 ; VAS-GV-BT-10 Governance RACI vs Ontology Responsibility
 
+### Architecture positive (VAS-AP-P01..P06 per CR-VAS-008 §26 + §24)
+
+- KIT-AGENTIC-VALUE-STREAM-VAS-AP-P01 ; VAS-AP-P01 Six Architectural Planes
+- KIT-AGENTIC-VALUE-STREAM-VAS-AP-P02 ; VAS-AP-P02 Twelve Architecture Patterns
+- KIT-AGENTIC-VALUE-STREAM-VAS-AP-P03 ; VAS-AP-P03 Four Architecture Boundaries
+- KIT-AGENTIC-VALUE-STREAM-VAS-AP-P04 ; VAS-AP-P04 Architecture Decision Record Template
+- KIT-AGENTIC-VALUE-STREAM-VAS-AP-P05 ; VAS-AP-P05 Architecture Quality Attributes
+- KIT-AGENTIC-VALUE-STREAM-VAS-AP-P06 ; VAS-AP-P06 Heterogeneous Value Streams
+
+### Architecture negative (VAS-AP-N01..N06 per CR-VAS-008 §22)
+
+- KIT-AGENTIC-VALUE-STREAM-VAS-AP-N01 ; VAS-AP-N01 Agent-Centric Architecture
+- KIT-AGENTIC-VALUE-STREAM-VAS-AP-N02 ; VAS-AP-N02 Agentic Workflow Ontology
+- KIT-AGENTIC-VALUE-STREAM-VAS-AP-N03 ; VAS-AP-N03 Full-Agentification Assumption
+- KIT-AGENTIC-VALUE-STREAM-VAS-AP-N04 ; VAS-AP-N04 Autonomy Maximization
+- KIT-AGENTIC-VALUE-STREAM-VAS-AP-N05 ; VAS-AP-N05 Technology-Led Semantics
+- KIT-AGENTIC-VALUE-STREAM-VAS-AP-N06 ; VAS-AP-N06 Orchestration Equals Agenticity
+
+### Architecture boundary (VAS-AP-BT-01..BT-06 per CR-VAS-008 §26 + §22 + §24)
+
+- KIT-AGENTIC-VALUE-STREAM-VAS-AP-BT-01 ; VAS-AP-BT-01 Architecture vs Semantic Qualification
+- KIT-AGENTIC-VALUE-STREAM-VAS-AP-BT-02 ; VAS-AP-BT-02 Multi-Agent vs Agentic
+- KIT-AGENTIC-VALUE-STREAM-VAS-AP-BT-03 ; VAS-AP-BT-03 Orchestrator vs Agentic Participant
+- KIT-AGENTIC-VALUE-STREAM-VAS-AP-BT-04 ; VAS-AP-BT-04 Technology Substitution vs AVS Identity
+- KIT-AGENTIC-VALUE-STREAM-VAS-AP-BT-05 ; VAS-AP-BT-05 Context Access vs Context Interpretation
+- KIT-AGENTIC-VALUE-STREAM-VAS-AP-BT-06 ; VAS-AP-BT-06 Progressive Delegation vs Maturity Progression
+
 ## Boundary Assertions Covered
 
 - per_es_adr_005
@@ -223,9 +255,10 @@
 - per_cr_vas_005_measurement_value
 - per_cr_vas_006_maturity_capability
 - per_cr_vas_007_governance_lifecycle
+- per_cr_vas_008_architecture_patterns
 
 ## Provenance
 
-- decision: ES-ADR-005, ES-ADR-031, ES-ADR-049, ES-ADR-051, ES-ADR-052, ES-ADR-053, ES-ADR-054, ES-ADR-055, ES-ADR-056, ES-ADR-057
-- implementation: CR-ES-005, CR-AVS-001, CR-VAS-002, CR-VAS-003, CR-VAS-004, CR-VAS-005, CR-VAS-006, CR-VAS-007
+- decision: ES-ADR-005, ES-ADR-031, ES-ADR-049, ES-ADR-051, ES-ADR-052, ES-ADR-053, ES-ADR-054, ES-ADR-055, ES-ADR-056, ES-ADR-057, ES-ADR-058
+- implementation: CR-ES-005, CR-AVS-001, CR-VAS-002, CR-VAS-003, CR-VAS-004, CR-VAS-005, CR-VAS-006, CR-VAS-007, CR-VAS-008
 - date: 2026-10-08

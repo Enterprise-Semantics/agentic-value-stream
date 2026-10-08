@@ -1,0 +1,11 @@
+id: KIT-AGENTIC-VALUE-STREAM-VAS-AP-BT-01
+test_id: VAS-AP-BT-01
+category: architecture_ap-boundary
+subject: Architecture vs Semantic Qualification
+description: Architecture realizes AVS semantics; it does NOT define them. CR-VAS-008 §2 + AVS-ARCH-INV-001.
+cr: CR-VAS-008 §boundary
+expect: principle declares the one-directional semantic dependency.
+asserts:
+- architecture.principle contains Architecture realizes
+- architecture.principle contains does NOT define
+- architecture.invariants.items contains item with id == AVS-ARCH-INV-001

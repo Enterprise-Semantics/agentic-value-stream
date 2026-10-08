@@ -1,0 +1,10 @@
+id: KIT-AGENTIC-VALUE-STREAM-VAS-AP-BT-06
+test_id: VAS-AP-BT-06
+category: architecture_ap-boundary
+subject: Progressive Delegation vs Maturity Progression
+description: Progressive delegation is NOT the same as maturity progression. AP-12.
+cr: CR-VAS-008 §boundary
+expect: AP-12.requirement explicitly disclaims mandatory maturity progression.
+asserts:
+- architecture.patterns.items contains item with id == AP-12
+- architecture.patterns.items[id=AP-12].requirement contains NOT be interpreted as mandatory maturity progression

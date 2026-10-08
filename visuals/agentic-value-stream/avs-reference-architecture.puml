@@ -1,0 +1,32 @@
+@startuml avs-reference-architecture
+title AVS Reference Architecture ; Six Planes (CR-VAS-008)
+skinparam backgroundColor #FFFFFF
+skinparam roundCorner 10
+skinparam shadowing false
+
+rectangle "P1\nValue & Outcome\nPlane" as P1
+rectangle "P2\nValue Stream\nRealization Plane" as P2
+rectangle "P3\nAgentic\nParticipation Plane" as P3
+rectangle "P4\nControl &\nGovernance Plane" as P4
+rectangle "P5\nKnowledge &\nContext Plane" as P5
+rectangle "P6\nTechnology &\nIntegration Plane" as P6
+
+P1 -> P2
+P2 -> P3
+P3 -> P4
+P4 -> P5
+P5 -> P6
+
+note right of P6
+  Technology is realization
+  infrastructure, not AVS
+  semantics.
+end note
+
+note left of P1
+  P1 is the business anchor.
+  P6 stays at the bottom of
+  the semantic dependency chain.
+end note
+
+@enduml

@@ -1,0 +1,11 @@
+id: KIT-AGENTIC-VALUE-STREAM-VAS-AP-P04
+test_id: VAS-AP-P04
+category: architecture_ap-positive
+subject: Architecture Decision Record Template
+description: Every material architecture should document an architecture decision record.
+cr: CR-VAS-008 §boundary
+expect: decision_record.template defines architecture_decision with id, value_stream, agentic_participation, pattern, rationale,
+  authority, context, action_space, human_interaction, fallback, risks, measures, governance.
+asserts:
+- architecture.decision_record.template contains architecture_decision
+- architecture.decision_record.description is defined

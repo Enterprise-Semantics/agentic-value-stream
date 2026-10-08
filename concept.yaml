@@ -95,9 +95,40 @@ definition: |
 # Lifecycle state (independent of conformance state per CR-AVS-001 §14).
 lifecycle:
   status: candidate
-  version: 1.5.0
+  version: 1.6.0
   date: 2026-10-08
   promotion_history:
+    - version: 1.6.0
+      date: 2026-10-08
+      status: candidate
+      note: >-
+        Architecture Patterns & Reference Architectures per
+        CR-VAS-008. Introduces the architecture block: principle
+        (architecture realizes AVS semantics; it does NOT define
+        them), six architectural planes (P1 Value & Outcome, P2
+        Value Stream Realization, P3 Agentic Participation, P4
+        Control & Governance, P5 Knowledge & Context, P6
+        Technology & Integration), canonical architecture pattern
+        (Value Stream -> Agentic Participation -> Intent /
+        Context / Authority -> Decision -> Action -> Outcome,
+        surrounded by Governance), twelve reusable architecture
+        patterns (AP-01..AP-12: stage participation, decision,
+        execution, human-agent hybrid, escalation, delegation,
+        distributed, multi-agent, orchestration, exception
+        resolution, coordination overlay, progressive delegation),
+        four architectural boundaries (Value, Agentic, Authority,
+        Technology), architecture decision record template,
+        twelve architecture quality attributes, architecture
+        reference selection criteria, six architecture
+        anti-patterns (AP-A01 agent-centric, AP-A02 agentic
+        workflow ontology, AP-A03 full-agentification, AP-A04
+        autonomy maximization, AP-A05 technology-led semantics,
+        AP-A06 orchestration equals agenticity), technology
+        neutrality principle, six normative invariants
+        (AVS-ARCH-INV-001..006), and 18 architecture tests (6
+        positive + 6 negative + 6 boundary = 169 total).
+        Promotion to Established reserved for CR-VAS-008
+        acceptance review (governance frame ES-ADR-058).
     - version: 1.5.0
       date: 2026-10-08
       status: candidate
@@ -257,7 +288,10 @@ conformance:
     gv_positive: 10
     gv_negative: 10
     gv_boundary: 10
-    total: 151
+    ap_positive: 6
+    ap_negative: 6
+    ap_boundary: 6
+    total: 169
 
 # Concept repository reference (renamed per ES-ADR-051).
 concept_repo: Enterprise-Semantics/agentic-value-stream
@@ -3885,4 +3919,598 @@ governance:
       trigger revalidation. Authority SHALL be revocable. Runtime
       instructions SHALL NOT supersede governing authority or
       policy. Governance decisions SHALL be traceable.
+
+
+# === Architecture Patterns & Reference Architectures (CR-VAS-008) ===
+#
+# Per CR-VAS-008 (Agentic Value Stream Architecture Patterns &
+# Reference Architectures): Adds the `architecture:` block
+# formalising:
+#   (1) the architecture principle (architecture realizes AVS
+#       semantics; it does NOT define them),
+#   (2) six architectural planes (P1 Value & Outcome, P2 Value
+#       Stream Realization, P3 Agentic Participation, P4 Control &
+#       Governance, P5 Knowledge & Context, P6 Technology &
+#       Integration),
+#   (3) the canonical architecture pattern (Value Stream -> Agentic
+#       Participation -> Intent/Context/Authority -> Decision ->
+#       Action -> Outcome, surrounded by Governance),
+#   (4) twelve reusable architecture patterns (AP-01..AP-12),
+#   (5) four architectural boundaries (Value, Agentic, Authority,
+#       Technology),
+#   (6) the architecture decision record model,
+#   (7) architecture quality attributes (12),
+#   (8) architecture reference selection criteria,
+#   (9) six architecture anti-patterns (AP-A01..A06),
+#   (10) the technology-neutrality principle,
+#   (11) six normative invariants (AVS-ARCH-INV-001..006), and
+#   (12) 18 architecture tests (6 positive + 6 negative + 6 boundary
+#        = 169 total kit coverage).
+#
+# Cardinal author rule: Emmanuel A. Otchere <emmanuel@otchere.com>
+# Authored by: Emmanuel A. Otchere (cardinal author rule, 2026-10-08)
+# Last revised: 2026-10-08 (CR-VAS-008 architecture block landed)
+
+architecture:
+
+  specializes: ES:CONCEPT:agentic-value-stream
+
+  # ----------------------------------------------------------------
+  # 1. Core Principle
+  # ----------------------------------------------------------------
+  principle: |
+    Architecture realizes Agentic Value Stream semantics; it does
+    NOT define them.
+
+    Therefore:
+
+      AVS Semantics
+        -> Participation Model
+          -> Governance & Authority
+            -> Architecture Pattern
+              -> Technology Realization
+
+    NOT:
+
+      Technology Platform
+        -> Agent Architecture
+          -> "Agentic Value Stream"
+
+    The latter reverses the semantic dependency.
+
+  # ----------------------------------------------------------------
+  # 2. Normative question
+  # ----------------------------------------------------------------
+  normative_question: |
+    How can Agentic Value Streams be architected in different
+    realization patterns while preserving the same underlying
+    semantics?
+
+  # ----------------------------------------------------------------
+  # 3. Architecture scope (covered) and not covered (out of scope)
+  # ----------------------------------------------------------------
+  scope:
+    covers:
+      - reference_architectures
+      - realization_patterns
+      - agent_placement
+      - human_agent_interaction
+      - decision_placement
+      - orchestration
+      - knowledge_context_access
+      - policy_enforcement
+      - authority_enforcement
+      - observability
+      - measurement
+      - fallback
+      - multi_agent_coordination
+      - integration_boundaries
+    does_not_prescribe:
+      - particular_ai_model
+      - agent_framework
+      - cloud_provider
+      - orchestration_platform
+      - programming_language
+      - workflow_product
+      - model_architecture
+      - vendor
+
+  # ----------------------------------------------------------------
+  # 4. Architectural principle (Value Stream as primary object)
+  # ----------------------------------------------------------------
+  primary_object:
+    description: |
+      The primary architectural object remains the Value Stream
+      realization. Agentic components are positioned according to
+      where delegated decision/action capability is required.
+    example: |
+      Value Stream
+        +-- Value Stage A
+        |     +-- Human
+        +-- Value Stage B
+        |     +-- Agentic Participation
+        +-- Value Stage C
+        |     +-- Automation
+        +-- Value Stage D
+              +-- Human + Agent
+    principle: |
+      A Value Stream can therefore be heterogeneous.
+
+  # ----------------------------------------------------------------
+  # 5. Architectural planes (P1..P6)
+  # ----------------------------------------------------------------
+  planes:
+    description: |
+      The canonical AVS reference architecture uses six
+      architectural planes. This layering deliberately keeps
+      technology at the bottom of the semantic dependency chain.
+    items:
+      - id: P1
+        name: value_and_outcome_plane
+        description: Value & Outcome Plane.
+        represents:
+          - stakeholder
+          - outcome
+          - value
+          - value_stream
+          - value_realization
+          - outcome_measures
+        note: This is the business anchor.
+      - id: P2
+        name: value_stream_realization_plane
+        description: Value Stream Realization Plane.
+        represents:
+          - value_stages
+          - progression
+          - decisions
+          - actions
+          - handoffs
+          - dependencies
+          - realization_boundaries
+        principle: |
+          Agentic participation is positioned here rather than
+          creating a parallel "agentic process."
+      - id: P3
+        name: agentic_participation_plane
+        description: Agentic Participation Plane.
+        represents:
+          - actor
+          - entrusted_intent
+          - contextual_interpretation
+          - action_selection
+          - progression
+          - coordination
+          - intervention
+        principle: |
+          This plane implements the semantics established in
+          CR-VAS-003.
+      - id: P4
+        name: control_and_governance_plane
+        description: Control & Governance Plane.
+        represents:
+          - authority
+          - policy
+          - constraints
+          - risk
+          - approval
+          - escalation
+          - intervention
+          - revocation
+          - audit
+          - governance
+      - id: P5
+        name: knowledge_and_context_plane
+        description: Knowledge & Context Plane.
+        represents:
+          - enterprise_data
+          - knowledge
+          - business_state
+          - customer_context
+          - external_signals
+          - policies
+          - historical_information
+        principle: |
+          The architecture MUST distinguish access to context from
+          interpretation of context.
+      - id: P6
+        name: technology_and_integration_plane
+        description: Technology & Integration Plane.
+        represents:
+          - applications
+          - apis
+          - services
+          - agent_runtimes
+          - models
+          - workflow_systems
+          - automation
+          - event_infrastructure
+          - data_platforms
+        principle: |
+          Technology is realization infrastructure, not AVS
+          semantics.
+
+  # ----------------------------------------------------------------
+  # 6. Canonical architecture pattern
+  # ----------------------------------------------------------------
+  canonical_pattern:
+    description: |
+      The default pattern is Value Stream -> Agentic Participation
+      -> Intent / Context / Authority -> Decision / Selection ->
+      Action -> Value Outcome. Governance surrounds the entire
+      realization.
+    diagram: |
+      Value Stream
+        |
+        v
+      Agentic Participation
+        |
+      +---+----+
+      v   v    v
+      Intent Context Authority
+        |
+        v
+      Decision / Selection
+        |
+        v
+      Action
+        |
+        v
+      Value Outcome
+    governance_surround: |
+      Governance surrounds the entire realization:
+        Policy + Authority + Risk + Intervention + Audit
+      around: Value Stream -> Agentic Participation -> Outcome
+      grounded in: Technology
+
+  # ----------------------------------------------------------------
+  # 7. Architecture patterns (12)
+  # ----------------------------------------------------------------
+  patterns:
+    description: |
+      Twelve reusable architecture patterns.
+    items:
+      - id: AP-01
+        name: agentic_stage_participation
+        description: Agentic Stage Participation.
+        shape: |
+          Stage A -> [Agentic Stage Participation] -> Stage C.
+        use_when:
+          - only_one_stage_requires_contextual_decisions
+          - other_stages_remain_human_or_automated
+          - localized_delegation_is_preferable
+        warning: |
+          This is NOT an "Agentic Value Stage" semantic type.
+      - id: AP-02
+        name: agentic_decision
+        description: Agentic Decision.
+        shape: |
+          Context -> Agentic Decision -> Selected Path -> Value
+          Stream Progression.
+        examples:
+          - case_routing
+          - eligibility_determination
+          - treatment_of_an_exception
+          - prioritization
+          - resource_allocation
+        requirement: |
+          The architecture must demonstrate that the decision
+          affects Value Stream progression.
+      - id: AP-03
+        name: agentic_execution
+        description: Agentic Execution.
+        shape: |
+          Intent -> Context -> Action Selection -> Execution.
+        note: |
+          The agent may select among permissible execution
+          alternatives.
+      - id: AP-04
+        name: human_agent_hybrid
+        description: Human-Agent Hybrid.
+        shape_primary: |
+          Human Intent -> Agent Interpretation -> Agent
+          Recommendation / Selection -> Human Decision -> Agent
+          Execution.
+        shape_alternative: |
+          Agent -> Exception -> Human -> Resolution -> Agent.
+        note: |
+          This is a first-class AVS architecture pattern.
+      - id: AP-05
+        name: agent_to_human_escalation
+        description: Agent-to-Human Escalation.
+        shape: |
+          Agent -> Within Authority?
+            -> YES: Continue
+            -> NO: Escalate -> Human.
+        requirement: |
+          The escalation threshold must be explicit.
+      - id: AP-06
+        name: human_to_agent_delegation
+        description: Human-to-Agent Delegation.
+        shape: |
+          Human / Role -> Entrusted Intent -> Bounded Authority ->
+          Agentic Participation.
+        note: |
+          Delegation is not equivalent to issuing a task
+          instruction.
+      - id: AP-07
+        name: distributed_agentic_participation
+        description: Distributed Agentic Participation.
+        shape: |
+          Value Stream
+            |
+          +-+-----+--+
+          v         v
+          Agent A  Agent B
+        requirement: |
+          Each participation point must retain: intent; authority;
+          context; action selection; outcome contribution.
+      - id: AP-08
+        name: coordinated_multi_agent_realization
+        description: Coordinated Multi-Agent Realization.
+        coordination_modes:
+          - task_allocation
+          - negotiation
+          - information_exchange
+          - shared_state
+          - escalation
+          - synchronization
+        note: |
+          Multi-agent architecture is optional. It is not a semantic
+          requirement for AVS.
+      - id: AP-09
+        name: agentic_orchestration
+        description: Agentic Orchestration.
+        shape: |
+          Intent -> Orchestrator -> Agent A / Agent B / Human ->
+          Outcome.
+        warning: |
+          The orchestrator itself does NOT automatically qualify as
+          Agentic. Its participation must satisfy the AVS
+          qualification rules.
+      - id: AP-10
+        name: agentic_exception_resolution
+        description: Agentic Exception Resolution.
+        shape: |
+          Normal Flow -> Exception -> Contextual Interpretation
+          -> Agentic Selection -> Resolution -> Resume Value
+          Stream.
+        importance: |
+          Especially important because agenticity need not dominate
+          the entire Value Stream.
+      - id: AP-11
+        name: agentic_coordination_overlay
+        description: Agentic Coordination Overlay.
+        shape: |
+          Stage A ----Stage D
+                 \\   //
+            Agentic Overlay
+        note: |
+          The overlay is an architectural realization pattern. It
+          is NOT a new semantic entity such as "Agentic Workflow."
+      - id: AP-12
+        name: progressive_delegation
+        description: Progressive Delegation.
+        shape: |
+          Advisory -> Delegated Selection -> Bounded Execution ->
+          Expanded Delegation.
+        requirement: |
+          Progression must be governed by evidence and authority
+          policy. It must NOT be interpreted as mandatory maturity
+          progression.
+
+  # ----------------------------------------------------------------
+  # 8. Architecture boundary model
+  # ----------------------------------------------------------------
+  boundary_model:
+    description: |
+      Every AVS architecture SHOULD identify four boundaries.
+    items:
+      - id: value_boundary
+        name: Value Boundary
+        description: Where Value Stream realization begins and ends.
+      - id: agentic_boundary
+        name: Agentic Boundary
+        description: |
+          Where delegated agentic participation occurs.
+      - id: authority_boundary
+        name: Authority Boundary
+        description: |
+          What the agent may and may not decide or execute.
+      - id: technology_boundary
+        name: Technology Boundary
+        description: |
+          Which systems and infrastructure implement the
+          realization.
+    diagram: |
+      +-----------------------------------+
+      |        VALUE BOUNDARY             |
+      |                                   |
+      |  +-----------------------------+  |
+      |  |     AGENTIC BOUNDARY        |  |
+      |  |                             |  |
+      |  |  Intent -> Context -> Sel.  |  |
+      |  |           v                 |  |
+      |  |   AUTHORITY BOUNDARY         |  |
+      |  |           v                 |  |
+      |  |         Action              |  |
+      |  +-----------------------------+  |
+      |                                   |
+      |     TECHNOLOGY BOUNDARY           |
+      +-----------------------------------+
+
+  # ----------------------------------------------------------------
+  # 9. Architecture decision record model
+  # ----------------------------------------------------------------
+  decision_record:
+    description: |
+      Every material architecture should document an architecture
+      decision record.
+    template: |
+      architecture_decision:
+        id:
+        value_stream:
+        agentic_participation:
+        pattern:
+        rationale:
+        authority:
+        context:
+        action_space:
+        human_interaction:
+        fallback:
+        risks:
+        measures:
+        governance:
+
+  # ----------------------------------------------------------------
+  # 10. Architecture quality attributes (12)
+  # ----------------------------------------------------------------
+  quality_attributes:
+    items:
+      - value_effectiveness
+      - semantic_integrity
+      - authority_integrity
+      - safety
+      - explainability
+      - observability
+      - resilience
+      - reversibility
+      - intervention
+      - scalability
+      - interoperability
+      - maintainability
+      - auditability
+
+  # ----------------------------------------------------------------
+  # 11. Architecture reference selection
+  # ----------------------------------------------------------------
+  selection:
+    select_according_to:
+      - value_stream_structure
+      - decision_materiality
+      - authority
+      - risk
+      - contextual_complexity
+      - intervention_requirements
+      - reversibility
+      - outcome_criticality
+      - integration_complexity
+    do_not_select_according_to:
+      - novelty
+      - agent_count
+      - model_size
+      - autonomy_preference
+
+  # ----------------------------------------------------------------
+  # 12. Architecture anti-patterns (6)
+  # ----------------------------------------------------------------
+  anti_patterns:
+    description: |
+      The following SHALL be rejected as architecture anti-patterns.
+    items:
+      - id: AP-A01
+        name: agent_centric_architecture
+        claim: |
+          Starting with agents and attempting to discover the Value
+          Stream afterward.
+        rejected_because: |
+          Architecture realizes AVS semantics; it does not define
+          them. The primary architectural object is the Value
+          Stream.
+      - id: AP-A02
+        name: agentic_workflow_ontology
+        claim: |
+          Creating a parallel workflow hierarchy merely because
+          agents participate.
+        rejected_because: |
+          Agentic coordination may overlay multiple Value Stages
+          without creating a new Value Stream hierarchy
+          (AP-11). "Agentic Workflow" is NOT a new semantic entity.
+      - id: AP-A03
+        name: full_agentification_assumption
+        claim: |
+          Assuming every Value Stage must become agentic.
+        rejected_because: |
+          A Value Stream can be heterogeneous (human, automation,
+          agentic participation in different stages).
+      - id: AP-A04
+        name: autonomy_maximization
+        claim: |
+          Treating maximum autonomy as the target architecture.
+        rejected_because: |
+          Autonomy is NOT a semantic requirement for AVS. The
+          objective is appropriate delegated value realization
+          within authority boundaries, not maximum delegation.
+      - id: AP-A05
+        name: technology_led_semantics
+        claim: |
+          Defining AVS based on the architecture of a particular
+          agent platform.
+        rejected_because: |
+          The implementation layer may change without changing AVS
+          semantics. Technology MUST NOT define AVS qualification.
+      - id: AP-A06
+        name: orchestration_equals_agenticity
+        claim: |
+          Assuming an orchestrator is automatically an agentic
+          participant.
+        rejected_because: |
+          An orchestrator's participation must satisfy AVS
+          qualification rules independently.
+
+  # ----------------------------------------------------------------
+  # 13. Technology-neutrality principle
+  # ----------------------------------------------------------------
+  technology_neutrality:
+    principle: |
+      The implementation technology is an implementation concern,
+      not a qualification criterion. An AVS may be implemented
+      using: one agent; multiple agents; an AI model; no AI model;
+      deterministic software; workflow; automation; human-agent
+      combinations; conventional applications; combinations.
+    substitution_principle: |
+      If both implementations preserve intent, authority, context,
+      selection, action, outcome, and governance, then platform
+      substitution SHALL NOT inherently change AVS identity.
+
+  # ----------------------------------------------------------------
+  # 14. Invariants (6)
+  # ----------------------------------------------------------------
+  invariants:
+    description: |
+      CR-VAS-008 introduces the following invariants.
+    items:
+      - id: AVS-ARCH-INV-001
+        statement: |
+          Architecture realizes AVS semantics; it does NOT define
+          them.
+      - id: AVS-ARCH-INV-002
+        statement: |
+          Technology MUST NOT define AVS qualification.
+      - id: AVS-ARCH-INV-003
+        statement: |
+          Agent framework choice MUST NOT define agenticity.
+      - id: AVS-ARCH-INV-004
+        statement: |
+          Orchestrator presence MUST NOT establish agentic
+          qualification.
+      - id: AVS-ARCH-INV-005
+        statement: |
+          Multi-agent architecture is OPTIONAL, not a semantic
+          requirement.
+      - id: AVS-ARCH-INV-006
+        statement: |
+          Heterogeneous Value Streams (human + automation + agent)
+          are a first-class AVS architecture pattern.
+
+  # ----------------------------------------------------------------
+  # 15. Boundary assertions
+  # ----------------------------------------------------------------
+  boundary_assertions:
+    per_cr_vas_008_architecture_patterns: |
+      Per CR-VAS-008, architecture realizes AVS semantics; it does
+      NOT define them. Six architectural planes (P1..P6) keep
+      technology at the bottom of the semantic dependency chain.
+      Technology substitution SHALL NOT inherently change AVS
+      identity as long as intent, authority, context, selection,
+      action, outcome, and governance are preserved.
 

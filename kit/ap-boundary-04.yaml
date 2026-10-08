@@ -1,0 +1,11 @@
+id: KIT-AGENTIC-VALUE-STREAM-VAS-AP-BT-04
+test_id: VAS-AP-BT-04
+category: architecture_ap-boundary
+subject: Technology Substitution vs AVS Identity
+description: Technology substitution SHALL NOT inherently change AVS identity if intent, authority, context, selection, action,
+  outcome, and governance are preserved.
+cr: CR-VAS-008 §boundary
+expect: technology_neutrality.substitution_principle declares the invariance.
+asserts:
+- architecture.technology_neutrality.substitution_principle is defined
+- architecture.technology_neutrality.substitution_principle contains SHALL NOT

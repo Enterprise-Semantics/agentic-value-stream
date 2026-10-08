@@ -443,3 +443,56 @@ measurement_alignment:
     - governance_vs_measurement: |
         Governance metrics complement (do NOT replace) measurement
         metrics.
+
+  # CR-VAS-008 architecture alignment block.
+  # Architecture is a CR-VAS-008 framework construct; it does not
+  # modify the WSF. WSF alignment covers the architecture-to-kernel
+  # map where an analog exists.
+  cr: CR-VAS-008
+  adr: ES-ADR-058
+  alignment_kind: repository_framework_overlay
+  semantic_alignment:
+    wsf_target: null
+    description: |
+      CR-VAS-008 architecture model is a translation layer
+      between AVS semantics and implementation. It is
+      repository-specific and does not modify the WSF metamodel.
+  methodological_alignment:
+    wsf_target: null
+    description: |
+      CR-VAS-008 methodology (six architectural planes, twelve
+      reusable patterns, four architectural boundaries, six
+      architecture anti-patterns) is repository-specific; not
+      borrowed from WSF.
+  plane_alignment:
+    - avs_plane: value_and_outcome
+      wsf_target: wsf_value_stream
+      notes: P1 aligns with WSF Value Stream outcome concepts where
+        present.
+    - avs_plane: value_stream_realization
+      wsf_target: wsf_value_stream
+      notes: P2 aligns with WSF Value Stream realization where
+        present.
+    - avs_plane: agentic_participation
+      wsf_target: null
+      notes: Repository-specific.
+    - avs_plane: control_and_governance
+      wsf_target: null
+      notes: Repository-specific.
+    - avs_plane: knowledge_and_context
+      wsf_target: null
+      notes: Repository-specific.
+    - avs_plane: technology_and_integration
+      wsf_target: null
+      notes: Repository-specific.
+  separation_principles:
+    - architecture_vs_qualification: |
+        Architecture realizes AVS semantics; it does NOT define
+        them.
+    - architecture_vs_technology: |
+        Technology substitution SHALL NOT inherently change AVS
+        identity as long as intent, authority, context, selection,
+        action, outcome, and governance are preserved.
+    - architecture_vs_maturity: |
+        Progressive delegation is NOT the same as maturity
+        progression.

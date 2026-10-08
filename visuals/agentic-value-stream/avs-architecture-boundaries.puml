@@ -1,0 +1,24 @@
+@startuml avs-architecture-boundaries
+title AVS Architecture Boundaries (CR-VAS-008)
+skinparam backgroundColor #FFFFFF
+skinparam roundCorner 10
+skinparam shadowing false
+
+rectangle "Value Boundary\nWhere realization begins/ends" as VB
+rectangle "Agentic Boundary\nWhere agentic participation occurs" as AB
+rectangle "Authority Boundary\nWhat may/may not decide or execute" as AUB
+rectangle "Technology Boundary\nWhich systems implement realization" as TB
+
+VB -[hidden]- AB
+AB -[hidden]- AUB
+AUB -[hidden]- TB
+
+note bottom
+  Every AVS architecture SHOULD identify
+  these four boundaries. The technology
+  boundary sits inside the value boundary,
+  which sits inside the agentic boundary,
+  which sits inside the authority boundary.
+end note
+
+@enduml

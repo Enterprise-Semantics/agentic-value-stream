@@ -1,0 +1,11 @@
+id: KIT-AGENTIC-VALUE-STREAM-VAS-AP-N03
+test_id: VAS-AP-N03
+category: architecture_ap-negative
+subject: Full-Agentification Assumption
+description: Assuming every Value Stage must become agentic. CR-VAS-008 §22 anti-pattern AP-A03.
+cr: CR-VAS-008 §boundary
+expect: anti_patterns.items contains AP-A03 full_agentification_assumption; primary_object.principle allows heterogeneity.
+asserts:
+- architecture.anti_patterns.items contains item with id == AP-A03
+- architecture.primary_object.principle contains heterogeneous
+- architecture.invariants.items contains item with id == AVS-ARCH-INV-006

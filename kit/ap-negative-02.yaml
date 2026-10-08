@@ -1,0 +1,11 @@
+id: KIT-AGENTIC-VALUE-STREAM-VAS-AP-N02
+test_id: VAS-AP-N02
+category: architecture_ap-negative
+subject: Agentic Workflow Ontology
+description: Creating a parallel workflow hierarchy merely because agents participate. CR-VAS-008 §22 anti-pattern AP-A02.
+cr: CR-VAS-008 §boundary
+expect: anti_patterns.items contains AP-A02 agentic_workflow_ontology; AP-11 explicitly notes 'Agentic Workflow' is NOT a
+  new semantic entity.
+asserts:
+- architecture.anti_patterns.items contains item with id == AP-A02
+- architecture.patterns.items[id=AP-11].note contains Agentic Workflow

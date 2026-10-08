@@ -1,0 +1,10 @@
+id: KIT-AGENTIC-VALUE-STREAM-VAS-AP-BT-03
+test_id: VAS-AP-BT-03
+category: architecture_ap-boundary
+subject: Orchestrator vs Agentic Participant
+description: Orchestrator presence does NOT establish agentic qualification. AP-09 + AVS-ARCH-INV-004.
+cr: CR-VAS-008 §boundary
+expect: AP-09 orchestrator must satisfy AVS qualification independently.
+asserts:
+- architecture.patterns.items[id=AP-09].warning contains orchestrator itself
+- architecture.invariants.items contains item with id == AVS-ARCH-INV-004

@@ -1,0 +1,12 @@
+id: KIT-AGENTIC-VALUE-STREAM-VAS-AP-N05
+test_id: VAS-AP-N05
+category: architecture_ap-negative
+subject: Technology-Led Semantics
+description: Defining AVS based on the architecture of a particular agent platform. CR-VAS-008 §22 anti-pattern AP-A05.
+cr: CR-VAS-008 §boundary
+expect: anti_patterns.items contains AP-A05 technology_led_semantics; AVS-ARCH-INV-002 binds (technology MUST NOT define AVS
+  qualification).
+asserts:
+- architecture.anti_patterns.items contains item with id == AP-A05
+- architecture.invariants.items contains item with id == AVS-ARCH-INV-002
+- architecture.invariants.items contains item with id == AVS-ARCH-INV-003

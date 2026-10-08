@@ -1,0 +1,39 @@
+@startuml avs-architecture-patterns
+title AVS Architecture Patterns AP-01..AP-12 (CR-VAS-008)
+skinparam backgroundColor #FFFFFF
+skinparam roundCorner 10
+skinparam shadowing false
+
+rectangle "AP-01\nStage\nParticipation" as A1
+rectangle "AP-02\nAgentic\nDecision" as A2
+rectangle "AP-03\nAgentic\nExecution" as A3
+rectangle "AP-04\nHuman-Agent\nHybrid" as A4
+rectangle "AP-05\nAgent->Human\nEscalation" as A5
+rectangle "AP-06\nHuman->Agent\nDelegation" as A6
+rectangle "AP-07\nDistributed\nParticipation" as A7
+rectangle "AP-08\nMulti-Agent\nCoordination" as A8
+rectangle "AP-09\nAgentic\nOrchestration" as A9
+rectangle "AP-10\nException\nResolution" as A10
+rectangle "AP-11\nCoordination\nOverlay" as A11
+rectangle "AP-12\nProgressive\nDelegation" as A12
+
+A1 -[hidden]- A2
+A2 -[hidden]- A3
+A3 -[hidden]- A4
+A4 -[hidden]- A5
+A5 -[hidden]- A6
+A6 -[hidden]- A7
+A7 -[hidden]- A8
+A8 -[hidden]- A9
+A9 -[hidden]- A10
+A10 -[hidden]- A11
+A11 -[hidden]- A12
+
+note bottom
+  AP-08 multi-agent is OPTIONAL, not a semantic requirement.
+  AP-09 orchestrator does NOT automatically qualify as Agentic.
+  AP-11 is NOT a new semantic entity such as "Agentic Workflow."
+  AP-12 progressive delegation is NOT maturity progression.
+end note
+
+@enduml

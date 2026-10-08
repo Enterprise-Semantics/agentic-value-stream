@@ -1,0 +1,12 @@
+id: KIT-AGENTIC-VALUE-STREAM-VAS-AP-N06
+test_id: VAS-AP-N06
+category: architecture_ap-negative
+subject: Orchestration Equals Agenticity
+description: Assuming an orchestrator is automatically an agentic participant. CR-VAS-008 §22 anti-pattern AP-A06.
+cr: CR-VAS-008 §boundary
+expect: anti_patterns.items contains AP-A06 orchestration_equals_agenticity; AP-09 warning states orchestrator does NOT automatically
+  qualify as Agentic; AVS-ARCH-INV-004 binds.
+asserts:
+- architecture.anti_patterns.items contains item with id == AP-A06
+- architecture.patterns.items[id=AP-09].warning contains automatically qualify
+- architecture.invariants.items contains item with id == AVS-ARCH-INV-004

@@ -1,0 +1,11 @@
+id: KIT-AGENTIC-VALUE-STREAM-VAS-AP-BT-05
+test_id: VAS-AP-BT-05
+category: architecture_ap-boundary
+subject: Context Access vs Context Interpretation
+description: The architecture MUST distinguish access to context from interpretation of context. CR-VAS-008 §6 P5.
+cr: CR-VAS-008 §boundary
+expect: planes.items[id=P5].principle declares the distinction.
+asserts:
+- architecture.planes.items contains item with id == P5
+- architecture.planes.items[id=P5].principle contains distinguish access to context
+- architecture.planes.items[id=P5].principle contains interpretation of context

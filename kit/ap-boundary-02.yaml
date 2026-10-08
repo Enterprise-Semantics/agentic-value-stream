@@ -1,0 +1,11 @@
+id: KIT-AGENTIC-VALUE-STREAM-VAS-AP-BT-02
+test_id: VAS-AP-BT-02
+category: architecture_ap-boundary
+subject: Multi-Agent vs Agentic
+description: Multi-agent architecture is OPTIONAL, not a semantic requirement. CR-VAS-008 §15 + AP-08 + AVS-ARCH-INV-005.
+cr: CR-VAS-008 §boundary
+expect: patterns AP-08 explicitly states multi-agent architecture is optional; invariant AVS-ARCH-INV-005 binds.
+asserts:
+- architecture.patterns.items[id=AP-08].note contains optional
+- architecture.patterns.items[id=AP-08].note contains not a semantic requirement
+- architecture.invariants.items contains item with id == AVS-ARCH-INV-005

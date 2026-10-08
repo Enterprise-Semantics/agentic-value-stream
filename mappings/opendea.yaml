@@ -438,3 +438,50 @@ measurement_alignment:
     - governance_vs_measurement: |
         Governance metrics complement (do NOT replace) measurement
         metrics.
+
+  # CR-VAS-008 architecture alignment block.
+  cr: CR-VAS-008
+  adr: ES-ADR-058
+  alignment_kind: repository_framework_overlay
+  semantic_alignment:
+    opendea_target: null
+    description: |
+      CR-VAS-008 architecture model is a translation layer. It is
+      repository-specific and does not modify the OpenDEA
+      metamodel.
+  methodological_alignment:
+    opendea_target: null
+    description: |
+      CR-VAS-008 methodology is repository-specific; not borrowed
+      from OpenDEA.
+  plane_alignment:
+    - avs_plane: value_and_outcome
+      opendea_target: opendea_value_stream
+      notes: P1 aligns with OpenDEA Value Stream concepts where
+        present.
+    - avs_plane: value_stream_realization
+      opendea_target: opendea_value_stream
+      notes: P2 aligns with OpenDEA Value Stream realization where
+        present.
+    - avs_plane: agentic_participation
+      opendea_target: null
+      notes: Repository-specific.
+    - avs_plane: control_and_governance
+      opendea_target: opendea_assessment
+      notes: P4 has some alignment with OpenDEA assessment concepts
+        where present.
+    - avs_plane: knowledge_and_context
+      opendea_target: null
+      notes: Repository-specific.
+    - avs_plane: technology_and_integration
+      opendea_target: null
+      notes: Repository-specific.
+  separation_principles:
+    - architecture_vs_qualification: |
+        Architecture realizes AVS semantics; it does NOT define
+        them.
+    - architecture_vs_technology: |
+        Technology substitution SHALL NOT inherently change AVS
+        identity.
+    - architecture_vs_maturity: |
+        Progressive delegation is NOT maturity progression.

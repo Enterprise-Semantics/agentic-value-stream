@@ -908,3 +908,100 @@ Eight new documentation files accompany this layer:
   dashboard views.
 - `docs/governance-anti-patterns.md`. Six anti-patterns with
   rejection rationale.
+
+## Architecture Patterns & Reference Architectures (CR-VAS-008, Wave 6)
+
+CR-VAS-008 translates the established semantic model into
+architecture without introducing implementation-specific concepts
+into the AVS ontology.
+
+### Core Principle
+
+> Architecture realizes Agentic Value Stream semantics; it does
+> NOT define them.
+
+The dependency is intentionally one-directional:
+
+```
+AVS Semantics
+   -> Participation Model
+     -> Governance & Authority
+       -> Architecture Pattern
+         -> Technology Realization
+```
+
+NOT:
+
+```
+Technology Platform
+   -> Agent Architecture
+     -> "Agentic Value Stream"
+```
+
+### Six Architectural Planes
+
+| ID | Plane | Represents |
+|---|---|---|
+| P1 | Value & Outcome Plane | Stakeholder, outcome, value, Value Stream, value realization, outcome measures. The business anchor. |
+| P2 | Value Stream Realization Plane | Value Stages, progression, decisions, actions, handoffs, dependencies, realization boundaries. |
+| P3 | Agentic Participation Plane | Actor, entrusted intent, contextual interpretation, action selection, progression, coordination, intervention. Implements CR-VAS-003. |
+| P4 | Control & Governance Plane | Authority, policy, constraints, risk, approval, escalation, intervention, revocation, audit, governance. |
+| P5 | Knowledge & Context Plane | Enterprise data, knowledge, business state, customer context, external signals, policies, historical information. |
+| P6 | Technology & Integration Plane | Applications, APIs, services, agent runtimes, models, workflow systems, automation, event infrastructure, data platforms. Technology is realization infrastructure, not AVS semantics. |
+
+### Twelve Architecture Patterns (AP-01..AP-12)
+
+| Pattern | Summary |
+|---|---|
+| AP-01 | Agentic Stage Participation ; localized agentic realization in one stage. |
+| AP-02 | Agentic Decision ; concentrated around a consequential decision. |
+| AP-03 | Agentic Execution ; selects among permissible execution alternatives. |
+| AP-04 | Human-Agent Hybrid ; explicit human interaction. |
+| AP-05 | Agent-to-Human Escalation ; boundary-condition escalation with explicit threshold. |
+| AP-06 | Human-to-Agent Delegation ; entrusted intent + bounded authority. |
+| AP-07 | Distributed Agentic Participation ; multiple agents across the Value Stream. |
+| AP-08 | Coordinated Multi-Agent Realization ; optional multi-agent architecture. |
+| AP-09 | Agentic Orchestration ; orchestrator is not automatically agentic. |
+| AP-10 | Agentic Exception Resolution ; agenticity for material exceptions only. |
+| AP-11 | Agentic Coordination Overlay ; overlay, NOT a new semantic entity like "Agentic Workflow." |
+| AP-12 | Progressive Delegation ; governed progression, NOT maturity progression. |
+
+### Architecture Anti-Patterns (rejected)
+
+Per CR-VAS-008 §22, the following are explicitly rejected: agent-centric
+architecture; agentic workflow ontology; full-agentification
+assumption; autonomy maximization; technology-led semantics;
+orchestration equals agenticity.
+
+### Architecture Tests
+
+Wave 6 adds 18 architecture tests (6 positive + 6 negative + 6
+boundary):
+
+- 6 architecture positive (VAS-AP-P01..P06, CR-VAS-008): six
+  architectural planes, twelve architecture patterns, four
+  architecture boundaries, architecture decision record template,
+  architecture quality attributes, heterogeneous Value Streams.
+- 6 architecture negative (VAS-AP-N01..N06, CR-VAS-008): the six
+  anti-patterns.
+- 6 architecture boundary (VAS-AP-BT-01..06, CR-VAS-008):
+  architecture vs semantic qualification, multi-agent vs agentic,
+  orchestrator vs agentic participant, technology substitution vs
+  AVS identity, context access vs context interpretation,
+  progressive delegation vs maturity progression.
+
+### Documentation set (Wave 6 additions)
+
+Six new documentation files accompany this layer:
+
+- `docs/architecture.md`. Purpose, core principle, normative
+  question, scope.
+- `docs/reference-architecture.md`. Six architectural planes with
+  detailed scope; canonical architecture pattern.
+- `docs/architecture-patterns.md`. Twelve reusable patterns
+  AP-01..AP-12.
+- `docs/architecture-boundaries.md`. Four architectural boundaries.
+- `docs/architecture-decisions.md`. Architecture decision record
+  template, quality attributes, selection criteria.
+- `docs/architecture-anti-patterns.md`. Six anti-patterns with
+  rejection rationale.

@@ -1,0 +1,17 @@
+id: KIT-AGENTIC-VALUE-STREAM-VAS-AP-P05
+test_id: VAS-AP-P05
+category: architecture_ap-positive
+subject: Architecture Quality Attributes
+description: 'AVS architectures evaluated against 12 quality attributes: value effectiveness, semantic integrity, authority
+  integrity, safety, explainability, observability, resilience, reversibility, intervention, scalability, interoperability,
+  maintainability, auditability.'
+cr: CR-VAS-008 §boundary
+expect: quality_attributes.items contains the full set including value_effectiveness, semantic_integrity, authority_integrity,
+  safety.
+asserts:
+- architecture.quality_attributes.items contains value_effectiveness
+- architecture.quality_attributes.items contains semantic_integrity
+- architecture.quality_attributes.items contains authority_integrity
+- architecture.quality_attributes.items contains safety
+- architecture.quality_attributes.items contains interoperability
+- architecture.quality_attributes.items contains auditability

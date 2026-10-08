@@ -1,0 +1,15 @@
+id: KIT-AGENTIC-VALUE-STREAM-VAS-AP-P01
+test_id: VAS-AP-P01
+category: architecture_ap-positive
+subject: Six Architectural Planes
+description: Canonical AVS reference architecture uses six architectural planes (P1..P6) with technology at the bottom of
+  the semantic dependency chain.
+cr: CR-VAS-008 §boundary
+expect: planes.items contains all six P1..P6; P6 represents technology as realization infrastructure, not AVS semantics.
+asserts:
+- architecture.planes.items contains item with id == P1
+- architecture.planes.items contains item with id == P2
+- architecture.planes.items contains item with id == P3
+- architecture.planes.items contains item with id == P4
+- architecture.planes.items contains item with id == P5
+- architecture.planes.items contains item with id == P6

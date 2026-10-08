@@ -1,0 +1,14 @@
+id: KIT-AGENTIC-VALUE-STREAM-VAS-AP-P06
+test_id: VAS-AP-P06
+category: architecture_ap-positive
+subject: Heterogeneous Value Streams
+description: A Value Stream can be heterogeneous (human, automation, agentic participation in different stages). CR-VAS-008
+  §4 + AP-ARCH-INV-006.
+cr: CR-VAS-008 §boundary
+expect: primary_object.example shows heterogeneous stages; invariant AVS-ARCH-INV-006 binds.
+asserts:
+- architecture.primary_object.example contains Agentic Participation
+- architecture.primary_object.example contains Human
+- architecture.primary_object.example contains Automation
+- architecture.primary_object.principle contains heterogeneous
+- architecture.invariants.items contains item with id == AVS-ARCH-INV-006

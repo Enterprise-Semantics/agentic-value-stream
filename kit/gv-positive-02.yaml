@@ -1,0 +1,16 @@
+id: KIT-AGENTIC-VALUE-STREAM-VAS-GV-P02
+test_id: VAS-GV-P02
+category: governance_gv-positive
+subject: Seven Governance Domains
+description: Seven governance domains (G1 Semantic, G2 Authority, G3 Operational, G4 Risk/Policy, G5 Value, G6 Change, G7
+  Portfolio). CR-VAS-007 §8.
+cr: CR-VAS-007 §boundary
+expect: domains.items contains all seven G1..G7 governance domains.
+asserts:
+- governance.domains.items contains item with id == G1
+- governance.domains.items contains item with id == G2
+- governance.domains.items contains item with id == G3
+- governance.domains.items contains item with id == G4
+- governance.domains.items contains item with id == G5
+- governance.domains.items contains item with id == G6
+- governance.domains.items contains item with id == G7

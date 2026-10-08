@@ -1,0 +1,19 @@
+id: KIT-AGENTIC-VALUE-STREAM-VAS-GV-P01
+test_id: VAS-GV-P01
+category: governance_gv-positive
+subject: Lifecycle Management
+description: An AVS has explicit lifecycle states and transition evidence. CR-VAS-007 §5.
+cr: CR-VAS-007 §boundary
+expect: lifecycle.states includes all 10 states (proposed, assessed, designed, qualified, approved, implemented, operational,
+  managed, suspended, retired).
+asserts:
+- governance.lifecycle.states contains item with id == proposed
+- governance.lifecycle.states contains item with id == assessed
+- governance.lifecycle.states contains item with id == designed
+- governance.lifecycle.states contains item with id == qualified
+- governance.lifecycle.states contains item with id == approved
+- governance.lifecycle.states contains item with id == implemented
+- governance.lifecycle.states contains item with id == operational
+- governance.lifecycle.states contains item with id == managed
+- governance.lifecycle.states contains item with id == suspended
+- governance.lifecycle.states contains item with id == retired

@@ -1,0 +1,31 @@
+@startuml governance-domains
+title AVS Governance Domains (CR-VAS-007)
+skinparam backgroundColor #FFFFFF
+skinparam roundCorner 10
+skinparam shadowing false
+
+rectangle "Governance" as Gov {
+}
+
+rectangle "G1\nSemantic" as G1
+rectangle "G2\nAuthority" as G2
+rectangle "G3\nOperational" as G3
+rectangle "G4\nRisk &\nPolicy" as G4
+rectangle "G5\nValue" as G5
+rectangle "G6\nChange" as G6
+rectangle "G7\nPortfolio" as G7
+
+Gov --> G1
+Gov --> G2
+Gov --> G3
+Gov --> G4
+Gov --> G5
+Gov --> G6
+Gov --> G7
+
+note bottom of Gov
+  Governance is subordinate to the semantic model.
+  7 governance domains + 6 governance dimensions.
+end note
+
+@enduml

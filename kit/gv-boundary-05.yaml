@@ -1,0 +1,11 @@
+id: KIT-AGENTIC-VALUE-STREAM-VAS-GV-BT-05
+test_id: VAS-GV-BT-05
+category: governance_gv-boundary
+subject: Authority Escalation vs Normal Authority Use
+description: Normal authority use vs exceptional threshold breach.
+cr: CR-VAS-007 §boundary
+expect: authority_governance.escalation has both normal_case and exceptional_case.
+asserts:
+- governance.authority_governance.escalation.normal_case is defined
+- governance.authority_governance.escalation.exceptional_case is defined
+- governance.authority_governance.escalation.description contains explicit

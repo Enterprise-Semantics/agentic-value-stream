@@ -1,0 +1,12 @@
+id: KIT-AGENTIC-VALUE-STREAM-VAS-GV-BT-09
+test_id: VAS-GV-BT-09
+category: governance_gv-boundary
+subject: Intervention As Control vs Intervention As Failure
+description: Intervention is a deliberate control mechanism, not a failure indicator.
+cr: CR-VAS-007 §boundary
+expect: intervention_governance.description declares intervention NOT automatically classified as failure.
+asserts:
+- governance.intervention_governance.description contains SHALL NOT automatically be classified as failure
+- governance.intervention_governance.types contains approval
+- governance.intervention_governance.types contains validation
+- governance.invariants.items contains item with id == AVS-GOV-INV-008

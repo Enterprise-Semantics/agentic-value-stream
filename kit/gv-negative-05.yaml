@@ -1,0 +1,12 @@
+id: KIT-AGENTIC-VALUE-STREAM-VAS-GV-N05
+test_id: VAS-GV-N05
+category: governance_gv-negative
+subject: No Fallback
+description: A critical AVS has no appropriate intervention, suspension or fallback mechanism. CR-VAS-007 §12 anti-pattern.
+cr: CR-VAS-007 §boundary
+expect: fallback_governance present with 4 patterns; emergency_controls present; AVS-GOV-INV-007 binds.
+asserts:
+- governance.fallback_governance.patterns contains agentic_to_human
+- governance.fallback_governance.patterns contains agentic_to_safe_stop
+- governance.emergency_controls.items contains emergency_suspension
+- governance.invariants.items contains item with id == AVS-GOV-INV-007

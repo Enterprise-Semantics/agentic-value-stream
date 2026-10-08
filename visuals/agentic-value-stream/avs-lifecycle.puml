@@ -1,0 +1,43 @@
+@startuml avs-lifecycle
+title AVS Lifecycle (CR-VAS-007)
+skinparam backgroundColor #FFFFFF
+skinparam roundCorner 10
+skinparam shadowing false
+
+state "Proposed" as P
+state "Assessed" as A
+state "Designed" as D
+state "Qualified" as Q
+state "Approved" as AP
+state "Implemented" as IM
+state "Operational" as O
+state "Managed" as MG
+state "Suspended" as S
+state "Retired" as R
+
+P -> A : assessment
+A -> D : design
+D -> Q : qualification
+Q -> AP : approval
+AP -> IM : implementation
+IM -> O : activation
+O -> MG : management
+
+O -> S : trigger / breach
+S -> O : revalidation / recovery
+O -> R : retirement
+S -> R : retirement
+MG -> S : governance action
+
+note right of O
+  Operational state does NOT imply
+  continuing conformance (AVS-GOV-INV-003).
+end note
+
+note right of Q
+  Qualification is a semantic state.
+  Approval is a governance decision.
+  They are distinct (AVS-GOV-INV-002).
+end note
+
+@enduml

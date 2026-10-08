@@ -3,7 +3,7 @@ concept: ES:CONCEPT:agentic-value-stream
 canonical_name: Agentic Value Stream
 base_concept: ES:CONCEPT:value-stream
 status: semantically_conformant
-version: 1.4.0
+version: 1.5.0
 date: 2026-10-08
 author: Emmanuel A. Otchere (cardinal author rule, 2026-09-23)
 governance: enterprise-semantics
@@ -11,7 +11,7 @@ governance: enterprise-semantics
 # Repository reference (renamed per ES-ADR-051).
 concept_repo: Enterprise-Semantics/agentic-value-stream
 
-# Coverage auto-derived from kit/ inventory (per CR-AVS-001 §14 + CR-VAS-002 §22 + CR-VAS-003 §24 + CR-VAS-004 §19 + §20 + §21 + CR-VAS-005 §19 + §20 + §21 + CR-VAS-006 §33 + §34).
+# Coverage auto-derived from kit/ inventory (per CR-AVS-001 §14 + CR-VAS-002 §22 + CR-VAS-003 §24 + CR-VAS-004 §19 + §20 + §21 + CR-VAS-005 §19 + §20 + §21 + CR-VAS-006 §33 + §34 + CR-VAS-007 §38 + §39).
 coverage:
   positive: 5
   negative: 5
@@ -27,8 +27,11 @@ coverage:
   ma_positive: 10
   ma_negative: 10
   ma_boundary: 10
+  gv_positive: 10
+  gv_negative: 10
+  gv_boundary: 10
   integrity: 0
-  total: 121
+  total: 151
 
 # Test inventory by semantic role (per CR-VAS-002 §22 + CR-VAS-003 §24 + CR-VAS-004 §19 + §20 + §21).
 test_inventory:
@@ -304,7 +307,72 @@ ma_boundary:
   - id: KIT-AGENTIC-VALUE-STREAM-VAS-MA-BT-10
     condition: VAS-MA-BT-10 Maturity vs Operational Performance
 
-# Boundary assertions covered (per CR-AVS-001 §22 + CR-VAS-002 §29 + CR-VAS-003 §24 + CR-VAS-004 §34 + CR-VAS-005 §44 + CR-VAS-006 §39 + §40).
+# Governance test inventory (per CR-VAS-007 §38 + §39 + §37 + AC-23).
+gv_positive:
+  - id: KIT-AGENTIC-VALUE-STREAM-VAS-GV-P01
+    condition: VAS-GV-P01 Lifecycle Management
+  - id: KIT-AGENTIC-VALUE-STREAM-VAS-GV-P02
+    condition: VAS-GV-P02 Seven Governance Domains
+  - id: KIT-AGENTIC-VALUE-STREAM-VAS-GV-P03
+    condition: VAS-GV-P03 Material Change Revalidation
+  - id: KIT-AGENTIC-VALUE-STREAM-VAS-GV-P04
+    condition: VAS-GV-P04 Authority Revocation
+  - id: KIT-AGENTIC-VALUE-STREAM-VAS-GV-P05
+    condition: VAS-GV-P05 Safe Suspension and Fallback
+  - id: KIT-AGENTIC-VALUE-STREAM-VAS-GV-P06
+    condition: VAS-GV-P06 Portfolio Governance
+  - id: KIT-AGENTIC-VALUE-STREAM-VAS-GV-P07
+    condition: VAS-GV-P07 Capability Reuse And Avoidance Of Agent Sprawl
+  - id: KIT-AGENTIC-VALUE-STREAM-VAS-GV-P08
+    condition: VAS-GV-P08 Governance Evidence And Decision Types
+  - id: KIT-AGENTIC-VALUE-STREAM-VAS-GV-P09
+    condition: VAS-GV-P09 Runtime Instruction Shall Not Override Authority
+  - id: KIT-AGENTIC-VALUE-STREAM-VAS-GV-P10
+    condition: VAS-GV-P10 Governance Metrics And Dashboard
+gv_negative:
+  - id: KIT-AGENTIC-VALUE-STREAM-VAS-GV-N01
+    condition: VAS-GV-N01 Approval Equals Qualification
+  - id: KIT-AGENTIC-VALUE-STREAM-VAS-GV-N02
+    condition: VAS-GV-N02 No Revalidation
+  - id: KIT-AGENTIC-VALUE-STREAM-VAS-GV-N03
+    condition: VAS-GV-N03 Irrevocable Authority
+  - id: KIT-AGENTIC-VALUE-STREAM-VAS-GV-N04
+    condition: VAS-GV-N04 Agent Controls Policy
+  - id: KIT-AGENTIC-VALUE-STREAM-VAS-GV-N05
+    condition: VAS-GV-N05 No Fallback
+  - id: KIT-AGENTIC-VALUE-STREAM-VAS-GV-N06
+    condition: VAS-GV-N06 Portfolio By Agent Count
+  - id: KIT-AGENTIC-VALUE-STREAM-VAS-GV-N07
+    condition: VAS-GV-N07 Governance Redefines Semantics
+  - id: KIT-AGENTIC-VALUE-STREAM-VAS-GV-N08
+    condition: VAS-GV-N08 Operational Status Implies Continuing Conformance
+  - id: KIT-AGENTIC-VALUE-STREAM-VAS-GV-N09
+    condition: VAS-GV-N09 Lifecycle Without Retirement Support
+  - id: KIT-AGENTIC-VALUE-STREAM-VAS-GV-N10
+    condition: VAS-GV-N10 Governance Decisions Without Evidence
+gv_boundary:
+  - id: KIT-AGENTIC-VALUE-STREAM-VAS-GV-BT-01
+    condition: VAS-GV-BT-01 Governance vs Semantic Qualification
+  - id: KIT-AGENTIC-VALUE-STREAM-VAS-GV-BT-02
+    condition: VAS-GV-BT-02 Qualification vs Approval
+  - id: KIT-AGENTIC-VALUE-STREAM-VAS-GV-BT-03
+    condition: VAS-GV-BT-03 Lifecycle State vs Governance Status
+  - id: KIT-AGENTIC-VALUE-STREAM-VAS-GV-BT-04
+    condition: VAS-GV-BT-04 Material vs Non-Material Change
+  - id: KIT-AGENTIC-VALUE-STREAM-VAS-GV-BT-05
+    condition: VAS-GV-BT-05 Authority Escalation vs Normal Authority Use
+  - id: KIT-AGENTIC-VALUE-STREAM-VAS-GV-BT-06
+    condition: VAS-GV-BT-06 Conformance Drift vs Version Change
+  - id: KIT-AGENTIC-VALUE-STREAM-VAS-GV-BT-07
+    condition: VAS-GV-BT-07 Governance Maturity vs AVS Maturity
+  - id: KIT-AGENTIC-VALUE-STREAM-VAS-GV-BT-08
+    condition: VAS-GV-BT-08 Governance Metrics vs Measurement Metrics
+  - id: KIT-AGENTIC-VALUE-STREAM-VAS-GV-BT-09
+    condition: VAS-GV-BT-09 Intervention As Control vs Intervention As Failure
+  - id: KIT-AGENTIC-VALUE-STREAM-VAS-GV-BT-10
+    condition: VAS-GV-BT-10 Governance RACI vs Ontology Responsibility
+
+# Boundary assertions covered (per CR-AVS-001 §22 + CR-VAS-002 §29 + CR-VAS-003 §24 + CR-VAS-004 §34 + CR-VAS-005 §44 + CR-VAS-006 §39 + §40 + CR-VAS-007 §41 + §42).
 boundary_assertions:
   - per_es_adr_005
   - per_es_adr_031_5_category_taxonomy
@@ -313,6 +381,7 @@ boundary_assertions:
   - per_cr_vas_004_evidence_conformance
   - per_cr_vas_005_measurement_value
   - per_cr_vas_006_maturity_capability
+  - per_cr_vas_007_governance_lifecycle
 
 # Provenance
 provenance:
@@ -326,6 +395,7 @@ provenance:
     - ES-ADR-054
     - ES-ADR-055
     - ES-ADR-056
+    - ES-ADR-057
   implementation:
     - CR-ES-005
     - CR-AVS-001
@@ -334,4 +404,5 @@ provenance:
     - CR-VAS-004
     - CR-VAS-005
     - CR-VAS-006
+    - CR-VAS-007
   date: 2026-10-08

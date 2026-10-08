@@ -95,9 +95,53 @@ definition: |
 # Lifecycle state (independent of conformance state per CR-AVS-001 §14).
 lifecycle:
   status: candidate
-  version: 1.4.0
+  version: 1.5.0
   date: 2026-10-08
   promotion_history:
+    - version: 1.5.0
+      date: 2026-10-08
+      status: candidate
+      note: >-
+        Governance, Lifecycle & Portfolio Management Model per
+        CR-VAS-007. Introduces the governance block: governance
+        principle (Value Stream + Agentic Participation + Authority
+        + Risk + Outcome -> Governance, NOT technology-led),
+        governance objective (semantic/authority/operational/risk/
+        value/lifecycle integrity), governance object model, 10
+        lifecycle states (Proposed, Assessed, Designed, Qualified,
+        Approved, Implemented, Operational, Managed, Suspended,
+        Retired) with state vocabulary, governance state vs
+        lifecycle state separation, 7 governance domains (G1
+        Semantic, G2 Authority, G3 Operational, G4 Risk/Policy,
+        G5 Value, G6 Change, G7 Portfolio), material change
+        concept + materiality assessment, 4-class change
+        classification (A Non-Material, B Controlled, C Material,
+        D Critical), change decision model, authority governance
+        (record schema, escalation, revocation), fallback
+        governance (Agentic to Human / Deterministic / Manual /
+        Safe Stop), intervention governance (8 intervention
+        types), conformance drift revalidation, 11 governance
+        triggers (event-driven), governance evidence record
+        schema, 15 governance decision types controlled
+        vocabulary, portfolio governance (inventory,
+        prioritization, capability reuse, agent sprawl avoidance,
+        concentration risk), 8 lifecycle ownership archetypes,
+        RACI principle, governance policy hierarchy (Enterprise
+        to Runtime Enforcement), runtime instruction vs
+        governance policy distinction (Instruction != Policy !=
+        Authority != Governance Decision), emergency controls,
+        governance dashboard (lifecycle/semantic/authority/risk/
+        value/maturity views), 6 governance metrics (review
+        timeliness, revalidation compliance, authority control
+        coverage, exception rate, suspension response time,
+        remediation closure rate), governance maturity vs AVS
+        maturity distinction, machine-readable lifecycle schema,
+        change record schema, portfolio record schema, 15
+        normative invariants (AVS-GOV-INV-001..015), and 30
+        governance tests (10 positive + 10 negative + 10
+        boundary = 151 total). Promotion to Established reserved
+        for CR-VAS-007 acceptance review (governance frame
+        ES-ADR-057).
     - version: 1.4.0
       date: 2026-10-08
       status: candidate
@@ -210,7 +254,10 @@ conformance:
     ma_positive: 10
     ma_negative: 10
     ma_boundary: 10
-    total: 121
+    gv_positive: 10
+    gv_negative: 10
+    gv_boundary: 10
+    total: 151
 
 # Concept repository reference (renamed per ES-ADR-051).
 concept_repo: Enterprise-Semantics/agentic-value-stream
@@ -2924,4 +2971,918 @@ maturity:
       NOT establish maturity on their own. Maturity SHALL support
       regression. Overall maturity SHALL NOT conceal mandatory
       capability deficiencies.
+
+
+# === Governance, Lifecycle & Portfolio (CR-VAS-007) ===
+#
+# Per CR-VAS-007 (Agentic Value Stream Governance, Lifecycle &
+# Portfolio Management): Adds the `governance:` block formalising:
+#   (1) the governance principle (Value Stream + Agentic Participation
+#       + Authority + Risk + Outcome -> Governance, NOT AI Model ->
+#       Agent -> Agentic System -> Governance),
+#   (2) governance objective (semantic integrity, authority integrity,
+#       operational integrity, risk/policy integrity, value integrity,
+#       lifecycle integrity),
+#   (3) governance object model (governance subordinate to semantic
+#       boundary; Lifecycle + Controls + Portfolio),
+#   (4) the lifecycle model with 10 states (Proposed, Assessed,
+#       Designed, Qualified, Approved, Implemented, Operational,
+#       Managed, Suspended, Retired),
+#   (5) lifecycle state vocabulary with full definitions,
+#   (6) governance state vs lifecycle state separation,
+#   (7) seven governance domains (G1 Semantic, G2 Authority, G3
+#       Operational, G4 Risk/Policy, G5 Value, G6 Change, G7
+#       Portfolio),
+#   (8) material change concept + materiality assessment,
+#   (9) change classification (Class A Non-Material, Class B
+#       Controlled, Class C Material, Class D Critical),
+#   (10) change decision model,
+#   (11) authority governance (record schema, escalation, revocation),
+#   (12) fallback governance (Agentic -> Human / Deterministic /
+#       Manual / Safe Stop),
+#   (13) intervention governance (8 intervention types),
+#   (14) conformance drift (lifecycle revalidation),
+#   (15) governance triggers (event-driven revalidation),
+#   (16) governance evidence (governance_decision record schema),
+#   (17) governance decision types (15 controlled verbs),
+#   (18) portfolio governance (inventory, prioritization, capability
+#        reuse, agent sprawl avoidance, concentration risk),
+#   (19) lifecycle ownership (8 ownership archetypes),
+#   (20) governance RACI principle (organisational, not ontology),
+#   (21) governance policy hierarchy (Enterprise -> Domain -> Value
+#        Stream -> AVS -> Authority Boundary -> Runtime Enforcement),
+#   (22) runtime instruction vs governance policy distinction
+#        (Instruction != Policy != Authority != Governance Decision),
+#   (23) emergency controls,
+#   (24) governance dashboard (lifecycle / semantic / authority / risk
+#        / value / maturity views),
+#   (25) governance metrics (review timeliness, revalidation
+#        compliance, authority control coverage, exception rate,
+#        suspension response time, remediation closure rate),
+#   (26) governance maturity vs AVS maturity distinction,
+#   (27) lifecycle schema (machine-readable),
+#   (28) change record schema (machine-readable),
+#   (29) portfolio record schema (machine-readable),
+#   (30) 15 normative invariants (AVS-GOV-INV-001..015),
+#   (31) positive + negative governance tests (10 + 10 boundary = 30),
+#   (32) governance documentation set (8 docs), and
+#   (33) separation principle: governance does NOT redefine AVS
+#        semantics.
+#
+# Cardinal author rule: Emmanuel A. Otchere <emmanuel@otchere.com>
+# Authored by: Emmanuel A. Otchere (cardinal author rule, 2026-10-08)
+# Last revised: 2026-10-08 (CR-VAS-007 governance block landed)
+
+governance:
+
+  specializes: ES:CONCEPT:agentic-value-stream
+
+  # ----------------------------------------------------------------
+  # 1. Principle
+  # ----------------------------------------------------------------
+  principle: |
+    An Agentic Value Stream is governed as a Value Stream with
+    agentic participation, NOT as an autonomous technology asset.
+    Governance therefore begins with:
+
+      Value Stream
+        -> Agentic Participation
+          -> Authority
+            -> Risk
+              -> Outcome
+                -> Governance
+
+    rather than:
+
+      AI Model
+        -> Agent
+          -> Agentic System
+            -> Governance
+
+    The latter incorrectly makes technology the primary governance
+    object. CR-VAS-007 establishes the management control plane
+    around an already-defined semantic object.
+
+  # ----------------------------------------------------------------
+  # 2. Governance objective
+  # ----------------------------------------------------------------
+  governance_objective: |
+    Ensure that delegated agentic participation remains semantically
+    valid, appropriately authorized, operationally controlled,
+    outcome-oriented, measurable, and aligned with enterprise intent
+    throughout its lifecycle.
+
+  # ----------------------------------------------------------------
+  # 3. Governance dimensions
+  # ----------------------------------------------------------------
+  dimensions:
+    description: |
+      Governance covers six dimensions.
+    items:
+      - semantic_integrity
+      - authority_integrity
+      - operational_integrity
+      - risk_and_policy_integrity
+      - value_integrity
+      - lifecycle_integrity
+
+  # ----------------------------------------------------------------
+  # 4. Governance object model
+  # ----------------------------------------------------------------
+  object_model:
+    description: |
+      Governance MUST remain subordinate to the semantic model.
+    semantic_boundary:
+      - value_stream_identity
+      - agentic_participation
+      - qualification
+      - semantic_boundary
+      - conformance
+      - ontology_alignment
+    authority_boundary:
+      - authority_scope
+      - bounded_authority
+    outcome_boundary:
+      - value_realization
+      - outcome_progression
+    governance_outputs:
+      - lifecycle
+      - controls
+      - portfolio
+
+  # ----------------------------------------------------------------
+  # 5. Lifecycle model
+  # ----------------------------------------------------------------
+  lifecycle:
+    description: |
+      An AVS SHALL have an explicit lifecycle. The lifecycle is NOT
+      necessarily linear. An AVS may move backwards (Operational ->
+      Suspended -> Revalidated -> Operational, or Operational ->
+      Material Change -> Reassessment -> Non-Conformant ->
+      Remediation).
+    states:
+      - id: proposed
+        name: Proposed
+        meaning: |
+          The Value Stream has been identified as a candidate for
+          agentic realization. No claim of AVS conformance has yet
+          been established.
+      - id: assessed
+        name: Assessed
+        meaning: |
+          The candidate has undergone initial evaluation covering
+          Value Stream relevance, candidate agentic participation,
+          expected outcomes, potential authority, risk, materiality,
+          feasibility.
+      - id: designed
+        name: Designed
+        meaning: |
+          The intended realization has been formally designed
+          including participation scope, intent, authority,
+          contextual inputs, action space, intervention,
+          escalation, expected outcomes, measurement, governance.
+      - id: qualified
+        name: Qualified
+        meaning: |
+          The implementation/design has satisfied the applicable AVS
+          semantic qualification and evidence requirements
+          established through CR-VAS-002 and CR-VAS-004.
+          Qualification is a semantic state, NOT a technology
+          approval.
+      - id: approved
+        name: Approved
+        meaning: |
+          The relevant governance authority has authorized
+          implementation or operation within the defined boundary.
+          Approval SHALL NOT be interpreted as semantic
+          qualification.
+      - id: implemented
+        name: Implemented
+        meaning: |
+          The AVS realization exists technically and operationally
+          but may not yet be operating as a production service.
+      - id: operational
+        name: Operational
+        meaning: |
+          The AVS is actively realizing value in its intended
+          operational environment. Required controls must be active.
+      - id: managed
+        name: Managed
+        meaning: |
+          The AVS is operational and subject to systematic
+          measurement, monitoring, risk management, value
+          management, conformance management, improvement. Aligns
+          with the operational capability described in CR-VAS-006.
+      - id: suspended
+        name: Suspended
+        meaning: |
+          The AVS has temporarily ceased agentic realization.
+          Triggers may include material policy violation, authority
+          breach, unacceptable risk, conformance failure, severe
+          operational incident, unexplained outcome degradation,
+          loss of required evidence, regulatory requirement.
+          Suspension SHOULD preserve the Value Stream itself where
+          possible.
+      - id: retired
+        name: Retired
+        meaning: |
+          The AVS implementation is no longer authorized for
+          operational use. Retirement SHOULD preserve historical
+          evidence, measurement history, governance decisions,
+          lessons learned, relevant provenance.
+
+  # ----------------------------------------------------------------
+  # 6. Governance state vs lifecycle state
+  # ----------------------------------------------------------------
+  state_separation:
+    description: |
+      Lifecycle state and governance status SHALL remain distinct.
+      An AVS may be operational while subject to remediation,
+      heightened monitoring, conditional approval, restricted
+      authority. This prevents state explosion.
+    example_operational_conditional: |
+      lifecycle:
+        state: operational
+      governance:
+        status: conditional
+    example_suspended_remediation: |
+      lifecycle:
+        state: suspended
+      governance:
+        status: remediation
+
+  # ----------------------------------------------------------------
+  # 7. Governance domains (G1..G7)
+  # ----------------------------------------------------------------
+  domains:
+    description: |
+      CR-VAS-007 establishes seven governance domains.
+    items:
+      - id: G1
+        name: semantic_governance
+        controls:
+          - value_stream_identity
+          - agentic_participation
+          - qualification
+          - semantic_boundary
+          - conformance
+          - ontology_alignment
+      - id: G2
+        name: authority_governance
+        controls:
+          - authority_scope
+          - permissions
+          - thresholds
+          - policies
+          - escalation
+          - revocation
+          - temporal_limits
+          - transaction_limits
+          - risk_limits
+      - id: G3
+        name: operational_governance
+        controls:
+          - reliability
+          - observability
+          - incident_management
+          - intervention
+          - escalation
+          - service_ownership
+          - fallback_mechanisms
+      - id: G4
+        name: risk_and_policy_governance
+        controls:
+          - regulatory_requirements
+          - organizational_policy
+          - safety_constraints
+          - security
+          - privacy
+          - financial_limits
+          - reputational_risk
+          - model_system_risks
+      - id: G5
+        name: value_governance
+        controls:
+          - value_baseline
+          - outcome_realization
+          - benefit_realization
+          - cost
+          - risk_adjusted_value
+          - customer_stakeholder_outcomes
+      - id: G6
+        name: change_governance
+        controls:
+          - semantic_changes
+          - authority_changes
+          - agentic_scope_changes
+          - policy_changes
+          - operating_context_changes
+          - major_technology_changes
+      - id: G7
+        name: portfolio_governance
+        controls:
+          - prioritization
+          - duplication
+          - reuse
+          - dependencies
+          - investment
+          - risk_concentration
+          - capability_reuse
+          - retirement
+
+  # ----------------------------------------------------------------
+  # 8. Material change
+  # ----------------------------------------------------------------
+  material_change:
+    description: |
+      A central requirement of CR-VAS-007 is the concept of a
+      Material AVS Change. A change is material when it could alter
+      whether the implementation remains semantically Agentic,
+      delegated authority, action space, risk exposure, stakeholder
+      outcome, Value Stream progression, intervention requirements,
+      regulatory obligations, or operational boundary.
+    examples:
+      - change_agent_model
+      - change_authority_threshold
+      - change_decision_policy
+      - expand_action_space
+      - advisory_to_delegated_execution
+      - add_value_stream_stage
+      - remove_human_approval
+      - expand_geography
+      - change_customer_population
+      - change_regulatory_context
+    principle: |
+      These SHOULD trigger revalidation.
+
+  # ----------------------------------------------------------------
+  # 9. Change classification
+  # ----------------------------------------------------------------
+  change_classification:
+    description: |
+      Changes are classified by materiality and required revalidation.
+    items:
+      - id: class_a
+        name: non_material
+        meaning: |
+          No meaningful effect on semantic qualification, authority,
+          risk, or value realization. No full requalification
+          required.
+      - id: class_b
+        name: controlled
+        meaning: |
+          Potential operational or measurement impact. Requires
+          targeted review.
+      - id: class_c
+        name: material
+        meaning: |
+          Potential impact on semantic qualification, authority,
+          risk or outcome. Requires formal revalidation.
+      - id: class_d
+        name: critical
+        meaning: |
+          Potential significant safety, regulatory, financial,
+          customer or enterprise impact. Requires governance
+          approval before implementation.
+
+  # ----------------------------------------------------------------
+  # 10. Change decision model
+  # ----------------------------------------------------------------
+  change_decision_model:
+    flow: |
+      Change Proposed -> Materiality Assessment -> (No: Controlled
+      Change | Yes: Revalidation -> Approval -> Implementation ->
+      Evidence -> Monitoring).
+
+  # ----------------------------------------------------------------
+  # 11. Authority governance
+  # ----------------------------------------------------------------
+  authority_governance:
+    description: |
+      Because bounded authority is a core AVS semantic condition,
+      authority SHALL be governed throughout the lifecycle.
+      Authority should be treated as a governed enterprise resource,
+      NOT merely a prompt or configuration parameter.
+    record_schema:
+      fields:
+        - id
+        - scope
+        - actor
+        - permissions
+        - constraints
+        - policies
+        - thresholds
+        - temporal_boundary
+        - transaction_boundary
+        - escalation_conditions
+        - revocation_conditions
+        - approval
+        - effective_from
+        - effective_until
+
+    escalation:
+      description: |
+        The governance model SHALL support escalation. Escalation
+        SHOULD be explicit and observable.
+      normal_case: |
+        Agent acts within authority -> outcome progression.
+      exceptional_case: |
+        Authority threshold exceeded -> human / higher-authority
+        actor -> decision -> agent continues or terminates.
+
+    revocation:
+      description: |
+        Governance SHALL support immediate or scheduled revocation of
+        delegated authority. Revocation MUST NOT require semantic
+        deletion of the AVS.
+      triggers:
+        - incident
+        - policy_change
+        - regulatory_change
+        - abnormal_behavior
+        - authority_misuse
+        - material_performance_degradation
+        - security_event
+        - loss_of_required_evidence
+
+  # ----------------------------------------------------------------
+  # 12. Fallback governance
+  # ----------------------------------------------------------------
+  fallback_governance:
+    description: |
+      Every production AVS SHOULD define an appropriate fallback
+      strategy. Fallback SHALL be determined by Value Stream
+      criticality and risk. Fallback behavior SHOULD itself be
+      tested.
+    patterns:
+      - agentic_to_human
+      - agentic_to_deterministic_automation
+      - agentic_to_manual_process
+      - agentic_to_safe_stop
+
+  # ----------------------------------------------------------------
+  # 13. Intervention governance
+  # ----------------------------------------------------------------
+  intervention_governance:
+    description: |
+      Human intervention SHALL be governed as an explicit control
+      mechanism. Intervention SHALL NOT automatically be classified
+      as failure. The governance question is: is the intervention
+      pattern appropriate for the delegated authority and risk of
+      the Value Stream?
+    types:
+      - approval
+      - validation
+      - exception_handling
+      - correction
+      - escalation
+      - override
+      - investigation
+      - recovery
+
+  # ----------------------------------------------------------------
+  # 14. Conformance drift
+  # ----------------------------------------------------------------
+  conformance_drift:
+    description: |
+      An AVS may gradually cease to conform even if its original
+      implementation was valid. Conformance is a lifecycle property,
+      NOT a one-time certification event. Periodic and event-
+      triggered revalidation SHALL be supported.
+    causes:
+      - context_changes
+      - authority_expansion
+      - policy_changes
+      - new_action_options
+      - value_stream_changes
+      - agent_behavior_changes
+      - customer_population_changes
+      - regulatory_changes
+
+  # ----------------------------------------------------------------
+  # 15. Governance triggers
+  # ----------------------------------------------------------------
+  governance_triggers:
+    description: |
+      Revalidation SHOULD be triggered by material events. This
+      provides an event-driven governance model rather than relying
+      exclusively on annual reviews.
+    items:
+      - semantic_change
+      - authority_change
+      - risk_change
+      - policy_change
+      - material_outcome_change
+      - agentic_scope_change
+      - value_stream_change
+      - regulatory_change
+      - major_incident
+      - conformance_drift
+      - architecture_change
+
+  # ----------------------------------------------------------------
+  # 16. Governance evidence
+  # ----------------------------------------------------------------
+  governance_evidence:
+    description: |
+      Each governance decision should have traceable evidence.
+      Governance decisions MUST be distinguishable from semantic
+      evidence.
+    record_schema:
+      fields:
+        - id
+        - subject
+        - decision
+        - rationale
+        - authority
+        - evidence
+        - risks
+        - conditions
+        - effective_from
+        - effective_until
+        - decided_by
+        - reviewed_by
+        - review_date
+
+  # ----------------------------------------------------------------
+  # 17. Governance decision types
+  # ----------------------------------------------------------------
+  governance_decision_types:
+    description: |
+      Recommended controlled vocabulary for governance decisions.
+    controlled_vocabulary:
+      - qualify
+      - approve
+      - approve_with_conditions
+      - reject
+      - deploy
+      - continue
+      - restrict
+      - escalate
+      - suspend
+      - resume
+      - revalidate
+      - expand
+      - reduce_scope
+      - revoke_authority
+      - retire
+
+  # ----------------------------------------------------------------
+  # 18. Portfolio governance
+  # ----------------------------------------------------------------
+  portfolio_governance:
+    description: |
+      At enterprise scale, governance moves beyond individual AVS
+      instances.
+    inventory:
+      - avs_inventory
+      - business_domains
+      - value_streams
+      - agentic_scope
+      - authority_concentration
+      - criticality
+      - risk
+      - value
+      - maturity
+      - technology_dependencies
+      - shared_capabilities
+      - duplication
+      - lifecycle_state
+
+    prioritization:
+      description: |
+        Portfolio decisions SHOULD consider expected value, strategic
+        alignment, feasibility, risk, capability readiness, reuse
+        potential, and operational criticality. A simple "highest
+        automation opportunity first" strategy is explicitly
+        rejected.
+      factors:
+        - expected_value
+        - strategic_alignment
+        - feasibility
+        - risk
+        - capability_readiness
+        - reuse_potential
+        - operational_criticality
+
+    capability_reuse:
+      description: |
+        Portfolio governance SHOULD identify reusable capabilities.
+        This prevents each AVS from independently rebuilding
+        enterprise control capabilities.
+      reusable_capabilities:
+        - identity
+        - authorization
+        - policy_enforcement
+        - knowledge_retrieval
+        - decision_services
+        - monitoring
+        - evaluation
+        - intervention
+        - audit
+        - measurement
+        - orchestration
+
+    agent_sprawl:
+      description: |
+        Portfolio governance SHOULD explicitly monitor for
+        unnecessary complexity. The goal is NOT to minimize the
+        number of agents; the goal is to minimize unnecessary
+        complexity while maximizing reusable value-realization
+        capability.
+      monitor_for:
+        - duplicate_agents
+        - duplicate_capabilities
+        - inconsistent_authority_models
+        - fragmented_policies
+        - overlapping_value_streams
+        - redundant_ai_services
+        - unnecessary_multi_agent_architectures
+
+    concentration_risk:
+      description: |
+        An enterprise SHOULD identify concentration risks such as
+        many AVS sharing the same authority service, policy engine,
+        agent platform -> single failure or control point. Portfolio
+        governance SHOULD therefore consider systemic dependencies.
+
+  # ----------------------------------------------------------------
+  # 19. Lifecycle ownership
+  # ----------------------------------------------------------------
+  lifecycle_ownership:
+    description: |
+      Every operational AVS SHOULD have explicit ownership. These
+      may be combined in smaller organizations but MUST be
+      conceptually distinguishable.
+    responsibility_to_owner:
+      - responsibility: value_outcome
+        owner: value_stream_owner
+      - responsibility: semantic_integrity
+        owner: semantic_steward
+      - responsibility: agentic_realization
+        owner: avs_solution_owner
+      - responsibility: authority
+        owner: authority_owner
+      - responsibility: risk
+        owner: risk_governance_owner
+      - responsibility: operations
+        owner: operational_owner
+      - responsibility: measurement
+        owner: value_measurement_owner
+      - responsibility: lifecycle
+        owner: avs_lifecycle_owner
+
+  # ----------------------------------------------------------------
+  # 20. Governance RACI principle
+  # ----------------------------------------------------------------
+  raci_principle:
+    description: |
+      The repository SHOULD avoid embedding a universal RACI matrix
+      into the semantic concept. RACI belongs to organizational
+      governance configuration. The semantic model should instead
+      define required responsibilities, while individual enterprises
+      determine their organizational assignment.
+
+  # ----------------------------------------------------------------
+  # 21. Governance policy hierarchy
+  # ----------------------------------------------------------------
+  policy_hierarchy:
+    description: |
+      Policies are structured to prevent runtime agent instructions
+      from becoming the highest authority.
+    chain:
+      - enterprise_policy
+      - domain_policy
+      - value_stream_policy
+      - avs_policy
+      - authority_boundary
+      - runtime_enforcement
+
+  # ----------------------------------------------------------------
+  # 22. Runtime instruction vs governance policy
+  # ----------------------------------------------------------------
+  runtime_vs_governance:
+    description: |
+      The following distinction is mandatory: Instruction != Policy
+      != Authority != Governance Decision. An agent instruction
+      cannot legitimately override a higher-order authority
+      constraint.
+
+  # ----------------------------------------------------------------
+  # 23. Emergency controls
+  # ----------------------------------------------------------------
+  emergency_controls:
+    description: |
+      Critical AVS implementations SHOULD provide emergency controls
+      that operate independently enough to remain effective when
+      the AVS itself is malfunctioning.
+    items:
+      - emergency_suspension
+      - authority_revocation
+      - safe_fallback
+      - escalation
+      - incident_capture
+      - evidence_preservation
+      - controlled_restart
+
+  # ----------------------------------------------------------------
+  # 24. Governance dashboard
+  # ----------------------------------------------------------------
+  governance_dashboard:
+    description: |
+      A portfolio governance dashboard should expose lifecycle,
+      semantic, authority, risk, value, and maturity views.
+    lifecycle_view:
+      - proposed
+      - assessed
+      - designed
+      - qualified
+      - approved
+      - operational
+      - suspended
+      - retired
+    semantic_view:
+      - conformance_status
+      - drift
+      - qualification_age
+    authority_view:
+      - authority_utilization
+      - exceptions
+      - revocations
+      - escalation
+    risk_view:
+      - incidents
+      - boundary_violations
+      - policy_exceptions
+    value_view:
+      - outcome_realization
+      - incremental_value
+      - cost
+      - risk_adjusted_value
+    maturity_view:
+      - capability_profile
+      - gaps
+      - improvement_trajectory
+
+  # ----------------------------------------------------------------
+  # 25. Governance metrics
+  # ----------------------------------------------------------------
+  governance_metrics:
+    description: |
+      CR-VAS-007 introduces governance-specific measures that
+      complement (do NOT replace) CR-VAS-005 measurement metrics.
+    items:
+      - id: governance_review_timeliness
+        formula: "reviews_completed_within_required_period / reviews_due"
+      - id: revalidation_compliance
+        formula: "material_changes_revalidated / material_changes"
+      - id: authority_control_coverage
+        formula: "agentic_authority_boundaries_with_active_controls / total_delegated_authority_boundaries"
+      - id: governance_exception_rate
+        formula: "governance_exceptions / governed_avs_events"
+      - id: suspension_response_time
+        description: Time from critical governance trigger to
+          effective suspension.
+      - id: remediation_closure_rate
+        formula: "closed_governance_findings / open_governance_findings"
+
+  # ----------------------------------------------------------------
+  # 26. Governance maturity vs AVS maturity
+  # ----------------------------------------------------------------
+  governance_vs_avs_maturity:
+    description: |
+      CR-VAS-006 measures organizational capability. CR-VAS-007
+      governs the actual lifecycle. Therefore: Maturity = Capability
+      to govern. Governance = Actual exercise of governance. A
+      highly mature organization can still make a poor governance
+      decision. Conversely, a smaller organization may operate a
+      very disciplined governance process for a critical AVS.
+
+  # ----------------------------------------------------------------
+  # 27. Lifecycle schema
+  # ----------------------------------------------------------------
+  lifecycle_schema:
+    description: |
+      Machine-readable lifecycle record.
+    fields:
+      - state
+      - state_since
+      - owner
+      - previous_state
+      - transition_reason
+      - governance.status
+      - governance.approval
+      - governance.conditions
+      - qualification.status
+      - qualification.last_validated
+      - qualification.next_review
+      - conformance.status
+      - conformance.last_assessed
+      - material_change.pending
+      - suspension.active
+
+  # ----------------------------------------------------------------
+  # 28. Change record schema
+  # ----------------------------------------------------------------
+  change_record_schema:
+    fields:
+      - id
+      - avs
+      - classification
+      - description
+      - affected_scope
+      - affected_authority
+      - affected_risk
+      - affected_outcomes
+      - materiality.determination
+      - materiality.rationale
+      - revalidation.required
+      - revalidation.status
+      - approval.required
+      - approval.status
+      - implementation.status
+      - post_change_validation.status
+      - post_change_validation.evidence
+
+  # ----------------------------------------------------------------
+  # 29. Portfolio record schema
+  # ----------------------------------------------------------------
+  portfolio_record_schema:
+    fields:
+      - id
+      - name
+      - members[].avs_id
+      - governance.owner
+      - governance.review_cycle
+      - dependencies[].type
+      - dependencies[].subject
+      - shared_capabilities[].capability
+      - risk_profile.criticality
+      - risk_profile.concentration
+      - value.aggregate
+      - value.confidence
+
+  # ----------------------------------------------------------------
+  # 30. Invariants (15)
+  # ----------------------------------------------------------------
+  invariants:
+    description: |
+      CR-VAS-007 introduces the following invariants. Each is
+      binding across governance decisions, dashboards, and reporting.
+    items:
+      - id: AVS-GOV-INV-001
+        statement: Governance does not redefine AVS semantics.
+      - id: AVS-GOV-INV-002
+        statement: |
+          Semantic qualification and governance approval are distinct
+          decisions.
+      - id: AVS-GOV-INV-003
+        statement: Operational status does not imply continuing
+          conformance.
+      - id: AVS-GOV-INV-004
+        statement: Material changes require appropriate revalidation.
+      - id: AVS-GOV-INV-005
+        statement: Delegated authority must remain bounded and
+          governable.
+      - id: AVS-GOV-INV-006
+        statement: Authority must be revocable.
+      - id: AVS-GOV-INV-007
+        statement: Production AVS should have an appropriate
+          fallback strategy.
+      - id: AVS-GOV-INV-008
+        statement: Human intervention may be a deliberate governance
+          control.
+      - id: AVS-GOV-INV-009
+        statement: Lifecycle states must support suspension and
+          resumption.
+      - id: AVS-GOV-INV-010
+        statement: Lifecycle states must support retirement.
+      - id: AVS-GOV-INV-011
+        statement: Governance decisions require traceable evidence.
+      - id: AVS-GOV-INV-012
+        statement: |
+          Portfolio governance must not redefine individual AVS
+          semantics.
+      - id: AVS-GOV-INV-013
+        statement: |
+          Runtime instructions cannot supersede governing authority
+          or policy.
+      - id: AVS-GOV-INV-014
+        statement: Conformance is subject to lifecycle revalidation.
+      - id: AVS-GOV-INV-015
+        statement: |
+          Governance responsibilities are organizational assignments,
+          not ontology requirements.
+
+  # ----------------------------------------------------------------
+  # 31. Boundary assertions
+  # ----------------------------------------------------------------
+  boundary_assertions:
+    per_cr_vas_007_governance_lifecycle: |
+      Per CR-VAS-007, governance SHALL be the management control
+      plane around an already-defined AVS semantic object. Governance
+      SHALL NOT redefine AVS semantics. Material changes SHALL
+      trigger revalidation. Authority SHALL be revocable. Runtime
+      instructions SHALL NOT supersede governing authority or
+      policy. Governance decisions SHALL be traceable.
 

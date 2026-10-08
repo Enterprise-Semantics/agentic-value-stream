@@ -783,3 +783,128 @@ Seven new documentation files accompany this layer:
   architecture relationship.
 - `docs/maturity-anti-patterns.md`. Eight anti-patterns with
   rejection rationale and detection heuristics.
+
+## Governance, Lifecycle & Portfolio (CR-VAS-007, Wave 5)
+
+CR-VAS-007 establishes the **management control plane** around the
+already-defined AVS semantic object. Governance does NOT redefine
+AVS semantics; it governs how conformant AVS are created, changed,
+monitored, suspended, retired, and managed across an enterprise
+portfolio.
+
+### Core Principle
+
+An Agentic Value Stream is governed as a **Value Stream with agentic
+participation**, not as an autonomous technology asset.
+
+```
+Value Stream
+   -> Agentic Participation
+     -> Authority
+       -> Risk
+         -> Outcome
+           -> Governance
+```
+
+rather than `AI Model -> Agent -> Agentic System -> Governance`.
+
+### Ten Lifecycle States
+
+| State | Meaning |
+|---|---|
+| Proposed | Candidate identified for agentic realization. |
+| Assessed | Initial evaluation covering relevance, authority, risk, materiality. |
+| Designed | Formal design (scope, intent, authority, action space, etc.). |
+| Qualified | Semantic qualification + evidence satisfied. |
+| Approved | Governance authority authorizes implementation or operation. |
+| Implemented | Realization exists technically/operationally. |
+| Operational | Actively realizing value. Required controls active. |
+| Managed | Systematic measurement, monitoring, risk, value, conformance, improvement. |
+| Suspended | Temporary cessation of agentic realization. |
+| Retired | No longer authorized for operational use. |
+
+### Seven Governance Domains
+
+| ID | Domain |
+|---|---|
+| G1 | Semantic Governance |
+| G2 | Authority Governance |
+| G3 | Operational Governance |
+| G4 | Risk & Policy Governance |
+| G5 | Value Governance |
+| G6 | Change Governance |
+| G7 | Portfolio Governance |
+
+### Change Classification (4 Classes)
+
+| Class | Meaning |
+|---|---|
+| Class A | Non-Material ; no requalification required. |
+| Class B | Controlled ; targeted review required. |
+| Class C | Material ; formal revalidation required. |
+| Class D | Critical ; governance approval required before implementation. |
+
+### Governance Anti-Patterns (rejected)
+
+Per CR-VAS-007 §39, the following are explicitly rejected: approval
+equals qualification; no revalidation; irrevocable authority;
+agent controls policy; no fallback; portfolio by agent count.
+
+### Runtime vs Governance Policy Distinction
+
+```
+Instruction != Policy != Authority != Governance Decision
+```
+
+An agent instruction cannot legitimately override a higher-order
+authority constraint (AVS-GOV-INV-013). The policy hierarchy is
+Enterprise -> Domain -> Value Stream -> AVS -> Authority Boundary
+-> Runtime Enforcement.
+
+### Governance Tests
+
+Wave 5 adds 30 governance tests (10 positive + 10 negative + 10
+boundary):
+
+- 10 governance positive (VAS-GV-P01..P10, CR-VAS-007): lifecycle
+  management, seven governance domains, material change
+  revalidation, authority revocation, safe suspension and
+  fallback, portfolio governance, capability reuse and avoidance
+  of agent sprawl, governance evidence and decision types,
+  runtime instruction shall not override authority, governance
+  metrics and dashboard.
+- 10 governance negative (VAS-GV-N01..N10, CR-VAS-007): the six
+  anti-patterns and four additional negative tests (governance
+  redefines semantics, operational status implies continuing
+  conformance, lifecycle without retirement support, governance
+  decisions without evidence).
+- 10 governance boundary (VAS-GV-BT-01..10, CR-VAS-007):
+  governance vs semantic qualification, qualification vs
+  approval, lifecycle state vs governance status, material vs
+  non-material change, authority escalation vs normal authority
+  use, conformance drift vs version change, governance maturity
+  vs AVS maturity, governance metrics vs measurement metrics,
+  intervention as control vs intervention as failure, governance
+  RACI vs ontology responsibility.
+
+### Documentation set (Wave 5 additions)
+
+Eight new documentation files accompany this layer:
+
+- `docs/governance.md`. Purpose, core principle, governance
+  objective, dimensions, scope.
+- `docs/lifecycle.md`. 10-state lifecycle, non-linearity, state
+  separation.
+- `docs/change-management.md`. Material change concept, change
+  classification (4 classes), change decision model.
+- `docs/authority-governance.md`. Authority record schema,
+  escalation, revocation, governance evidence.
+- `docs/suspension-and-recovery.md`. Suspension triggers,
+  fallback patterns, emergency controls, recovery.
+- `docs/portfolio-governance.md`. Portfolio inventory,
+  prioritization, capability reuse, agent sprawl avoidance,
+  concentration risk.
+- `docs/governance-metrics.md`. Six governance metrics,
+  dashboard views.
+- `docs/governance-anti-patterns.md`. Six anti-patterns with
+  rejection rationale.

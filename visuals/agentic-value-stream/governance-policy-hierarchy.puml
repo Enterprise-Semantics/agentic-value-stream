@@ -1,0 +1,26 @@
+@startuml governance-policy-hierarchy
+title AVS Governance Policy Hierarchy (CR-VAS-007)
+skinparam backgroundColor #FFFFFF
+skinparam roundCorner 10
+skinparam shadowing false
+
+rectangle "Enterprise Policy" as EP
+rectangle "Domain Policy" as DP
+rectangle "Value Stream Policy" as VSP
+rectangle "AVS Policy" as AVSP
+rectangle "Authority Boundary" as AB
+rectangle "Runtime Enforcement" as RE
+
+EP -> DP
+DP -> VSP
+VSP -> AVSP
+AVSP -> AB
+AB -> RE
+
+note bottom of EP
+  Runtime instructions SHALL NOT supersede
+  governing authority or policy
+  (AVS-GOV-INV-013).
+end note
+
+@enduml

@@ -1,0 +1,11 @@
+id: KIT-AGENTIC-VALUE-STREAM-VAS-GV-BT-08
+test_id: VAS-GV-BT-08
+category: governance_gv-boundary
+subject: Governance Metrics vs Measurement Metrics
+description: CR-VAS-007 governance metrics complement (do NOT replace) CR-VAS-005 measurement metrics.
+cr: CR-VAS-007 §boundary
+expect: governance_metrics are governance-specific (review timeliness, revalidation compliance, etc.); not measurement metrics.
+asserts:
+- governance.governance_metrics.description contains CR-VAS-007
+- governance.governance_metrics.description contains complement
+- governance.governance_metrics.description contains do NOT replace

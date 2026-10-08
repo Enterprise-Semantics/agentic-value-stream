@@ -1,0 +1,11 @@
+id: KIT-AGENTIC-VALUE-STREAM-VAS-GV-BT-10
+test_id: VAS-GV-BT-10
+category: governance_gv-boundary
+subject: Governance RACI vs Ontology Responsibility
+description: RACI belongs to organisational governance configuration; ontology defines required responsibilities.
+cr: CR-VAS-007 §boundary
+expect: raci_principle.description declares RACI organisational, not ontology.
+asserts:
+- governance.raci_principle.description contains organisational
+- governance.raci_principle.description contains not embed RACI into semantic concept
+- governance.invariants.items contains item with id == AVS-GOV-INV-015

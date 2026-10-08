@@ -1,0 +1,14 @@
+id: KIT-AGENTIC-VALUE-STREAM-VAS-GV-P09
+test_id: VAS-GV-P09
+category: governance_gv-positive
+subject: Runtime Instruction Shall Not Override Authority
+description: Runtime instructions cannot supersede governing authority or policy. CR-VAS-007 §29 + AVS-GOV-INV-013.
+cr: CR-VAS-007 §boundary
+expect: runtime_vs_governance.description declares the four-way distinction (Instruction != Policy != Authority != Governance
+  Decision).
+asserts:
+- governance.runtime_vs_governance.description contains override
+- governance.runtime_vs_governance.description contains higher-order
+- governance.policy_hierarchy.chain contains enterprise_policy
+- governance.policy_hierarchy.chain contains runtime_enforcement
+- governance.invariants.items contains item with id == AVS-GOV-INV-013

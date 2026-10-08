@@ -1,0 +1,12 @@
+id: KIT-AGENTIC-VALUE-STREAM-VAS-GV-P03
+test_id: VAS-GV-P03
+category: governance_gv-positive
+subject: Material Change Revalidation
+description: A material authority change triggers revalidation. CR-VAS-007 §9 + §11.
+cr: CR-VAS-007 §boundary
+expect: material_change.examples includes change_authority_threshold; material_change.principle declares revalidation trigger.
+asserts:
+- governance.material_change.examples contains change_authority_threshold
+- governance.material_change.principle contains revalidation
+- governance.change_classification.items contains item with id == class_c
+- governance.change_classification.items[id=class_c].meaning contains revalidation

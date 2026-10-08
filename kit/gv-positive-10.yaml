@@ -1,0 +1,15 @@
+id: KIT-AGENTIC-VALUE-STREAM-VAS-GV-P10
+test_id: VAS-GV-P10
+category: governance_gv-positive
+subject: Governance Metrics And Dashboard
+description: CR-VAS-007 §31 + §32 introduces 6 governance metrics and a dashboard with lifecycle/semantic/authority/risk/value/maturity
+  views.
+cr: CR-VAS-007 §boundary
+expect: governance_metrics.items has 6 entries; governance_dashboard has 6 view keys.
+asserts:
+- governance.governance_metrics.items contains item with id == governance_review_timeliness
+- governance.governance_metrics.items contains item with id == revalidation_compliance
+- governance.governance_metrics.items contains item with id == authority_control_coverage
+- governance.governance_metrics.items contains item with id == governance_exception_rate
+- governance.governance_metrics.items contains item with id == suspension_response_time
+- governance.governance_metrics.items contains item with id == remediation_closure_rate

@@ -1,0 +1,11 @@
+id: KIT-AGENTIC-VALUE-STREAM-VAS-GV-N06
+test_id: VAS-GV-N06
+category: governance_gv-negative
+subject: Portfolio By Agent Count
+description: Portfolio investment prioritized solely by number of agents deployed. CR-VAS-007 §22 anti-pattern.
+cr: CR-VAS-007 §boundary
+expect: portfolio_governance.prioritization.factors excludes agent_count; capreuse + agent_sprawl monitors are present.
+asserts:
+- governance.portfolio_governance.prioritization.description contains highest automation opportunity
+- governance.portfolio_governance.prioritization.factors contains reuse_potential
+- governance.portfolio_governance.agent_sprawl is defined

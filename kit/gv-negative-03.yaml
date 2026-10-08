@@ -1,0 +1,13 @@
+id: KIT-AGENTIC-VALUE-STREAM-VAS-GV-N03
+test_id: VAS-GV-N03
+category: governance_gv-negative
+subject: Irrevocable Authority
+description: The implementation has no effective mechanism for authority revocation. CR-VAS-007 §14 anti-pattern.
+cr: CR-VAS-007 §boundary
+expect: authority_governance.revocation present with triggers; AVS-GOV-INV-006 binds.
+asserts:
+- governance.authority_governance.revocation is defined
+- governance.authority_governance.revocation.triggers contains incident
+- governance.authority_governance.revocation.triggers contains policy_change
+- governance.authority_governance.revocation.description contains MUST NOT require semantic deletion
+- governance.invariants.items contains item with id == AVS-GOV-INV-006

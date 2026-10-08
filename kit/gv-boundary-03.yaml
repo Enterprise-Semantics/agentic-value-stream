@@ -1,0 +1,11 @@
+id: KIT-AGENTIC-VALUE-STREAM-VAS-GV-BT-03
+test_id: VAS-GV-BT-03
+category: governance_gv-boundary
+subject: Lifecycle State vs Governance Status
+description: Lifecycle state and governance status remain distinct; suspension != unconditional operational.
+cr: CR-VAS-007 §boundary
+expect: state_separation explicit; example for operational+conditional and suspended+remediation present.
+asserts:
+- governance.state_separation is defined
+- governance.state_separation.example_operational_conditional is defined
+- governance.state_separation.example_suspended_remediation is defined

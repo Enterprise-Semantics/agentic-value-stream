@@ -1,0 +1,11 @@
+id: KIT-AGENTIC-VALUE-STREAM-VAS-GV-P04
+test_id: VAS-GV-P04
+category: governance_gv-positive
+subject: Authority Revocation
+description: The organization can revoke delegated authority without deleting the Value Stream. CR-VAS-007 §14.
+cr: CR-VAS-007 §boundary
+expect: authority_governance.revocatable present; AVS-GOV-INV-006 binds.
+asserts:
+- governance.authority_governance.revocation.description contains revocation
+- governance.authority_governance.revocation.triggers contains policy_change
+- governance.invariants.items contains item with id == AVS-GOV-INV-006

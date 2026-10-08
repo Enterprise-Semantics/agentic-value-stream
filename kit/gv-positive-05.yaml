@@ -1,0 +1,12 @@
+id: KIT-AGENTIC-VALUE-STREAM-VAS-GV-P05
+test_id: VAS-GV-P05
+category: governance_gv-positive
+subject: Safe Suspension and Fallback
+description: A critical incident results in controlled AVS suspension and fallback. CR-VAS-007 §5.9 + §12.
+cr: CR-VAS-007 §boundary
+expect: lifecycle.states includes suspended; fallback_governance.patterns includes agentic_to_human.
+asserts:
+- governance.lifecycle.states contains item with id == suspended
+- governance.fallback_governance.patterns contains agentic_to_human
+- governance.fallback_governance.patterns contains agentic_to_safe_stop
+- governance.invariants.items contains item with id == AVS-GOV-INV-009

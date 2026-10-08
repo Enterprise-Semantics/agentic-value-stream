@@ -1,0 +1,12 @@
+id: KIT-AGENTIC-VALUE-STREAM-VAS-GV-N02
+test_id: VAS-GV-N02
+category: governance_gv-negative
+subject: No Revalidation
+description: Authority is materially expanded without reassessment. CR-VAS-007 §9 + §11.
+cr: CR-VAS-007 §boundary
+expect: material_change.principle requires revalidation; change_classification Class C requires revalidation.
+asserts:
+- governance.material_change.principle contains revalidation
+- governance.change_classification.items contains item with id == class_c
+- governance.change_decision_model.flow contains Revalidation
+- governance.invariants.items contains item with id == AVS-GOV-INV-004

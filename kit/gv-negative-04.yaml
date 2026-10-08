@@ -1,0 +1,11 @@
+id: KIT-AGENTIC-VALUE-STREAM-VAS-GV-N04
+test_id: VAS-GV-N04
+category: governance_gv-negative
+subject: Agent Controls Policy
+description: Runtime agent instructions can override governing enterprise policies. CR-VAS-007 §29 anti-pattern.
+cr: CR-VAS-007 §boundary
+expect: runtime_vs_governance.description forbids override; AVS-GOV-INV-013 binds.
+asserts:
+- governance.runtime_vs_governance.description contains cannot legitimately override
+- governance.policy_hierarchy.chain contains enterprise_policy
+- governance.invariants.items contains item with id == AVS-GOV-INV-013

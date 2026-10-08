@@ -1,0 +1,12 @@
+id: KIT-AGENTIC-VALUE-STREAM-VAS-GV-BT-04
+test_id: VAS-GV-BT-04
+category: governance_gv-boundary
+subject: Material vs Non-Material Change
+description: Material change triggers revalidation; non-material does not. CR-VAS-007 §9..§11.
+cr: CR-VAS-007 §boundary
+expect: change_classification has 4 classes A..D; Class C requires formal revalidation.
+asserts:
+- governance.change_classification.items contains item with id == class_a
+- governance.change_classification.items contains item with id == class_b
+- governance.change_classification.items contains item with id == class_c
+- governance.change_classification.items contains item with id == class_d

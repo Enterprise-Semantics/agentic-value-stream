@@ -1,0 +1,11 @@
+id: KIT-AGENTIC-VALUE-STREAM-VAS-GV-BT-02
+test_id: VAS-GV-BT-02
+category: governance_gv-boundary
+subject: Qualification vs Approval
+description: Semantic qualification (CR-VAS-002) and governance approval are distinct decisions.
+cr: CR-VAS-007 §boundary
+expect: qualified and approved are distinct lifecycle states; AVS-GOV-INV-002 binds.
+asserts:
+- governance.lifecycle.states[id=qualified].meaning contains semantic state
+- governance.lifecycle.states[id=approved].meaning contains SHALL NOT be interpreted as semantic qualification
+- governance.invariants.items contains item with id == AVS-GOV-INV-002

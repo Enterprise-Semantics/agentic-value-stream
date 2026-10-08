@@ -1,0 +1,12 @@
+id: KIT-AGENTIC-VALUE-STREAM-VAS-GV-N08
+test_id: VAS-GV-N08
+category: governance_gv-negative
+subject: Operational Status Implies Continuing Conformance
+description: Operational lifecycle state is taken as evidence of conformance. CR-VAS-007 §7 + §14 anti-pattern.
+cr: CR-VAS-007 §boundary
+expect: conformance_drift present; AVS-GOV-INV-003 binds (operational != conformance).
+asserts:
+- governance.conformance_drift.description contains lifecycle property
+- governance.conformance_drift.causes contains authority_expansion
+- governance.invariants.items contains item with id == AVS-GOV-INV-003
+- governance.invariants.items contains item with id == AVS-GOV-INV-014

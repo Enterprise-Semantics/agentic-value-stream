@@ -1,0 +1,11 @@
+id: KIT-AGENTIC-VALUE-STREAM-VAS-GV-BT-01
+test_id: VAS-GV-BT-01
+category: governance_gv-boundary
+subject: Governance vs Semantic Qualification
+description: Governance SHALL NOT redefine AVS semantics. CR-VAS-007 §4 + AVS-GOV-INV-001.
+cr: CR-VAS-007 §boundary
+expect: principle distinguishes governance object from semantic object; AVS-GOV-INV-001 binds.
+asserts:
+- governance.principle contains governance begins with
+- governance.principle contains Value Stream
+- governance.invariants.items contains item with id == AVS-GOV-INV-001

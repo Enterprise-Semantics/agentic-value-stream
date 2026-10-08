@@ -1,0 +1,11 @@
+id: KIT-AGENTIC-VALUE-STREAM-VAS-GV-N07
+test_id: VAS-GV-N07
+category: governance_gv-negative
+subject: Governance Redefines Semantics
+description: Governance object model or portfolio governance redefines AVS semantics. CR-VAS-007 §4 anti-pattern.
+cr: CR-VAS-007 §boundary
+expect: object_model declares governance subordinate; AVS-GOV-INV-001 + AVS-GOV-INV-012 bind.
+asserts:
+- governance.object_model.description contains subordinate to the semantic model
+- governance.invariants.items contains item with id == AVS-GOV-INV-001
+- governance.invariants.items contains item with id == AVS-GOV-INV-012

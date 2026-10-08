@@ -1,0 +1,15 @@
+id: KIT-AGENTIC-VALUE-STREAM-VAS-GV-P08
+test_id: VAS-GV-P08
+category: governance_gv-positive
+subject: Governance Evidence And Decision Types
+description: Each governance decision has traceable evidence and uses the controlled decision-type vocabulary. CR-VAS-007
+  §19 + §20.
+cr: CR-VAS-007 §boundary
+expect: governance_evidence.record_schema has 13 fields; governance_decision_types.controlled_vocabulary includes 15 verbs.
+asserts:
+- governance.governance_evidence.record_schema.fields contains id
+- governance.governance_evidence.record_schema.fields contains decision
+- governance.governance_evidence.record_schema.fields contains rationale
+- governance.governance_decision_types.controlled_vocabulary contains suspend
+- governance.governance_decision_types.controlled_vocabulary contains revoke_authority
+- governance.invariants.items contains item with id == AVS-GOV-INV-011

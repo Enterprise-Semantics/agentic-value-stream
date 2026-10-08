@@ -350,3 +350,91 @@ measurement_alignment:
         Maturity is not a measurement score.
     - maturity_vs_technology_progression: |
         AVS maturity is not a technology maturity ladder.
+
+  # CR-VAS-007 governance alignment block.
+  # Governance is a CR-VAS-007 framework construct; it does not modify
+  # the OpenDEA metamodel. OpenDEA alignment covers the
+  # governance-to-assessment-map where an analog exists.
+  cr: CR-VAS-007
+  adr: ES-ADR-057
+  alignment_kind: repository_framework_overlay
+  semantic_alignment:
+    opendea_target: null
+    description: |
+      CR-VAS-007 governance model is a management control plane. It
+      is repository-specific and does not modify the OpenDEA
+      metamodel.
+  methodological_alignment:
+    opendea_target: null
+    description: |
+      CR-VAS-007 methodology (10-state lifecycle, 7 governance
+      domains, 4-class change classification, portfolio governance)
+      is repository-specific; not borrowed from OpenDEA.
+  lifecycle_alignment:
+    - avs_state: proposed
+      opendea_target: null
+      notes: Repository-specific.
+    - avs_state: assessed
+      opendea_target: opendea_assessment
+      notes: Assessment aligns with OpenDEA assessment concepts
+        where present.
+    - avs_state: designed
+      opendea_target: null
+      notes: Repository-specific.
+    - avs_state: qualified
+      opendea_target: opendea_assessment
+      notes: Qualification aligns with OpenDEA qualification
+        concepts where present.
+    - avs_state: approved
+      opendea_target: null
+      notes: Governance approval; repository-specific.
+    - avs_state: implemented
+      opendea_target: null
+      notes: Repository-specific.
+    - avs_state: operational
+      opendea_target: opendea_assessment
+      notes: Operational status aligns with OpenDEA assessment
+        realization concepts where present.
+    - avs_state: managed
+      opendea_target: null
+      notes: Repository-specific.
+    - avs_state: suspended
+      opendea_target: null
+      notes: Repository-specific.
+    - avs_state: retired
+      opendea_target: null
+      notes: Repository-specific.
+  governance_domain_alignment:
+    - avs_domain: semantic_governance
+      opendea_target: null
+      notes: Repository-specific.
+    - avs_domain: authority_governance
+      opendea_target: null
+      notes: Repository-specific.
+    - avs_domain: operational_governance
+      opendea_target: null
+      notes: Repository-specific.
+    - avs_domain: risk_and_policy_governance
+      opendea_target: null
+      notes: Repository-specific.
+    - avs_domain: value_governance
+      opendea_target: opendea_measurement
+      notes: Value governance aligns with OpenDEA measurement
+        concepts where present.
+    - avs_domain: change_governance
+      opendea_target: null
+      notes: Repository-specific.
+    - avs_domain: portfolio_governance
+      opendea_target: null
+      notes: Repository-specific.
+  separation_principles:
+    - governance_vs_qualification: |
+        Governance does not redefine semantic qualification.
+    - governance_vs_conformance: |
+        Governance does not redefine conformance.
+    - governance_vs_maturity: |
+        Governance maturity is distinct from AVS organizational
+        maturity.
+    - governance_vs_measurement: |
+        Governance metrics complement (do NOT replace) measurement
+        metrics.

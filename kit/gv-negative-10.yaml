@@ -1,0 +1,12 @@
+id: KIT-AGENTIC-VALUE-STREAM-VAS-GV-N10
+test_id: VAS-GV-N10
+category: governance_gv-negative
+subject: Governance Decisions Without Evidence
+description: Governance decisions taken without traceable evidence. CR-VAS-007 §19 + AVS-GOV-INV-011.
+cr: CR-VAS-007 §boundary
+expect: governance_evidence.record_schema present with 13 fields; AVS-GOV-INV-011 binds.
+asserts:
+- governance.governance_evidence.record_schema.fields contains evidence
+- governance.governance_evidence.record_schema.fields contains decided_by
+- governance.governance_evidence.record_schema.fields contains reviewed_by
+- governance.invariants.items contains item with id == AVS-GOV-INV-011

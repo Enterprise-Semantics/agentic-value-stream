@@ -1,0 +1,12 @@
+id: KIT-AGENTIC-VALUE-STREAM-VAS-GV-N01
+test_id: VAS-GV-N01
+category: governance_gv-negative
+subject: Approval Equals Qualification
+description: An organization treats managerial approval as proof that a Value Stream is Agentic. CR-VAS-007 §39 anti-pattern.
+cr: CR-VAS-007 §boundary
+expect: lifecycle.states includes qualified AND approved as DISTINCT states; AVS-GOV-INV-002 binds.
+asserts:
+- governance.lifecycle.states contains item with id == qualified
+- governance.lifecycle.states contains item with id == approved
+- governance.lifecycle.states[id=approved].meaning contains SHALL NOT be interpreted as semantic qualification
+- governance.invariants.items contains item with id == AVS-GOV-INV-002

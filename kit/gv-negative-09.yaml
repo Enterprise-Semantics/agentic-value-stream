@@ -1,0 +1,12 @@
+id: KIT-AGENTIC-VALUE-STREAM-VAS-GV-N09
+test_id: VAS-GV-N09
+category: governance_gv-negative
+subject: Lifecycle Without Retirement Support
+description: Lifecycle cannot represent retirement or suspension/resumption. CR-VAS-007 §5.9 + §5.10 anti-pattern.
+cr: CR-VAS-007 §boundary
+expect: lifecycle.states includes suspended + retired; AVS-GOV-INV-009 + AVS-GOV-INV-010 bind.
+asserts:
+- governance.lifecycle.states contains item with id == suspended
+- governance.lifecycle.states contains item with id == retired
+- governance.invariants.items contains item with id == AVS-GOV-INV-009
+- governance.invariants.items contains item with id == AVS-GOV-INV-010

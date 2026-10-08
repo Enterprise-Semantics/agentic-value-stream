@@ -1,0 +1,12 @@
+id: KIT-AGENTIC-VALUE-STREAM-VAS-GV-BT-06
+test_id: VAS-GV-BT-06
+category: governance_gv-boundary
+subject: Conformance Drift vs Version Change
+description: Conformance is a lifecycle property, not a one-time certification event.
+cr: CR-VAS-007 §boundary
+expect: conformance_drift.causes and governance_triggers include conformance_drift and architecture_change.
+asserts:
+- governance.conformance_drift.description contains lifecycle property
+- governance.governance_triggers.items contains conformance_drift
+- governance.governance_triggers.items contains architecture_change
+- governance.invariants.items contains item with id == AVS-GOV-INV-014

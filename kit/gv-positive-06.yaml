@@ -1,0 +1,12 @@
+id: KIT-AGENTIC-VALUE-STREAM-VAS-GV-P06
+test_id: VAS-GV-P06
+category: governance_gv-positive
+subject: Portfolio Governance
+description: Multiple AVS implementations are governed through a common portfolio model. CR-VAS-007 §21..25.
+cr: CR-VAS-007 §boundary
+expect: portfolio_governance.inventory includes avs_inventory; portfolio_governance.prioritization defined.
+asserts:
+- governance.portfolio_governance.inventory contains avs_inventory
+- governance.portfolio_governance.prioritization is defined
+- governance.portfolio_governance.capability_reuse is defined
+- governance.portfolio_governance.agent_sprawl is defined

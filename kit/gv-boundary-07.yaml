@@ -1,0 +1,10 @@
+id: KIT-AGENTIC-VALUE-STREAM-VAS-GV-BT-07
+test_id: VAS-GV-BT-07
+category: governance_gv-boundary
+subject: Governance Maturity vs AVS Maturity
+description: CR-VAS-006 measures capability; CR-VAS-007 governs the lifecycle. They are distinct.
+cr: CR-VAS-007 §boundary
+expect: governance_vs_avs_maturity.description declares the distinction.
+asserts:
+- governance.governance_vs_avs_maturity.description contains capability to govern
+- governance.governance_vs_avs_maturity.description contains actual exercise of governance

@@ -1,0 +1,13 @@
+id: KIT-AGENTIC-VALUE-STREAM-VAS-GV-P07
+test_id: VAS-GV-P07
+category: governance_gv-positive
+subject: Capability Reuse And Avoidance Of Agent Sprawl
+description: Portfolio governance identifies reusable capabilities and monitors for agent sprawl. CR-VAS-007 §23 + §24.
+cr: CR-VAS-007 §boundary
+expect: capability_reuse.reusable_capabilities includes identity, authorization, policy_enforcement; agent_sprawl.monitor_for
+  includes duplicate_agents.
+asserts:
+- governance.portfolio_governance.capability_reuse.reusable_capabilities contains identity
+- governance.portfolio_governance.capability_reuse.reusable_capabilities contains authorization
+- governance.portfolio_governance.capability_reuse.reusable_capabilities contains policy_enforcement
+- governance.portfolio_governance.agent_sprawl.monitor_for contains duplicate_agents

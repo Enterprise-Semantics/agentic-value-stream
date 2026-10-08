@@ -1,0 +1,42 @@
+@startuml migration-classes
+skinparam backgroundColor #FAFAFA
+skinparam defaultFontName "Helvetica"
+skinparam defaultFontSize 12
+title CR-VAS-010: Migration Classes (M0..M4) and Trigger Conditions
+
+package "Migration Class Selection" as MCS {
+  (M0: No migration) as M0
+  (M1: Mechanical) as M1
+  (M2: Reviewed) as M2
+  (M3: Semantic Reassessment) as M3
+  (M4: Requalification Required) as M4
+}
+
+package "Trigger Conditions" as TC {
+  (Existing artifacts valid) as T0
+  (Deterministic structural transform) as T1
+  (Validation or human review needed) as T2
+  (Qualification or invariant change) as T3
+  (Formal reevaluation required) as T4
+}
+
+T0 --> M0
+T1 --> M1
+T2 --> M2
+T3 --> M3
+T4 --> M4
+
+M0 ..> M1 : upgrade
+M1 ..> M2 : review-needed
+M2 ..> M3 : semantics
+M3 ..> M4 : requalify
+
+note bottom of MCS
+  Per CR-VAS-010 §14: Class MUST be selected based
+  on semantic impact, not implementation convenience.
+  Per SV-INV-005: Migration transformations MUST be
+  explicit. The repository MUST NOT silently infer
+  missing semantic evidence.
+end note
+
+@enduml

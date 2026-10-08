@@ -1,0 +1,13 @@
+id: KIT-AGENTIC-VALUE-STREAM-VAS-SV-P02
+test_id: VAS-SV-P02
+category: versioning_sv-positive
+subject: SemVer Policy
+description: CR-VAS-010 adopts MAJOR.MINOR.PATCH for the published AVS specification.
+cr: CR-VAS-010 §21
+expect: versioning_policy.scheme == MAJOR.MINOR.PATCH; major/minor/patch rules and required artifacts defined.
+asserts:
+- versioning.versioning_policy.scheme == MAJOR.MINOR.PATCH
+- versioning.versioning_policy.major.rule is defined
+- versioning.versioning_policy.minor.rule is defined
+- versioning.versioning_policy.patch.rule is defined
+- versioning.versioning_policy.warning is defined

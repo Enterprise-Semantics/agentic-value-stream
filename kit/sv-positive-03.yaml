@@ -1,0 +1,11 @@
+id: KIT-AGENTIC-VALUE-STREAM-VAS-SV-P03
+test_id: VAS-SV-P03
+category: versioning_sv-positive
+subject: Specification vs Artifact Version
+description: Repository distinguishes the version of the overall AVS specification from individual artifacts.
+cr: CR-VAS-010 §21
+expect: version_distinction.example demonstrates specification version + artifact version + specification_version reference.
+asserts:
+- versioning.version_distinction.rule is defined
+- versioning.version_distinction.example contains specification
+- versioning.version_distinction.example contains specification_version

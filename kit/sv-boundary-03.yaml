@@ -1,0 +1,11 @@
+id: KIT-AGENTIC-VALUE-STREAM-VAS-SV-BT-03
+test_id: VAS-SV-BT-03
+category: versioning_sv-boundary
+subject: Schema vs Semantic Breaking
+description: A change may be schema-compatible but semantically breaking. The compatibility report MUST make that distinction
+  explicit.
+cr: CR-VAS-010 §21
+expect: compatibility_dimensions.warning + SV-INV-008 binds.
+asserts:
+- versioning.compatibility_dimensions.warning contains schema-compatible but semantically breaking
+- versioning.invariants.items contains item with id == SV-INV-008

@@ -1,0 +1,9 @@
+id: KIT-AGENTIC-VALUE-STREAM-VAS-SV-N06
+test_id: VAS-SV-N06
+category: versioning_sv-negative
+subject: Value Re-Definition
+description: A controlled vocabulary value MUST NOT be redefined to mean something materially different.
+cr: CR-VAS-010 §21
+expect: controlled_vocabulary_evolution.rules.redefinition forbids redefinition.
+asserts:
+- versioning.controlled_vocabulary_evolution.rules contains A value MUST NOT be redefined

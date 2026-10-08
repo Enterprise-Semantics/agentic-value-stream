@@ -1,0 +1,11 @@
+id: KIT-AGENTIC-VALUE-STREAM-VAS-SV-BT-04
+test_id: VAS-SV-BT-04
+category: versioning_sv-boundary
+subject: Deprecation vs Removal
+description: Deprecation MUST NOT imply immediate invalidity unless the release explicitly states the item is no longer accepted.
+cr: CR-VAS-010 §21
+expect: deprecation_lifecycle.warning + states active|deprecated|retired.
+asserts:
+- versioning.deprecation_lifecycle.warning contains MUST NOT imply immediate invalidity
+- versioning.deprecation_lifecycle.states contains deprecated
+- versioning.deprecation_lifecycle.states contains retired

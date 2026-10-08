@@ -3,7 +3,7 @@ concept: ES:CONCEPT:agentic-value-stream
 canonical_name: Agentic Value Stream
 base_concept: ES:CONCEPT:value-stream
 status: semantically_conformant
-version: 1.6.0
+version: 1.7.0
 date: 2026-10-08
 author: Emmanuel A. Otchere (cardinal author rule, 2026-09-23)
 governance: enterprise-semantics
@@ -11,7 +11,7 @@ governance: enterprise-semantics
 # Repository reference (renamed per ES-ADR-051).
 concept_repo: Enterprise-Semantics/agentic-value-stream
 
-# Coverage auto-derived from kit/ inventory (per CR-AVS-001 §14 + CR-VAS-002 §22 + CR-VAS-003 §24 + CR-VAS-004 §19 + §20 + §21 + CR-VAS-005 §19 + §20 + §21 + CR-VAS-006 §33 + §34 + CR-VAS-007 §38 + §39 + CR-VAS-008 §26 + §22).
+# Coverage auto-derived from kit/ inventory (per CR-AVS-001 §14 + CR-VAS-002 §22 + CR-VAS-003 §24 + CR-VAS-004 §19 + §20 + §21 + CR-VAS-005 §19 + §20 + §21 + CR-VAS-006 §33 + §34 + CR-VAS-007 §38 + §39 + CR-VAS-008 §26 + §22 + CR-VAS-010 §19 + §20 + §21).
 coverage:
   positive: 5
   negative: 5
@@ -33,8 +33,11 @@ coverage:
   ap_positive: 6
   ap_negative: 6
   ap_boundary: 6
+  sv_positive: 6
+  sv_negative: 6
+  sv_boundary: 6
   integrity: 0
-  total: 169
+  total: 187
 
 # Test inventory by semantic role (per CR-VAS-002 §22 + CR-VAS-003 §24 + CR-VAS-004 §19 + §20 + §21).
 test_inventory:
@@ -416,7 +419,48 @@ ap_boundary:
   - id: KIT-AGENTIC-VALUE-STREAM-VAS-AP-BT-06
     condition: VAS-AP-BT-06 Progressive Delegation vs Maturity Progression
 
-# Boundary assertions covered (per CR-AVS-001 §22 + CR-VAS-002 §29 + CR-VAS-003 §24 + CR-VAS-004 §34 + CR-VAS-005 §44 + CR-VAS-006 §39 + §40 + CR-VAS-007 §41 + §42 + CR-VAS-008 §27).
+# Versioning test inventory (per CR-VAS-010 §19 + §20 + §21).
+sv_positive:
+  - id: KIT-AGENTIC-VALUE-STREAM-VAS-SV-P01
+    condition: VAS-SV-P01 Change Classification
+  - id: KIT-AGENTIC-VALUE-STREAM-VAS-SV-P02
+    condition: VAS-SV-P02 SemVer Policy
+  - id: KIT-AGENTIC-VALUE-STREAM-VAS-SV-P03
+    condition: VAS-SV-P03 Specification vs Artifact Version
+  - id: KIT-AGENTIC-VALUE-STREAM-VAS-SV-P04
+    condition: VAS-SV-P04 Five-Dimension Compatibility
+  - id: KIT-AGENTIC-VALUE-STREAM-VAS-SV-P05
+    condition: VAS-SV-P05 Invariant Evolution
+  - id: KIT-AGENTIC-VALUE-STREAM-VAS-SV-P06
+    condition: VAS-SV-P06 Five Migration Classes
+sv_negative:
+  - id: KIT-AGENTIC-VALUE-STREAM-VAS-SV-N01
+    condition: VAS-SV-N01 Classification By Diff Size
+  - id: KIT-AGENTIC-VALUE-STREAM-VAS-SV-N02
+    condition: VAS-SV-N02 SemVer As Compatibility
+  - id: KIT-AGENTIC-VALUE-STREAM-VAS-SV-N03
+    condition: VAS-SV-N03 Qualification Change As Patch
+  - id: KIT-AGENTIC-VALUE-STREAM-VAS-SV-N04
+    condition: VAS-SV-N04 Cross-Repo Conflicting Evolution
+  - id: KIT-AGENTIC-VALUE-STREAM-VAS-SV-N05
+    condition: VAS-SV-N05 Silent Migration Inference
+  - id: KIT-AGENTIC-VALUE-STREAM-VAS-SV-N06
+    condition: VAS-SV-N06 Value Re-Definition
+sv_boundary:
+  - id: KIT-AGENTIC-VALUE-STREAM-VAS-SV-BT-01
+    condition: VAS-SV-BT-01 Spec vs Artifact Versioning
+  - id: KIT-AGENTIC-VALUE-STREAM-VAS-SV-BT-02
+    condition: VAS-SV-BT-02 Normative vs Informative
+  - id: KIT-AGENTIC-VALUE-STREAM-VAS-SV-BT-03
+    condition: VAS-SV-BT-03 Schema vs Semantic Breaking
+  - id: KIT-AGENTIC-VALUE-STREAM-VAS-SV-BT-04
+    condition: VAS-SV-BT-04 Deprecation vs Removal
+  - id: KIT-AGENTIC-VALUE-STREAM-VAS-SV-BT-05
+    condition: VAS-SV-BT-05 Dual-Version Cross-Labelling
+  - id: KIT-AGENTIC-VALUE-STREAM-VAS-SV-BT-06
+    condition: VAS-SV-BT-06 Invariant ID Stability vs Meaning Change
+
+# Boundary assertions covered (per CR-AVS-001 §22 + CR-VAS-002 §29 + CR-VAS-003 §24 + CR-VAS-004 §34 + CR-VAS-005 §44 + CR-VAS-006 §39 + §40 + CR-VAS-007 §41 + §42 + CR-VAS-008 §27 + CR-VAS-010 §22).
 boundary_assertions:
   - per_es_adr_005
   - per_es_adr_031_5_category_taxonomy
@@ -427,6 +471,7 @@ boundary_assertions:
   - per_cr_vas_006_maturity_capability
   - per_cr_vas_007_governance_lifecycle
   - per_cr_vas_008_architecture_patterns
+  - per_cr_vas_010_versioning_evolution
 
 # Provenance
 provenance:
@@ -442,6 +487,7 @@ provenance:
     - ES-ADR-056
     - ES-ADR-057
     - ES-ADR-058
+    - ES-ADR-059
   implementation:
     - CR-ES-005
     - CR-AVS-001
@@ -452,4 +498,5 @@ provenance:
     - CR-VAS-006
     - CR-VAS-007
     - CR-VAS-008
+    - CR-VAS-010
   date: 2026-10-08

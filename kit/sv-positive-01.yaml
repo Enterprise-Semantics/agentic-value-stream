@@ -1,0 +1,17 @@
+id: KIT-AGENTIC-VALUE-STREAM-VAS-SV-P01
+test_id: VAS-SV-P01
+category: versioning_sv-positive
+subject: Change Classification
+description: Every proposed change MUST be assigned one or more classifications from the 9-class taxonomy.
+cr: CR-VAS-010 §21
+expect: change_classification.items contains all 9 classes (editorial, clarification, additive, structural, semantic, breaking,
+  deprecation, corrective, multi).
+asserts:
+- versioning.change_classification.items contains item with id == editorial
+- versioning.change_classification.items contains item with id == clarification
+- versioning.change_classification.items contains item with id == additive
+- versioning.change_classification.items contains item with id == structural
+- versioning.change_classification.items contains item with id == semantic
+- versioning.change_classification.items contains item with id == breaking
+- versioning.change_classification.items contains item with id == deprecation
+- versioning.change_classification.items contains item with id == corrective

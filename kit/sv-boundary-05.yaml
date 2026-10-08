@@ -1,0 +1,10 @@
+id: KIT-AGENTIC-VALUE-STREAM-VAS-SV-BT-05
+test_id: VAS-SV-BT-05
+category: versioning_sv-boundary
+subject: Dual-Version Cross-Labelling
+description: An instance conformant to one version MUST NOT automatically be labelled conformant to another.
+cr: CR-VAS-010 §21
+expect: dual_version_support.principle + SV-INV-007 bind.
+asserts:
+- versioning.dual_version_support.principle contains MUST NOT automatically be labelled
+- versioning.invariants.items contains item with id == SV-INV-007

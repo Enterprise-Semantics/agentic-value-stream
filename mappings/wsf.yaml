@@ -1,14 +1,3 @@
-# Mapping: ES:CONCEPT:agentic-value-stream -> WSF Agentic Value Stream (Tier 2 Specialisation, ES-canonical novelty)
-#
-# Per CR-ES-005 §12 + ADR-ES-005 §16 + FND-ES-AG-008 §1.3.
-# Per FND-ES-AG-008 §1.3 ;; Tier 2 Specialisation: the WSF Tier 1
-# Value Stream construct is the WSF grounding basis ;; the ES canonical
-# contribution is the agentic participation representation (an ES
-# novelty that WSF does not define).
-#
-# Per CR-ES-005 §3 ;; this mapping shall NOT modify the WSF. The WSF
-# live baseline remains the authoritative construct.
-
 id: ES:MAP:agentic-value-stream-to-wsf
 canonical_name: Agentic Value Stream to WSF mapping
 status: candidate, per CR-ES-005 §12
@@ -21,478 +10,518 @@ source:
 target:
   id: external:wsf:Value-Stream
   governance: World-Semantic-Foundation
-  note: |
-    WSF live baseline ;; Value Stream is a Tier 1 kernel reference.
+  note: 'WSF live baseline ;; Value Stream is a Tier 1 kernel reference.
+
     Agentic Value Stream is a Tier 2 Specialisation that adds agentic
+
     participation representation to the WSF Value Stream construct.
 
+    '
 relationship: specialises
-
 wsf_classification:
   tier: 2
   basis: WSF Tier 1 Value Stream
   novelty: agentic-participation-representation
   per: FND-ES-AG-008 §1.3
-
 semantic_authority:
   source: enterprise-semantics
   per: CR-ES-005 §12 + ADR-ES-005 §16
-  no_modification: |
-    The WSF metamodel is NOT modified by this mapping. The WSF live
+  no_modification: 'The WSF metamodel is NOT modified by this mapping. The WSF live
+
     baseline remains authoritative. ES specialises, not redefines.
 
-# Boundary assertions ;; per CR-ES-005 §3 ;; AI / Automation / Autonomous / Process / Workflow are not canonicalised here
-
+    '
 boundary_assertions:
-  - id: AVS-MAP-BND-001
-    description: |
-      Agentic Value Stream is NOT WSF Agentic Value Stream (the WSF
-      does not define an Agentic Value Stream construct). The ES
-      canonical concept is a Tier 2 Specialisation that adds agentic
-      participation to the WSF Value Stream.
-  - id: AVS-MAP-BND-002
-    description: |
-      AI is NOT a required implementation ;; the Agent may be human,
-      software-based, computational, organizational, or socio-technical
-      per ADR-ES-005 §11.
-  - id: AVS-MAP-BND-003
-    description: |
-      Autonomous Value Stream is NOT canonicalised ;; per ADR-ES-005 §13
-      ;; held for separate ADR-ES-009.
+- id: AVS-MAP-BND-001
+  description: 'Agentic Value Stream is NOT WSF Agentic Value Stream (the WSF
 
-# Mapping details
+    does not define an Agentic Value Stream construct). The ES
 
+    canonical concept is a Tier 2 Specialisation that adds agentic
+
+    participation to the WSF Value Stream.
+
+    '
+- id: AVS-MAP-BND-002
+  description: 'AI is NOT a required implementation ;; the Agent may be human,
+
+    software-based, computational, organizational, or socio-technical
+
+    per ADR-ES-005 §11.
+
+    '
+- id: AVS-MAP-BND-003
+  description: 'Autonomous Value Stream is NOT canonicalised ;; per ADR-ES-005 §13
+
+    ;; held for separate ADR-ES-009.
+
+    '
 mapping_details:
-  specialisation_principle: |
-    Agentic Value Stream specialises WSF Value Stream ;; the agentic
-    participation is the ES novelty ;; the WSF Value Stream semantics
-    are preserved (per CR-ES-005 §8 inheritance requirements).
-  participant_anchor:
-    - subject: ES:CONCEPT:agent
-      subject_provenance: CR-ES-004 + ADR-ES-004
-      note: |
-        Agent is inherited from CR-ES-004 ;; the agentic participation
-        anchor reuses the existing Agent semantic-property overlay.
-  specialisation_pattern:
-    - name: localised-agentic-participation
-      description: |
-        Agentic participation may apply to selected stages, decisions,
-        or execution areas (per CR-ES-005 §11 + ADR-ES-005 §5).
-    - name: mixed-realization
-      description: |
-        Mixed conventional, automated, human, and agentic realization
-        is explicitly permitted (per CR-ES-005 §11 + ADR-ES-005 §5).
-    - name: bounded-authority
-      description: |
-        Agentic behavior operates within explicitly defined authority
-        and policy boundaries (per ADR-ES-005 §4.6 + §7).
-    - name: human-intervention
-      description: |
-        Human participation patterns (human-in/on/over-the-loop) are
-        first-class ;; not exclusions (per ADR-ES-005 §4.7 + §16).
+  specialisation_principle: 'Agentic Value Stream specialises WSF Value Stream ;; the agentic
 
+    participation is the ES novelty ;; the WSF Value Stream semantics
+
+    are preserved (per CR-ES-005 §8 inheritance requirements).
+
+    '
+  participant_anchor:
+  - subject: ES:CONCEPT:agent
+    subject_provenance: CR-ES-004 + ADR-ES-004
+    note: 'Agent is inherited from CR-ES-004 ;; the agentic participation
+
+      anchor reuses the existing Agent semantic-property overlay.
+
+      '
+  specialisation_pattern:
+  - name: localised-agentic-participation
+    description: 'Agentic participation may apply to selected stages, decisions,
+
+      or execution areas (per CR-ES-005 §11 + ADR-ES-005 §5).
+
+      '
+  - name: mixed-realization
+    description: 'Mixed conventional, automated, human, and agentic realization
+
+      is explicitly permitted (per CR-ES-005 §11 + ADR-ES-005 §5).
+
+      '
+  - name: bounded-authority
+    description: 'Agentic behavior operates within explicitly defined authority
+
+      and policy boundaries (per ADR-ES-005 §4.6 + §7).
+
+      '
+  - name: human-intervention
+    description: 'Human participation patterns (human-in/on/over-the-loop) are
+
+      first-class ;; not exclusions (per ADR-ES-005 §4.7 + §16).
+
+      '
 governance: enterprise-semantics
 provenance:
-  - source: CR-ES-005 §12
-    note: WSF mapping established without modifying WSF.
-  - source: ADR-ES-005 §16
-    note: |
-      Establishes the architectural hierarchy ;;
-      ;; (WSF Value Stream -> ES Agentic Value Stream -> OpenDEA
-      ;; specialisation).
-  - source: FND-ES-AG-008 §1.3
-    note: |
-      WSF Tier 1 / Tier 2 grounding boundary ;; Agentic Value Stream is
-      Tier 2 Specialisation (ES-canonical novelty).
-  - source: ADR-ES-003 §26 + §27
-    note: Inherits Value Stream WSF grounding matrix from CR-ES-003.
+- source: CR-ES-005 §12
+  note: WSF mapping established without modifying WSF.
+- source: ADR-ES-005 §16
+  note: 'Establishes the architectural hierarchy ;;
 
-# Cardinal rules
+    ;; (WSF Value Stream -> ES Agentic Value Stream -> OpenDEA
 
+    ;; specialisation).
+
+    '
+- source: FND-ES-AG-008 §1.3
+  note: 'WSF Tier 1 / Tier 2 grounding boundary ;; Agentic Value Stream is
+
+    Tier 2 Specialisation (ES-canonical novelty).
+
+    '
+- source: ADR-ES-003 §26 + §27
+  note: Inherits Value Stream WSF grounding matrix from CR-ES-003.
 cardinal_rules:
-  - author: Emmanuel A. Otchere
-  - d004_dash_rule: 0 en-dash (U+2013) ; 0 em-dash (U+2014) ; 0 horizontal-ellipsis divider (U+2E3B) ; 0 arrow glyph
-  - vendor_specific_embargo: 0 references ; no vendor-specific material from embargoed sources
-  - no_wsF_modification: WSF metamodel not modified
-  - no_openDea_modification: OpenDEA metamodel not modified
-
-# Qualification overlay (CR-VAS-002, 2026-10-07)
-# The semantic qualification of Agentic Value Stream is ES-canonical
-# novelty. The seven required values, seven not-required values, and
-# seven exclusion conditions are introduced by CR-VAS-002, not by WSF.
-# This section records how the qualification overlays the WSF Tier 1
-# Value Stream construct without modifying WSF.
-
+- author: Emmanuel A. Otchere
+- d004_dash_rule: 0 en-dash (U+2013) ; 0 em-dash (U+2014) ; 0 horizontal-ellipsis divider (U+2E3B) ; 0 arrow glyph
+- vendor_specific_embargo: 0 references ; no vendor-specific material from embargoed sources
+- no_wsF_modification: WSF metamodel not modified
+- no_openDea_modification: OpenDEA metamodel not modified
 qualification_overlay:
   per: CR-VAS-002 §23
   status: semantic_overlay
-  no_wsF_modification: |
-    The qualification block is added to the ES canonical concept. WSF
+  no_wsF_modification: 'The qualification block is added to the ES canonical concept. WSF
+
     Value Stream (Tier 1) is preserved unmodified. The overlay
+
     specifies the conditions under which an ES Agentic Value Stream
+
     qualifies.
+
+    '
   required_values_overlay:
-    - id: AVS-VAL-01
-      wsf_anchor: external:wsf:Value-Stream
-      note: Value-Stream Foundation is anchored to WSF Tier 1.
-    - id: AVS-VAL-02..07
-      wsf_anchor: null
-      note: |
-        AVS-VAL-02 through AVS-VAL-07 are ES-canonical novelty. WSF
-        does not define material agentic participation, delegated
-        intent, bounded authority, contextual interpretation,
-        action selection, or value-realization effect at the Tier 1
-        level.
+  - id: AVS-VAL-01
+    wsf_anchor: external:wsf:Value-Stream
+    note: Value-Stream Foundation is anchored to WSF Tier 1.
+  - id: AVS-VAL-02..07
+    wsf_anchor: null
+    note: 'AVS-VAL-02 through AVS-VAL-07 are ES-canonical novelty. WSF
+
+      does not define material agentic participation, delegated
+
+      intent, bounded authority, contextual interpretation,
+
+      action selection, or value-realization effect at the Tier 1
+
+      level.
+
+      '
   exclusion_conditions_overlay:
-    - note: |
-        The seven exclusion conditions (AVS-EXC-01..07) are
-        ES-canonical novelty. They distinguish Agentic Value Stream
-        from deterministic automation, adaptive automation, decision-
-        support AI, human discretion, autonomous systems, dynamic
-        workflows, and immaterial participation.
+  - note: 'The seven exclusion conditions (AVS-EXC-01..07) are
+
+      ES-canonical novelty. They distinguish Agentic Value Stream
+
+      from deterministic automation, adaptive automation, decision-
+
+      support AI, human discretion, autonomous systems, dynamic
+
+      workflows, and immaterial participation.
+
+      '
   boundary_preservation:
-    - note: |
-        Per CR-VAS-002 §25, the qualification does not introduce
-        Agentic Value Stage, Agentic Workflow, Agentic Operations,
-        or Autonomous Value Stream as WSF constructs. WSF Tier 1
-        and Tier 2 remain unmodified.
+  - note: 'Per CR-VAS-002 §25, the qualification does not introduce
 
-# Participation alignment (CR-VAS-003, 2026-10-08)
-# Per CR-VAS-003 §27, WSF alignment shall remain a semantic mapping
-# rather than an assertion that Agentic Value Stream is necessarily a
-# native WSF primitive. This section distinguishes mapping types
-# explicitly so that no metamodel mutation occurs through mapping
-# documentation.
+      Agentic Value Stage, Agentic Workflow, Agentic Operations,
 
+      or Autonomous Value Stream as WSF constructs. WSF Tier 1
+
+      and Tier 2 remain unmodified.
+
+      '
 participation_alignment:
   per: CR-VAS-003 §27
   status: semantic_alignment
-  no_wsF_modification: |
-    The Agentic Participation layer is ES-canonical novelty. WSF
+  no_wsF_modification: 'The Agentic Participation layer is ES-canonical novelty. WSF
+
     Tier 1 Value Stream remains unmodified. The participation
+
     overlay distinguishes realisation relationships rather than
+
     introducing a parallel value-stage ontology.
+
+    '
   mapping_type_classification:
-    - id: specialisation
-      wsf_target: external:wsf:Value-Stream
-      note: Agentic Value Stream specialises WSF Value Stream (Tier 2).
-    - id: semantic_alignment
-      wsf_target: null
-      note: |
-        Agentic Participation aligns with WSF Tier 1 Value Stream
-        progression semantics where applicable (e.g. stakeholder,
-        initiating_condition, realization_boundary, stages,
-        outcomes). No new WSF element is introduced.
-    - id: realization_mapping
-      wsf_target: null
-      note: |
-        Agentic Participation maps to existing WSF realisation
-        patterns (human, automated, hybrid). No new WSF element is
-        introduced.
-    - id: implementation_mapping
-      wsf_target: null
-      note: |
-        Implementation-level mapping to WSF agent/actor constructs
-        where available. ES canonical concept provides the
-        realisation overlay.
-    - id: conceptual_correspondence
-      wsf_target: null
-      note: |
-        Concept-level correspondence between Agentic Participation
-        and WSF actor/role constructs where applicable.
+  - id: specialisation
+    wsf_target: external:wsf:Value-Stream
+    note: Agentic Value Stream specialises WSF Value Stream (Tier 2).
+  - id: semantic_alignment
+    wsf_target: null
+    note: 'Agentic Participation aligns with WSF Tier 1 Value Stream
+
+      progression semantics where applicable (e.g. stakeholder,
+
+      initiating_condition, realization_boundary, stages,
+
+      outcomes). No new WSF element is introduced.
+
+      '
+  - id: realization_mapping
+    wsf_target: null
+    note: 'Agentic Participation maps to existing WSF realisation
+
+      patterns (human, automated, hybrid). No new WSF element is
+
+      introduced.
+
+      '
+  - id: implementation_mapping
+    wsf_target: null
+    note: 'Implementation-level mapping to WSF agent/actor constructs
+
+      where available. ES canonical concept provides the
+
+      realisation overlay.
+
+      '
+  - id: conceptual_correspondence
+    wsf_target: null
+    note: 'Concept-level correspondence between Agentic Participation
+
+      and WSF actor/role constructs where applicable.
+
+      '
   boundary_preservation:
-    - note: |
-        Per CR-VAS-003 §5 + §29, the participation alignment does not
-        introduce Agentic Value Stage, Agentic Workflow, Agentic
-        Process, Agentic Operation, or Agentic Activity as WSF
-        constructs. WSF Tier 1 and Tier 2 remain unmodified.
-    - note: |
-        The five human participation patterns (A-E) are ES-canonical
-        semantics. They overlay WSF actor/role constructs where
-        applicable but do not require WSF modification.
-    - note: |
-        The semantic boundary matrix (CR-VAS-003 §22) is normative
-        guidance for ES canonical concepts. WSF constructs remain
-        authoritative within their scope.
+  - note: 'Per CR-VAS-003 §5 + §29, the participation alignment does not
 
+      introduce Agentic Value Stage, Agentic Workflow, Agentic
 
-# ============================================================
-# CR-VAS-005 ; Measurement alignment
-# Cardinal author rule: Emmanuel A. Otchere (2026-09-23)
-# D-004: 0 en/em/triple-em dash ; 0 TMForum ; 0 vendor specifics
-# ============================================================
+      Process, Agentic Operation, or Agentic Activity as WSF
 
+      constructs. WSF Tier 1 and Tier 2 remain unmodified.
+
+      '
+  - note: 'The five human participation patterns (A-E) are ES-canonical
+
+      semantics. They overlay WSF actor/role constructs where
+
+      applicable but do not require WSF modification.
+
+      '
+  - note: 'The semantic boundary matrix (CR-VAS-003 §22) is normative
+
+      guidance for ES canonical concepts. WSF constructs remain
+
+      authoritative within their scope.
+
+      '
 measurement_alignment:
   mapping_type_classification:
-    description: |
-      Per CR-VAS-005, the Agentic Value Stream measurement model is
+    description: 'Per CR-VAS-005, the Agentic Value Stream measurement model is
+
       a semantic overlay. WSF and OpenDEA each provide external
+
       foundations; this repository defines how measurement
+
       dimensions align with those foundations without modifying
+
       either metamodel.
+
+      '
     specialisation:
       wsf_target: external:wsf:Value-Stream-Measurement
       tier: 2
-      description: |
-        WSF Value Stream measurement concepts (where defined) align
+      description: 'WSF Value Stream measurement concepts (where defined) align
+
         with the Agentic Value Stream primary dimension (value
+
         realization).
+
+        '
     semantic_alignment:
       wsf_target: null
-      description: |
-        CR-VAS-005 measurement layers are semantic overlays, NOT
+      description: 'CR-VAS-005 measurement layers are semantic overlays, NOT
+
         WSF derivations. They do not modify the WSF metamodel.
+
+        '
     methodological_alignment:
       wsf_target: null
-      description: |
-        CR-VAS-005 measurement methodology (hierarchy, dimensions,
+      description: 'CR-VAS-005 measurement methodology (hierarchy, dimensions,
+
         baselines, anti-patterns) is repository-specific; not
+
         borrowed from WSF.
 
+        '
   dimensions_alignment:
-    - avs_dimension: value_realization
-      external_kind: wsf_value_stream
-      notes: |
-        Primary measurement dimension aligns with WSF Value Stream
-        outcome concepts where present.
-    - avs_dimension: agentic_effectiveness
-      external_kind: null
-      notes: |
-        Repository-specific. No WSF analog; semantic overlay.
-    - avs_dimension: decision_quality
-      external_kind: null
-      notes: |
-        Repository-specific.
-    - avs_dimension: human_intervention
-      external_kind: null
-      notes: |
-        Repository-specific.
-    - avs_dimension: authority_and_risk
-      external_kind: null
-      notes: |
-        Repository-specific.
-    - avs_dimension: operational_efficiency
-      external_kind: wsf_value_stream
-      notes: |
-        Operational efficiency aligns with WSF Value Stream
-        throughput concepts where present.
+  - avs_dimension: value_realization
+    external_kind: wsf_value_stream
+    notes: 'Primary measurement dimension aligns with WSF Value Stream
 
+      outcome concepts where present.
+
+      '
+  - avs_dimension: agentic_effectiveness
+    external_kind: null
+    notes: 'Repository-specific. No WSF analog; semantic overlay.
+
+      '
+  - avs_dimension: decision_quality
+    external_kind: null
+    notes: 'Repository-specific.
+
+      '
+  - avs_dimension: human_intervention
+    external_kind: null
+    notes: 'Repository-specific.
+
+      '
+  - avs_dimension: authority_and_risk
+    external_kind: null
+    notes: 'Repository-specific.
+
+      '
+  - avs_dimension: operational_efficiency
+    external_kind: wsf_value_stream
+    notes: 'Operational efficiency aligns with WSF Value Stream
+
+      throughput concepts where present.
+
+      '
   separation_principles:
-    - measurement_vs_qualification: |
-        Measurement does not redefine semantic qualification.
-    - measurement_vs_conformance: |
-        Measurement does not redefine semantic conformance.
-    - measurement_vs_maturity: |
-        Measurement does not introduce maturity levels.
+  - architecture_vs_qualification: 'Architecture realizes AVS semantics; it does NOT define
 
-  # CR-VAS-006 maturity alignment block.
-  # Maturity is a CR-VAS-006 framework construct; it does not modify
-  # the WSF. WSF alignment covers the capability-to-kernel map where
-  # an analog exists.
-  cr: CR-VAS-006
-  adr: ES-ADR-056
-  alignment_kind: repository_framework_overlay
-  semantic_alignment:
-    wsf_target: null
-    description: |
-      CR-VAS-006 maturity model is an organizational capability
-      framework. It is repository-specific and does not modify the
-      WSF metamodel.
-  methodological_alignment:
-    wsf_target: null
-    description: |
-      CR-VAS-006 methodology (six-level model, six capability
-      dimensions, gated assessment) is repository-specific; not
-      borrowed from WSF.
-  capability_dimension_alignment:
-    - avs_capability: design_semantics
-      wsf_target: null
-      notes: Repository-specific.
-    - avs_capability: governance_authority_risk
-      wsf_target: null
-      notes: Repository-specific.
-    - avs_capability: operational_realization
-      wsf_target: wsf_value_stream
-      notes: Operational realization aligns with WSF Value Stream
-        realization concepts where present.
-    - avs_capability: value_performance
-      wsf_target: wsf_value_stream
-      notes: Value performance aligns with WSF Value Stream outcome
-        concepts where present.
-    - avs_capability: learning_improvement
-      wsf_target: null
-      notes: Repository-specific.
-    - avs_capability: portfolio_scaling
-      wsf_target: null
-      notes: Repository-specific.
-  maturity_level_alignment:
-    - avs_level: L0
-      wsf_target: null
-      notes: Awareness pre-state; no WSF analog.
-    - avs_level: L1
-      wsf_target: null
-      notes: Conceptual awareness; no WSF analog.
-    - avs_level: L2
-      wsf_target: null
-      notes: Definitions stage; no WSF analog.
-    - avs_level: L3
-      wsf_target: wsf_value_stream
-      notes: Production AVS alignment.
-    - avs_level: L4
-      wsf_target: null
-      notes: Managed capability; repository-specific.
-    - avs_level: L5
-      wsf_target: null
-      notes: Scaled and adaptive; repository-specific.
-  separation_principles:
-    - maturity_vs_qualification: |
-        Maturity does not redefine semantic qualification.
-    - maturity_vs_conformance: |
-        Maturity does not redefine conformance (a non-conformant
-        implementation cannot become conformant by achieving a
-        higher maturity score).
-    - maturity_vs_measurement: |
-        Maturity is not a measurement score. It is a
-        multidimensional organizational capability assessment.
-    - maturity_vs_technology_progression: |
-        AVS maturity is not Rules -> ML -> GenAI -> Agents ->
-        Multi-Agent -> Autonomous AI.
+      them.
 
-  # CR-VAS-007 governance alignment block.
-  # Governance is a CR-VAS-007 framework construct; it does not modify
-  # the WSF. WSF alignment covers the governance-to-kernel map where
-  # an analog exists.
-  cr: CR-VAS-007
-  adr: ES-ADR-057
-  alignment_kind: repository_framework_overlay
-  semantic_alignment:
-    wsf_target: null
-    description: |
-      CR-VAS-007 governance model is a management control plane. It
-      is repository-specific and does not modify the WSF metamodel.
-  methodological_alignment:
-    wsf_target: null
-    description: |
-      CR-VAS-007 methodology (10-state lifecycle, 7 governance
-      domains, 4-class change classification, portfolio governance)
-      is repository-specific; not borrowed from WSF.
-  lifecycle_alignment:
-    - avs_state: proposed
-      wsf_target: null
-      notes: Repository-specific.
-    - avs_state: assessed
-      wsf_target: null
-      notes: Repository-specific.
-    - avs_state: designed
-      wsf_target: null
-      notes: Repository-specific.
-    - avs_state: qualified
-      wsf_target: wsf_value_stream
-      notes: Semantic qualification aligns with WSF Value Stream
-        concepts where present.
-    - avs_state: approved
-      wsf_target: null
-      notes: Governance approval; repository-specific.
-    - avs_state: implemented
-      wsf_target: wsf_value_stream
-      notes: Operational implementation; WSF analog where present.
-    - avs_state: operational
-      wsf_target: wsf_value_stream
-      notes: Production operation aligns with WSF Value Stream
-        realization concepts where present.
-    - avs_state: managed
-      wsf_target: null
-      notes: Repository-specific.
-    - avs_state: suspended
-      wsf_target: null
-      notes: Repository-specific.
-    - avs_state: retired
-      wsf_target: null
-      notes: Repository-specific.
-  governance_domain_alignment:
-    - avs_domain: semantic_governance
-      wsf_target: null
-      notes: Repository-specific.
-    - avs_domain: authority_governance
-      wsf_target: null
-      notes: Repository-specific.
-    - avs_domain: operational_governance
-      wsf_target: null
-      notes: Repository-specific.
-    - avs_domain: risk_and_policy_governance
-      wsf_target: null
-      notes: Repository-specific.
-    - avs_domain: value_governance
-      wsf_target: wsf_value_stream
-      notes: Value governance aligns with WSF Value Stream outcome
-        concepts where present.
-    - avs_domain: change_governance
-      wsf_target: null
-      notes: Repository-specific.
-    - avs_domain: portfolio_governance
-      wsf_target: null
-      notes: Repository-specific.
-  separation_principles:
-    - governance_vs_qualification: |
-        Governance does not redefine semantic qualification.
-    - governance_vs_conformance: |
-        Governance does not redefine conformance.
-    - governance_vs_maturity: |
-        Governance maturity is distinct from AVS organizational
-        maturity.
-    - governance_vs_measurement: |
-        Governance metrics complement (do NOT replace) measurement
-        metrics.
+      '
+  - architecture_vs_technology: 'Technology substitution SHALL NOT inherently change AVS
 
-  # CR-VAS-008 architecture alignment block.
-  # Architecture is a CR-VAS-008 framework construct; it does not
-  # modify the WSF. WSF alignment covers the architecture-to-kernel
-  # map where an analog exists.
+      identity as long as intent, authority, context, selection,
+
+      action, outcome, and governance are preserved.
+
+      '
+  - architecture_vs_maturity: 'Progressive delegation is NOT the same as maturity
+
+      progression.
+
+      '
   cr: CR-VAS-008
   adr: ES-ADR-058
   alignment_kind: repository_framework_overlay
   semantic_alignment:
     wsf_target: null
-    description: |
-      CR-VAS-008 architecture model is a translation layer
+    description: 'CR-VAS-008 architecture model is a translation layer
+
       between AVS semantics and implementation. It is
+
       repository-specific and does not modify the WSF metamodel.
+
+      '
   methodological_alignment:
     wsf_target: null
-    description: |
-      CR-VAS-008 methodology (six architectural planes, twelve
+    description: 'CR-VAS-008 methodology (six architectural planes, twelve
+
       reusable patterns, four architectural boundaries, six
+
       architecture anti-patterns) is repository-specific; not
+
       borrowed from WSF.
+
+      '
+  capability_dimension_alignment:
+  - avs_capability: design_semantics
+    wsf_target: null
+    notes: Repository-specific.
+  - avs_capability: governance_authority_risk
+    wsf_target: null
+    notes: Repository-specific.
+  - avs_capability: operational_realization
+    wsf_target: wsf_value_stream
+    notes: Operational realization aligns with WSF Value Stream realization concepts where present.
+  - avs_capability: value_performance
+    wsf_target: wsf_value_stream
+    notes: Value performance aligns with WSF Value Stream outcome concepts where present.
+  - avs_capability: learning_improvement
+    wsf_target: null
+    notes: Repository-specific.
+  - avs_capability: portfolio_scaling
+    wsf_target: null
+    notes: Repository-specific.
+  maturity_level_alignment:
+  - avs_level: L0
+    wsf_target: null
+    notes: Awareness pre-state; no WSF analog.
+  - avs_level: L1
+    wsf_target: null
+    notes: Conceptual awareness; no WSF analog.
+  - avs_level: L2
+    wsf_target: null
+    notes: Definitions stage; no WSF analog.
+  - avs_level: L3
+    wsf_target: wsf_value_stream
+    notes: Production AVS alignment.
+  - avs_level: L4
+    wsf_target: null
+    notes: Managed capability; repository-specific.
+  - avs_level: L5
+    wsf_target: null
+    notes: Scaled and adaptive; repository-specific.
+  lifecycle_alignment:
+  - avs_state: proposed
+    wsf_target: null
+    notes: Repository-specific.
+  - avs_state: assessed
+    wsf_target: null
+    notes: Repository-specific.
+  - avs_state: designed
+    wsf_target: null
+    notes: Repository-specific.
+  - avs_state: qualified
+    wsf_target: wsf_value_stream
+    notes: Semantic qualification aligns with WSF Value Stream concepts where present.
+  - avs_state: approved
+    wsf_target: null
+    notes: Governance approval; repository-specific.
+  - avs_state: implemented
+    wsf_target: wsf_value_stream
+    notes: Operational implementation; WSF analog where present.
+  - avs_state: operational
+    wsf_target: wsf_value_stream
+    notes: Production operation aligns with WSF Value Stream realization concepts where present.
+  - avs_state: managed
+    wsf_target: null
+    notes: Repository-specific.
+  - avs_state: suspended
+    wsf_target: null
+    notes: Repository-specific.
+  - avs_state: retired
+    wsf_target: null
+    notes: Repository-specific.
+  governance_domain_alignment:
+  - avs_domain: semantic_governance
+    wsf_target: null
+    notes: Repository-specific.
+  - avs_domain: authority_governance
+    wsf_target: null
+    notes: Repository-specific.
+  - avs_domain: operational_governance
+    wsf_target: null
+    notes: Repository-specific.
+  - avs_domain: risk_and_policy_governance
+    wsf_target: null
+    notes: Repository-specific.
+  - avs_domain: value_governance
+    wsf_target: wsf_value_stream
+    notes: Value governance aligns with WSF Value Stream outcome concepts where present.
+  - avs_domain: change_governance
+    wsf_target: null
+    notes: Repository-specific.
+  - avs_domain: portfolio_governance
+    wsf_target: null
+    notes: Repository-specific.
   plane_alignment:
-    - avs_plane: value_and_outcome
-      wsf_target: wsf_value_stream
-      notes: P1 aligns with WSF Value Stream outcome concepts where
-        present.
-    - avs_plane: value_stream_realization
-      wsf_target: wsf_value_stream
-      notes: P2 aligns with WSF Value Stream realization where
-        present.
-    - avs_plane: agentic_participation
-      wsf_target: null
-      notes: Repository-specific.
-    - avs_plane: control_and_governance
-      wsf_target: null
-      notes: Repository-specific.
-    - avs_plane: knowledge_and_context
-      wsf_target: null
-      notes: Repository-specific.
-    - avs_plane: technology_and_integration
-      wsf_target: null
-      notes: Repository-specific.
-  separation_principles:
-    - architecture_vs_qualification: |
-        Architecture realizes AVS semantics; it does NOT define
-        them.
-    - architecture_vs_technology: |
-        Technology substitution SHALL NOT inherently change AVS
-        identity as long as intent, authority, context, selection,
-        action, outcome, and governance are preserved.
-    - architecture_vs_maturity: |
-        Progressive delegation is NOT the same as maturity
-        progression.
+  - avs_plane: value_and_outcome
+    wsf_target: wsf_value_stream
+    notes: P1 aligns with WSF Value Stream outcome concepts where present.
+  - avs_plane: value_stream_realization
+    wsf_target: wsf_value_stream
+    notes: P2 aligns with WSF Value Stream realization where present.
+  - avs_plane: agentic_participation
+    wsf_target: null
+    notes: Repository-specific.
+  - avs_plane: control_and_governance
+    wsf_target: null
+    notes: Repository-specific.
+  - avs_plane: knowledge_and_context
+    wsf_target: null
+    notes: Repository-specific.
+  - avs_plane: technology_and_integration
+    wsf_target: null
+    notes: Repository-specific.
+versioning_alignment:
+  rationale: Per CR-VAS-010, the AVS versioning block aligns with the WSF SemVer and release manifest model. WSF treats SemVer
+    as a release convention that does not itself establish semantic compatibility; CR-VAS-010 adopts the same view and adds
+    an explicit five-dimension compatibility assessment plus migration classes M0..M4.
+  versioning_block_anchors:
+  - versioning.versioning_policy (SemVer MAJOR.MINOR.PATCH + warning)
+  - versioning.version_distinction (specification vs artifact)
+  - versioning.compatibility_dimensions (Definition, Instance, Schema, Conformance, Mapping)
+  - versioning.migration_classes (M0..M4)
+  - versioning.release_manifest (machine-readable manifest template)
+  wsf_correspondence:
+  - avs: versioning.principle
+    wsf: WSF SemVer §2 (release convention)
+    relation: concretises
+  - avs: versioning.versioning_policy.major
+    wsf: WSF SemVer §3.1 (incompatible changes)
+    relation: concretises
+  - avs: versioning.versioning_policy.minor
+    wsf: WSF SemVer §3.2 (compatible additions)
+    relation: concretises
+  - avs: versioning.versioning_policy.patch
+    wsf: WSF SemVer §3.3 (corrections)
+    relation: concretises
+  - avs: versioning.version_distinction
+    wsf: WSF SemVer §4 (spec vs artifact)
+    relation: concretises
+  - avs: versioning.compatibility_dimensions
+    wsf: WSF Release Manifest §2 (compatibility report)
+    relation: extends
+  - avs: versioning.migration_classes
+    wsf: WSF Migration Records §3 (M0..M4)
+    relation: concretises
+  - avs: versioning.release_manifest
+    wsf: WSF Release Manifest §1 (machine-readable manifest)
+    relation: concretises
+  - avs: versioning.change_request_requirements
+    wsf: WSF Change Request §1 (14-item checklist)
+    relation: concretises
+  compatibility_evidence:
+    semantic: compatible (additive block; preserves prior qualification, evidence, measurement, maturity, governance, architecture,
+      interoperability contracts)
+    schema: compatible (no schema changes; new block is additive to concept.yaml)
+    conformance: compatible (no existing test changes; 18 new sv-* tests added)
+    instance: compatible (no instance-shape changes)
+    mapping: compatible (wsf_mapping and opendea_mapping receive new versioning_alignment blocks)
+  invariants_anchored:
+  - SV-INV-001 (classification by impact, not diff size)
+  - SV-INV-002 (SemVer is a release convention, not compatibility)
+  - SV-INV-003 (qualification change MUST NOT be a patch)
+  - SV-INV-006 (no cross-repo canonical conflict without reconciliation)

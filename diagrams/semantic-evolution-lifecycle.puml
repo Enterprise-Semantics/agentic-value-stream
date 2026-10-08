@@ -1,0 +1,48 @@
+@startuml semantic-evolution-lifecycle
+skinparam backgroundColor #FAFAFA
+skinparam defaultFontName "Helvetica"
+skinparam defaultFontSize 12
+title CR-VAS-010: Semantic Evolution Lifecycle (Classification -> Versioning -> Release -> Migration)
+
+state "Change Proposed" as CP
+state "Classify (9 classes)" as CL
+state "Impact Analysis (5 dimensions)" as IA
+state "Migration Class (M0..M4)" as MC
+state "SemVer (MAJOR / MINOR / PATCH)" as SV
+state "Release Manifest" as RM
+state "Compatibility Reported" as CR
+
+CP --> CL : problem_statement + classification
+CL --> IA : semantic_rationale + affected_invariants
+IA --> MC : change_classification + migration_requirements
+MC --> SV : migration_class + compatibility_impact
+SV --> RM : version + changes[] + migration
+RM --> CR : compatibility {semantic, schema, conformance, instance, mapping}
+
+note right of CL
+  Per CR-VAS-010 §3
+  Classification MUST reflect actual impact,
+  not diff size. 9 classes incl. Multi.
+end note
+
+note right of IA
+  Per CR-VAS-010 §8
+  Compatibility MUST be evaluated across
+  Definition, Instance, Schema,
+  Conformance, Mapping.
+end note
+
+note right of MC
+  Per CR-VAS-010 §14
+  M0 No / M1 Mechanical / M2 Reviewed
+  M3 Semantic / M4 Requalification Required
+end note
+
+note right of SV
+  Per CR-VAS-010 §4
+  SemVer is a release convention.
+  Compatibility MUST be assessed
+  and evidenced (SV-INV-002).
+end note
+
+@enduml

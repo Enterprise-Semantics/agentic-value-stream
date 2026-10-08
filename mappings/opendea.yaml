@@ -1,14 +1,3 @@
-# Mapping: ES:CONCEPT:agentic-value-stream -> OpenDEA Agentic Value Stream specialisation
-#
-# Per CR-ES-005 §13 + ADR-ES-005 §16.
-# OpenDEA may represent Agentic Value Stream as an architectural
-# specialisation of Value Stream. Per CR-ES-005 §13 ;; the OpenDEA
-# metamodel is NOT modified by this mapping.
-#
-# If OpenDEA currently has no canonical Agentic Value Stream element,
-# the mapping represents it as semantic specialisation ;; target
-# concept ;; not implementation availability.
-
 id: ES:MAP:agentic-value-stream-to-opendea
 canonical_name: Agentic Value Stream to OpenDEA mapping
 status: candidate, per CR-ES-005 §13
@@ -21,467 +10,497 @@ source:
 target:
   id: external:opendea:Value-Stream
   governance: OpenDEA
-  note: |
-    OpenDEA Value Stream is the architectural anchor. The ES Agentic
+  note: 'OpenDEA Value Stream is the architectural anchor. The ES Agentic
+
     Value Stream is a specialisation that adds agentic participation
+
     representation. If OpenDEA does not currently have a canonical
+
     Agentic Value Stream element ;; this mapping represents the
+
     specialisation as target concept ;; not implementation.
 
+    '
 relationship: specialises
-
-# Architectural representation ;; per CR-ES-005 §13
-
 architectural_elements:
-  - name: agentic-value-stream-as-specialisation
-    description: |
-      Agentic Value Stream is an ES specialisation of OpenDEA Value
-      Stream. The specialisation is a semantic overlay ;; the OpenDEA
-      Value Stream semantics are preserved.
-  - name: agentic-participation-representation
-    description: |
-      Agentic participation is the ES novelty ;; represented via the
-      ES:PROFILE:agentic-value-realization Profile binding. The
-      Profile provides discoverability and grouping only ;; does not
-      imply that all listed concepts belong to one inheritance
-      hierarchy (per CR-ES-005 §14).
-  - name: participant-binding-via-CR-ES-004
-    description: |
-      Agent semantics are inherited from CR-ES-004 + ADR-ES-004 ;; the
-      Agent engages Action via the Agent semantic-property overlay.
+- name: agentic-value-stream-as-specialisation
+  description: 'Agentic Value Stream is an ES specialisation of OpenDEA Value
 
-# OpenDEA mapping classification
+    Stream. The specialisation is a semantic overlay ;; the OpenDEA
 
+    Value Stream semantics are preserved.
+
+    '
+- name: agentic-participation-representation
+  description: 'Agentic participation is the ES novelty ;; represented via the
+
+    ES:PROFILE:agentic-value-realization Profile binding. The
+
+    Profile provides discoverability and grouping only ;; does not
+
+    imply that all listed concepts belong to one inheritance
+
+    hierarchy (per CR-ES-005 §14).
+
+    '
+- name: participant-binding-via-CR-ES-004
+  description: 'Agent semantics are inherited from CR-ES-004 + ADR-ES-004 ;; the
+
+    Agent engages Action via the Agent semantic-property overlay.
+
+    '
 opendea_classification:
   pattern: specialisation-of-Value-Stream
   novelty: agentic-participation-representation
-  no_modification: |
-    OpenDEA metamodel is NOT modified. The mapping represents ES
+  no_modification: 'OpenDEA metamodel is NOT modified. The mapping represents ES
+
     specialisation as target concept ;; not implementation availability.
+
+    '
   per: CR-ES-005 §13 + ADR-ES-005 §16
-
-# Boundary assertions ;; per CR-ES-005 §3 ;; AI / Automation / Autonomous / Process / Workflow are not canonicalised
-
 boundary_assertions:
-  - id: AVS-OPENDEA-BND-001
-    description: |
-      Agentic Value Stream is NOT OpenDEA Agentic Value Stream ;; the
-      ES canonical concept is a specialisation of OpenDEA Value Stream.
-  - id: AVS-OPENDEA-BND-002
-    description: |
-      Agentic Workflow and Agentic Operations are NOT canonicalised ;;
-      held for ADR-ES-006 + ADR-ES-007 (per ADR-ES-005 §14).
-  - id: AVS-OPENDEA-BND-003
-    description: |
-      Autonomous Value Stream is NOT canonicalised ;; per ADR-ES-005 §13
-      ;; held for separate ADR-ES-009.
+- id: AVS-OPENDEA-BND-001
+  description: 'Agentic Value Stream is NOT OpenDEA Agentic Value Stream ;; the
 
-# Mapping details
+    ES canonical concept is a specialisation of OpenDEA Value Stream.
 
+    '
+- id: AVS-OPENDEA-BND-002
+  description: 'Agentic Workflow and Agentic Operations are NOT canonicalised ;;
+
+    held for ADR-ES-006 + ADR-ES-007 (per ADR-ES-005 §14).
+
+    '
+- id: AVS-OPENDEA-BND-003
+  description: 'Autonomous Value Stream is NOT canonicalised ;; per ADR-ES-005 §13
+
+    ;; held for separate ADR-ES-009.
+
+    '
 mapping_details:
-  specialisation_principle: |
-    Agentic Value Stream specialises OpenDEA Value Stream ;;
-    ;; the agentic participation is the ES novelty ;; the OpenDEA
-    ;; Value Stream semantics are preserved.
-  participant_anchor:
-    - subject: ES:CONCEPT:agent
-      subject_provenance: CR-ES-004 + ADR-ES-004
-      note: |
-        Agent is inherited from CR-ES-004 ;; the agentic participation
-        anchor reuses the existing Agent semantic-property overlay.
-  specialisation_pattern:
-    - name: localised-agentic-participation
-      description: |
-        Agentic participation may apply to selected stages, decisions,
-        or execution areas (per CR-ES-005 §11 + ADR-ES-005 §5).
-    - name: mixed-realization
-      description: |
-        Mixed conventional, automated, human, and agentic realization
-        is explicitly permitted (per CR-ES-005 §11 + ADR-ES-005 §5).
-    - name: bounded-authority
-      description: |
-        Agentic behavior operates within explicitly defined authority
-        and policy boundaries (per ADR-ES-005 §4.6 + §7).
-    - name: human-intervention
-      description: |
-        Human participation patterns (human-in/on/over-the-loop) are
-        first-class ;; not exclusions (per ADR-ES-005 §4.7 + §16).
+  specialisation_principle: 'Agentic Value Stream specialises OpenDEA Value Stream ;;
 
+    ;; the agentic participation is the ES novelty ;; the OpenDEA
+
+    ;; Value Stream semantics are preserved.
+
+    '
+  participant_anchor:
+  - subject: ES:CONCEPT:agent
+    subject_provenance: CR-ES-004 + ADR-ES-004
+    note: 'Agent is inherited from CR-ES-004 ;; the agentic participation
+
+      anchor reuses the existing Agent semantic-property overlay.
+
+      '
+  specialisation_pattern:
+  - name: localised-agentic-participation
+    description: 'Agentic participation may apply to selected stages, decisions,
+
+      or execution areas (per CR-ES-005 §11 + ADR-ES-005 §5).
+
+      '
+  - name: mixed-realization
+    description: 'Mixed conventional, automated, human, and agentic realization
+
+      is explicitly permitted (per CR-ES-005 §11 + ADR-ES-005 §5).
+
+      '
+  - name: bounded-authority
+    description: 'Agentic behavior operates within explicitly defined authority
+
+      and policy boundaries (per ADR-ES-005 §4.6 + §7).
+
+      '
+  - name: human-intervention
+    description: 'Human participation patterns (human-in/on/over-the-loop) are
+
+      first-class ;; not exclusions (per ADR-ES-005 §4.7 + §16).
+
+      '
 governance: enterprise-semantics
 provenance:
-  - source: CR-ES-005 §13
-    note: |
-      OpenDEA mapping established without modifying OpenDEA. If OpenDEA
-      has no canonical Agentic Value Stream element ;; the mapping
-      represents the specialisation as target concept ;; not
-      implementation.
-  - source: ADR-ES-005 §16
-    note: |
-      Establishes the architectural hierarchy ;;
-      ;; (WSF Value Stream -> ES Agentic Value Stream -> OpenDEA
-      ;; specialisation).
+- source: CR-ES-005 §13
+  note: 'OpenDEA mapping established without modifying OpenDEA. If OpenDEA
 
-# Cardinal rules
+    has no canonical Agentic Value Stream element ;; the mapping
 
+    represents the specialisation as target concept ;; not
+
+    implementation.
+
+    '
+- source: ADR-ES-005 §16
+  note: 'Establishes the architectural hierarchy ;;
+
+    ;; (WSF Value Stream -> ES Agentic Value Stream -> OpenDEA
+
+    ;; specialisation).
+
+    '
 cardinal_rules:
-  - author: Emmanuel A. Otchere
-  - d004_dash_rule: 0 en-dash (U+2013) ; 0 em-dash (U+2014) ; 0 horizontal-ellipsis divider (U+2E3B) ; 0 arrow glyph
-  - vendor_specific_embargo: 0 references ; no vendor-specific material from embargoed sources
-  - no_opendea_modification: OpenDEA metamodel not modified
-  - no_wsF_modification: WSF metamodel not modified
-
-# Qualification overlay (CR-VAS-002, 2026-10-07)
-# Per CR-VAS-002 §24, the qualification block is added to the ES
-# canonical concept. OpenDEA Agentic Value Stream specialisation is
-# preserved unmodified. The overlay specifies the conditions under
-# which an ES Agentic Value Stream qualifies as a specialisation of
-# the OpenDEA Value Stream construct.
-
+- author: Emmanuel A. Otchere
+- d004_dash_rule: 0 en-dash (U+2013) ; 0 em-dash (U+2014) ; 0 horizontal-ellipsis divider (U+2E3B) ; 0 arrow glyph
+- vendor_specific_embargo: 0 references ; no vendor-specific material from embargoed sources
+- no_opendea_modification: OpenDEA metamodel not modified
+- no_wsF_modification: WSF metamodel not modified
 qualification_overlay:
   per: CR-VAS-002 §24
   status: semantic_overlay
-  no_opendea_modification: |
-    The qualification block is added to the ES canonical concept.
+  no_opendea_modification: 'The qualification block is added to the ES canonical concept.
+
     OpenDEA metamodel is preserved unmodified. The overlay records
+
     how the ES qualification conditions apply to the OpenDEA
+
     specialisation representation.
+
+    '
   required_values_overlay:
-    - note: |
-        AVS-VAL-01 (Value-Stream Foundation) is anchored to OpenDEA
-        Value Stream. AVS-VAL-02 through AVS-VAL-07 are ES-canonical
-        novelty and overlay the OpenDEA specialisation.
+  - note: 'AVS-VAL-01 (Value-Stream Foundation) is anchored to OpenDEA
+
+      Value Stream. AVS-VAL-02 through AVS-VAL-07 are ES-canonical
+
+      novelty and overlay the OpenDEA specialisation.
+
+      '
   exclusion_conditions_overlay:
-    - note: |
-        The seven exclusion conditions (AVS-EXC-01..07) are
-        ES-canonical novelty. They distinguish Agentic Value Stream
-        from adjacent constructs in the OpenDEA semantic landscape.
+  - note: 'The seven exclusion conditions (AVS-EXC-01..07) are
+
+      ES-canonical novelty. They distinguish Agentic Value Stream
+
+      from adjacent constructs in the OpenDEA semantic landscape.
+
+      '
   boundary_preservation:
-    - note: |
-        Per CR-VAS-002 §25, the qualification does not introduce
-        Agentic Value Stage, Agentic Workflow, Agentic Operations,
-        or Autonomous Value Stream as OpenDEA constructs. OpenDEA
-        metamodel remains unmodified.
+  - note: 'Per CR-VAS-002 §25, the qualification does not introduce
 
-# Participation alignment (CR-VAS-003, 2026-10-08)
-# Per CR-VAS-003 §26, OpenDEA alignment preserves the principle that
-# AVS extends the semantics of Value Stream and does NOT create an
-# alternative process/value architecture. Agentic Participation must
-# not be used as a substitute for Process, Capability, Organization,
-# Application, Technology, or Workflow in the OpenDEA semantic
-# landscape.
+      Agentic Value Stage, Agentic Workflow, Agentic Operations,
 
+      or Autonomous Value Stream as OpenDEA constructs. OpenDEA
+
+      metamodel remains unmodified.
+
+      '
 participation_alignment:
   per: CR-VAS-003 §26
   status: semantic_alignment
-  no_opendea_modification: |
-    The Agentic Participation layer is ES-canonical novelty. OpenDEA
+  no_opendea_modification: 'The Agentic Participation layer is ES-canonical novelty. OpenDEA
+
     metamodel is preserved unmodified. The participation overlay
+
     describes the agentic nature of realisation across existing
+
     OpenDEA elements (Business Process, Capability, Actor, Agent,
+
     Technology) without creating any new OpenDEA construct.
+
+    '
   alignment_chain:
-    - source: OpenDEA Value Stream
-      to: Agentic Value Stream
-      relation: specialisation
-    - from: Agentic Value Stream
-      to: Agentic Participation
-      relation: realization
-    - from: Agentic Participation
-      to: Business Process / Capability / Actor / Agent / Technology
-      relation: may_involve
+  - source: OpenDEA Value Stream
+    to: Agentic Value Stream
+    relation: specialisation
+  - from: Agentic Value Stream
+    to: Agentic Participation
+    relation: realization
+  - from: Agentic Participation
+    to: Business Process / Capability / Actor / Agent / Technology
+    relation: may_involve
   prohibited_substitutions:
-    - Agentic Participation is NOT a substitute for Process.
-    - Agentic Participation is NOT a substitute for Capability.
-    - Agentic Participation is NOT a substitute for Organization.
-    - Agentic Participation is NOT a substitute for Application.
-    - Agentic Participation is NOT a substitute for Technology.
-    - Agentic Participation is NOT a substitute for Workflow.
+  - Agentic Participation is NOT a substitute for Process.
+  - Agentic Participation is NOT a substitute for Capability.
+  - Agentic Participation is NOT a substitute for Organization.
+  - Agentic Participation is NOT a substitute for Application.
+  - Agentic Participation is NOT a substitute for Technology.
+  - Agentic Participation is NOT a substitute for Workflow.
   boundary_preservation:
-    - note: |
-        Per CR-VAS-003 §5 + §29, the participation alignment does not
-        introduce Agentic Value Stage, Agentic Workflow, Agentic
-        Process, Agentic Operation, or Agentic Activity as OpenDEA
-        constructs. OpenDEA metamodel remains unmodified.
-    - note: |
-        The five human participation patterns (A-E) overlay existing
-        OpenDEA actor and capability constructs where applicable.
-    - note: |
-        The semantic boundary matrix (CR-VAS-003 §22) is normative
-        guidance for distinguishing Agentic Participation from
-        adjacent constructs in the OpenDEA semantic landscape.
+  - note: 'Per CR-VAS-003 §5 + §29, the participation alignment does not
 
+      introduce Agentic Value Stage, Agentic Workflow, Agentic
 
-# ============================================================
-# CR-VAS-005 ; Measurement alignment
-# Cardinal author rule: Emmanuel A. Otchere (2026-09-23)
-# D-004: 0 en/em/triple-em dash ; 0 TMForum ; 0 vendor specifics
-# ============================================================
+      Process, Agentic Operation, or Agentic Activity as OpenDEA
 
+      constructs. OpenDEA metamodel remains unmodified.
+
+      '
+  - note: 'The five human participation patterns (A-E) overlay existing
+
+      OpenDEA actor and capability constructs where applicable.
+
+      '
+  - note: 'The semantic boundary matrix (CR-VAS-003 §22) is normative
+
+      guidance for distinguishing Agentic Participation from
+
+      adjacent constructs in the OpenDEA semantic landscape.
+
+      '
 measurement_alignment:
   mapping_type_classification:
-    description: |
-      Per CR-VAS-005, the Agentic Value Stream measurement model is
+    description: 'Per CR-VAS-005, the Agentic Value Stream measurement model is
+
       a semantic overlay over OpenDEA. OpenDEA provides the
+
       foundations; this repository defines how measurement
+
       dimensions align with those foundations without modifying
+
       the OpenDEA metamodel.
+
+      '
     specialisation:
       opendea_target: external:opendea:Measurement-Dimension
       tier: 2
-      description: |
-        OpenDEA Measurement concepts (where defined) align with
+      description: 'OpenDEA Measurement concepts (where defined) align with
+
         the Agentic Value Stream primary dimension (value
+
         realization).
+
+        '
     semantic_alignment:
       opendea_target: null
-      description: |
-        CR-VAS-005 measurement layers are semantic overlays, NOT
+      description: 'CR-VAS-005 measurement layers are semantic overlays, NOT
+
         OpenDEA derivations. They do not modify the OpenDEA
+
         metamodel.
+
+        '
     methodological_alignment:
       opendea_target: null
-      description: |
-        CR-VAS-005 measurement methodology (hierarchy, dimensions,
+      description: 'CR-VAS-005 measurement methodology (hierarchy, dimensions,
+
         baselines, anti-patterns) is repository-specific; not
+
         borrowed from OpenDEA.
 
+        '
   dimensions_alignment:
-    - avs_dimension: value_realization
-      external_kind: opendea_measurement
-      notes: |
-        Primary measurement dimension aligns with OpenDEA outcome
-        measurement concepts where present.
-    - avs_dimension: agentic_effectiveness
-      external_kind: null
-      notes: |
-        Repository-specific.
-    - avs_dimension: decision_quality
-      external_kind: null
-      notes: |
-        Repository-specific.
-    - avs_dimension: human_intervention
-      external_kind: null
-      notes: |
-        Repository-specific.
-    - avs_dimension: authority_and_risk
-      external_kind: null
-      notes: |
-        Repository-specific.
-    - avs_dimension: operational_efficiency
-      external_kind: opendea_measurement
-      notes: |
-        Operational efficiency aligns with OpenDEA throughput
-        measurement concepts where present.
+  - avs_dimension: value_realization
+    external_kind: opendea_measurement
+    notes: 'Primary measurement dimension aligns with OpenDEA outcome
 
+      measurement concepts where present.
+
+      '
+  - avs_dimension: agentic_effectiveness
+    external_kind: null
+    notes: 'Repository-specific.
+
+      '
+  - avs_dimension: decision_quality
+    external_kind: null
+    notes: 'Repository-specific.
+
+      '
+  - avs_dimension: human_intervention
+    external_kind: null
+    notes: 'Repository-specific.
+
+      '
+  - avs_dimension: authority_and_risk
+    external_kind: null
+    notes: 'Repository-specific.
+
+      '
+  - avs_dimension: operational_efficiency
+    external_kind: opendea_measurement
+    notes: 'Operational efficiency aligns with OpenDEA throughput
+
+      measurement concepts where present.
+
+      '
   separation_principles:
-    - measurement_vs_qualification: |
-        Measurement does not redefine semantic qualification.
-    - measurement_vs_conformance: |
-        Measurement does not redefine semantic conformance.
-    - measurement_vs_maturity: |
-        Measurement does not introduce maturity levels.
+  - architecture_vs_qualification: 'Architecture realizes AVS semantics; it does NOT define
 
-  # CR-VAS-006 maturity alignment block.
-  # Maturity is a CR-VAS-006 framework construct; it does not modify
-  # the OpenDEA metamodel. OpenDEA alignment covers the
-  # capability-to-assessment-map where an analog exists.
-  cr: CR-VAS-006
-  adr: ES-ADR-056
-  alignment_kind: repository_framework_overlay
-  semantic_alignment:
-    opendea_target: null
-    description: |
-      CR-VAS-006 maturity model is an organizational capability
-      framework. It is repository-specific and does not modify
-      the OpenDEA metamodel.
-  methodological_alignment:
-    opendea_target: null
-    description: |
-      CR-VAS-006 methodology (six-level model, six capability
-      dimensions, gated assessment) is repository-specific; not
-      borrowed from OpenDEA.
-  capability_dimension_alignment:
-    - avs_capability: design_semantics
-      opendea_target: null
-      notes: Repository-specific.
-    - avs_capability: governance_authority_risk
-      opendea_target: null
-      notes: Repository-specific.
-    - avs_capability: operational_realization
-      opendea_target: opendea_assessment
-      notes: Operational realization aligns with OpenDEA assessment
-        realization concepts where present.
-    - avs_capability: value_performance
-      opendea_target: opendea_measurement
-      notes: Value performance aligns with OpenDEA measurement
-        concepts where present.
-    - avs_capability: learning_improvement
-      opendea_target: null
-      notes: Repository-specific.
-    - avs_capability: portfolio_scaling
-      opendea_target: null
-      notes: Repository-specific.
-  maturity_level_alignment:
-    - avs_level: L0
-      opendea_target: null
-      notes: Awareness pre-state; no OpenDEA analog.
-    - avs_level: L1
-      opendea_target: null
-      notes: Conceptual awareness; no OpenDEA analog.
-    - avs_level: L2
-      opendea_target: null
-      notes: Definitions stage; no OpenDEA analog.
-    - avs_level: L3
-      opendea_target: opendea_assessment
-      notes: Production AVS alignment with OpenDEA assessment
-        realization where present.
-    - avs_level: L4
-      opendea_target: null
-      notes: Managed capability; repository-specific.
-    - avs_level: L5
-      opendea_target: null
-      notes: Scaled and adaptive; repository-specific.
-  separation_principles:
-    - maturity_vs_qualification: |
-        Maturity does not redefine semantic qualification.
-    - maturity_vs_conformance: |
-        Maturity does not redefine conformance.
-    - maturity_vs_measurement: |
-        Maturity is not a measurement score.
-    - maturity_vs_technology_progression: |
-        AVS maturity is not a technology maturity ladder.
+      them.
 
-  # CR-VAS-007 governance alignment block.
-  # Governance is a CR-VAS-007 framework construct; it does not modify
-  # the OpenDEA metamodel. OpenDEA alignment covers the
-  # governance-to-assessment-map where an analog exists.
-  cr: CR-VAS-007
-  adr: ES-ADR-057
-  alignment_kind: repository_framework_overlay
-  semantic_alignment:
-    opendea_target: null
-    description: |
-      CR-VAS-007 governance model is a management control plane. It
-      is repository-specific and does not modify the OpenDEA
-      metamodel.
-  methodological_alignment:
-    opendea_target: null
-    description: |
-      CR-VAS-007 methodology (10-state lifecycle, 7 governance
-      domains, 4-class change classification, portfolio governance)
-      is repository-specific; not borrowed from OpenDEA.
-  lifecycle_alignment:
-    - avs_state: proposed
-      opendea_target: null
-      notes: Repository-specific.
-    - avs_state: assessed
-      opendea_target: opendea_assessment
-      notes: Assessment aligns with OpenDEA assessment concepts
-        where present.
-    - avs_state: designed
-      opendea_target: null
-      notes: Repository-specific.
-    - avs_state: qualified
-      opendea_target: opendea_assessment
-      notes: Qualification aligns with OpenDEA qualification
-        concepts where present.
-    - avs_state: approved
-      opendea_target: null
-      notes: Governance approval; repository-specific.
-    - avs_state: implemented
-      opendea_target: null
-      notes: Repository-specific.
-    - avs_state: operational
-      opendea_target: opendea_assessment
-      notes: Operational status aligns with OpenDEA assessment
-        realization concepts where present.
-    - avs_state: managed
-      opendea_target: null
-      notes: Repository-specific.
-    - avs_state: suspended
-      opendea_target: null
-      notes: Repository-specific.
-    - avs_state: retired
-      opendea_target: null
-      notes: Repository-specific.
-  governance_domain_alignment:
-    - avs_domain: semantic_governance
-      opendea_target: null
-      notes: Repository-specific.
-    - avs_domain: authority_governance
-      opendea_target: null
-      notes: Repository-specific.
-    - avs_domain: operational_governance
-      opendea_target: null
-      notes: Repository-specific.
-    - avs_domain: risk_and_policy_governance
-      opendea_target: null
-      notes: Repository-specific.
-    - avs_domain: value_governance
-      opendea_target: opendea_measurement
-      notes: Value governance aligns with OpenDEA measurement
-        concepts where present.
-    - avs_domain: change_governance
-      opendea_target: null
-      notes: Repository-specific.
-    - avs_domain: portfolio_governance
-      opendea_target: null
-      notes: Repository-specific.
-  separation_principles:
-    - governance_vs_qualification: |
-        Governance does not redefine semantic qualification.
-    - governance_vs_conformance: |
-        Governance does not redefine conformance.
-    - governance_vs_maturity: |
-        Governance maturity is distinct from AVS organizational
-        maturity.
-    - governance_vs_measurement: |
-        Governance metrics complement (do NOT replace) measurement
-        metrics.
+      '
+  - architecture_vs_technology: 'Technology substitution SHALL NOT inherently change AVS
 
-  # CR-VAS-008 architecture alignment block.
+      identity.
+
+      '
+  - architecture_vs_maturity: 'Progressive delegation is NOT maturity progression.
+
+      '
   cr: CR-VAS-008
   adr: ES-ADR-058
   alignment_kind: repository_framework_overlay
   semantic_alignment:
     opendea_target: null
-    description: |
-      CR-VAS-008 architecture model is a translation layer. It is
+    description: 'CR-VAS-008 architecture model is a translation layer. It is
+
       repository-specific and does not modify the OpenDEA
+
       metamodel.
+
+      '
   methodological_alignment:
     opendea_target: null
-    description: |
-      CR-VAS-008 methodology is repository-specific; not borrowed
+    description: 'CR-VAS-008 methodology is repository-specific; not borrowed
+
       from OpenDEA.
+
+      '
+  capability_dimension_alignment:
+  - avs_capability: design_semantics
+    opendea_target: null
+    notes: Repository-specific.
+  - avs_capability: governance_authority_risk
+    opendea_target: null
+    notes: Repository-specific.
+  - avs_capability: operational_realization
+    opendea_target: opendea_assessment
+    notes: Operational realization aligns with OpenDEA assessment realization concepts where present.
+  - avs_capability: value_performance
+    opendea_target: opendea_measurement
+    notes: Value performance aligns with OpenDEA measurement concepts where present.
+  - avs_capability: learning_improvement
+    opendea_target: null
+    notes: Repository-specific.
+  - avs_capability: portfolio_scaling
+    opendea_target: null
+    notes: Repository-specific.
+  maturity_level_alignment:
+  - avs_level: L0
+    opendea_target: null
+    notes: Awareness pre-state; no OpenDEA analog.
+  - avs_level: L1
+    opendea_target: null
+    notes: Conceptual awareness; no OpenDEA analog.
+  - avs_level: L2
+    opendea_target: null
+    notes: Definitions stage; no OpenDEA analog.
+  - avs_level: L3
+    opendea_target: opendea_assessment
+    notes: Production AVS alignment with OpenDEA assessment realization where present.
+  - avs_level: L4
+    opendea_target: null
+    notes: Managed capability; repository-specific.
+  - avs_level: L5
+    opendea_target: null
+    notes: Scaled and adaptive; repository-specific.
+  lifecycle_alignment:
+  - avs_state: proposed
+    opendea_target: null
+    notes: Repository-specific.
+  - avs_state: assessed
+    opendea_target: opendea_assessment
+    notes: Assessment aligns with OpenDEA assessment concepts where present.
+  - avs_state: designed
+    opendea_target: null
+    notes: Repository-specific.
+  - avs_state: qualified
+    opendea_target: opendea_assessment
+    notes: Qualification aligns with OpenDEA qualification concepts where present.
+  - avs_state: approved
+    opendea_target: null
+    notes: Governance approval; repository-specific.
+  - avs_state: implemented
+    opendea_target: null
+    notes: Repository-specific.
+  - avs_state: operational
+    opendea_target: opendea_assessment
+    notes: Operational status aligns with OpenDEA assessment realization concepts where present.
+  - avs_state: managed
+    opendea_target: null
+    notes: Repository-specific.
+  - avs_state: suspended
+    opendea_target: null
+    notes: Repository-specific.
+  - avs_state: retired
+    opendea_target: null
+    notes: Repository-specific.
+  governance_domain_alignment:
+  - avs_domain: semantic_governance
+    opendea_target: null
+    notes: Repository-specific.
+  - avs_domain: authority_governance
+    opendea_target: null
+    notes: Repository-specific.
+  - avs_domain: operational_governance
+    opendea_target: null
+    notes: Repository-specific.
+  - avs_domain: risk_and_policy_governance
+    opendea_target: null
+    notes: Repository-specific.
+  - avs_domain: value_governance
+    opendea_target: opendea_measurement
+    notes: Value governance aligns with OpenDEA measurement concepts where present.
+  - avs_domain: change_governance
+    opendea_target: null
+    notes: Repository-specific.
+  - avs_domain: portfolio_governance
+    opendea_target: null
+    notes: Repository-specific.
   plane_alignment:
-    - avs_plane: value_and_outcome
-      opendea_target: opendea_value_stream
-      notes: P1 aligns with OpenDEA Value Stream concepts where
-        present.
-    - avs_plane: value_stream_realization
-      opendea_target: opendea_value_stream
-      notes: P2 aligns with OpenDEA Value Stream realization where
-        present.
-    - avs_plane: agentic_participation
-      opendea_target: null
-      notes: Repository-specific.
-    - avs_plane: control_and_governance
-      opendea_target: opendea_assessment
-      notes: P4 has some alignment with OpenDEA assessment concepts
-        where present.
-    - avs_plane: knowledge_and_context
-      opendea_target: null
-      notes: Repository-specific.
-    - avs_plane: technology_and_integration
-      opendea_target: null
-      notes: Repository-specific.
-  separation_principles:
-    - architecture_vs_qualification: |
-        Architecture realizes AVS semantics; it does NOT define
-        them.
-    - architecture_vs_technology: |
-        Technology substitution SHALL NOT inherently change AVS
-        identity.
-    - architecture_vs_maturity: |
-        Progressive delegation is NOT maturity progression.
+  - avs_plane: value_and_outcome
+    opendea_target: opendea_value_stream
+    notes: P1 aligns with OpenDEA Value Stream concepts where present.
+  - avs_plane: value_stream_realization
+    opendea_target: opendea_value_stream
+    notes: P2 aligns with OpenDEA Value Stream realization where present.
+  - avs_plane: agentic_participation
+    opendea_target: null
+    notes: Repository-specific.
+  - avs_plane: control_and_governance
+    opendea_target: opendea_assessment
+    notes: P4 has some alignment with OpenDEA assessment concepts where present.
+  - avs_plane: knowledge_and_context
+    opendea_target: null
+    notes: Repository-specific.
+  - avs_plane: technology_and_integration
+    opendea_target: null
+    notes: Repository-specific.
+versioning_alignment:
+  rationale: Per CR-VAS-010, the AVS versioning block aligns with the OpenDEA reference architecture versioning model. OpenDEA
+    requires machine-readable release manifests and explicit migration metadata; CR-VAS-010 adopts both and adds normative
+    invariants SV-INV-001..008 that bind change classification, SemVer policy, and migration transparency.
+  versioning_block_anchors:
+  - versioning.change_classification (9-class taxonomy incl. Multi)
+  - versioning.canonical_authority (artifact record schema)
+  - versioning.invariant_evolution (stable ID + introduced_in + verification)
+  - versioning.controlled_vocabulary_evolution (add/deprecate/rename/remove)
+  - versioning.deprecation_lifecycle (Active -> Deprecated -> Retired)
+  - versioning.dual_version_support (cross-version conformance rules)
+  - versioning.impact_analysis (dependency graph chain)
+  - versioning.invariants (SV-INV-001..008)
+  opendea_correspondence:
+  - avs: versioning.change_classification
+    opendea: OpenDEA Change Management §3 (9-class taxonomy)
+    relation: concretises
+  - avs: versioning.canonical_authority
+    opendea: OpenDEA Reference Architecture §4 (canonical source of truth)
+    relation: concretises
+  - avs: versioning.invariant_evolution
+    opendea: OpenDEA Reference Architecture §5 (invariant lifecycle)
+    relation: concretises
+  - avs: versioning.controlled_vocabulary_evolution
+    opendea: OpenDEA Reference Architecture §6 (vocabulary governance)
+    relation: concretises
+  - avs: versioning.deprecation_lifecycle
+    opendea: OpenDEA Reference Architecture §7 (deprecation)
+    relation: concretises
+  - avs: versioning.dual_version_support
+    opendea: OpenDEA Reference Architecture §8 (dual-version support)
+    relation: concretises
+  - avs: versioning.impact_analysis
+    opendea: OpenDEA Reference Architecture §9 (dependency analysis)
+    relation: concretises
+  - avs: versioning.invariants
+    opendea: OpenDEA Reference Architecture §10 (normative invariants)
+    relation: concretises
+  compatibility_evidence:
+    semantic: compatible (additive block; preserves prior qualification, evidence, measurement, maturity, governance, architecture,
+      interoperability contracts)
+    schema: compatible (no schema changes; new block is additive to concept.yaml)
+    conformance: compatible (no existing test changes; 18 new sv-* tests added)
+    instance: compatible (no instance-shape changes)
+    mapping: compatible (wsf_mapping and opendea_mapping receive new versioning_alignment blocks)
+  invariants_anchored:
+  - SV-INV-004 (invariant ID stability across releases)
+  - SV-INV-005 (migration transformations MUST be explicit; no silent inference)
+  - SV-INV-007 (cross-version auto-labelling forbidden)
+  - SV-INV-008 (schema-compat does not equal semantic-compat)

@@ -1,0 +1,11 @@
+id: KIT-AGENTIC-VALUE-STREAM-VAS-SV-N05
+test_id: VAS-SV-N05
+category: versioning_sv-negative
+subject: Silent Migration Inference
+description: Migration transformations MUST be explicit; the repository MUST NOT silently infer missing semantic evidence
+  to make legacy instances pass a newer conformance suite.
+cr: CR-VAS-010 §21
+expect: migration_model.rule explicitly forbids silent inference; SV-INV-005 binds.
+asserts:
+- versioning.migration_model.rule contains MUST NOT silently infer
+- versioning.invariants.items contains item with id == SV-INV-005

@@ -1,0 +1,13 @@
+id: KIT-AGENTIC-VALUE-STREAM-VAS-SV-P06
+test_id: VAS-SV-P06
+category: versioning_sv-positive
+subject: Five Migration Classes
+description: Migration classes M0..M4 (No, Mechanical, Reviewed, Semantic Reassessment, Requalification Required).
+cr: CR-VAS-010 §21
+expect: migration_classes.items contains all 5 classes M0..M4.
+asserts:
+- versioning.migration_classes.items contains item with id == M0
+- versioning.migration_classes.items contains item with id == M1
+- versioning.migration_classes.items contains item with id == M2
+- versioning.migration_classes.items contains item with id == M3
+- versioning.migration_classes.items contains item with id == M4

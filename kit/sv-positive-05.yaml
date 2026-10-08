@@ -1,0 +1,15 @@
+id: KIT-AGENTIC-VALUE-STREAM-VAS-SV-P05
+test_id: VAS-SV-P05
+category: versioning_sv-positive
+subject: Invariant Evolution
+description: Each invariant has stable ID, statement, rationale, introduced_in, status, verification.
+cr: CR-VAS-010 §21
+expect: invariant_evolution.template defines id, statement, rationale, introduced_in, status, verification; introduced_in
+  fields appear in the 8 versioning invariants.
+asserts:
+- versioning.invariant_evolution.template contains id
+- versioning.invariant_evolution.template contains statement
+- versioning.invariant_evolution.template contains introduced_in
+- versioning.invariant_evolution.template contains status
+- versioning.invariant_evolution.template contains verification
+- versioning.invariant_evolution.stability_rule is defined

@@ -1,0 +1,10 @@
+id: KIT-AGENTIC-VALUE-STREAM-VAS-SV-N01
+test_id: VAS-SV-N01
+category: versioning_sv-negative
+subject: Classification By Diff Size
+description: Classification reflects actual impact, not the size of the code or documentation diff.
+cr: CR-VAS-010 §21
+expect: change_classification.rule explicitly forbids diff-size based classification; SV-INV-001 binds.
+asserts:
+- versioning.change_classification.rule contains actual impact
+- versioning.invariants.items contains item with id == SV-INV-001

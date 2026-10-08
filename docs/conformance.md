@@ -245,6 +245,40 @@
 - KIT-AGENTIC-VALUE-STREAM-VAS-AP-BT-05 ; VAS-AP-BT-05 Context Access vs Context Interpretation
 - KIT-AGENTIC-VALUE-STREAM-VAS-AP-BT-06 ; VAS-AP-BT-06 Progressive Delegation vs Maturity Progression
 
+## Versioning Test Inventory (CR-VAS-010 §19 + §20 + §21)
+
+Wave 7 adds 18 versioning tests (6 positive + 6 negative + 6 boundary),
+bringing the conformance total from 169 to 187. The `sv-` prefix marks
+all versioning tests; each binds to SV-INV-001..008 in the versioning
+block.
+
+### Versioning positive (VAS-SV-P01..P06 per CR-VAS-010 §19)
+
+- KIT-AGENTIC-VALUE-STREAM-VAS-SV-P01 ; VAS-SV-P01 Change Classification (9-class taxonomy)
+- KIT-AGENTIC-VALUE-STREAM-VAS-SV-P02 ; VAS-SV-P02 SemVer Policy (MAJOR.MINOR.PATCH)
+- KIT-AGENTIC-VALUE-STREAM-VAS-SV-P03 ; VAS-SV-P03 Specification vs Artifact Version
+- KIT-AGENTIC-VALUE-STREAM-VAS-SV-P04 ; VAS-SV-P04 Five-Dimension Compatibility
+- KIT-AGENTIC-VALUE-STREAM-VAS-SV-P05 ; VAS-SV-P05 Invariant Evolution (stable ID + introduced_in + verification)
+- KIT-AGENTIC-VALUE-STREAM-VAS-SV-P06 ; VAS-SV-P06 Five Migration Classes (M0..M4)
+
+### Versioning negative (VAS-SV-N01..N06 per CR-VAS-010 §20)
+
+- KIT-AGENTIC-VALUE-STREAM-VAS-SV-N01 ; VAS-SV-N01 Classification By Diff Size (binds SV-INV-001)
+- KIT-AGENTIC-VALUE-STREAM-VAS-SV-N02 ; VAS-SV-N02 SemVer As Compatibility (binds SV-INV-002)
+- KIT-AGENTIC-VALUE-STREAM-VAS-SV-N03 ; VAS-SV-N03 Qualification Change As Patch (binds SV-INV-003)
+- KIT-AGENTIC-VALUE-STREAM-VAS-SV-N04 ; VAS-SV-N04 Cross-Repo Conflicting Evolution (binds SV-INV-006)
+- KIT-AGENTIC-VALUE-STREAM-VAS-SV-N05 ; VAS-SV-N05 Silent Migration Inference (binds SV-INV-005)
+- KIT-AGENTIC-VALUE-STREAM-VAS-SV-N06 ; VAS-SV-N06 Value Re-Definition (CR-VAS-010 §11)
+
+### Versioning boundary (VAS-SV-BT-01..BT-06 per CR-VAS-010 §21)
+
+- KIT-AGENTIC-VALUE-STREAM-VAS-SV-BT-01 ; VAS-SV-BT-01 Spec vs Artifact Versioning
+- KIT-AGENTIC-VALUE-STREAM-VAS-SV-BT-02 ; VAS-SV-BT-02 Normative vs Informative
+- KIT-AGENTIC-VALUE-STREAM-VAS-SV-BT-03 ; VAS-SV-BT-03 Schema vs Semantic Breaking (binds SV-INV-008)
+- KIT-AGENTIC-VALUE-STREAM-VAS-SV-BT-04 ; VAS-SV-BT-04 Deprecation vs Removal
+- KIT-AGENTIC-VALUE-STREAM-VAS-SV-BT-05 ; VAS-SV-BT-05 Dual-Version Cross-Labelling (binds SV-INV-007)
+- KIT-AGENTIC-VALUE-STREAM-VAS-SV-BT-06 ; VAS-SV-BT-06 Invariant ID Stability vs Meaning Change (binds SV-INV-004)
+
 ## Boundary Assertions Covered
 
 - per_es_adr_005
@@ -256,9 +290,10 @@
 - per_cr_vas_006_maturity_capability
 - per_cr_vas_007_governance_lifecycle
 - per_cr_vas_008_architecture_patterns
+- per_cr_vas_010_versioning_evolution
 
 ## Provenance
 
-- decision: ES-ADR-005, ES-ADR-031, ES-ADR-049, ES-ADR-051, ES-ADR-052, ES-ADR-053, ES-ADR-054, ES-ADR-055, ES-ADR-056, ES-ADR-057, ES-ADR-058
-- implementation: CR-ES-005, CR-AVS-001, CR-VAS-002, CR-VAS-003, CR-VAS-004, CR-VAS-005, CR-VAS-006, CR-VAS-007, CR-VAS-008
+- decision: ES-ADR-005, ES-ADR-031, ES-ADR-049, ES-ADR-051, ES-ADR-052, ES-ADR-053, ES-ADR-054, ES-ADR-055, ES-ADR-056, ES-ADR-057, ES-ADR-058, ES-ADR-059
+- implementation: CR-ES-005, CR-AVS-001, CR-VAS-002, CR-VAS-003, CR-VAS-004, CR-VAS-005, CR-VAS-006, CR-VAS-007, CR-VAS-008, CR-VAS-010
 - date: 2026-10-08

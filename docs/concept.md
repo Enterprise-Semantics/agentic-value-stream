@@ -1005,3 +1005,133 @@ Six new documentation files accompany this layer:
   template, quality attributes, selection criteria.
 - `docs/architecture-anti-patterns.md`. Six anti-patterns with
   rejection rationale.
+
+## Semantic Versioning, Evolution & Migration (CR-VAS-010, Wave 7)
+
+Per CR-VAS-010, Wave 7 introduces the `versioning:` block in
+`concept.yaml`, formalising how the AVS semantic contract evolves
+deliberately, transparently, and traceably. Version 1.6.0 is
+incremented to 1.7.0 with 18 new tests using the `sv-` prefix
+(6 positive + 6 negative + 6 boundary = 187 total).
+
+The block comprises 20 sub-keys:
+
+- `principle`: The AVS semantic contract MUST evolve deliberately,
+  transparently, and traceably; distinguish semantic from
+  implementation and documentation change.
+- `change_classification`: Nine classes (Editorial, Clarification,
+  Additive, Structural, Semantic, Breaking, Deprecation, Corrective,
+  Multi-classification); classification MUST reflect actual impact,
+  not diff size.
+- `versioning_policy`: SemVer MAJOR.MINOR.PATCH with explicit rules
+  per tier (major examples: changing qualification conditions,
+  removing mandatory properties, redefining invariants; minor:
+  optional properties, new optional patterns; patch: typo, broken
+  link, test fixture repair).
+- `version_distinction`: Specification vs artifact version split
+  with a mandatory warning that an artifact MUST NOT declare
+  compatibility with a spec version if it contradicts the spec.
+- `canonical_authority`: Per-artifact record with id, authoritative
+  location, artifact version, specification version, status, owner,
+  dependencies, compatibility declaration, supersession history.
+- `normative_vs_informative`: Asset classification plus warning
+  that informative status MUST NOT be used to evade review.
+- `compatibility_dimensions`: Five dimensions (Definition, Instance,
+  Schema, Conformance, Mapping) plus warning that schema-compatible
+  does not equal semantically-compatible.
+- `qualification_change_review`: Heightened review checklist and
+  rule that qualification change MUST NOT be released as a patch.
+- `invariant_evolution`: Per-invariant template (id, statement,
+  rationale, introduced_in, status, verification) plus stability
+  and meaning-change rules.
+- `controlled_vocabulary_evolution`: Five rules covering add,
+  rename, remove, redefinition, and unknown-value handling.
+- `deprecation_lifecycle`: Active -> Deprecated -> Retired with
+  per-deprecation documentation checklist.
+- `migration_model`: Migration record template plus rule that
+  transformations MUST be explicit and the repository MUST NOT
+  silently infer missing semantic evidence.
+- `migration_classes`: Five classes M0..M4 (No, Mechanical,
+  Reviewed, Semantic Reassessment, Requalification Required).
+- `dual_version_support`: Cross-version conformance rules plus
+  principle that conformant-to-one does not imply conformant-to-another.
+- `release_manifest`: Machine-readable manifest template with
+  compatibility, changes, and migration fields.
+- `change_request_requirements`: 14-item mandatory checklist
+  (problem, current position, proposed change, rationale,
+  classification, compatibility, invariants, schemas, tests,
+  mappings, migration, documentation, acceptance, rollback).
+- `impact_analysis`: Repository + downstream impact chain plus
+  rule that the dependency graph MUST be derived from repository
+  metadata, not maintained as a hand-drawn diagram.
+- `invariants`: Eight normative invariants SV-INV-001..008 binding
+  classification, SemVer-as-convention, qualification-as-patch
+  prohibition, invariant ID stability, explicit migration, cross-
+  repo conflict prohibition, cross-version re-labelling
+  prohibition, and schema/semantic compatibility distinction.
+- `boundary_assertions`: Per-CR-VAS-010 evolution principle binding
+  the block to its release-time impact analysis.
+
+### Documentation set (Wave 7 additions)
+
+Eight new documentation files accompany this layer:
+
+- `docs/versioning.md`. Purpose, core principle, scope, applies-to,
+  depends-on.
+- `docs/change-classification.md`. Nine-class taxonomy table with
+  per-class meaning and example.
+- `docs/versioning-policy.md`. SemVer MAJOR.MINOR.PATCH policy with
+  per-tier examples, spec-vs-artifact distinction.
+- `docs/deprecation-and-migration.md`. Deprecation lifecycle, migration
+  model template, five migration classes M0..M4.
+- `docs/release-process.md`. Release manifest template, dual-version
+  support, 14-item change request checklist, impact analysis chain.
+- `docs/versioning-invariants.md`. SV-INV-001..008 table with
+  statement, rationale, and verification anchors.
+- `docs/controlled-vocabulary.md`. Vocabulary template plus five
+  evolution rules.
+- `docs/versioning-anti-patterns.md`. Ten anti-patterns with
+  detection anchors (SV-INV-001..008 + CR-VAS-010 §3, §4, §7, §11,
+  §14, §17).
+
+### PUML diagrams (Wave 7 additions)
+
+Three new PUML diagrams visualise the layer:
+
+- `diagrams/semantic-evolution-lifecycle.puml`. State diagram of the
+  end-to-end change flow: Change Proposed -> Classify -> Impact
+  Analysis -> Migration Class -> SemVer -> Release Manifest ->
+  Compatibility Reported.
+- `diagrams/migration-classes.puml`. Trigger conditions and class
+  ladder for M0..M4 with downgrade refusal under semantic impact.
+- `diagrams/release-process.puml`. Activity diagram of the release
+  process with SV-INV-003 (qualification-as-patch rejection) and
+  SV-INV-006 (cross-repo conflict rejection) gates.
+
+### Mapping alignment (Wave 7 additions)
+
+The WSF and OpenDEA mapping files receive `versioning_alignment`
+blocks:
+
+- `mappings/wsf.yaml` -> `versioning_alignment` with eight WSF
+  correspondences (SemVer, spec-vs-artifact, compatibility report,
+  migration records, release manifest, change request checklist).
+- `mappings/opendea.yaml` -> `versioning_alignment` with eight
+  OpenDEA correspondences (change management, canonical source of
+  truth, invariant lifecycle, vocabulary governance, deprecation,
+  dual-version support, dependency analysis, normative invariants).
+
+Both blocks carry five-dimension compatibility evidence (semantic,
+schema, conformance, instance, mapping = compatible) and anchor
+SV-INV-001..008.
+
+Wave 7 adds 18 versioning tests (6 positive + 6 negative + 6
+boundary = 187 total in the conformance inventory), the
+`versioning:` block, the eight-versioning-doc documentation set,
+the three-versioning-visual PUML set, the two mapping alignment
+blocks, and updates the kit manifest (`kit/kit.yaml` v1.7.0,
+provenance now includes ES-ADR-059 and CR-VAS-010, and
+`boundary_assertions` includes `per_cr_vas_010_versioning_evolution`).
+The 9 of 9 governance frame (ES-ADR-059 + CR-VAS-010) is authored
+in `enterprise-semantics-governance` at slot 0059/0062 and pushed
+alongside this wave.

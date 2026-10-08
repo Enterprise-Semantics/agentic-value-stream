@@ -1,0 +1,11 @@
+id: KIT-AGENTIC-VALUE-STREAM-VAS-SV-BT-01
+test_id: VAS-SV-BT-01
+category: versioning_sv-boundary
+subject: Spec vs Artifact Versioning
+description: Spec version vs artifact version separation is allowed but an artifact MUST NOT declare compatibility with a
+  spec version if it contradicts the spec's normative semantics.
+cr: CR-VAS-010 §21
+expect: version_distinction.warning + principle establish the boundary.
+asserts:
+- versioning.version_distinction.warning is defined
+- versioning.version_distinction.warning contains MUST NOT declare compatibility

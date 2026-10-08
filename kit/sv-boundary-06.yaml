@@ -1,0 +1,12 @@
+id: KIT-AGENTIC-VALUE-STREAM-VAS-SV-BT-06
+test_id: VAS-SV-BT-06
+category: versioning_sv-boundary
+subject: Invariant ID Stability vs Meaning Change
+description: Invariant identifiers SHOULD remain stable across releases when their meaning remains stable. If the meaning
+  changes materially, the repository MUST document the change explicitly rather than silently reusing the identifier.
+cr: CR-VAS-010 §21
+expect: invariant_evolution.stability_rule + meaning_change_rule both defined.
+asserts:
+- versioning.invariant_evolution.stability_rule is defined
+- versioning.invariant_evolution.meaning_change_rule is defined
+- versioning.invariants.items contains item with id == SV-INV-004

@@ -1,0 +1,10 @@
+id: KIT-AGENTIC-VALUE-STREAM-VAS-SV-N02
+test_id: VAS-SV-N02
+category: versioning_sv-negative
+subject: SemVer As Compatibility
+description: SemVer is a release convention; it does not itself establish semantic compatibility.
+cr: CR-VAS-010 §21
+expect: versioning_policy.warning explicitly disclaims SemVer-as-compatibility; SV-INV-002 binds.
+asserts:
+- versioning.versioning_policy.warning contains SemVer is the release convention
+- versioning.invariants.items contains item with id == SV-INV-002

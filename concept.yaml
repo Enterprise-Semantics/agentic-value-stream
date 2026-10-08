@@ -95,9 +95,39 @@ definition: |
 # Lifecycle state (independent of conformance state per CR-AVS-001 §14).
 lifecycle:
   status: candidate
-  version: 1.6.0
+  version: 1.7.0
   date: 2026-10-08
   promotion_history:
+    - version: 1.7.0
+      date: 2026-10-08
+      status: candidate
+      note: >-
+        Semantic Versioning, Evolution & Migration per CR-VAS-010.
+        Introduces the versioning block: core principle (the AVS
+        semantic contract must evolve deliberately, transparently,
+        and traceably), nine change classifications (Editorial,
+        Clarification, Additive, Structural, Semantic, Breaking,
+        Deprecation, Corrective, Multi-classification), SemVer
+        policy (MAJOR/MINOR/PATCH) with semantic impact as
+        determinant, specification vs artifact version split,
+        canonical semantic authority (artifact record schema),
+        normative vs informative asset distinction, five-dimension
+        compatibility (Definition, Instance, Schema, Conformance,
+        Mapping), qualification rule change heightened review,
+        invariant evolution (stable ID, statement, rationale,
+        introduced_in, status, verification), controlled vocabulary
+        evolution (add, deprecate, rename, remove rules),
+        deprecation lifecycle (Active -> Deprecated -> Retired),
+        migration model template, five migration classes
+        (M0 No, M1 Mechanical, M2 Reviewed, M3 Semantic
+        Reassessment, M4 Requalification Required), dual-version
+        support, release manifest template, change request
+        requirements (14 items), repository + downstream impact
+        analysis chain, eight normative invariants
+        (SV-INV-001..008), and 18 versioning tests (6 positive +
+        6 negative + 6 boundary = 187 total). Promotion to
+        Established reserved for CR-VAS-010 acceptance review
+        (governance frame ES-ADR-059).
     - version: 1.6.0
       date: 2026-10-08
       status: candidate
@@ -291,7 +321,10 @@ conformance:
     ap_positive: 6
     ap_negative: 6
     ap_boundary: 6
-    total: 169
+    sv_positive: 6
+    sv_negative: 6
+    sv_boundary: 6
+    total: 187
 
 # Concept repository reference (renamed per ES-ADR-051).
 concept_repo: Enterprise-Semantics/agentic-value-stream
@@ -4513,4 +4546,584 @@ architecture:
       Technology substitution SHALL NOT inherently change AVS
       identity as long as intent, authority, context, selection,
       action, outcome, and governance are preserved.
+
+
+# === Semantic Versioning, Evolution & Migration (CR-VAS-010) ===
+#
+# Per CR-VAS-010 (Agentic Value Stream Semantic Versioning, Evolution
+# & Migration): Adds the `versioning:` block formalising:
+#   (1) the core principle (the AVS semantic contract must evolve
+#       deliberately, transparently, and traceably),
+#   (2) nine change classifications (Editorial, Clarification,
+#       Additive, Structural, Semantic, Breaking, Deprecation,
+#       Corrective, + a multi-classification rule),
+#   (3) SemVer policy (MAJOR/MINOR/PATCH) with semantic impact
+#       rather than diff size as the determinant,
+#   (4) specification vs artifact version split,
+#   (5) canonical semantic authority,
+#   (6) normative vs informative asset distinction,
+#   (7) five-dimension compatibility (Definition, Instance, Schema,
+#       Conformance, Mapping),
+#   (8) qualification rule change heightened review,
+#   (9) invariant evolution (stable ID, statement, rationale,
+#       introduced_in, status, verification),
+#   (10) controlled vocabulary evolution (add, deprecate, rename,
+#        remove rules),
+#   (11) deprecation lifecycle (Active -> Deprecated -> Retired),
+#   (12) migration model (id, from_specification, to_specification,
+#        affected_artifacts, transformations, semantic_review,
+#        automated),
+#   (13) five migration classes (M0 no migration, M1 mechanical,
+#        M2 reviewed, M3 semantic reassessment, M4
+#        requalification required),
+#   (14) dual-version support rules,
+#   (15) release manifest template,
+#   (16) change request requirements (14 items),
+#   (17) repository + downstream impact analysis chain,
+#   (18) eight normative invariants (SV-INV-001..008), and
+#   (19) 18 versioning tests (6 positive + 6 negative + 6 boundary
+#        = 187 total).
+#
+# Cardinal author rule: Emmanuel A. Otchere <emmanuel@otchere.com>
+# Authored by: Emmanuel A. Otchere (cardinal author rule, 2026-10-08)
+# Last revised: 2026-10-08 (CR-VAS-010 versioning block landed)
+
+versioning:
+
+  specializes: ES:CONCEPT:agentic-value-stream
+
+  # ----------------------------------------------------------------
+  # 1. Core principle
+  # ----------------------------------------------------------------
+  principle: |
+    The AVS semantic contract must evolve deliberately,
+    transparently, and traceably.
+
+    A repository version change is not merely a software release
+    event. It may change the meaning of the concept, the
+    qualification of instances, or the interpretation of downstream
+    architecture.
+
+    AVS MUST distinguish semantic change from implementation change
+    and documentation change.
+
+  # ----------------------------------------------------------------
+  # 2. Change classification (9 classes)
+  # ----------------------------------------------------------------
+  change_classification:
+    description: |
+      Every proposed change MUST be assigned one or more
+      classifications. Classification MUST reflect actual impact,
+      not the size of the code or documentation diff.
+    items:
+      - id: editorial
+        description: Editorial.
+        meaning: Improves wording without changing meaning.
+        example: Clarifying ambiguous prose.
+      - id: clarification
+        description: Clarification.
+        meaning: |
+          Makes an existing rule more precise without intentionally
+          changing its meaning.
+        example: Explaining an existing invariant.
+      - id: additive
+        description: Additive.
+        meaning: Introduces an optional compatible capability.
+        example: Adding an optional evidence field.
+      - id: structural
+        description: Structural.
+        meaning: Changes schema structure or relationships.
+        example: Reorganizing a schema while preserving semantics.
+      - id: semantic
+        description: Semantic.
+        meaning: |
+          Changes definitions, qualification, invariants, or
+          relationship meaning.
+        example: Altering what constitutes meaningful action selection.
+      - id: breaking
+        description: Breaking.
+        meaning: |
+          Makes a previously valid conformant representation
+          invalid or changes its interpretation.
+        example: |
+          Making a previously optional qualification condition
+          mandatory.
+      - id: deprecation
+        description: Deprecation.
+        meaning: |
+          Announces planned withdrawal of a construct or field.
+        example: Deprecating a legacy property.
+      - id: corrective
+        description: Corrective.
+        meaning: |
+          Fixes an inconsistency between declared semantics and
+          actual repository artifacts.
+        example: |
+          Correcting a test manifest that misreports test
+          coverage.
+      - id: multi
+        description: Multi-classification.
+        meaning: |
+          A change may have multiple classifications. For example,
+          a semantic change may also be breaking.
+        example: |
+          A change to qualification may be both semantic AND
+          breaking in classification.
+    rule: |
+      Classification MUST reflect actual impact, not the size of
+      the code or documentation diff.
+
+  # ----------------------------------------------------------------
+  # 3. Versioning policy (SemVer)
+  # ----------------------------------------------------------------
+  versioning_policy:
+    scheme: MAJOR.MINOR.PATCH
+    major:
+      rule: |
+        Increment when a change is incompatible with the previous
+        semantic contract.
+      examples:
+        - changing the necessary conditions for AVS qualification
+        - changing the meaning of a canonical relationship
+        - removing a mandatory property
+        - redefining an invariant
+        - |
+          changing controlled vocabulary in a way that alters
+          interpretation
+        - |
+          changing a conformance rule such that previously
+          conformant instances become non-conformant
+      requires:
+        - migration_guidance
+        - explicit_impact_assessment
+    minor:
+      rule: |
+        Increment when compatible functionality or clarification
+        is added without changing the meaning of existing
+        conformant representations.
+      examples:
+        - adding an optional property
+        - introducing a new optional architecture pattern
+        - adding a compatible mapping type
+        - adding a non-breaking evidence field
+        - adding supplementary examples
+      requires:
+        - documentation_of_new_capabilities
+        - implementation_recommendations
+    patch:
+      rule: |
+        Increment for corrections that do not intentionally alter
+        the semantic contract.
+      examples:
+        - correcting typographical errors
+        - fixing broken documentation links
+        - correcting a schema description
+        - |
+          repairing a test fixture that incorrectly represents an
+          already-defined rule
+      requires:
+        - semantic_compatibility_evidence
+    warning: |
+      SemVer is the release convention; it does not itself
+      establish semantic compatibility. Compatibility MUST be
+      assessed and evidenced.
+
+  # ----------------------------------------------------------------
+  # 4. Specification vs artifact version
+  # ----------------------------------------------------------------
+  version_distinction:
+    rule: |
+      The repository SHOULD distinguish the version of the overall
+      AVS specification from the version of individual artifacts.
+    example: |
+      specification:
+        id: AVS
+        version: "1.0.0"
+      artifact:
+        id: avs-qualification-schema
+        version: "1.1.0"
+        specification_version: "1.0.0"
+    principle: |
+      This allows an optional schema improvement without implying
+      that the entire semantic specification has changed.
+    warning: |
+      An artifact MUST NOT declare compatibility with a
+      specification version if it changes or contradicts that
+      specification's normative semantics.
+
+  # ----------------------------------------------------------------
+  # 5. Canonical semantic authority
+  # ----------------------------------------------------------------
+  canonical_authority:
+    rule: |
+      The repository MUST identify the authoritative source for
+      each semantic asset.
+    artifact_record:
+      fields:
+        - canonical_identifier
+        - authoritative_repository_or_location
+        - artifact_version
+        - specification_version
+        - status
+        - owner_or_steward
+        - dependencies
+        - compatibility_declaration
+        - supersession_history
+    principle: |
+      If the Enterprise-Semantics repository family is the
+      canonical source of truth, a concept-specific repository
+      MUST clearly identify whether its content is authoritative,
+      a maintained distribution, or a derived artifact.
+    rule_no_conflict: |
+      Multiple repositories MUST NOT independently evolve
+      conflicting canonical definitions without an explicit
+      reconciliation mechanism.
+
+  # ----------------------------------------------------------------
+  # 6. Normative vs informative
+  # ----------------------------------------------------------------
+  normative_vs_informative:
+    rule: |
+      Every change MUST identify whether it affects normative
+      semantics or informative material.
+    normative:
+      includes:
+        - definitions
+        - required_conditions
+        - invariants
+        - controlled_vocabularies
+        - qualification_rules
+        - mandatory_schema_constraints
+        - conformance_requirements
+    informative:
+      includes:
+        - explanatory_examples
+        - optional_guidance
+        - illustrative_diagrams
+        - non_binding_implementation_suggestions
+    warning: |
+      Changing informative material can still expose a semantic
+      contradiction. Informative status MUST NOT be used to evade
+      review when an example implicitly changes the meaning of a
+      normative rule.
+
+  # ----------------------------------------------------------------
+  # 7. Five-dimension compatibility
+  # ----------------------------------------------------------------
+  compatibility_dimensions:
+    description: |
+      Compatibility MUST be evaluated against at least five
+      dimensions.
+    items:
+      - id: definition
+        name: Definition compatibility
+        question: Does the meaning remain stable?
+      - id: instance
+        name: Instance compatibility
+        question: |
+          Can existing AVS records still be interpreted?
+      - id: schema
+        name: Schema compatibility
+        question: |
+          Can existing representations still be parsed and
+          validated?
+      - id: conformance
+        name: Conformance compatibility
+        question: |
+          Do previously conformant instances retain their status
+          under the new rules?
+      - id: mapping
+        name: Mapping compatibility
+        question: |
+          Do mappings to WSF, OpenDEA, and other external models
+          retain their intended meaning?
+    warning: |
+      A change may be schema-compatible but semantically breaking.
+      The compatibility report MUST make that distinction explicit.
+
+  # ----------------------------------------------------------------
+  # 8. Qualification rule change heightened review
+  # ----------------------------------------------------------------
+  qualification_change_review:
+    rule: |
+      Changes to CR-VAS-002 qualification conditions require
+      heightened review. A change that alters qualification
+      criteria MUST NOT be released as a patch. Where the change
+      is breaking, the release MUST include a major-version
+      increment or an explicitly approved equivalent versioning
+      policy.
+    change_proposal_must_state:
+      - which qualification conditions are affected
+      - whether previously conformant instances remain conformant
+      - |
+        whether previously non-conformant instances may now
+        qualify
+      - whether evidence requirements change
+      - whether negative and boundary tests change
+      - |
+        whether downstream mappings or architecture patterns
+        change
+
+  # ----------------------------------------------------------------
+  # 9. Invariant evolution
+  # ----------------------------------------------------------------
+  invariant_evolution:
+    rule: |
+      Each invariant MUST have a stable identifier, a normative
+      statement, a rationale, an effective specification version,
+      a status, and a test or verification method where
+      applicable.
+    template: |
+      invariant:
+        id: AVS-INV-NNN
+        statement:
+        rationale:
+        introduced_in:
+        status: [proposed|active|deprecated|retired]
+        verification:
+          - test_id_or_review_role
+    stability_rule: |
+      Invariant identifiers SHOULD remain stable across releases
+      when their meaning remains stable.
+    meaning_change_rule: |
+      If an invariant's meaning changes materially, the repository
+      MUST document the change explicitly rather than silently
+      reusing its identifier.
+
+  # ----------------------------------------------------------------
+  # 10. Controlled vocabulary evolution
+  # ----------------------------------------------------------------
+  controlled_vocabulary_evolution:
+    template: |
+      vocabulary:
+        id:
+        version:
+        values:
+          - id:
+            status: [active|deprecated|retired]
+    rules:
+      - new_compatible_values: |
+          New compatible values may be introduced additively.
+      - renaming: |
+          Renaming a value MUST preserve its identity through an
+          explicit alias or migration mapping where appropriate.
+      - removing: |
+          Removing a value requires a deprecation and migration
+          policy.
+      - redefinition: |
+          A value MUST NOT be redefined to mean something
+          materially different.
+      - unknown_values: |
+          Unknown values MUST be handled according to the
+          consuming schema's declared extensibility policy.
+
+  # ----------------------------------------------------------------
+  # 11. Deprecation lifecycle
+  # ----------------------------------------------------------------
+  deprecation_lifecycle:
+    states: [active, deprecated, retired]
+    rule: |
+      Each deprecated artifact or property MUST document: reason
+      for deprecation; version in which deprecation was
+      introduced; replacement, if one exists; compatibility
+      implications; migration instructions; earliest intended
+      removal version.
+    warning: |
+      Deprecation MUST NOT imply immediate invalidity unless the
+      release explicitly states that the item is no longer
+      accepted.
+
+  # ----------------------------------------------------------------
+  # 12. Migration model
+  # ----------------------------------------------------------------
+  migration_model:
+    rule: |
+      Migration MUST preserve traceability between the old and new
+      representations. Migration transformations MUST be explicit.
+      The repository MUST NOT silently infer missing semantic
+      evidence merely to make legacy instances pass a newer
+      conformance suite.
+    template: |
+      migration:
+        id:
+        from_specification:
+        to_specification:
+        affected_artifacts:
+          - artifact_id
+        transformations:
+          - source_field:
+            target_field:
+            transformation: [explicit_mapping|...|...]
+        semantic_review_required: true
+        automated: false
+
+  # ----------------------------------------------------------------
+  # 13. Migration classes
+  # ----------------------------------------------------------------
+  migration_classes:
+    description: |
+      The class MUST be selected based on semantic impact, not
+      implementation convenience.
+    items:
+      - id: M0
+        name: no_migration
+        meaning: |
+          Existing artifacts remain valid.
+      - id: M1
+        name: mechanical
+        meaning: |
+          Deterministic structural transformation with no semantic
+          reinterpretation.
+      - id: M2
+        name: reviewed
+        meaning: |
+          Transformation requires validation or human review.
+      - id: M3
+        name: semantic_reassessment
+        meaning: |
+          Affected instances must be reassessed against changed
+          qualification or invariant requirements.
+      - id: M4
+        name: requalification_required
+        meaning: |
+          The change requires formal reevaluation before the
+          instance can claim conformance to the new release.
+
+  # ----------------------------------------------------------------
+  # 14. Dual-version support
+  # ----------------------------------------------------------------
+  dual_version_support:
+    rule: |
+      During a major-version transition, the repository MAY support
+      two specification versions concurrently. If so, it MUST
+      declare: supported versions; conformance rules for each
+      version; migration expectations; end-of-support dates or
+      criteria; treatment of cross-version mappings.
+    principle: |
+      An instance conformant to one version MUST NOT automatically
+      be labelled conformant to another.
+
+  # ----------------------------------------------------------------
+  # 15. Release manifest
+  # ----------------------------------------------------------------
+  release_manifest:
+    rule: |
+      Each release SHOULD include a machine-readable manifest.
+      Compatibility values MUST be justified by the release
+      review, not automatically inferred from the version number.
+    template: |
+      release:
+        specification: AVS
+        version: "1.1.0"
+        status: [draft|released|retired]
+        previous_version:
+        compatibility:
+          semantic: [compatible|incompatible]
+          schema: [compatible|incompatible]
+          conformance: [compatible|incompatible]
+        changes:
+          - id:
+            classification: [editorial|clarification|additive|structural|semantic|breaking|deprecation|corrective]
+            affected_artifacts:
+              - artifact_id
+        migration:
+          required: false
+          guide: null
+
+  # ----------------------------------------------------------------
+  # 16. Change request requirements (14 items)
+  # ----------------------------------------------------------------
+  change_request_requirements:
+    items:
+      - problem_statement
+      - current_normative_position
+      - proposed_change
+      - semantic_rationale
+      - classification
+      - compatibility_impact
+      - affected_invariants
+      - affected_schemas
+      - affected_conformance_tests
+      - affected_mappings
+      - migration_requirements
+      - documentation_changes
+      - acceptance_criteria
+      - rollback_or_remediation_approach
+
+  # ----------------------------------------------------------------
+  # 17. Repository + downstream impact analysis
+  # ----------------------------------------------------------------
+  impact_analysis:
+    description: |
+      A change-impact assessment SHOULD traverse dependencies from
+      the changed artifact to affected assets.
+    chain: |
+      Changed Definition
+        -> Invariants
+          -> Qualification Rules
+            -> Schemas
+              -> Conformance Tests
+                -> Architecture Patterns
+                  -> Mappings
+                    -> Examples & Documentation
+    principle: |
+      The actual dependency graph MUST be derived from repository
+      metadata and references rather than maintained only as a
+      manually written diagram.
+
+  # ----------------------------------------------------------------
+  # 18. Normative invariants (8)
+  # ----------------------------------------------------------------
+  invariants:
+    description: |
+      CR-VAS-010 introduces the following invariants.
+    items:
+      - id: SV-INV-001
+        statement: |
+          Semantic change MUST be classified; classification MUST
+          reflect actual impact, not diff size.
+      - id: SV-INV-002
+        statement: |
+          SemVer is a release convention; semantic compatibility
+          MUST be assessed and evidenced independently.
+      - id: SV-INV-003
+        statement: |
+          A change that alters qualification criteria MUST NOT be
+          released as a patch.
+      - id: SV-INV-004
+        statement: |
+          Invariant identifiers SHOULD remain stable across
+          releases when their meaning remains stable.
+      - id: SV-INV-005
+        statement: |
+          Migration transformations MUST be explicit; the
+          repository MUST NOT silently infer missing semantic
+          evidence to make legacy instances pass a newer
+          conformance suite.
+      - id: SV-INV-006
+        statement: |
+          Multiple repositories MUST NOT independently evolve
+          conflicting canonical definitions without an explicit
+          reconciliation mechanism.
+      - id: SV-INV-007
+        statement: |
+          An instance conformant to one version MUST NOT
+          automatically be labelled conformant to another.
+      - id: SV-INV-008
+        statement: |
+          Schema-compatible change may still be semantically
+          breaking; the compatibility report MUST make that
+          distinction explicit.
+
+  # ----------------------------------------------------------------
+  # 19. Boundary assertions
+  # ----------------------------------------------------------------
+  boundary_assertions:
+    per_cr_vas_010_versioning_evolution: |
+      Per CR-VAS-010, the AVS semantic contract MUST evolve
+      deliberately, transparently, and traceably. Semantic
+      compatibility MUST be assessed across five dimensions.
+      Migration transformations MUST be explicit. The
+      compatibility report MUST distinguish schema-compatible
+      changes from semantically breaking changes.
 

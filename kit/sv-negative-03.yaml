@@ -1,0 +1,10 @@
+id: KIT-AGENTIC-VALUE-STREAM-VAS-SV-N03
+test_id: VAS-SV-N03
+category: versioning_sv-negative
+subject: Qualification Change As Patch
+description: A change that alters qualification criteria MUST NOT be released as a patch.
+cr: CR-VAS-010 §21
+expect: qualification_change_review.rule forbids patch release for qualification change; SV-INV-003 binds.
+asserts:
+- versioning.qualification_change_review.rule contains MUST NOT be released as a patch
+- versioning.invariants.items contains item with id == SV-INV-003

@@ -1,0 +1,9 @@
+id: KIT-AGENTIC-VALUE-STREAM-VAS-SV-BT-02
+test_id: VAS-SV-BT-02
+category: versioning_sv-boundary
+subject: Normative vs Informative
+description: Informative material can still expose semantic contradictions. Informative status MUST NOT be used to evade review.
+cr: CR-VAS-010 §21
+expect: normative_vs_informative.warning explicitly forbids evading review via informative status.
+asserts:
+- versioning.normative_vs_informative.warning contains MUST NOT be used to evade review

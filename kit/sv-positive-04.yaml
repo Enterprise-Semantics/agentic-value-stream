@@ -1,0 +1,13 @@
+id: KIT-AGENTIC-VALUE-STREAM-VAS-SV-P04
+test_id: VAS-SV-P04
+category: versioning_sv-positive
+subject: Five-Dimension Compatibility
+description: Compatibility MUST be evaluated against Definition, Instance, Schema, Conformance, Mapping.
+cr: CR-VAS-010 §21
+expect: compatibility_dimensions.items contains all 5 dimensions.
+asserts:
+- versioning.compatibility_dimensions.items contains item with id == definition
+- versioning.compatibility_dimensions.items contains item with id == instance
+- versioning.compatibility_dimensions.items contains item with id == schema
+- versioning.compatibility_dimensions.items contains item with id == conformance
+- versioning.compatibility_dimensions.items contains item with id == mapping

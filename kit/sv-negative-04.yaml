@@ -1,0 +1,11 @@
+id: KIT-AGENTIC-VALUE-STREAM-VAS-SV-N04
+test_id: VAS-SV-N04
+category: versioning_sv-negative
+subject: Cross-Repo Conflicting Evolution
+description: Multiple repositories MUST NOT independently evolve conflicting canonical definitions without an explicit reconciliation
+  mechanism.
+cr: CR-VAS-010 §21
+expect: canonical_authority.rule_no_conflict forbids uncoordinated drift; SV-INV-006 binds.
+asserts:
+- versioning.canonical_authority.rule_no_conflict is defined
+- versioning.invariants.items contains item with id == SV-INV-006

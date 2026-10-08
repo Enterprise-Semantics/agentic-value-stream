@@ -1,0 +1,31 @@
+@startuml release-process
+skinparam backgroundColor #FAFAFA
+skinparam defaultFontName "Helvetica"
+skinparam defaultFontSize 12
+title CR-VAS-010: Release Process (CR -> Classify -> Impact -> Manifest -> Review -> Release)
+
+(*) --> "Change Request"
+"Change Request" --> "14-Item Checklist\n(problem, rationale, classification, impact, ...)"
+"14-Item Checklist\n(problem, rationale, classification, impact, ...)" --> "Classify (Editorial .. Breaking .. Multi)"
+"Classify (Editorial .. Breaking .. Multi)" --> "Impact Analysis Chain\nDefinition -> Invariants -> Qualification -> Schemas -> Tests -> Architecture -> Mappings -> Examples"
+"Impact Analysis Chain\nDefinition -> Invariants -> Qualification -> Schemas -> Tests -> Architecture -> Mappings -> Examples" --> "Migration Class (M0..M4)"
+"Migration Class (M0..M4)" --> "Manifest Composition\n{compatibility, changes, migration, dual_version}"
+"Manifest Composition\n{compatibility, changes, migration, dual_version}" --> "Release Review"
+"Release Review" --> [Block] "Patch for Qualification?" as BLK1
+BLK1 --> [Yes] "Reject (SV-INV-003)" as REJ1
+REJ1 --> (*)
+"Release Review" --> [Block] "Cross-repo conflict?" as BLK2
+BLK2 --> [Yes, no reconciliation] "Reject (SV-INV-006)" as REJ2
+REJ2 --> (*)
+"Release Review" --> [Pass] "Apply SemVer\n(major / minor / patch)"
+"Apply SemVer\n(major / minor / patch)" --> "Publish Release Manifest"
+"Publish Release Manifest" --> (*)
+
+note right
+  Per CR-VAS-010 §15: Compatibility values MUST be
+  justified by the release review, not automatically
+  inferred from the version number (SV-INV-002).
+  Per CR-VAS-010 §17: The 14-item checklist is MANDATORY.
+end note
+
+@enduml
